@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Foodini": {
+      "applicationId": "j28gc7OUqKZFc47nvyoRDPnZnaCRqh3mV8RiULMK"
+    },
+    "_default": {
+      "link": "Foodini"
+    }
+  }
+}
