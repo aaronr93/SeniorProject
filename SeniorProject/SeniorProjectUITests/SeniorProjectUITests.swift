@@ -2,8 +2,8 @@
 //  SeniorProjectUITests.swift
 //  SeniorProjectUITests
 //
-//  Created by Aaron Rosenberger on 1/21/16.
-//  Copyright © 2016 Aaron Rosenberger. All rights reserved.
+//  Created by Michael Kytka on 1/25/16.
+//  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
