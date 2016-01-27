@@ -8,6 +8,13 @@
 
 import UIKit
 
-class CreateAccountViewController: UIViewController {
+class CreateAccountViewController: UIViewController
+{
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationController?.navigationBarHidden = false
+    }
+    
 
 }

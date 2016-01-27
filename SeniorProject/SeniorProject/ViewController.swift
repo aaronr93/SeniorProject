@@ -32,6 +32,16 @@ class ViewController: UIViewController {
     
     let bottomBorder = CALayer()
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
