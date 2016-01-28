@@ -1,11 +1,10 @@
 Parse.Cloud.define("numUsers", function(request, response) {
-	var query = new Parse.Query("User");
-	query.count({
-			success: function(count) {
-				response.success("there are " + count + " users");
-			}
-		});
-
+	var userQuery = new Parse.Query("User");
+	userQuery.count({
+		success: function(count) {
+			response.success("there are " + count + " users");
+		}
+	});
 });
 
 Parse.Cloud.define("getUser", function(request, response) {

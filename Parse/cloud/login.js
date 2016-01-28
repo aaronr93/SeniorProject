@@ -1,4 +1,7 @@
-Parse.Cloud.define("login", function(request, response){
+// (c) Gooey 2016
+// login.js : Given a username and password, ask Parse if the credentials are valid.
+
+Parse.Cloud.define("login", function (request, response) {
 	Parse.User.logIn(request.params.username, request.params.password, {
         success: function(results) 
         {   
