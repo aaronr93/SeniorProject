@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
-                                    <segue destination="bsD-ip-mg7" kind="show" id="Vch-eg-nGd"/>
+                                    <segue destination="bsD-ip-mg7" kind="show" id="ypB-yZ-srU"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector gooey" translatesAutoresizingMaskIntoConstraints="NO" id="Yd5-dq-teF">
@@ -161,7 +161,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="pTk-qL-9Jp" kind="show" id="pOS-at-kda"/>
+                                    <segue destination="LZA-1I-Abq" kind="show" id="htN-Ep-2Pr"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-wd-3Fy">
@@ -246,34 +246,23 @@
             </objects>
             <point key="canvasLocation" x="1229" y="1193"/>
         </scene>
-        <!--Create Account (2/2)-->
-        <scene sceneID="NBU-iT-Lrt">
+        <!--View Controller-->
+        <scene sceneID="p6D-Vn-eww">
             <objects>
-                <tableViewController id="pTk-qL-9Jp" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xa3-iO-om7">
+                <viewController id="LZA-1I-Abq" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nCE-fn-8CR"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Gp-ok-1lL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AyP-T7-6rW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gh6-mb-iNK">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gh6-mb-iNK" id="d9W-RO-6QD">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="pTk-qL-9Jp" id="Ufc-0t-48o"/>
-                            <outlet property="delegate" destination="pTk-qL-9Jp" id="73w-OP-ic5"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Create Account (2/2)" id="Fv7-iP-zBB"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lHe-8t-Dsx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9pk-aZ-acO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="1943"/>
+            <point key="canvasLocation" x="1229" y="1953"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9s-lR-Dg2">
