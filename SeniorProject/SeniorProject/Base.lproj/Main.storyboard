@@ -288,7 +288,18 @@
                             </mask>
                         </variation>
                     </view>
+<<<<<<< Updated upstream
                     <navigationItem key="navigationItem" title="Create Account (1/2)" id="Cxf-2K-oU9"/>
+=======
+                    <navigationItem key="navigationItem" title="Create Account (1/2)" id="Dd5-dl-is4"/>
+                    <connections>
+                        <outlet property="confirmPasswordField" destination="EGS-6u-Ona" id="scc-o0-5it"/>
+                        <outlet property="emailField" destination="wIC-1t-RzD" id="ldb-sE-pc4"/>
+                        <outlet property="passwordField" destination="Sj0-5E-drn" id="A34-1k-9tM"/>
+                        <outlet property="phoneNumberField" destination="Y77-MG-oAJ" id="84S-TK-pYs"/>
+                        <outlet property="usernameField" destination="XxX-wd-3Fy" id="5P9-qh-D08"/>
+                    </connections>
+>>>>>>> Stashed changes
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4b-cd-u37" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
