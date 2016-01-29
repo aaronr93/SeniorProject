@@ -13,12 +13,16 @@
 		36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204791C5A893000A9CC59 /* Parse.framework */; };
 		36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047A1C5A893000A9CC59 /* ParseUI.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
+<<<<<<< HEAD
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
 		96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */; };
 		96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */; };
 		96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9D1C5AFF2C00DF6038 /* libz.tbd */; };
 		96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */; };
+=======
+		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
+>>>>>>> origin/master
 		96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */; };
 		96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D81C56B8AE004CE3A7 /* ViewController.swift */; };
 		96DD81DC1C56B8AE004CE3A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */; };
@@ -55,6 +59,7 @@
 		36E204791C5A893000A9CC59 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		36E2047A1C5A893000A9CC59 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		36E2047E1C5A897500A9CC59 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+<<<<<<< HEAD
 		96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -63,6 +68,9 @@
 		96B36A9D1C5AFF2C00DF6038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		96B36AA11C5AFF4700DF6038 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+=======
+		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
+>>>>>>> origin/master
 		96DD81D31C56B8AE004CE3A7 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DD81D81C56B8AE004CE3A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 				96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */,
 				96DD81D81C56B8AE004CE3A7 /* ViewController.swift */,
 				96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */,
+				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
 				96DD82061C56CEF6004CE3A7 /* User.swift */,
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
 				96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */,
@@ -334,6 +343,7 @@
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
+				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
