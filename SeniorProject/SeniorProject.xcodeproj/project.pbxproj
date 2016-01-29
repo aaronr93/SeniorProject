@@ -13,6 +13,7 @@
 		36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204791C5A893000A9CC59 /* Parse.framework */; };
 		36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047A1C5A893000A9CC59 /* ParseUI.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
+		36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E204801C5BD03D00A9CC59 /* Settings.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
@@ -56,6 +57,7 @@
 		36E204791C5A893000A9CC59 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		36E2047A1C5A893000A9CC59 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		36E2047E1C5A897500A9CC59 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		36E204801C5BD03D00A9CC59 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -174,6 +176,7 @@
 				96DD81DF1C56B8AE004CE3A7 /* LaunchScreen.storyboard */,
 				96DD81E21C56B8AE004CE3A7 /* Info.plist */,
 				96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */,
+				36E204801C5BD03D00A9CC59 /* Settings.swift */,
 			);
 			path = SeniorProject;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
 				96DD82071C56CEF6004CE3A7 /* User.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,

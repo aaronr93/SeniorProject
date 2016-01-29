@@ -12,21 +12,16 @@ import Foundation
 class User
 {
     var userID: String
+    var username: String
+    var name: String?
     var email: String?
     var phone: String?
     var location: String? // Possibly change this to something tied to Apple 
     // Password?
+    // Picture
     
-    init(userID: String) {
+    init(userID: String, username: String) {
         self.userID = userID
-    }
-}
-
-class Settings
-{
-    var active: Bool
-    
-    init(active: Bool) {
-        self.active = active
+        self.username = username
     }
 }
