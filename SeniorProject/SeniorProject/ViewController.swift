@@ -12,13 +12,24 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    func createBottomBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
+    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
     {
         let borderWidthL = CGFloat(borderWidth)
         layer.borderColor = color.CGColor
         layer.borderWidth = borderWidthL
         
         return layer
+    }
+    
+    func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor){
+        let bw = 1.0
+        
+        //create the bottom border and add to the sublayer
+        field.layer.addSublayer(createBorder(layer,borderWidth: bw,color: color)!)
+        field.layer.masksToBounds = true
+        
+        
+        layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -55,17 +66,11 @@ class ViewController: UIViewController {
         //create CA Layer for each field
         let borderBottomUser = CALayer()
         let borderBottomPass = CALayer()
-        let bw = 1.0
+        let color = UIColor.grayColor()
         
         //create the bottom border and add to the sublayer
-        usernameField.layer.addSublayer(createBottomBorder(borderBottomUser,borderWidth: bw,color:UIColor.grayColor())!)
-        usernameField.layer.masksToBounds = true
-         passwordField.layer.addSublayer(createBottomBorder(borderBottomPass,borderWidth: bw,color:UIColor.grayColor())!)
-        passwordField.layer.masksToBounds = true
-        
-        borderBottomUser.frame = CGRect(x: 0, y: passwordField.frame.height - 1.0, width: usernameField.frame.width , height: usernameField.frame.height - 1.0)
-        borderBottomPass.frame = CGRect(x: 0, y: passwordField.frame.height - 1.0, width: passwordField.frame.width , height: passwordField.frame.height - 1.0)
-
+        addBorderToTextField(borderBottomUser, field: usernameField, color: color)
+        addBorderToTextField(borderBottomPass, field: passwordField, color: color)
     }
     
 
