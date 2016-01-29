@@ -41,8 +41,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var passwordField: UITextField!
     
-    let bottomBorder = CALayer()
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
@@ -71,6 +69,8 @@ class ViewController: UIViewController {
         //create the bottom border and add to the sublayer
         addBorderToTextField(borderBottomUser, field: usernameField, color: color)
         addBorderToTextField(borderBottomPass, field: passwordField, color: color)
+        
+        
     }
     
 
