@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 
 
@@ -36,11 +37,29 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
         return false
     }
+    
+    func sanitizeField(textField: UITextField) -> String?{
+        var text = textField.text
+        
+        return text
+    }
 
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBAction func loginButtonPressed(sender: UIButton) {
+        let usernameFieldText = sanitizeField(usernameField)
+        let passwordFieldText = sanitizeField(passwordField)
+        PFUser.logInWithUsernameInBackground(usernameFieldText!, password:passwordFieldText!) {
+            (user: PFUser?, error: NSError?) -> Void in
+            if user != nil {
+                print("success!!")
+            } else {
+                print("Error!!")
+            }
+        }
+    }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
