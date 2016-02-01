@@ -49,9 +49,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        let usernameFieldText = validateField(usernameField)
-        let passwordFieldText = validateField(passwordField)
-        PFUser.logInWithUsernameInBackground(usernameFieldText!, password:passwordFieldText!) {
+        let usernameFieldText = validateField(usernameField)!
+        let passwordFieldText = validateField(passwordField)!
+        let validation = Validation()
+        let textFields = [usernameFieldText,passwordFieldText]
+        validation.check(textFields, items:
+            [
+                "username" : ["required" : true, "min" : 4 , "max": 20],
+                "password" : ["required" : true , "min" : 4, "max" : 20]
+            ]
+        )
+        PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
                 print("success!!")

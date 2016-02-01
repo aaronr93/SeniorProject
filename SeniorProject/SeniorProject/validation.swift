@@ -13,7 +13,9 @@ class Validation
     var errors = [String]()
     var passed : Bool = false
     
-    /*func check(values: ){
-    
-    }*/
+    func check(values: [String], items: [String : [String : AnyObject]]){
+        for item in items {
+            print(item)
+        }
+    }
 }
