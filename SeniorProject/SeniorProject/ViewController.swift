@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         return false
     }
     
-    func sanitizeField(textField: UITextField) -> String?{
+    func validateField(textField: UITextField) -> String?{
         var text = textField.text
         
         return text
@@ -49,8 +49,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        let usernameFieldText = sanitizeField(usernameField)
-        let passwordFieldText = sanitizeField(passwordField)
+        let usernameFieldText = validateField(usernameField)
+        let passwordFieldText = validateField(passwordField)
         PFUser.logInWithUsernameInBackground(usernameFieldText!, password:passwordFieldText!) {
             (user: PFUser?, error: NSError?) -> Void in
             if user != nil {
