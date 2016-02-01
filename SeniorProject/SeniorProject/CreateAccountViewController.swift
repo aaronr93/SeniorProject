@@ -34,11 +34,46 @@ class CreateAccountViewController: UIViewController
     
     @IBAction func confirmPasswordChanged(sender: UITextField) {
         // Editing did end
+        if (confirmPasswordEqualsPassword()) {
+            removeBadInputWarningInField(confirmPasswordField)
+        } else {
+            showBadInputWarningInField(confirmPasswordField)
+        }
     }
     
     @IBAction func nextClick(sender: UIButton) {
         // Touch up inside
         // Check to make sure the fields are filled out
+        checkPasswordIsNotHorrible()
+        confirmPasswordEqualsPassword()
+    }
+    
+    func checkPasswordIsNotHorrible() {
+        if ((passwordField.text?.containsString(usernameField.text!)) != nil) {
+            // username is contained in the password
+            showBadInputWarningInField(passwordField)
+        }
+        if ((passwordField.text?.containsString("password")) != nil) {
+            // The user tried to set the password as "password"
+            
+        }
+    }
+    
+    func confirmPasswordEqualsPassword() -> Bool {
+        if (confirmPasswordField.text == passwordField.text) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func showBadInputWarningInField(field: UITextField) {
+        // Called when the text in the param of type UITextField is invalid.
+        // IDK, make a red border or something. Or just a notification.
+    }
+    
+    func removeBadInputWarningInField(field: UITextField) {
+        
     }
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
