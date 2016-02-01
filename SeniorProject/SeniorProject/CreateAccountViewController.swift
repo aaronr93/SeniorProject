@@ -16,7 +16,30 @@ class CreateAccountViewController: UIViewController
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    @IBAction func phoneNumberChanged(sender: UITextField) {
+        // Editing changed
+        
+    }
     
+    @IBAction func emailChanged(sender: UITextField) {
+        // Editing changed
+        // Make sure it's correct email syntax
+        // Look into services for confirming emails
+        // OR we could just do phone number login
+    }
+    
+    @IBAction func passwordChanged(sender: UITextField) {
+        // Editing changed
+    }
+    
+    @IBAction func confirmPasswordChanged(sender: UITextField) {
+        // Editing did end
+    }
+    
+    @IBAction func nextClick(sender: UIButton) {
+        // Touch up inside
+        // Check to make sure the fields are filled out
+    }
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
     {
