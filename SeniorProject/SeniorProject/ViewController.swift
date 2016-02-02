@@ -37,37 +37,43 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
         return false
     }
-    
-    func validateField(textField: UITextField) -> String?{
-        var text = textField.text
-        
-        return text
-    }
 
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        let usernameFieldText = validateField(usernameField)!
-        let passwordFieldText = validateField(passwordField)!
-        let validation = Validation()
-        let textFields = [usernameFieldText,passwordFieldText]
-        validation.check(textFields, items:
-            [
-                "username" : ["required" : true, "min" : 4 , "max": 20],
-                "password" : ["required" : true , "min" : 4, "max" : 20]
-            ]
-        )
-        PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
-            (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                print("success!!")
-            } else {
-                print("Error!!")
+            let validation = Validation()
+            if let usernameFieldText = usernameField.text{
+                if let passwordFieldText = passwordField.text{
+                    let textFields = ["username":usernameFieldText,"password":passwordFieldText]
+                    validation.check(textFields, items:
+                        [
+                            "username" : ["required" : true, "min" : 4 , "max": 20],
+                            "password" : ["required" : true , "min" : 4, "max" : 20]
+                        ]
+                    )
+                    if(!validation.passed){
+                        //validation failed
+                        print(validation.errors)
+                    }else{
+                        //validation passed
+                        PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
+                            (user: PFUser?, error: NSError?) -> Void in
+                            if user != nil {
+                                print("success!!")
+                            } else {
+                                print("Error!!")
+                            }
+                        }
+                    }
+                }
+            }
+            if(validation.passed){
+                //fields are validated
+                
             }
         }
-    }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
