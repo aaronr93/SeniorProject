@@ -53,8 +53,7 @@
                                 </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yYg-JN-Snw"/>
-                                    <segue destination="7hC-Yq-T9W" kind="show" id="H2Y-RL-OK2"/>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VfX-QR-3ae"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74u-TW-Jv2">
@@ -134,6 +133,7 @@
                     <connections>
                         <outlet property="passwordField" destination="zRc-oN-Kad" id="tfw-dv-nnk"/>
                         <outlet property="usernameField" destination="cX0-lK-ee6" id="yze-VB-LeP"/>
+                        <segue destination="7hC-Yq-T9W" kind="show" identifier="loginSegue" id="coT-VD-mRa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
