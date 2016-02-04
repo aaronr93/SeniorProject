@@ -43,7 +43,7 @@ class Validation
                         case "max":
                             if let rv = rule_value as? Int{
                                 if val.length > rv{
-                                    addError("\(item) must be a minimum of \(rv) characters.")
+                                    addError("\(item) must be a maximum of \(rv) characters.")
                                 }
                             }
                         default:
