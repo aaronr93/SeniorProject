@@ -153,7 +153,11 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="New Order" id="uLd-xX-KJa">
-                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="cYM-8Y-DgU"/>
+                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="cYM-8Y-DgU">
+                                        <connections>
+                                            <segue destination="k5h-Rh-sQm" kind="show" action="showDetailViewController:sender:" id="ncm-A8-DfT"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Send Request" id="nNu-ka-W63"/>
                                 </navigationItem>
                             </items>
@@ -574,6 +578,6 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DOm-EA-PAf"/>
+        <segue reference="ncm-A8-DfT"/>
     </inferredMetricsTieBreakers>
 </document>
