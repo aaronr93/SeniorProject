@@ -41,7 +41,7 @@ class CreateAccountViewController: UIViewController
         }
     }
     
-    @IBAction func nextClick(sender: UIButton) {
+    @IBAction func nextButtonPressed(sender: UIButton) {
         // Touch up inside
         // Check to make sure the fields are filled out
         checkPasswordIsNotHorrible()
