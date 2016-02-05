@@ -46,6 +46,19 @@ class Validation
                                     addError("\(item) must be a maximum of \(rv) characters.")
                                 }
                             }
+                        case "doesNotContain":
+                            if let rv = rule_value as? String {
+                                if (val.containsString(rv)) {
+                                    // The given value contains "rv"'s value
+                                    addError("\(item) must not contain \(rv)")
+                                }
+                            }
+                        case "stringNotEqualTo":
+                            if let rv = rule_value as? String {
+                                if (val == rv) {
+                                    addError("\(item) must not equal \(rv)")
+                                }
+                            }
                         default:
                             ()
                         }

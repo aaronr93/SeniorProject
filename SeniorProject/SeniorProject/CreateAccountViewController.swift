@@ -16,25 +16,25 @@ class CreateAccountViewController: UIViewController
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    let newAccount = CreateAccount()
+    
     @IBAction func phoneNumberChanged(sender: UITextField) {
-        // Editing changed
-        
+        newAccount.phone = sender.text
     }
     
     @IBAction func emailChanged(sender: UITextField) {
-        // Editing changed
-        // Make sure it's correct email syntax
-        // Look into services for confirming emails
-        // OR we could just do phone number login
+        newAccount.email = sender.text
     }
     
     @IBAction func passwordChanged(sender: UITextField) {
-        // Editing changed
+        newAccount.password = sender.text
     }
     
     @IBAction func confirmPasswordChanged(sender: UITextField) {
         // Editing did end
-        if (confirmPasswordEqualsPassword()) {
+        newAccount.passwordConfirm = sender.text
+        
+        if (newAccount.confirmPasswordEqualsPassword()) {
             removeBadInputWarningInField(confirmPasswordField)
         } else {
             showBadInputWarningInField(confirmPasswordField)
@@ -42,38 +42,25 @@ class CreateAccountViewController: UIViewController
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
-        // Touch up inside
-        // Check to make sure the fields are filled out
-        checkPasswordIsNotHorrible()
-        confirmPasswordEqualsPassword()
+        validate()
+        if newAccount.isValidated == true {
+            self.performSegueWithIdentifier("validateSegue", sender: self)
+        }
+    }
+    
+    func validate() {
+        if newAccount.checkPasswordIsNotHorrible() && newAccount.confirmPasswordEqualsPassword() {
+            newAccount.isValidated = true
+        }
     }
     
     @IBAction func finishButtonPressed(sender: UIButton) {
         
     }
     
-    func checkPasswordIsNotHorrible() {
-        if ((passwordField.text?.containsString(usernameField.text!)) != nil) {
-            // username is contained in the password
-            showBadInputWarningInField(passwordField)
-        }
-        if ((passwordField.text?.containsString("password")) != nil) {
-            // The user tried to set the password as "password"
-            
-        }
-    }
-    
-    func confirmPasswordEqualsPassword() -> Bool {
-        if (confirmPasswordField.text == passwordField.text) {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     func showBadInputWarningInField(field: UITextField) {
         // Called when the text in the param of type UITextField is invalid.
-        // IDK, make a red border or something. Or just a notification.
+        
     }
     
     func removeBadInputWarningInField(field: UITextField) {

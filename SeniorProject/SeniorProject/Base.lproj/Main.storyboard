@@ -377,7 +377,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="nextButtonPressed:" destination="bsD-ip-mg7" eventType="touchUpInside" id="Mhw-HE-t4O"/>
-                                    <segue destination="LZA-1I-Abq" kind="show" id="htN-Ep-2Pr"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-wd-3Fy">
@@ -463,6 +462,7 @@
                         <outlet property="passwordField" destination="Sj0-5E-drn" id="A34-1k-9tM"/>
                         <outlet property="phoneNumberField" destination="Y77-MG-oAJ" id="84S-TK-pYs"/>
                         <outlet property="usernameField" destination="XxX-wd-3Fy" id="5P9-qh-D08"/>
+                        <segue destination="LZA-1I-Abq" kind="show" identifier="validateSegue" id="lf9-pe-J9K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4b-cd-u37" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -553,7 +553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pk-aZ-acO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1229" y="1953"/>
+            <point key="canvasLocation" x="1229" y="1901"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9s-lR-Dg2">
@@ -578,6 +578,6 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ncm-A8-DfT"/>
+        <segue reference="DOm-EA-PAf"/>
     </inferredMetricsTieBreakers>
 </document>
