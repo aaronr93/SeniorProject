@@ -48,6 +48,10 @@ class CreateAccountViewController: UIViewController
         confirmPasswordEqualsPassword()
     }
     
+    @IBAction func finishButtonPressed(sender: UIButton) {
+        
+    }
+    
     func checkPasswordIsNotHorrible() {
         if ((passwordField.text?.containsString(usernameField.text!)) != nil) {
             // username is contained in the password
@@ -117,6 +121,8 @@ class CreateAccountViewController: UIViewController
         
         
     }
+    
+    
     
 
 }
