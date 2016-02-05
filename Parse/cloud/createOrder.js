@@ -8,7 +8,7 @@ Parse.Cloud.define("createOrder", function (request, response) {
 
 	//set values
 
-	order.set("expirationDate",null);//null for now
+	order.set("expirationDate", param.expirationDate);//null for now
 	order.set("TimeSent",null);
 	order.set("DeliveryLocation",param.DeliveryLocation);
 	order.set("OrderDetails",param.OrderDetails);
