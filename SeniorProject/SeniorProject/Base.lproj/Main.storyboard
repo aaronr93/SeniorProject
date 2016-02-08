@@ -140,10 +140,10 @@
             </objects>
             <point key="canvasLocation" x="1265" y="378"/>
         </scene>
-        <!--Table View Controller-->
+        <!--New Order View Controller-->
         <scene sceneID="9aF-Jp-rv1">
             <objects>
-                <tableViewController id="7hC-Yq-T9W" sceneMemberID="viewController">
+                <tableViewController id="7hC-Yq-T9W" customClass="NewOrderViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="CQi-Ph-dDg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
                                 <navigationItem title="New Order" id="uLd-xX-KJa">
                                     <barButtonItem key="leftBarButtonItem" title="Cancel" id="cYM-8Y-DgU">
                                         <connections>
-                                            <segue destination="k5h-Rh-sQm" kind="show" action="showDetailViewController:sender:" id="ncm-A8-DfT"/>
+                                            <action selector="cancelled:" destination="7hC-Yq-T9W" id="fmX-xh-pUd"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" title="Send Request" id="nNu-ka-W63"/>
@@ -273,10 +273,13 @@
                             <outlet property="delegate" destination="7hC-Yq-T9W" id="z36-PG-HGS"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="k5h-Rh-sQm" kind="show" identifier="cancelNewOrderSegue" id="6Sh-qA-wLk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Oy-VQ-Qx1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2691" y="1111"/>
+            <point key="canvasLocation" x="2775" y="1208"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J5h-E8-mzh">
@@ -306,21 +309,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
-                                <rect key="frame" x="139" y="237" width="322" height="72"/>
-                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="I'm picking up food"/>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0TG-Be-dbS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-S1-pH1">
                                 <rect key="frame" x="139" y="140" width="322" height="72"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="322" id="Sob-kI-bWi"/>
-                                    <constraint firstAttribute="height" constant="72" id="Zwg-3K-sOc"/>
+                                    <constraint firstAttribute="width" constant="322" id="4RS-LA-icH"/>
+                                    <constraint firstAttribute="height" constant="72" id="Dab-ul-IP2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="I want food"/>
@@ -331,16 +325,35 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
+                                <rect key="frame" x="139" y="264" width="322" height="72"/>
+                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="322" id="3jz-uI-Xx6"/>
+                                    <constraint firstAttribute="height" constant="72" id="QEp-Ug-4mD"/>
+                                    <constraint firstAttribute="height" constant="72" id="nI6-eR-FzL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="I'm picking up food"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0TG-Be-dbS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xtd-Ya-hm9" firstAttribute="top" secondItem="Qqk-4p-81w" secondAttribute="bottom" constant="291" id="5XL-hh-N19"/>
-                            <constraint firstItem="lEy-S1-pH1" firstAttribute="centerX" secondItem="Gr3-AK-L41" secondAttribute="centerX" id="8kA-uj-ATi"/>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="leading" secondItem="lEy-S1-pH1" secondAttribute="leading" id="gVa-iC-EVY"/>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="top" secondItem="lEy-S1-pH1" secondAttribute="bottom" constant="25" id="sev-Iq-qye"/>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="trailing" secondItem="lEy-S1-pH1" secondAttribute="trailing" id="w7r-2P-TpY"/>
-                            <constraint firstItem="lEy-S1-pH1" firstAttribute="top" secondItem="iXm-vd-WFw" secondAttribute="bottom" constant="76" id="yBq-ZV-ymI"/>
+                            <constraint firstItem="Qqk-4p-81w" firstAttribute="top" secondItem="lEy-S1-pH1" secondAttribute="bottom" constant="52" id="9Gh-R1-0Xx"/>
+                            <constraint firstItem="Qqk-4p-81w" firstAttribute="trailing" secondItem="lEy-S1-pH1" secondAttribute="trailing" id="IaG-Ac-2lS"/>
+                            <constraint firstItem="Qqk-4p-81w" firstAttribute="centerY" secondItem="Gr3-AK-L41" secondAttribute="centerY" id="fB8-Qg-Vg4"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="top" secondItem="iXm-vd-WFw" secondAttribute="bottom" constant="120" id="pAC-iA-2bs"/>
+                            <constraint firstItem="Qqk-4p-81w" firstAttribute="leading" secondItem="lEy-S1-pH1" secondAttribute="leading" id="qhF-a9-pLJ"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="centerX" secondItem="Gr3-AK-L41" secondAttribute="centerX" id="xg2-pt-3Gq"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fB8-Qg-Vg4"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="10u-XQ-VeS">
                         <barButtonItem key="leftBarButtonItem" title="My orders" id="riJ-g2-bem"/>
@@ -349,12 +362,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXc-lx-cf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1982" y="1111"/>
+            <point key="canvasLocation" x="1982" y="1208"/>
         </scene>
-        <!--Create Account (1/2)-->
+        <!--Create Account 1-->
         <scene sceneID="xiX-rP-QNB">
             <objects>
-                <viewController title="Create Account (1/2)" id="bsD-ip-mg7" customClass="CreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
+                <viewController title="Create Account 1" id="bsD-ip-mg7" customClass="CreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u7h-q5-dZP"/>
                         <viewControllerLayoutGuide type="bottom" id="XKW-YR-rZH"/>
@@ -367,13 +380,16 @@
                                 <rect key="frame" x="139" y="344" width="322" height="46"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="T0V-WG-AZk"/>
                                     <constraint firstAttribute="width" constant="322" id="hyF-hI-mBQ"/>
+                                    <constraint firstAttribute="width" constant="322" id="mPP-N2-tyY"/>
                                     <constraint firstAttribute="width" constant="322" id="r0u-K2-8vo"/>
                                 </constraints>
                                 <state key="normal" title="Next"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="hyF-hI-mBQ"/>
+                                        <exclude reference="r0u-K2-8vo"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -441,19 +457,18 @@
                             <constraint firstItem="XxX-wd-3Fy" firstAttribute="top" secondItem="u7h-q5-dZP" secondAttribute="bottom" constant="36" id="5tv-re-cPv"/>
                             <constraint firstItem="Y77-MG-oAJ" firstAttribute="top" secondItem="XxX-wd-3Fy" secondAttribute="bottom" constant="8" symbolic="YES" id="6Zb-JB-JND"/>
                             <constraint firstAttribute="trailing" secondItem="XxX-wd-3Fy" secondAttribute="trailing" id="84o-Oi-bTu"/>
-                            <constraint firstItem="kA5-DE-0kn" firstAttribute="top" secondItem="EGS-6u-Ona" secondAttribute="bottom" constant="62" id="9H6-oD-7YM"/>
                             <constraint firstItem="wIC-1t-RzD" firstAttribute="leading" secondItem="Sj0-5E-drn" secondAttribute="leading" id="9tv-Qq-Er7"/>
                             <constraint firstItem="Y77-MG-oAJ" firstAttribute="leading" secondItem="wIC-1t-RzD" secondAttribute="leading" id="DAB-Ww-r1R"/>
                             <constraint firstItem="EGS-6u-Ona" firstAttribute="top" secondItem="Sj0-5E-drn" secondAttribute="bottom" constant="8" symbolic="YES" id="E7H-x7-f9q"/>
-                            <constraint firstItem="kA5-DE-0kn" firstAttribute="centerX" secondItem="7nQ-cX-fg3" secondAttribute="centerX" id="I7Z-Iy-aF0"/>
                             <constraint firstItem="Sj0-5E-drn" firstAttribute="top" secondItem="wIC-1t-RzD" secondAttribute="bottom" constant="8" symbolic="YES" id="Ii6-8Y-g0p"/>
+                            <constraint firstItem="kA5-DE-0kn" firstAttribute="centerX" secondItem="7nQ-cX-fg3" secondAttribute="centerX" id="JJE-jR-2gg"/>
                             <constraint firstItem="wIC-1t-RzD" firstAttribute="top" secondItem="Y77-MG-oAJ" secondAttribute="bottom" constant="8" symbolic="YES" id="PzQ-gX-BvV"/>
                             <constraint firstItem="kA5-DE-0kn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EGS-6u-Ona" secondAttribute="bottom" constant="46" id="QyU-4v-RU5"/>
+                            <constraint firstItem="kA5-DE-0kn" firstAttribute="top" secondItem="EGS-6u-Ona" secondAttribute="bottom" constant="62" id="Rnn-tL-AwL"/>
                             <constraint firstItem="kA5-DE-0kn" firstAttribute="centerX" secondItem="7nQ-cX-fg3" secondAttribute="centerX" id="UZv-hd-FOp"/>
                             <constraint firstItem="Y77-MG-oAJ" firstAttribute="trailing" secondItem="wIC-1t-RzD" secondAttribute="trailing" id="bzH-hu-R3P"/>
                             <constraint firstItem="Y77-MG-oAJ" firstAttribute="leading" secondItem="XxX-wd-3Fy" secondAttribute="leading" id="dbz-F3-U8t"/>
                             <constraint firstItem="XKW-YR-rZH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kA5-DE-0kn" secondAttribute="bottom" constant="8" symbolic="YES" id="gaD-W9-x4H"/>
-                            <constraint firstItem="XKW-YR-rZH" firstAttribute="top" secondItem="kA5-DE-0kn" secondAttribute="bottom" constant="210" id="ko2-Tq-UbT"/>
                             <constraint firstItem="Sj0-5E-drn" firstAttribute="trailing" secondItem="EGS-6u-Ona" secondAttribute="trailing" id="oI9-f3-W1k"/>
                             <constraint firstItem="Sj0-5E-drn" firstAttribute="leading" secondItem="EGS-6u-Ona" secondAttribute="leading" id="poi-nv-MsT"/>
                             <constraint firstItem="wIC-1t-RzD" firstAttribute="trailing" secondItem="Sj0-5E-drn" secondAttribute="trailing" id="qyW-O7-Cod"/>
@@ -470,7 +485,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Account (1/2)" id="Dd5-dl-is4">
+                    <navigationItem key="navigationItem" title="Create Account" id="Dd5-dl-is4">
                         <barButtonItem key="backBarButtonItem" title="Back" id="i1q-4g-FaB"/>
                     </navigationItem>
                     <connections>
@@ -486,10 +501,10 @@
             </objects>
             <point key="canvasLocation" x="1265" y="1134"/>
         </scene>
-        <!--Create Account (2/2)-->
+        <!--Create Account 2-->
         <scene sceneID="p6D-Vn-eww">
             <objects>
-                <viewController id="LZA-1I-Abq" customClass="FinishCreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
+                <viewController title="Create Account 2" id="LZA-1I-Abq" customClass="FinishCreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nCE-fn-8CR"/>
                         <viewControllerLayoutGuide type="bottom" id="6Gp-ok-1lL"/>
@@ -569,10 +584,11 @@
                                 <rect key="frame" x="531" y="325" width="51" height="31"/>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QmN-Si-Ane">
-                                <rect key="frame" x="139" y="440" width="322" height="46"/>
+                                <rect key="frame" x="139" y="468" width="322" height="46"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="322" id="khk-eD-b4Y"/>
+                                    <constraint firstAttribute="width" constant="322" id="9bV-gj-jAM"/>
+                                    <constraint firstAttribute="height" constant="46" id="mQK-3o-oSD"/>
                                     <constraint firstAttribute="width" constant="322" id="qO8-zD-iyB"/>
                                 </constraints>
                                 <state key="normal" title="Finish"/>
@@ -589,18 +605,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Lc-Sl-dzX" firstAttribute="trailing" secondItem="lDD-Rt-7jD" secondAttribute="trailing" id="142-Dc-lZo"/>
-                            <constraint firstItem="QmN-Si-Ane" firstAttribute="centerX" secondItem="YPp-8T-ZyN" secondAttribute="centerX" id="1i7-ax-LPr"/>
                             <constraint firstItem="rBN-BL-rDy" firstAttribute="leading" secondItem="AyP-T7-6rW" secondAttribute="leading" id="1yF-vK-eCl"/>
                             <constraint firstItem="YPp-8T-ZyN" firstAttribute="leading" secondItem="9Lc-Sl-dzX" secondAttribute="leading" id="2hh-sL-deW"/>
                             <constraint firstItem="YPp-8T-ZyN" firstAttribute="centerY" secondItem="Npi-vJ-Ioe" secondAttribute="centerY" id="8bf-IW-E7x"/>
                             <constraint firstItem="rBN-BL-rDy" firstAttribute="top" secondItem="nCE-fn-8CR" secondAttribute="bottom" id="DcI-7p-JY4"/>
                             <constraint firstItem="mAu-gr-tFx" firstAttribute="centerX" secondItem="rBN-BL-rDy" secondAttribute="centerX" id="E9Z-fH-ahp"/>
+                            <constraint firstItem="QmN-Si-Ane" firstAttribute="top" secondItem="YPp-8T-ZyN" secondAttribute="bottom" constant="55" id="FUc-vg-vF8"/>
                             <constraint firstItem="lDD-Rt-7jD" firstAttribute="top" secondItem="Ooo-bn-aUg" secondAttribute="bottom" constant="14" id="G4D-04-ADY"/>
                             <constraint firstItem="u3i-Wu-Km5" firstAttribute="top" secondItem="mAu-gr-tFx" secondAttribute="bottom" constant="8" symbolic="YES" id="H07-q4-2jn"/>
                             <constraint firstItem="9Lc-Sl-dzX" firstAttribute="leading" secondItem="Ooo-bn-aUg" secondAttribute="leading" id="HRE-48-cWb"/>
                             <constraint firstItem="mAu-gr-tFx" firstAttribute="leading" secondItem="u3i-Wu-Km5" secondAttribute="leading" id="Mpa-EO-nno"/>
                             <constraint firstItem="Npi-vJ-Ioe" firstAttribute="trailing" secondItem="YPp-8T-ZyN" secondAttribute="trailing" id="Ogi-9g-pdw"/>
                             <constraint firstAttribute="trailing" secondItem="rBN-BL-rDy" secondAttribute="trailing" id="Q5q-Pz-Vjj"/>
+                            <constraint firstItem="QmN-Si-Ane" firstAttribute="centerX" secondItem="YPp-8T-ZyN" secondAttribute="centerX" id="R1S-Al-O0b"/>
                             <constraint firstItem="Ooo-bn-aUg" firstAttribute="top" secondItem="UNU-Ho-D85" secondAttribute="bottom" constant="8" symbolic="YES" id="W8x-4g-sI5"/>
                             <constraint firstItem="YPp-8T-ZyN" firstAttribute="top" secondItem="9Lc-Sl-dzX" secondAttribute="bottom" constant="8" symbolic="YES" id="WOE-49-bay"/>
                             <constraint firstItem="Ooo-bn-aUg" firstAttribute="trailing" secondItem="lDD-Rt-7jD" secondAttribute="trailing" id="YYb-Yu-3bT"/>
@@ -608,25 +625,25 @@
                             <constraint firstItem="mAu-gr-tFx" firstAttribute="trailing" secondItem="u3i-Wu-Km5" secondAttribute="trailing" id="dB4-vy-uoo"/>
                             <constraint firstItem="Npi-vJ-Ioe" firstAttribute="top" secondItem="9Lc-Sl-dzX" secondAttribute="bottom" constant="14" id="gwU-Sn-d0I"/>
                             <constraint firstItem="u3i-Wu-Km5" firstAttribute="trailing" secondItem="UNU-Ho-D85" secondAttribute="trailing" id="hBH-tO-9Ml"/>
-                            <constraint firstItem="6Gp-ok-1lL" firstAttribute="top" secondItem="QmN-Si-Ane" secondAttribute="bottom" constant="114" id="jFR-UT-vdu"/>
                             <constraint firstItem="9Lc-Sl-dzX" firstAttribute="centerY" secondItem="lDD-Rt-7jD" secondAttribute="centerY" id="mef-cS-OyT"/>
                             <constraint firstItem="mAu-gr-tFx" firstAttribute="leading" secondItem="AyP-T7-6rW" secondAttribute="leadingMargin" id="nDF-Q3-fR9"/>
                             <constraint firstItem="Ooo-bn-aUg" firstAttribute="leading" secondItem="UNU-Ho-D85" secondAttribute="leading" id="nMz-DH-HFs"/>
                             <constraint firstItem="UNU-Ho-D85" firstAttribute="top" secondItem="u3i-Wu-Km5" secondAttribute="bottom" constant="8" symbolic="YES" id="pF5-Xq-0dC"/>
+                            <constraint firstItem="6Gp-ok-1lL" firstAttribute="top" secondItem="QmN-Si-Ane" secondAttribute="bottom" constant="86" id="r5I-Hm-vAU"/>
                             <constraint firstItem="Npi-vJ-Ioe" firstAttribute="leading" secondItem="lDD-Rt-7jD" secondAttribute="leading" id="s8r-am-fh4"/>
                             <constraint firstItem="Ooo-bn-aUg" firstAttribute="trailing" secondItem="UNU-Ho-D85" secondAttribute="trailing" id="tU9-zl-duB"/>
                             <constraint firstItem="9Lc-Sl-dzX" firstAttribute="top" secondItem="Ooo-bn-aUg" secondAttribute="bottom" constant="8" symbolic="YES" id="v8n-Lg-mNO"/>
-                            <constraint firstItem="QmN-Si-Ane" firstAttribute="top" secondItem="YPp-8T-ZyN" secondAttribute="bottom" constant="27" id="wqi-gV-0GJ"/>
                             <constraint firstItem="6Gp-ok-1lL" firstAttribute="top" secondItem="Npi-vJ-Ioe" secondAttribute="bottom" constant="193" id="xUt-ww-Qcx"/>
                             <constraint firstItem="mAu-gr-tFx" firstAttribute="top" secondItem="rBN-BL-rDy" secondAttribute="bottom" constant="8" symbolic="YES" id="y0t-ew-a6L"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8bf-IW-E7x"/>
+                                <exclude reference="r5I-Hm-vAU"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Account (2/2)" id="JtF-CK-Qw1"/>
+                    <navigationItem key="navigationItem" title="Create Account" id="JtF-CK-Qw1"/>
                     <connections>
                         <outlet property="data" destination="Npi-vJ-Ioe" id="2Ls-PI-ex2"/>
                         <outlet property="terms" destination="lDD-Rt-7jD" id="XE3-dJ-6Qi"/>
@@ -661,6 +678,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CEV-uE-pkl"/>
-        <segue reference="ncm-A8-DfT"/>
+        <segue reference="6Sh-qA-wLk"/>
     </inferredMetricsTieBreakers>
 </document>

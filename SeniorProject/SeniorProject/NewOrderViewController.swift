@@ -10,6 +10,10 @@ import UIKit
 
 class NewOrderViewController: UITableViewController {
 
+    @IBAction func cancelled(sender: UIBarButtonItem) {
+        self.performSegueWithIdentifier("cancelNewOrderSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
