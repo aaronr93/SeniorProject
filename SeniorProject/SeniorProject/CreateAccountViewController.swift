@@ -56,10 +56,10 @@ class CreateAccountViewController: UIViewController
     }
     
     func validate() {
-        if usernameField.text != "" &&
+        if validatedUsername() &&
             phoneNumberField.text != "" &&
             emailField.text != "" &&
-            passwordField.text != "" &&
+            validatedPassword() &&
             confirmPasswordField.text != "" &&
             newAccount.checkPasswordIsNotHorrible() &&
             newAccount.confirmPasswordEqualsPassword() {
@@ -74,18 +74,55 @@ class CreateAccountViewController: UIViewController
                 // TODO: Make the validation better!
                 //*****************************************
                 
+        }
+    }
+    
+    func validatedUsername() -> Bool {
+        let validation = Validation()
+        if let fieldText = usernameField.text {
+            let textFields = ["username": fieldText]
+            validation.check(textFields, items: [
+                "username" : ["required": true, "min": 4, "max": 20]
+            ])
+        }
+        if (!validation.passed) {
+            //validation failed
+            print(validation.errors)
+            showBadInputWarningInField(usernameField)
+            return false
         } else {
-            print("Not all fields are filled out.")
+            removeBadInputWarningInField(usernameField)
+            return true
+        }
+    }
+    
+    func validatedPassword() -> Bool {
+        let validation = Validation()
+        if let fieldText = passwordField.text {
+            let textFields = ["username": fieldText]
+            validation.check(textFields, items: [
+                "username" : ["required": true, "min": 6, "max": 20]
+            ])
+        }
+        if (!validation.passed) {
+            //validation failed
+            print(validation.errors)
+            showBadInputWarningInField(passwordField)
+            return false
+        } else {
+            removeBadInputWarningInField(passwordField)
+            return true
         }
     }
     
     func showBadInputWarningInField(field: UITextField) {
         // Called when the text in the param of type UITextField is invalid.
-        //field.layer.borderColor =
+        let myColor: UIColor = UIColor(red: 0.5, green: 0.5, blue: 0, alpha: 1.0 )
+        field.layer.borderColor = myColor.CGColor
     }
     
     func removeBadInputWarningInField(field: UITextField) {
-        
+        field.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
