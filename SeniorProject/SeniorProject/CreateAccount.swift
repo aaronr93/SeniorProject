@@ -14,16 +14,18 @@ class CreateAccount {
     var passwordConfirm: String?
     var email: String?
     var phone: String?
-    var isValidated: Bool?
+    var isValidated: Bool = false
     
     func checkPasswordIsNotHorrible() -> Bool {
-        if (password!.containsString(username!)) {
-            // username is contained in the password
-            return false
-        }
-        if (password!.containsString("password")) {
-            // The user tried to set the password as "password"
-            return false
+        if username != nil && password != nil {
+            if password!.containsString(username!) {
+                // username is contained in the password
+                return false
+            }
+            if (password!.containsString("password")) {
+                // The user tried to set the password as "password"
+                return false
+            }
         }
         return true
     }

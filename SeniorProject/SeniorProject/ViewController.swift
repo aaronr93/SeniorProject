@@ -45,8 +45,8 @@ class ViewController: UIViewController {
     
     @IBAction func loginButtonPressed(sender: UIButton) {
         let validation = Validation()
-        if let usernameFieldText = usernameField.text{
-            if let passwordFieldText = passwordField.text{
+        if let usernameFieldText = usernameField.text {
+            if let passwordFieldText = passwordField.text {
                 let textFields = ["username":usernameFieldText,"password":passwordFieldText]
                 validation.check(textFields, items:
                     [
@@ -54,10 +54,10 @@ class ViewController: UIViewController {
                         "password" : ["required" : true , "min" : 4, "max" : 20]
                     ]
                 )
-                if(!validation.passed){
+                if (!validation.passed) {
                     //validation failed
                     print(validation.errors)
-                }else{
+                } else {
                     //validation passed
                     PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
                         (user: PFUser?, error: NSError?) -> Void in

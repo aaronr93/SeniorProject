@@ -18,6 +18,10 @@ class CreateAccountViewController: UIViewController
     
     let newAccount = CreateAccount()
     
+    @IBAction func usernameChanged(sender: UITextField) {
+        newAccount.username = sender.text
+    }
+    
     @IBAction func phoneNumberChanged(sender: UITextField) {
         newAccount.phone = sender.text
     }
@@ -45,22 +49,39 @@ class CreateAccountViewController: UIViewController
         validate()
         if newAccount.isValidated == true {
             self.performSegueWithIdentifier("validateSegue", sender: self)
+            print("Validated!")
+        } else {
+            print("Not validated.")
         }
     }
     
     func validate() {
-        if newAccount.checkPasswordIsNotHorrible() && newAccount.confirmPasswordEqualsPassword() {
-            newAccount.isValidated = true
+        if usernameField.text != "" &&
+            phoneNumberField.text != "" &&
+            emailField.text != "" &&
+            passwordField.text != "" &&
+            confirmPasswordField.text != "" &&
+            newAccount.checkPasswordIsNotHorrible() &&
+            newAccount.confirmPasswordEqualsPassword() {
+                newAccount.isValidated = true
+                removeBadInputWarningInField(usernameField)
+                removeBadInputWarningInField(phoneNumberField)
+                removeBadInputWarningInField(emailField)
+                removeBadInputWarningInField(passwordField)
+                removeBadInputWarningInField(confirmPasswordField)
+                
+                //*****************************************
+                // TODO: Make the validation better!
+                //*****************************************
+                
+        } else {
+            print("Not all fields are filled out.")
         }
-    }
-    
-    @IBAction func finishButtonPressed(sender: UIButton) {
-        
     }
     
     func showBadInputWarningInField(field: UITextField) {
         // Called when the text in the param of type UITextField is invalid.
-        
+        //field.layer.borderColor =
     }
     
     func removeBadInputWarningInField(field: UITextField) {
@@ -105,9 +126,13 @@ class CreateAccountViewController: UIViewController
         addBorderToTextField(borderBottomConfirmPass, field: confirmPasswordField, color: color)
         addBorderToTextField(borderBottomPhone, field: phoneNumberField, color: color)
         addBorderToTextField(borderBottomEmail, field: emailField, color: color)
-        
-        
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "validateSegue" {
+            let svc = segue.destinationViewController as! FinishCreateAccountViewController
+            svc.newAccount = newAccount
+        }
+    }
 
 }
