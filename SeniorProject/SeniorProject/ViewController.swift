@@ -57,6 +57,20 @@ class ViewController: UIViewController {
                 if (!validation.passed) {
                     //validation failed
                     print(validation.errors)
+                    // TODO: REMOVE THE FOLLOWING ////////////////////////////////////////////////
+                    // THE FOLLOWING IS TO MAKE IT SO YOU DON'T HAVE TO TYPE A LOGIN EVERY TIME.
+                    PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
+                        (user: PFUser?, error: NSError?) -> Void in
+                        if user != nil {
+                            print("success!!")
+                            self.performSegueWithIdentifier("loginSegue", sender: self)
+                        } else {
+                            print("Invalid loging credentials")
+                            self.performSegueWithIdentifier("loginSegue", sender: self)
+
+                        }
+                    }
+                    //////////////////////////////////////////////////////////////////////////////
                 } else {
                     //validation passed
                     PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
@@ -65,6 +79,10 @@ class ViewController: UIViewController {
                             print("success!!")
                             self.performSegueWithIdentifier("loginSegue", sender: self)
                         } else {
+                            // TODO: REMOVE THE FOLLOWING ////////////////////////////////////////////////
+                            // THE FOLLOWING IS TO MAKE IT SO YOU DON'T HAVE TO TYPE A LOGIN EVERY TIME.
+                            self.performSegueWithIdentifier("loginSegue", sender: self)
+                            //////////////////////////////////////////////////////////////////////////////
                             print("Invalid loging credentials")
                         }
                     }

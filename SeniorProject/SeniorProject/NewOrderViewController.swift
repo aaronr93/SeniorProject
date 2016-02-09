@@ -11,7 +11,7 @@ import UIKit
 class NewOrderViewController: UITableViewController {
 
     @IBAction func cancelled(sender: UIBarButtonItem) {
-        self.performSegueWithIdentifier("cancelNewOrderSegue", sender: self)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class NewOrderViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,12 +33,12 @@ class NewOrderViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return tableView.numberOfSections
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return tableView.numberOfRowsInSection(section)
     }
 
     /*
