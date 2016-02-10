@@ -13,9 +13,8 @@ function setNewAccountFieldsFor(user, request) {
 	user.set("admin", false);
 	user.set("password", request.params.password);
 	user.set("email", request.params.email);
-	user.set("emailVerified", false);
-	user.set("location", "none");
-	user.set("picture", "none");
+	user.set("location", null);
+	user.set("picture", null);
 }
 
 function signUp(user, response) {
@@ -24,7 +23,7 @@ function signUp(user, response) {
 			response.success("success!!");
 		},
 		error: function(user,error){
-			response.success("error! :(");
+			response.success("error! :(" + error.message);
 		}
 	});
 }

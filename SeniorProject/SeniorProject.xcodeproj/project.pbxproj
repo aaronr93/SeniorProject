@@ -7,12 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
 		36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204791C5A893000A9CC59 /* Parse.framework */; };
 		36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047A1C5A893000A9CC59 /* ParseUI.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
+		36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E204801C5BD03D00A9CC59 /* Settings.swift */; };
+		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
+		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
+		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
+		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
+		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
+		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
+		96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */; };
+		96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */; };
+		96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9D1C5AFF2C00DF6038 /* libz.tbd */; };
+		96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */; };
 		96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */; };
 		96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D81C56B8AE004CE3A7 /* ViewController.swift */; };
 		96DD81DC1C56B8AE004CE3A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */; };
@@ -21,7 +33,6 @@
 		96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */; };
 		96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */; };
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
-		96DD82071C56CEF6004CE3A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82061C56CEF6004CE3A7 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -49,6 +61,19 @@
 		36E204791C5A893000A9CC59 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		36E2047A1C5A893000A9CC59 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		36E2047E1C5A897500A9CC59 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		36E204801C5BD03D00A9CC59 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
+		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
+		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
+		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		96B36A9D1C5AFF2C00DF6038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		96B36AA11C5AFF4700DF6038 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		96DD81D31C56B8AE004CE3A7 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DD81D81C56B8AE004CE3A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +88,6 @@
 		96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		96DD81F81C56B8AF004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
-		96DD82061C56CEF6004CE3A7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +95,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */,
+				96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */,
+				96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */,
+				96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */,
+				96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */,
+				96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */,
 				36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */,
 				36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */,
 				36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */,
@@ -97,16 +127,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		96DD81CA1C56B8AE004CE3A7 = {
+		96B36A9C1C5AFEC700DF6038 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36E204721C5A886200A9CC59 /* SystemConfiguration.framework */,
+				96B36AA11C5AFF4700DF6038 /* StoreKit.framework */,
+				96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */,
+				96B36A9D1C5AFF2C00DF6038 /* libz.tbd */,
+				96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */,
+				96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */,
+				96B36A961C5AFE2900DF6038 /* CFNetwork.framework */,
+				96B36A941C5AFE1600DF6038 /* Security.framework */,
 				36E2047E1C5A897500A9CC59 /* MapKit.framework */,
 				36E204781C5A893000A9CC59 /* Bolts.framework */,
 				36E204791C5A893000A9CC59 /* Parse.framework */,
 				36E2047A1C5A893000A9CC59 /* ParseUI.framework */,
 				36E204761C5A889100A9CC59 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96DD81CA1C56B8AE004CE3A7 = {
+			isa = PBXGroup;
+			children = (
+				96B36A9C1C5AFEC700DF6038 /* Frameworks */,
 				36E204741C5A888000A9CC59 /* libstdc++.6.tbd */,
-				36E204721C5A886200A9CC59 /* SystemConfiguration.framework */,
 				96DD81D51C56B8AE004CE3A7 /* SeniorProject */,
 				96DD81EA1C56B8AF004CE3A7 /* SeniorProjectTests */,
 				96DD81F51C56B8AF004CE3A7 /* SeniorProjectUITests */,
@@ -130,11 +175,17 @@
 				96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */,
 				96DD81D81C56B8AE004CE3A7 /* ViewController.swift */,
 				96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */,
-				96DD82061C56CEF6004CE3A7 /* User.swift */,
+				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
+				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
+				36F5067F1C64E9500014D506 /* CreateAccount.swift */,
+				964B36351C5FF1E100B305CA /* Validation.swift */,
 				96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */,
 				96DD81DF1C56B8AE004CE3A7 /* LaunchScreen.storyboard */,
 				96DD81E21C56B8AE004CE3A7 /* Info.plist */,
+				96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */,
+				36E204801C5BD03D00A9CC59 /* Settings.swift */,
+				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
 			);
 			path = SeniorProject;
 			sourceTree = "<group>";
@@ -225,7 +276,7 @@
 				TargetAttributes = {
 					96DD81D21C56B8AE004CE3A7 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 74YMV2J9D7;
+						DevelopmentTeam = GBBJ4N3MJ7;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -294,10 +345,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96DD82071C56CEF6004CE3A7 /* User.swift in Sources */,
+				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
+				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
+				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
+				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
+				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
+				36F506801C64E9500014D506 /* CreateAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -444,10 +501,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -455,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -462,10 +523,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
 			};
 			name = Release;
 		};

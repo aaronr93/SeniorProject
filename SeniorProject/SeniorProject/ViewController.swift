@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Parse
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
     
-    func createBottomBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
+    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
     {
         let borderWidthL = CGFloat(borderWidth)
         layer.borderColor = color.CGColor
@@ -21,16 +22,56 @@ class ViewController: UIViewController {
         return layer
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+    func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor){
+        let bw = 1.0
+        
+        //create the bottom border and add to the sublayer
+        field.layer.addSublayer(createBorder(layer,borderWidth: bw,color: color)!)
+        field.layer.masksToBounds = true
+        
+        
+        layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
     }
 
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
-    let bottomBorder = CALayer()
+    func login(){
+        let validation = Validation()
+        if let usernameFieldText = usernameField.text {
+            if let passwordFieldText = passwordField.text {
+                let textFields = ["username":usernameFieldText,"password":passwordFieldText]
+                validation.check(textFields, items:
+                    [
+                        "username" : ["required" : true, "min" : 4 , "max": 20],
+                        "password" : ["required" : true , "min" : 4, "max" : 20]
+                    ]
+                )
+                if (!validation.passed) {
+                    //validation failed
+                    print(validation.errors)
+                } else {
+                    //validation passed
+                    PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
+                        (user: PFUser?, error: NSError?) -> Void in
+                        if user != nil {
+                            print("success!!")
+                            self.performSegueWithIdentifier("loginSegue", sender: self)
+                        } else {
+                            print("Invalid loging credentials")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    @IBAction func loginButtonPressed(sender: UIButton) {
+        login()
+    }
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -42,9 +83,22 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        if textField == usernameField { // Switch focus to other text field
+            passwordField.becomeFirstResponder()
+        }else if textField == passwordField{
+            passwordField.resignFirstResponder()
+            login()
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.usernameField.delegate = self;
+        self.passwordField.delegate = self;
+        usernameField.returnKeyType = UIReturnKeyType.Next
+        passwordField.returnKeyType = UIReturnKeyType.Go
         //turn off borders
         usernameField.borderStyle = UITextBorderStyle.None
         
@@ -55,17 +109,13 @@ class ViewController: UIViewController {
         //create CA Layer for each field
         let borderBottomUser = CALayer()
         let borderBottomPass = CALayer()
-        let bw = 1.0
+        let color = UIColor.grayColor()
         
         //create the bottom border and add to the sublayer
-        usernameField.layer.addSublayer(createBottomBorder(borderBottomUser,borderWidth: bw,color:UIColor.grayColor())!)
-        usernameField.layer.masksToBounds = true
-         passwordField.layer.addSublayer(createBottomBorder(borderBottomPass,borderWidth: bw,color:UIColor.grayColor())!)
-        passwordField.layer.masksToBounds = true
+        addBorderToTextField(borderBottomUser, field: usernameField, color: color)
+        addBorderToTextField(borderBottomPass, field: passwordField, color: color)
         
-        borderBottomUser.frame = CGRect(x: 0, y: passwordField.frame.height - 1.0, width: usernameField.frame.width , height: usernameField.frame.height - 1.0)
-        borderBottomPass.frame = CGRect(x: 0, y: passwordField.frame.height - 1.0, width: passwordField.frame.width , height: passwordField.frame.height - 1.0)
-
+        
     }
     
 
