@@ -13,8 +13,8 @@ function setNewAccountFieldsFor(user, request) {
 	user.set("admin", false);
 	user.set("password", request.params.password);
 	user.set("email", request.params.email);
-	user.set("location", "none");
-	user.set("picture", "none");
+	user.set("location", null);
+	user.set("picture", null);
 }
 
 function signUp(user, response) {

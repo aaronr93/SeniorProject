@@ -8,9 +8,13 @@ Parse.Cloud.define("createOrder", function (request, response) {
 
 	//set values
 
-	order.set("expirationDate", param.expirationDate);//null for now
+	order.set("expirationDate", null);//null for now
 	order.set("TimeSent",null);
-	order.set("DeliveryLocation",param.DeliveryLocation);
+	order.set("TimeDelivered",null);
+	order.set("DeliveryAddress",param.DeliveryAddress);
+	order.set("DeliveryZip",param.DeliveryZip);
+	order.set("DeliveryState",param.DeliveryState);
+	order.set("DeliveryCity",param.DeliveryCity);
 	order.set("OrderDetails",param.OrderDetails);
 	order.set("PickedUp",false);
 
@@ -23,7 +27,6 @@ Parse.Cloud.define("createOrder", function (request, response) {
   	success: function(rv) {
 	    order.set("restaurant", rv);
 	    order.save();
-	    response.success(rv.get("name"));
 	  },
 	  error: function(error) {
 	    response.success("Error: " + error.code + " " + error.message);
@@ -31,19 +34,16 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	});
 
 	order.set("OrderingUser", Parse.User.current())
-	order.set("PickedUp", false)
 
 	//save order
 
 	order.save(null, {
 	  success: function(r) {
 	    // Execute any logic that should take place after the object is saved.
-	    //response.success('New object created with objectId: ' + r.id);
+	    response.success('New object created with objectId: ' + r.id);
 	  },
 	  error: function(gameScore, error) {
-	    // Execute any logic that should take place if the save fails.
-	    // error is a Parse.Error with an error code and message.
-	    //response.success('Failed to create new object, with error code: ' + error.message);
+	    response.success('Failed to create new object, with error code: ' + error.message);
 	  }
 	});
 
