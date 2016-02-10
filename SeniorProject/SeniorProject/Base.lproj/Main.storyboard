@@ -159,7 +159,7 @@
         <!--Home-->
         <scene sceneID="ewL-Ya-qpK">
             <objects>
-                <viewController id="k5h-Rh-sQm" sceneMemberID="viewController">
+                <viewController id="k5h-Rh-sQm" customClass="HomeViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iXm-vd-WFw"/>
                         <viewControllerLayoutGuide type="bottom" id="Xtd-Ya-hm9"/>
@@ -168,7 +168,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-S1-pH1">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-S1-pH1">
                                 <rect key="frame" x="139" y="140" width="322" height="72"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
@@ -179,12 +179,12 @@
                                 <state key="normal" title="I want food"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vpL-tw-cWg"/>
-                                    <segue destination="Bxg-Sp-IY2" kind="popoverPresentation" popoverAnchorView="lEy-S1-pH1" id="Vve-2N-M0b">
+                                    <segue destination="snj-5L-FBG" kind="popoverPresentation" popoverAnchorView="lEy-S1-pH1" id="3sh-zD-CyO">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
                                 <rect key="frame" x="139" y="264" width="322" height="72"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
@@ -221,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXc-lx-cf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1956" y="1190"/>
+            <point key="canvasLocation" x="1982" y="1134"/>
         </scene>
         <!--Create Account 1-->
         <scene sceneID="xiX-rP-QNB">
@@ -511,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9pk-aZ-acO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1265" y="1925"/>
+            <point key="canvasLocation" x="1265" y="1883"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9s-lR-Dg2">
@@ -531,33 +531,20 @@
             </objects>
             <point key="canvasLocation" x="417" y="378"/>
         </scene>
-        <!--New Order View Controller-->
+        <!--New Order-->
         <scene sceneID="D7a-lw-xZy">
             <objects>
-                <tableViewController id="Bxg-Sp-IY2" customClass="NewOrderViewController" customModule="SeniorProject" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tct-VG-Ky4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Bxg-Sp-IY2" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="4UL-B7-aEy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="7lm-UT-ZC3">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem title="New Order" id="PSv-kM-MYr">
-                                    <barButtonItem key="leftBarButtonItem" title="Cancel" id="cHw-8r-gVX">
-                                        <connections>
-                                            <action selector="cancelled:" destination="Bxg-Sp-IY2" id="uGM-g6-OeP"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem key="rightBarButtonItem" title="Send Request" id="d5q-bl-msv"/>
-                                </navigationItem>
-                            </items>
-                        </navigationBar>
                         <sections>
                             <tableViewSection headerTitle="Restaurant" id="UOQ-NO-1gA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="dTU-ZR-Ic9" style="IBUITableViewCellStyleDefault" id="jfh-GT-Zlz">
-                                        <rect key="frame" x="0.0" y="94" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jfh-GT-Zlz" id="dng-05-Xvd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -578,7 +565,7 @@
                             <tableViewSection headerTitle="Food" id="BgO-oU-QbA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ROn-hL-EnK" detailTextLabel="Zbb-5n-khf" style="IBUITableViewCellStyleSubtitle" id="0g0-WP-30C">
-                                        <rect key="frame" x="0.0" y="189" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="209" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0g0-WP-30C" id="Zeg-Si-mHp">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -606,7 +593,7 @@
                             <tableViewSection headerTitle="Delivery" id="XA9-pq-LMm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="CG3-va-jaf" style="IBUITableViewCellStyleDefault" id="7Gb-He-avl">
-                                        <rect key="frame" x="0.0" y="284" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="304" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Gb-He-avl" id="iMx-nH-3yd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -623,7 +610,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="PQH-m7-xjW" style="IBUITableViewCellStyleDefault" id="SYq-AU-8Yb">
-                                        <rect key="frame" x="0.0" y="328" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="348" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SYq-AU-8Yb" id="Mxd-MK-YXS">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -640,7 +627,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="GiQ-2l-7hz" style="IBUITableViewCellStyleDefault" id="Qy4-oK-hLa">
-                                        <rect key="frame" x="0.0" y="372" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="392" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qy4-oK-hLa" id="qGn-ha-7wf">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -664,16 +651,40 @@
                             <outlet property="delegate" destination="Bxg-Sp-IY2" id="hfe-Vx-6I3"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="New Order" id="2HZ-eB-W8G">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="SgT-GS-E1W">
+                            <connections>
+                                <action selector="cancelled:" destination="Bxg-Sp-IY2" id="h6S-7E-t7f"/>
+                                <segue destination="k5h-Rh-sQm" kind="show" id="lOH-TP-CAg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tct-VG-Ky4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2771" y="1190"/>
+            <point key="canvasLocation" x="2757" y="1883"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Atv-Me-Eqx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYU-0U-aBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="snj-5L-FBG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b4H-19-7Yn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Bxg-Sp-IY2" kind="relationship" relationship="rootViewController" id="wvO-pf-gU2"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="1982" y="1883"/>
         </scene>
     </scenes>
     <resources>
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CEV-uE-pkl"/>
+        <segue reference="Omd-mY-WVB"/>
+        <segue reference="lOH-TP-CAg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -183,6 +185,7 @@
 				96DD81E21C56B8AE004CE3A7 /* Info.plist */,
 				96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */,
 				36E204801C5BD03D00A9CC59 /* Settings.swift */,
+				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
 			);
 			path = SeniorProject;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
+				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
 				36F506801C64E9500014D506 /* CreateAccount.swift in Sources */,
