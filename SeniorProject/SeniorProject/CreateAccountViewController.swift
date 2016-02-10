@@ -99,9 +99,9 @@ class CreateAccountViewController: UIViewController
     func validatedPassword() -> Bool {
         let validation = Validation()
         if let fieldText = passwordField.text {
-            let textFields = ["username": fieldText]
+            let textFields = ["password": fieldText]
             validation.check(textFields, items: [
-                "username" : ["required": true, "min": 6, "max": 20]
+                "password" : ["required": true, "min": 6, "max": 20]
             ])
         }
         if (!validation.passed) {
