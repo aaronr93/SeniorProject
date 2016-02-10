@@ -11,7 +11,7 @@ import Parse
 
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITextFieldDelegate {
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
     {
@@ -32,18 +32,12 @@ class ViewController: UIViewController {
         
         layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
     }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
 
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
-    
-    @IBAction func loginButtonPressed(sender: UIButton) {
+    func login(){
         let validation = Validation()
         if let usernameFieldText = usernameField.text {
             if let passwordFieldText = passwordField.text {
@@ -74,6 +68,11 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func loginButtonPressed(sender: UIButton) {
+        login()
+    }
+    
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
@@ -84,9 +83,22 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        if textField == usernameField { // Switch focus to other text field
+            passwordField.becomeFirstResponder()
+        }else if textField == passwordField{
+            passwordField.resignFirstResponder()
+            login()
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.usernameField.delegate = self;
+        self.passwordField.delegate = self;
+        usernameField.returnKeyType = UIReturnKeyType.Next
+        passwordField.returnKeyType = UIReturnKeyType.Go
         //turn off borders
         usernameField.borderStyle = UITextBorderStyle.None
         

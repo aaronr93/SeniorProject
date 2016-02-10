@@ -149,7 +149,8 @@ class CreateAccountViewController: UIViewController
         super.viewDidLoad()
         //unhide navigation bar
         navigationController?.navigationBarHidden = false
-    
+        passwordField.secureTextEntry = true
+        confirmPasswordField.secureTextEntry = true
         //add bottom borders
         let borderBottomUser = CALayer()
         let borderBottomPass = CALayer()
