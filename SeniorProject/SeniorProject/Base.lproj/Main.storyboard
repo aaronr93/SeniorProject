@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="30" id="RfR-Sp-ZiO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRc-oN-Kad">
                                 <rect key="frame" x="20" y="342" width="580" height="30"/>
@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="30" id="vcm-DV-Tx0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6IZ-7W-iGb">
                                 <rect key="frame" x="292" y="485" width="16" height="21"/>
@@ -261,7 +261,7 @@
                                     <constraint firstAttribute="height" constant="30" id="7gH-fk-SIk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="usernameChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="cZ1-QK-hRv"/>
                                 </connections>
@@ -272,7 +272,7 @@
                                     <constraint firstAttribute="height" constant="30" id="lc1-l4-gqZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="phoneNumberChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="bhg-n7-Xke"/>
                                 </connections>
@@ -283,7 +283,7 @@
                                     <constraint firstAttribute="height" constant="30" id="UN1-ad-KYc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="emailChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="LDk-wO-pof"/>
                                 </connections>
@@ -294,7 +294,7 @@
                                     <constraint firstAttribute="height" constant="30" id="rod-Nv-yKk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="Daa-wP-uZo"/>
                                 </connections>
@@ -305,7 +305,7 @@
                                     <constraint firstAttribute="height" constant="30" id="0r8-nF-a2z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="confirmPasswordChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="TiX-gL-Wlz"/>
                                 </connections>
