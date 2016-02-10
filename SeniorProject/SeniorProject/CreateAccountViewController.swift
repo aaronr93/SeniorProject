@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Parse
 
-class CreateAccountViewController: UIViewController
+class CreateAccountViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var phoneNumberField: UITextField!
@@ -85,7 +86,7 @@ class CreateAccountViewController: UIViewController
                 "username" : ["required": true, "min": 4, "max": 20]
             ])
         }
-        if (!validation.passed) {
+        if (!validation.passed || usernameExistsInParse()) {
             //validation failed
             print(validation.errors)
             showBadInputWarningInField(usernameField)
@@ -94,6 +95,26 @@ class CreateAccountViewController: UIViewController
             removeBadInputWarningInField(usernameField)
             return true
         }
+    }
+    
+    func usernameExistsInParse() -> Bool {
+        // Synchronous and is skipped by iOS as a long-running blocking function
+        let query = PFQuery(className:"User")
+        var usernameExists = true
+        query.whereKey("username", equalTo: usernameField.text!)
+        do {
+            let results: [PFObject] = try query.findObjects()
+            print(results.count)
+            if results.count > 0 {
+                print("Username already exists.")
+                usernameExists = true
+            } else {
+                usernameExists = false
+            }
+        } catch {
+            print(error)
+        }
+        return usernameExists
     }
     
     func validatedPassword() -> Bool {
@@ -123,6 +144,21 @@ class CreateAccountViewController: UIViewController
     
     func removeBadInputWarningInField(field: UITextField) {
         field.layer.borderColor = UIColor.whiteColor().CGColor
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        if textField == usernameField { // Switch focus to other text field
+            phoneNumberField.becomeFirstResponder()
+        } else if textField == phoneNumberField {
+            emailField.becomeFirstResponder()
+        } else if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            confirmPasswordField.becomeFirstResponder()
+        } else if textField == confirmPasswordField {
+            confirmPasswordField.resignFirstResponder()
+        }
+        return true
     }
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
@@ -158,6 +194,18 @@ class CreateAccountViewController: UIViewController
         let borderBottomPhone = CALayer()
         let borderBottomEmail = CALayer()
         let color = UIColor.grayColor()
+        
+        usernameField.delegate = self
+        phoneNumberField.delegate = self
+        emailField.delegate = self
+        passwordField.delegate = self
+        confirmPasswordField.delegate = self
+        
+        usernameField.returnKeyType = UIReturnKeyType.Next
+        phoneNumberField.returnKeyType = UIReturnKeyType.Next
+        emailField.returnKeyType = UIReturnKeyType.Next
+        passwordField.returnKeyType = UIReturnKeyType.Next
+        confirmPasswordField.returnKeyType = UIReturnKeyType.Done
         
         addBorderToTextField(borderBottomUser, field: usernameField, color: color)
         addBorderToTextField(borderBottomPass, field: passwordField, color: color)
