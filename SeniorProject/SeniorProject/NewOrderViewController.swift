@@ -49,7 +49,7 @@ class NewOrderViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case 0: return 1
-        case 1: return 1
+        case 1: return 1 // needs to be number of food items
         case 2: return 3
         default: return 0
         }
