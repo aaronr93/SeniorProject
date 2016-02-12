@@ -8,10 +8,19 @@
 
 import UIKit
 
+protocol newOrderViewDelegate{
+    func cancelNewOrder(newOrderVC: NewOrderViewController)
+}
+
 class NewOrderViewController: UITableViewController {
+    
+    var delegate:newOrderViewDelegate? = nil
+    
 
     @IBAction func cancelled(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+        if delegate != nil{
+            delegate!.cancelNewOrder(self)
+        }
     }
     
     override func viewDidLoad() {
@@ -38,7 +47,12 @@ class NewOrderViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        switch section {
+        case 0: return 1
+        case 1: return 1
+        case 2: return 3
+        default: return 0
+        }
     }
 
     /*

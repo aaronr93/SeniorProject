@@ -8,7 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+
+class HomeViewController: UIViewController, newOrderViewDelegate {
+    
+    func cancelNewOrder(newOrderVC: NewOrderViewController) {
+        newOrderVC.navigationController?.popViewControllerAnimated(true)
+    }
     
     @IBAction func newOrder(sender: UIButton) {
         self.performSegueWithIdentifier("newOrderSegue", sender: self)
