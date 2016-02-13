@@ -7,29 +7,45 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	var param = request.params;
 
 	//set values
-
-	order.set("expirationDate", null);//null for now
+	var expiryDate = new Date(param.expiryYear,param.expiryMonth,param.expiryDay,
+		param.expiryHour,param.expiryMinute,param.expirySeconds)
+	order.set("expirationDate", expiryDate);//null for now
 	order.set("TimeSent",null);
-	order.set("TimeDelivered",null);
+	order.set("timeDelivered",null);
 	order.set("DeliveryAddress",param.DeliveryAddress);
 	order.set("DeliveryZip",param.DeliveryZip);
 	order.set("DeliveryState",param.DeliveryState);
 	order.set("DeliveryCity",param.DeliveryCity);
 	order.set("OrderDetails",param.OrderDetails);
+	order.set("isAnyDriver",param.isAnyDriver);
 	order.set("PickedUp",false);
+
+	//need to test
+	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);
+	query.equalTo("objectId", param.driverToDeliver);
+	query.first({
+	  success: function(rv) {
+	    order.set("driverToDeliver", rv);
+	    order.save();
+	  },
+	  error: function(error) {
+	    alert("Error: " + error.code + " " + error.message);
+	  }
+	});
 
 	//get restaurant
 
 	var rest = Parse.Object.extend("Restaurant");
 	var query = new Parse.Query(rest);
-	query.equalTo("name", param.restaurant);
+	query.equalTo("objectId", param.restaurant);
 	query.first({
   	success: function(rv) {
 	    order.set("restaurant", rv);
 	    order.save();
 	  },
 	  error: function(error) {
-	    response.success("Error: " + error.code + " " + error.message);
+	    alert("Error: " + error.code + " " + error.message);
 	  }
 	});
 
@@ -40,10 +56,10 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	order.save(null, {
 	  success: function(r) {
 	    // Execute any logic that should take place after the object is saved.
-	    response.success('New object created with objectId: ' + r.id);
+	    //response.success('New object created with objectId: ' + r.id);
 	  },
 	  error: function(gameScore, error) {
-	    response.success('Failed to create new object, with error code: ' + error.message);
+	    alert('Failed to create new object, with error code: ' + error.message);
 	  }
 	});
 
