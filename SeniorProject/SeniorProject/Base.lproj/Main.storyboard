@@ -179,7 +179,7 @@
                                 <state key="normal" title="I want food"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vpL-tw-cWg"/>
-                                    <segue destination="Bxg-Sp-IY2" kind="show" id="JkO-sc-g0L"/>
+                                    <segue destination="Bxg-Sp-IY2" kind="show" identifier="newOrder" id="JkO-sc-g0L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
