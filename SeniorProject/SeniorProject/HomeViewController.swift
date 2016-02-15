@@ -16,10 +16,6 @@ class HomeViewController: UIViewController, newOrderViewDelegate {
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
         newOrderVC.navigationController?.popViewControllerAnimated(true)
     }
-    
-    @IBAction func newOrder(sender: UIButton) {
-        self.performSegueWithIdentifier("newOrderSegue", sender: self)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +31,8 @@ class HomeViewController: UIViewController, newOrderViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //let newOrderVC = segue.destinationViewController as! NewOrderViewController
         // Pass the selected object to the new view controller.
+        let newOrder = segue.destinationViewController as! NewOrderViewController
+        newOrder.delegate = self
         
     }
     

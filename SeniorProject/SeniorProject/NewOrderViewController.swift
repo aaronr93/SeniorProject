@@ -14,14 +14,13 @@ protocol newOrderViewDelegate{
 
 class NewOrderViewController: UITableViewController {
     
-    var delegate:newOrderViewDelegate? = nil
+    var delegate : newOrderViewDelegate!
     
 
-    @IBAction func cancelled(sender: UIBarButtonItem) {
-        if delegate != nil{
-            delegate!.cancelNewOrder(self)
-        }
+    @IBAction func orderCancelled(sender: UIBarButtonItem) {
+        delegate.cancelNewOrder(self)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
