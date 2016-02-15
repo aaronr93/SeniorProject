@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */; };
 		36D08F1E1C6E1F4D005B1E90 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F1D1C6E1F4D005B1E90 /* Order.swift */; };
+		36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		36D08F1D1C6E1F4D005B1E90 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewController.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -129,6 +131,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36D08F1F1C722291005B1E90 /* Driver side */ = {
+			isa = PBXGroup;
+			children = (
+				36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */,
+			);
+			name = "Driver side";
+			sourceTree = "<group>";
+		};
+		36D08F211C7222A4005B1E90 /* Customer side */ = {
+			isa = PBXGroup;
+			children = (
+				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
+			);
+			name = "Customer side";
+			sourceTree = "<group>";
+		};
+		36D08F231C7222CB005B1E90 /* Other ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				96DD81D81C56B8AE004CE3A7 /* ViewController.swift */,
+				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
+				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
+				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
+			);
+			name = "Other ViewControllers";
+			sourceTree = "<group>";
+		};
+		36D08F241C7222F4005B1E90 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				36F5067F1C64E9500014D506 /* CreateAccount.swift */,
+				964B36351C5FF1E100B305CA /* Validation.swift */,
+				36E204801C5BD03D00A9CC59 /* Settings.swift */,
+				36D08F1D1C6E1F4D005B1E90 /* Order.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		96B36A9C1C5AFEC700DF6038 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,21 +214,16 @@
 		96DD81D51C56B8AE004CE3A7 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
-				96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */,
-				96DD81D81C56B8AE004CE3A7 /* ViewController.swift */,
+				36D08F241C7222F4005B1E90 /* Classes */,
+				36D08F231C7222CB005B1E90 /* Other ViewControllers */,
+				36D08F211C7222A4005B1E90 /* Customer side */,
+				36D08F1F1C722291005B1E90 /* Driver side */,
 				96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */,
-				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
-				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
-				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
-				36F5067F1C64E9500014D506 /* CreateAccount.swift */,
-				964B36351C5FF1E100B305CA /* Validation.swift */,
+				96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */,
 				96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */,
 				96DD81DF1C56B8AE004CE3A7 /* LaunchScreen.storyboard */,
 				96DD81E21C56B8AE004CE3A7 /* Info.plist */,
 				96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */,
-				36E204801C5BD03D00A9CC59 /* Settings.swift */,
-				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
-				36D08F1D1C6E1F4D005B1E90 /* Order.swift */,
 			);
 			path = SeniorProject;
 			sourceTree = "<group>";
@@ -354,6 +389,7 @@
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
+				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
