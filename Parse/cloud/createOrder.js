@@ -19,8 +19,8 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	order.set("OrderDetails",param.OrderDetails);
 	order.set("isAnyDriver",param.isAnyDriver);
 	order.set("PickedUp",false);
+	order.set("deleted",false);
 
-	//need to test
 	var User = Parse.Object.extend("User");
 	var query = new Parse.Query(User);
 	query.equalTo("objectId", param.driverToDeliver);
@@ -30,7 +30,7 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	    order.save();
 	  },
 	  error: function(error) {
-	    alert("Error: " + error.code + " " + error.message);
+	    response.error("Error: " + error.code + " " + error.message);
 	  }
 	});
 
@@ -45,7 +45,7 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	    order.save();
 	  },
 	  error: function(error) {
-	    alert("Error: " + error.code + " " + error.message);
+	    response.error("Error: " + error.code + " " + error.message);
 	  }
 	});
 
@@ -59,7 +59,7 @@ Parse.Cloud.define("createOrder", function (request, response) {
 	    //response.success('New object created with objectId: ' + r.id);
 	  },
 	  error: function(gameScore, error) {
-	    alert('Failed to create new object, with error code: ' + error.message);
+	    response.error('Failed to create new object, with error code: ' + error.message);
 	  }
 	});
 

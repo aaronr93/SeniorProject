@@ -10,6 +10,7 @@ require('cloud/createDriverAvailableRestaurants.js')
 require('cloud/createDriverAvailability.js')
 require('cloud/createRestaurant.js')
 require('cloud/changeDriverAvailabilityExpiryDate.js')
+require('cloud/getOrdersForDriver.js')
 
 
 Parse.Cloud.define("hello", function(request, response) {
