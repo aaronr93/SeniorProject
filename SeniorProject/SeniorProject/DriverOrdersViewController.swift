@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import ParseUI
 
 class OrderCell: UITableViewCell {
     @IBOutlet weak var restaurant: UILabel!
@@ -19,6 +18,8 @@ class DriverOrdersViewController: UITableViewController
 {
 
     var sectionHeaders = ["Requests For Me","Requests For Anyone"]
+    
+    var driverOrders = [PFObject]()
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -41,18 +42,27 @@ class DriverOrdersViewController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("order", forIndexPath: indexPath) as! OrderCell
-
         
-        cell.restaurant?.text = "sheetz"
-        cell.recipient?.text = "Mike Kytka"
+        
         return cell
     }
     
     override func viewDidLoad() {
-        PFCloud.callFunctionInBackground("getOrdersForDriver", withParameters: ["user": "xrZ4ryBR8I"]) {
-            (orders, error) in
+        PFCloud.callFunctionInBackground("getOrdersForDriver", withParameters: ["user": "xrZ4ryBR8I"])
+            {
+            (jsonOrders, error) in
             if error == nil {
-                print(orders)
+                for order in (jsonOrders as? [PFObject])!{
+                    /*let thisOrderObj = Order()
+                    let orderingUser = order.objectForKey("OrderingUser") as! PFUser
+                    let restaurant = order.objectForKey("restaurant") as! PFObject
+                    let restaurantName = restaurant.objectForKey("name") as! String
+                    thisOrderObj.restaurant?.name = restaurantName
+                    thisOrderObj.OrderingUser = orderingUser*/
+                    self.driverOrders += [order]
+                }
+                print(self.driverOrders)
+                
             }
         }
     }
