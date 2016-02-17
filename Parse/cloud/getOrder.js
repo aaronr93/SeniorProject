@@ -1,16 +1,16 @@
-Parse.Cloud.define("deleteOrder", function(request, response) {
+Parse.Cloud.define("getOrder", function(request, response) {
 	var orders = Parse.Object.extend("Order");
 	var query = new Parse.Query(orders);
 	query.equalTo("objectId", request.params.orderId);
 	query.first({
 		success: function(object) {
-			object.set("deleted", true);
+			object.set("driverToDeliver", {__type: "Pointer", className: "_User",objectId: request.params.driverId});
 			object.save(null, {
 				success: function(){
-					response.success("Marked order as deleted");
+					response.success("Driver got order");
 				},
 				error: function(){
-					response.error("Couldn't mark order as deleted")
+					response.error("Couldn't set driver")
 				}
 				
 
