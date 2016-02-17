@@ -37,6 +37,7 @@
 		96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */; };
 		96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */; };
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
+		9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		96DD81F81C56B8AF004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
 				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
 				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
+				9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				965E5ACE1C72EDB70045DF75 /* ParseDate.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
+				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
 				965E5AC61C72D0890045DF75 /* Restaurant.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
