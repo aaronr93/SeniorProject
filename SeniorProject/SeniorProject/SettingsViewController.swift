@@ -14,7 +14,9 @@ import ParseUI
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var phoneField : UITextField!
+    @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userImage: PFImageView!
+    @IBOutlet weak var emailField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,16 @@ class SettingsViewController: UIViewController {
         } else {
             phoneField.text = "none"
         }
-
+        if let email = PFUser.currentUser()!["email"] as? String{
+            emailField.text = email
+        } else{
+            emailField.text = "none"
+        }
+        if let userName = PFUser.currentUser()!["username"] as? String{
+            userNameField.text = userName
+        } else{
+            userNameField.text = "none"
+        }
     }
 
     override func didReceiveMemoryWarning() {
