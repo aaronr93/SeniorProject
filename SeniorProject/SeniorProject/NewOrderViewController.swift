@@ -140,9 +140,11 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         case 0:
             if indexPath.row == 0 {
                 // Restaurant field
+                //performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
         case 1:
             // Food item field
+            //performSegueWithIdentifier("editFoodItem", sender: self)
             break
         case 2:
             switch indexPath.row {
@@ -151,9 +153,11 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
                 performSegueWithIdentifier("chooseDriver", sender: self)
             case 1:
                 // Location field
+                //performSegueWithIdentifier("chooseLocation", sender: self)
                 break
             case 2:
                 // Expiration field
+                //performSegueWithIdentifier("chooseExpiration", sender: self)
                 break
             default:
                 break
