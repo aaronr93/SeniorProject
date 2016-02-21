@@ -58,9 +58,36 @@ class DriverOrdersViewController: UITableViewController
             order = anyDriverOrders[indexPath.row]
         }
     
-        cell.restaurant?.text = order!["restaurant"]["name"] as? String
+        var rName : String = order!["restaurant"]["name"] as! String
+        rName.replaceRange(rName.startIndex...rName.startIndex, with: String(rName[rName.startIndex]).capitalizedString)
+        cell.restaurant?.text = rName
+        
+        
+        
         cell.recipient?.text = order!["OrderingUser"]["username"] as? String
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        navigationItem.backBarButtonItem?.title = ""
+        if segue.identifier == "getThatOrderSegue" {
+            if let destination = segue.destinationViewController as? GetThatOrderTableViewController {
+                if tableView.indexPathForSelectedRow?.section == 0{
+                    if let driverOrdersIndex = tableView.indexPathForSelectedRow?.row {
+                        destination.restaurantName  = driverOrders[driverOrdersIndex]["restaurant"]["name"] as! String
+                        destination.orderID  = driverOrders[driverOrdersIndex].objectId!
+                        destination.deliveryTo = driverOrders[driverOrdersIndex]["OrderingUser"]["username"] as! String
+                        let locationString : String = (driverOrders[driverOrdersIndex]["DeliveryAddress"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryCity"] as! String) + ", " + (driverOrders[driverOrdersIndex]["DeliveryState"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryZip"] as! String)
+                        destination.location = locationString
+                        destination.expiresIn = "33:46"//driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate
+                    }
+                }else if tableView.indexPathForSelectedRow?.section == 1{
+                    if let anyDriverOrdersIndex = tableView.indexPathForSelectedRow?.row {
+                        destination.restaurantName  = anyDriverOrders[anyDriverOrdersIndex]["restaurant"]["name"] as! String
+                    }
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -107,7 +134,6 @@ class DriverOrdersViewController: UITableViewController
                             self.anyDriverOrders.append(order)
                         }
                     }
-                    print(self.anyDriverOrders)
                     self.tableView.reloadData()
                 }
             } else {

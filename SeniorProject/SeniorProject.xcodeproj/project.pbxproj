@@ -22,13 +22,13 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
-		965E5ACE1C72EDB70045DF75 /* ParseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965E5ACD1C72EDB70045DF75 /* ParseDate.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
 		96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */; };
 		96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */; };
 		96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9D1C5AFF2C00DF6038 /* libz.tbd */; };
 		96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */; };
+		96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */; };
 		96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */; };
 		96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D81C56B8AE004CE3A7 /* ViewController.swift */; };
 		96DD81DC1C56B8AE004CE3A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */; };
@@ -74,7 +74,6 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
-		965E5ACD1C72EDB70045DF75 /* ParseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDate.swift; sourceTree = "<group>"; };
 		96B36A901C5AF89800DF6038 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -83,6 +82,7 @@
 		96B36A9D1C5AFF2C00DF6038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		96B36AA11C5AFF4700DF6038 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewController.swift; sourceTree = "<group>"; };
 		96DD81D31C56B8AE004CE3A7 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96DD81D81C56B8AE004CE3A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +142,7 @@
 			children = (
 				36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */,
 				36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */,
+				96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */,
 			);
 			name = "Driver side";
 			sourceTree = "<group>";
@@ -172,7 +173,6 @@
 				36F5067F1C64E9500014D506 /* CreateAccount.swift */,
 				964B36351C5FF1E100B305CA /* Validation.swift */,
 				36E204801C5BD03D00A9CC59 /* Settings.swift */,
-				965E5ACD1C72EDB70045DF75 /* ParseDate.swift */,
 				36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */,
 			);
 			name = Classes;
@@ -394,12 +394,12 @@
 			files = (
 				36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */,
 				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
+				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
-				965E5ACE1C72EDB70045DF75 /* ParseDate.swift in Sources */,
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
