@@ -79,7 +79,7 @@ class DriverOrdersViewController: UITableViewController
                         destination.deliveryTo = driverOrders[driverOrdersIndex]["OrderingUser"]["username"] as! String
                         let locationString : String = (driverOrders[driverOrdersIndex]["DeliveryAddress"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryCity"] as! String) + ", " + (driverOrders[driverOrdersIndex]["DeliveryState"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryZip"] as! String)
                         destination.location = locationString
-                        destination.expiresIn = "33:46"//driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate
+                        destination.expiresIn = ParseDate.timeLeft(driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate)
                     }
                 }else if tableView.indexPathForSelectedRow?.section == 1{
                     if let anyDriverOrdersIndex = tableView.indexPathForSelectedRow?.row {
