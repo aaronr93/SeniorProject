@@ -89,12 +89,12 @@ extension NSDate {
 class ParseDate {
     static func timeLeft(date: NSDate) -> String {
         let dateObj = NSDate()
-        var seconds = Double(dateObj.secondsFrom(date))
-        var minutes: Double = 0
-        var hours: Double = 0
-        var days: Double = 0
+        var seconds = Double(date.secondsFrom(dateObj))
+        var minutes : Double = 0
+        var hours : Double = 0
+        var days : Double = 0
         
-        if seconds > 0 {
+        if date.isFutureDate(NSDate()) == true{
             days = floor(seconds/(60 * 60 * 24))
             let daysLeft = seconds/(60 * 60 * 24) - days
             hours = floor(daysLeft * 24)
@@ -102,10 +102,9 @@ class ParseDate {
             minutes = floor(hoursLeft * 60)
             let minutesLeft = (hoursLeft * 60) - minutes
             seconds = floor(minutesLeft*60)
-            let rv: String = "\(Int(days)) days \(Int(hours)) hours \(Int(minutes)) min"
+            let rv : String = "\(Int(days)) days \(Int(hours)) hours \(Int(minutes)) min"
             return rv
-        } else {
-            return ""
         }
+        return "expired"
     }
 }

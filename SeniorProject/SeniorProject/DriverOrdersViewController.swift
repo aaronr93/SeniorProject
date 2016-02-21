@@ -14,11 +14,9 @@ class OrderCell: UITableViewCell {
     @IBOutlet weak var recipient: UILabel!
 }
 
-class DriverOrdersViewController: UITableViewController
-{
-
-    var sectionHeaders = ["Requests For Me","Requests For Anyone"]
+class DriverOrdersViewController: UITableViewController {
     
+    var sectionHeaders = ["Requests For Me", "Requests For Anyone"]
     var driverOrders = [PFObject]()
     var anyDriverOrders = [PFObject]()
     
@@ -27,7 +25,7 @@ class DriverOrdersViewController: UITableViewController
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
+        switch section {
         case 0:
             return driverOrders.count
         case 1:
@@ -39,7 +37,7 @@ class DriverOrdersViewController: UITableViewController
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
+        switch section {
         case 0:
             return sectionHeaders[0]
         case 1:
@@ -52,20 +50,22 @@ class DriverOrdersViewController: UITableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("order", forIndexPath: indexPath) as! OrderCell
         var order : PFObject?
-        if indexPath.section == 0{
+        if indexPath.section == 0 {
             order = driverOrders[indexPath.row]
-        }else if indexPath.section == 1{
+        } else if indexPath.section == 1 {
             order = anyDriverOrders[indexPath.row]
         }
     
-        var rName : String = order!["restaurant"]["name"] as! String
-        rName.replaceRange(rName.startIndex...rName.startIndex, with: String(rName[rName.startIndex]).capitalizedString)
-        cell.restaurant?.text = rName
-        
-        
-        
+        var restaurantName: String = order!["restaurant"]["name"] as! String
+        makeSentenceCase(&restaurantName)
+        cell.restaurant?.text = restaurantName
+
         cell.recipient?.text = order!["OrderingUser"]["username"] as? String
         return cell
+    }
+    
+    func makeSentenceCase(inout str: String) {
+        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -74,20 +74,28 @@ class DriverOrdersViewController: UITableViewController
             if let destination = segue.destinationViewController as? GetThatOrderTableViewController {
                 if tableView.indexPathForSelectedRow?.section == 0{
                     if let driverOrdersIndex = tableView.indexPathForSelectedRow?.row {
-                        destination.order.restaurantName  = driverOrders[driverOrdersIndex]["restaurant"]["name"] as! String
-                        destination.order.orderID  = driverOrders[driverOrdersIndex].objectId!
-                        destination.order.deliverTo = driverOrders[driverOrdersIndex]["OrderingUser"]["username"] as! String
-                        let locationString : String = (driverOrders[driverOrdersIndex]["DeliveryAddress"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryCity"] as! String) + ", " + (driverOrders[driverOrdersIndex]["DeliveryState"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryZip"] as! String)
-                        destination.order.location = locationString
-                        destination.order.expiresIn = ParseDate.timeLeft(driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate)
+                        passDriverOrdersInfo(driverOrdersIndex, dest: destination)
                     }
-                }else if tableView.indexPathForSelectedRow?.section == 1{
+                } else if tableView.indexPathForSelectedRow?.section == 1{
                     if let anyDriverOrdersIndex = tableView.indexPathForSelectedRow?.row {
-                        destination.order.restaurantName  = anyDriverOrders[anyDriverOrdersIndex]["restaurant"]["name"] as! String
+                        passAnyOrdersInfo(anyDriverOrdersIndex, dest: destination)
                     }
                 }
             }
         }
+    }
+    
+    func passDriverOrdersInfo(index: Int, dest: GetThatOrderTableViewController) {
+        dest.order.restaurantName  = driverOrders[index]["restaurant"]["name"] as! String
+        dest.order.orderID  = driverOrders[index].objectId!
+        dest.order.deliverTo = driverOrders[index]["OrderingUser"]["username"] as! String
+        let locationString: String = (driverOrders[index]["DeliveryAddress"] as! String) + " " + (driverOrders[index]["DeliveryCity"] as! String) + ", " + (driverOrders[index]["DeliveryState"] as! String) + " " + (driverOrders[index]["DeliveryZip"] as! String)
+        dest.order.location = locationString
+        dest.order.expiresIn = ParseDate.timeLeft(driverOrders[index]["expirationDate"] as! NSDate)
+    }
+    
+    func passAnyOrdersInfo(index: Int, dest: GetThatOrderTableViewController) {
+        dest.order.restaurantName  = anyDriverOrders[index]["restaurant"]["name"] as! String
     }
     
     override func viewDidLoad() {
