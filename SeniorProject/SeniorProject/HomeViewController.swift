@@ -9,9 +9,7 @@
 import UIKit
 
 
-class HomeViewController: UIViewController, newOrderViewDelegate {
-    
-    
+class HomeViewController: UIViewController, NewOrderViewDelegate {
     
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
         newOrderVC.navigationController?.popViewControllerAnimated(true)
@@ -31,7 +29,7 @@ class HomeViewController: UIViewController, newOrderViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //let newOrderVC = segue.destinationViewController as! NewOrderViewController
         // Pass the selected object to the new view controller.
-        if segue.identifier == "newOrder"{
+        if segue.identifier == "newOrder" {
             let newOrder = segue.destinationViewController as! NewOrderViewController
             newOrder.delegate = self
         }

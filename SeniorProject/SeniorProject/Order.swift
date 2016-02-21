@@ -20,6 +20,7 @@ class Order {
     var restaurantName: String = ""
     var orderID: String = ""
     var deliverTo: String = ""
+    var deliveredBy: String = ""
     var location: String = ""
     var expiresIn: String = ""
     var foodItems = [PFObject]()

@@ -12,6 +12,8 @@
 		36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */; };
 		36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */; };
 		36D08F741C7A3ACD005B1E90 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F731C7A3ACD005B1E90 /* Order.swift */; };
+		36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */; };
+		36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F771C7A73B2005B1E90 /* Drivers.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
@@ -65,6 +67,8 @@
 		36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsViewController.swift; sourceTree = "<group>"; };
 		36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantPreferences.swift; sourceTree = "<group>"; };
 		36D08F731C7A3ACD005B1E90 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDriverTableViewController.swift; sourceTree = "<group>"; };
+		36D08F771C7A73B2005B1E90 /* Drivers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drivers.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -155,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
+				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */,
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
 				36D08F731C7A3ACD005B1E90 /* Order.swift */,
+				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */,
 				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
 				36D08F741C7A3ACD005B1E90 /* Order.swift in Sources */,
+				36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */,
 				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
@@ -412,6 +419,7 @@
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
+				36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
 				36F506801C64E9500014D506 /* CreateAccount.swift in Sources */,
 			);
