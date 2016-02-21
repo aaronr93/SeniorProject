@@ -74,16 +74,16 @@ class DriverOrdersViewController: UITableViewController
             if let destination = segue.destinationViewController as? GetThatOrderTableViewController {
                 if tableView.indexPathForSelectedRow?.section == 0{
                     if let driverOrdersIndex = tableView.indexPathForSelectedRow?.row {
-                        destination.restaurantName  = driverOrders[driverOrdersIndex]["restaurant"]["name"] as! String
-                        destination.orderID  = driverOrders[driverOrdersIndex].objectId!
-                        destination.deliveryTo = driverOrders[driverOrdersIndex]["OrderingUser"]["username"] as! String
+                        destination.order.restaurantName  = driverOrders[driverOrdersIndex]["restaurant"]["name"] as! String
+                        destination.order.orderID  = driverOrders[driverOrdersIndex].objectId!
+                        destination.order.deliverTo = driverOrders[driverOrdersIndex]["OrderingUser"]["username"] as! String
                         let locationString : String = (driverOrders[driverOrdersIndex]["DeliveryAddress"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryCity"] as! String) + ", " + (driverOrders[driverOrdersIndex]["DeliveryState"] as! String) + " " + (driverOrders[driverOrdersIndex]["DeliveryZip"] as! String)
-                        destination.location = locationString
-                        destination.expiresIn = ParseDate.timeLeft(driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate)
+                        destination.order.location = locationString
+                        destination.order.expiresIn = ParseDate.timeLeft(driverOrders[driverOrdersIndex]["expirationDate"] as! NSDate)
                     }
                 }else if tableView.indexPathForSelectedRow?.section == 1{
                     if let anyDriverOrdersIndex = tableView.indexPathForSelectedRow?.row {
-                        destination.restaurantName  = anyDriverOrders[anyDriverOrdersIndex]["restaurant"]["name"] as! String
+                        destination.order.restaurantName  = anyDriverOrders[anyDriverOrdersIndex]["restaurant"]["name"] as! String
                     }
                 }
             }

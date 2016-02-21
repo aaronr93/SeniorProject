@@ -19,24 +19,33 @@ class FoodItemCell: UITableViewCell {
 }
 
 class DeliveryItemCell: UITableViewCell {
-    
     @IBOutlet weak var deliveryTitle: UILabel!
-    
     @IBOutlet weak var value: UILabel!
-   
 }
 
-
 class GetThatOrderTableViewController: UITableViewController {
-    var sectionHeaders = ["Restaurant","Food","Delivery"]
-    var deliverySectionTitles = ["Deliver To","Location","Expires In"]
     
-    var restaurantName : String = ""
-    var orderID : String = ""
-    var deliveryTo : String = ""
-    var location : String = ""
-    var expiresIn : String = ""
-    var foodItems = [PFObject]()
+    var sectionHeaders = ["Restaurant", "Food", "Delivery"]
+    var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
+    var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete"]
+    let order = Order()
+    
+    @IBAction func driverAction(sender: UIButton) {
+        switch order.orderState {
+        case OrderState.Available:
+            order.acquire()
+            sender.setTitle(buttonTitle[1], forState: UIControlState.Normal)
+        case OrderState.Acquired:
+            order.payFor()
+            sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+        case OrderState.PaidFor:
+            order.deliver()
+            sender.enabled = false
+            sender.setTitle(buttonTitle[3], forState: UIControlState.Disabled)
+        default:
+            break
+        }
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -47,7 +56,7 @@ class GetThatOrderTableViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return foodItems.count
+            return order.foodItems.count
         case 2:
             return deliverySectionTitles.count
         default:
@@ -70,41 +79,57 @@ class GetThatOrderTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0{
-            let rc = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
-            
-            var rName : String = restaurantName
-            rName.replaceRange(rName.startIndex...rName.startIndex, with: String(rName[rName.startIndex]).capitalizedString)
-            
-            rc.name.text = rName
-            
-            return rc
-        }else if indexPath.section == 1{
-            let fc = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-            fc.foodItem.text = foodItems[indexPath.row]["food"]["name"] as? String
-            fc.foodDescription.text = foodItems[indexPath.row]["description"] as? String
-            return fc
-        }else if indexPath.section == 2{
-            let dc = tableView.dequeueReusableCellWithIdentifier("deliveryCell", forIndexPath: indexPath) as! DeliveryItemCell
-            dc.deliveryTitle.text = deliverySectionTitles[indexPath.row]
-            var value : String = ""
-            switch indexPath.row{
-            case 0:
-                value = deliveryTo
-            case 1:
-                value = location
-            case 2:
-                value = expiresIn
-            default:
-                value = ""
-            }
-            dc.value.text = value
-            return dc
+        if indexPath.section == 0 {
+            return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
+        } else if indexPath.section == 1 {
+            return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
+        } else if indexPath.section == 2 {
+            return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
+        } else {
+            let cell: UITableViewCell! = nil
+            return cell
         }
-        
-        
-        let cell:UITableViewCell! = nil
-        return cell
+    }
+    
+    func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
+        var restaurantName: String = order.restaurantName
+        makeSentenceCase(&restaurantName)
+        restaurantCell.name.text = restaurantName
+        return restaurantCell
+    }
+    
+    func makeSentenceCase(inout str: String) {
+        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
+    }
+    
+    func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
+        foodCell.foodItem.text = order.foodItems[indexPath.row]["food"]["name"] as? String
+        foodCell.foodDescription.text = order.foodItems[indexPath.row]["description"] as? String
+        return foodCell
+    }
+    
+    func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let deliveryCell = tableView.dequeueReusableCellWithIdentifier("deliveryCell", forIndexPath: indexPath) as! DeliveryItemCell
+        deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
+        deliveryCell.value.text = fillValuesBasedOn(indexPath.row)
+        return deliveryCell
+    }
+    
+    func fillValuesBasedOn(row: Int) -> String {
+        var value : String = ""
+        switch row {
+        case 0:
+            value = order.deliverTo
+        case 1:
+            value = order.location
+        case 2:
+            value = order.expiresIn
+        default:
+            value = ""
+        }
+        return value
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -118,17 +143,9 @@ class GetThatOrderTableViewController: UITableViewController {
         }
     }
     
-
-    
     override func viewDidLoad() {
         //get orders sent to the driver
-        let itemsForOrderQuery = PFQuery(className:"OrderedItems")
-        itemsForOrderQuery.includeKey("food")
-        itemsForOrderQuery.includeKey("order")
-        itemsForOrderQuery.whereKey("order", equalTo: PFObject(withoutDataWithClassName: "Order", objectId: orderID))
-        
-            
-        itemsForOrderQuery.findObjectsInBackgroundWithBlock {
+        order.itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -136,7 +153,7 @@ class GetThatOrderTableViewController: UITableViewController {
                 // Do something with the found objects
                 if let items = objects {
                     for item in items {
-                        self.foodItems.append(item)
+                        self.order.addFoodItem(item)
                     }
                     self.tableView.reloadData()
                 }
