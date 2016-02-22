@@ -48,6 +48,19 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //need to use this instead of prepareForSegue with back buttons
+    override func viewWillDisappear(animated : Bool) {
+        super.viewWillDisappear(animated)
+        //comment
+        if (self.isMovingFromParentViewController()){
+            //save phone
+            PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
+            PFUser.currentUser()?.saveInBackground()
+            NSLog("saved phone")
+        }
+    }
+
+    
 
     /*
     // MARK: - Navigation
