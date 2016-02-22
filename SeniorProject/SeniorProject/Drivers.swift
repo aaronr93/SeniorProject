@@ -15,7 +15,8 @@ class Drivers {
     
     init() {
         itemsForDriverQuery.includeKey("driver")
-        itemsForDriverQuery.includeKey("isCurrentlyAvailable")
+        itemsForDriverQuery.includeKey("username")
+        itemsForDriverQuery.limit = 10
         itemsForDriverQuery.whereKey("isCurrentlyAvailable", equalTo: true)
     }
     

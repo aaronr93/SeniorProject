@@ -54,7 +54,6 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         default:
             return 0
         }
-        
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -173,6 +172,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     
     func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController) {
         order.deliveredBy = chooseDriver.chosenDriver
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
