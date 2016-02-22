@@ -23,21 +23,38 @@ class DeliveryItemCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
 }
 
+extension String{
+    mutating func makeFirstLetterInStringUpperCase() {
+        self.replaceRange(self.startIndex...self.startIndex, with: String(self[self.startIndex]).capitalizedString)
+    }
+}
+
 class GetThatOrderTableViewController: UITableViewController {
     
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
-    var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete"]
+    var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete","Acquired ✓"]
     let order = Order()
     
     @IBAction func driverAction(sender: UIButton) {
         switch order.orderState {
         case OrderState.Available:
-            order.acquire()
-            sender.setTitle(buttonTitle[1], forState: UIControlState.Normal)
+            order.acquire(){
+                result in
+                if result {
+                    //order successfully acquired
+                    sender.setTitle(self.buttonTitle[4], forState: UIControlState.Normal)
+                    sender.backgroundColor = UIColor.greenColor()
+                    sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                } else {
+                    //error not acquired
+                }
+            }
         case OrderState.Acquired:
-            order.payFor()
-            sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+            if sender.titleLabel?.text != self.buttonTitle[4]{
+                order.payFor()
+                sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+            }
         case OrderState.PaidFor:
             order.deliver()
             sender.enabled = false
@@ -94,13 +111,9 @@ class GetThatOrderTableViewController: UITableViewController {
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
         var restaurantName: String = order.restaurantName
-        makeSentenceCase(&restaurantName)
+        restaurantName.makeFirstLetterInStringUpperCase()
         restaurantCell.name.text = restaurantName
         return restaurantCell
-    }
-    
-    func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
