@@ -172,7 +172,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     
     func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController) {
         order.deliveredBy = chooseDriver.chosenDriver
-        
+        chooseDriver.navigationController?.popViewControllerAnimated(true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
