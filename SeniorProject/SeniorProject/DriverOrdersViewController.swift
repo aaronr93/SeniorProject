@@ -96,6 +96,11 @@ class DriverOrdersViewController: UITableViewController {
     
     func passAnyOrdersInfo(index: Int, dest: GetThatOrderTableViewController) {
         dest.order.restaurantName  = anyDriverOrders[index]["restaurant"]["name"] as! String
+        dest.order.orderID  = anyDriverOrders[index].objectId!
+        dest.order.deliverTo = anyDriverOrders[index]["OrderingUser"]["username"] as! String
+        let locationString: String = (anyDriverOrders[index]["DeliveryAddress"] as! String) + " " + (anyDriverOrders[index]["DeliveryCity"] as! String) + ", " + (anyDriverOrders[index]["DeliveryState"] as! String) + " " + (anyDriverOrders[index]["DeliveryZip"] as! String)
+        dest.order.location = locationString
+        dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
     }
     
     override func viewDidLoad() {
