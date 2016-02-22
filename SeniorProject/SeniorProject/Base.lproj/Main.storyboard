@@ -833,37 +833,38 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3J-Fb-rWM">
-                                            <rect key="frame" x="4" y="11" width="165" height="21"/>
+                                            <rect key="frame" x="0.0" y="11" width="131" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="165" id="hD5-iu-WlM"/>
+                                                <constraint firstAttribute="width" constant="131" id="jfB-9e-rsu"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-zq-tB3">
-                                            <rect key="frame" x="194" y="11" width="8" height="21"/>
+                                            <rect key="frame" x="139" y="11" width="60" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="xta-Si-4cc"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33n-46-Sjf">
-                                            <rect key="frame" x="222" y="11" width="244" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="244" id="ZFb-yu-6IA"/>
-                                            </constraints>
+                                            <rect key="frame" x="222" y="11" width="378" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="2mL-ns-wOI"/>
-                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="baseline" secondItem="aeK-zq-tB3" secondAttribute="baseline" id="OBJ-3s-IzI"/>
-                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="baseline" secondItem="33n-46-Sjf" secondAttribute="baseline" id="VcD-Xf-o39"/>
-                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="leading" secondItem="mYz-ma-lKI" secondAttribute="leadingMargin" constant="-4" id="fmK-aO-MQH"/>
-                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="leading" secondItem="Q3J-Fb-rWM" secondAttribute="trailing" constant="25" id="h6Q-gK-cxT"/>
-                                        <constraint firstItem="33n-46-Sjf" firstAttribute="leading" secondItem="aeK-zq-tB3" secondAttribute="trailing" constant="20" id="vhV-uU-ckz"/>
+                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="NQz-33-0UC"/>
+                                        <constraint firstAttribute="trailing" secondItem="33n-46-Sjf" secondAttribute="trailing" id="Rde-7l-dZQ"/>
+                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="leading" secondItem="Q3J-Fb-rWM" secondAttribute="trailing" constant="8" symbolic="YES" id="UDc-9t-fT2"/>
+                                        <constraint firstItem="33n-46-Sjf" firstAttribute="leading" secondItem="aeK-zq-tB3" secondAttribute="trailing" constant="23" id="dea-SO-L4h"/>
+                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="baseline" secondItem="33n-46-Sjf" secondAttribute="baseline" id="p4r-3s-c2E"/>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="baseline" secondItem="aeK-zq-tB3" secondAttribute="baseline" id="rOU-Mp-ov8"/>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="leading" secondItem="mYz-ma-lKI" secondAttribute="leading" id="stl-zb-giT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

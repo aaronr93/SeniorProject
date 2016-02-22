@@ -117,8 +117,21 @@ class MyOrdersViewController: UITableViewController {
         var restaurantName: String = order!["restaurant"]["name"] as! String
         makeSentenceCase(&restaurantName)
         cell.restaurant?.text = restaurantName
-        
-        cell.recipient?.text = order!["OrderingUser"]["username"] as? String
+        if indexPath.section == 0 {
+            if (order!["driverToDeliver"] != nil){
+                cell.recipient?.text = order!["driverToDeliver"]["username"] as? String
+            } else {
+                cell.recipient?.text = "Not Accepted"
+            }
+            
+        } else {
+            if (order!["OrderingUser"] != nil){
+                cell.recipient?.text = order!["OrderingUser"]["username"] as? String
+            } else {
+                cell.recipient?.text = "Error"
+            }
+            
+        }
         return cell
     }
     
