@@ -1,42 +1,50 @@
 //
-//  NewOrderViewController.swift
+//  GetThatOrderTableViewController.swift
 //  SeniorProject
 //
-//  Created by Seth Loew on 1/28/16.
+//  Created by Michael Kytka on 2/20/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-protocol NewOrderViewDelegate {
-    func cancelNewOrder(newOrderVC: NewOrderViewController)
-}
-
-class ChooseRestaurantCell: UITableViewCell {
+class RestaurantCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
 }
 
-class NewFoodItemCell: UITableViewCell {
+class FoodItemCell: UITableViewCell {
     @IBOutlet weak var foodItem: UILabel!
     @IBOutlet weak var foodDescription: UILabel!
 }
 
-class NewDeliveryItemCell: UITableViewCell {
+class DeliveryItemCell: UITableViewCell {
     @IBOutlet weak var deliveryTitle: UILabel!
     @IBOutlet weak var value: UILabel!
 }
 
-class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
-    
-    var delegate: NewOrderViewDelegate!
+class GetThatOrderTableViewController: UITableViewController {
     
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
-    var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
+    var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
+    var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete"]
     let order = Order()
     
-    @IBAction func orderCancelled(sender: UIBarButtonItem) {
-        delegate.cancelNewOrder(self)
+    @IBAction func driverAction(sender: UIButton) {
+        switch order.orderState {
+        case OrderState.Available:
+            order.acquire()
+            sender.setTitle(buttonTitle[1], forState: UIControlState.Normal)
+        case OrderState.Acquired:
+            order.payFor()
+            sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+        case OrderState.PaidFor:
+            order.deliver()
+            sender.enabled = false
+            sender.setTitle(buttonTitle[3], forState: UIControlState.Disabled)
+        default:
+            break
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,6 +62,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         default:
             return 0
         }
+        
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -83,9 +92,9 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     }
     
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
-        let restaurantName: String = order.restaurantName
-        //makeSentenceCase(&restaurantName)
+        let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
+        var restaurantName: String = order.restaurantName
+        makeSentenceCase(&restaurantName)
         restaurantCell.name.text = restaurantName
         return restaurantCell
     }
@@ -95,14 +104,14 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let foodCell = tableView.dequeueReusableCellWithIdentifier("newFoodCell", forIndexPath: indexPath) as! NewFoodItemCell
+        let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
         foodCell.foodItem.text = order.foodItems[indexPath.row]["food"]["name"] as? String
         foodCell.foodDescription.text = order.foodItems[indexPath.row]["description"] as? String
         return foodCell
     }
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath) as! NewDeliveryItemCell
+        let deliveryCell = tableView.dequeueReusableCellWithIdentifier("deliveryCell", forIndexPath: indexPath) as! DeliveryItemCell
         deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
         deliveryCell.value.text = fillValuesBasedOn(indexPath.row)
         return deliveryCell
@@ -112,7 +121,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         var value : String = ""
         switch row {
         case 0:
-            value = order.deliveredBy
+            value = order.deliverTo
         case 1:
             value = order.location
         case 2:
@@ -134,54 +143,25 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-        case 0:
-            if indexPath.row == 0 {
-                // Restaurant field
-                //performSegueWithIdentifier("chooseRestaurant", sender: self)
-            }
-        case 1:
-            // Food item field
-            //performSegueWithIdentifier("editFoodItem", sender: self)
-            break
-        case 2:
-            switch indexPath.row {
-            case 0:
-                // Driver field
-                performSegueWithIdentifier("chooseDriver", sender: self)
-            case 1:
-                // Location field
-                //performSegueWithIdentifier("chooseLocation", sender: self)
-                break
-            case 2:
-                // Expiration field
-                //performSegueWithIdentifier("chooseExpiration", sender: self)
-                break
-            default:
-                break
-            }
-        default:
-            break
-        }
-    }
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController) {
-        order.deliveredBy = chooseDriver.chosenDriver
-        chooseDriver.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "chooseDriver" {
-            let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
-            chooseDriver.delegate = self
+        //get orders sent to the driver
+        order.itemsForOrderQuery.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let items = objects {
+                    for item in items {
+                        self.order.addFoodItem(item)
+                    }
+                    self.tableView.reloadData()
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
         }
     }
+
 }
-
-
-
