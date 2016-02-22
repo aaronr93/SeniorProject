@@ -214,7 +214,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="10u-XQ-VeS">
-                        <barButtonItem key="leftBarButtonItem" title="My orders" id="riJ-g2-bem"/>
+                        <barButtonItem key="leftBarButtonItem" title="My orders" id="riJ-g2-bem">
+                            <connections>
+                                <segue destination="8Eh-wK-row" kind="show" id="YLk-kw-KBP"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="vQE-Iq-bWC">
                             <connections>
                                 <segue destination="o8a-E2-DZA" kind="show" id="1oD-X7-Zej"/>
@@ -811,6 +815,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tct-VG-Ky4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1982" y="1883"/>
+        </scene>
+        <!--My Orders-->
+        <scene sceneID="KfZ-1I-Q8F">
+            <objects>
+                <tableViewController id="8Eh-wK-row" customClass="MyOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KI5-cq-vSN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="order" id="vnM-0A-vEe" customClass="OrderCell" customModule="SeniorProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vnM-0A-vEe" id="mYz-ma-lKI">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3J-Fb-rWM">
+                                            <rect key="frame" x="4" y="11" width="165" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="165" id="hD5-iu-WlM"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-zq-tB3">
+                                            <rect key="frame" x="194" y="11" width="8" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33n-46-Sjf">
+                                            <rect key="frame" x="222" y="11" width="244" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="244" id="ZFb-yu-6IA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="2mL-ns-wOI"/>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="baseline" secondItem="aeK-zq-tB3" secondAttribute="baseline" id="OBJ-3s-IzI"/>
+                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="baseline" secondItem="33n-46-Sjf" secondAttribute="baseline" id="VcD-Xf-o39"/>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="leading" secondItem="mYz-ma-lKI" secondAttribute="leadingMargin" constant="-4" id="fmK-aO-MQH"/>
+                                        <constraint firstItem="aeK-zq-tB3" firstAttribute="leading" secondItem="Q3J-Fb-rWM" secondAttribute="trailing" constant="25" id="h6Q-gK-cxT"/>
+                                        <constraint firstItem="33n-46-Sjf" firstAttribute="leading" secondItem="aeK-zq-tB3" secondAttribute="trailing" constant="20" id="vhV-uU-ckz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="recipient" destination="Q3J-Fb-rWM" id="c27-Dv-M4l"/>
+                                    <outlet property="restaurant" destination="33n-46-Sjf" id="lHQ-cs-qG5"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8Eh-wK-row" id="A5R-at-dVk"/>
+                            <outlet property="delegate" destination="8Eh-wK-row" id="SMh-bX-QLz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Orders" id="543-0v-ThO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sz8-d6-27D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2775" y="1151"/>
         </scene>
         <!--Choose Driver-->
         <scene sceneID="7Cb-2B-tEC">

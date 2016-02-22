@@ -51,7 +51,7 @@ class SettingsViewController: UIViewController {
     //need to use this instead of prepareForSegue with back buttons
     override func viewWillDisappear(animated : Bool) {
         super.viewWillDisappear(animated)
-        
+        //comment
         if (self.isMovingFromParentViewController()){
             //save phone
             PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
