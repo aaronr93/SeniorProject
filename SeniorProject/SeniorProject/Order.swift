@@ -68,7 +68,7 @@ class Order {
     }
     
     func acquire(completion:(Bool) -> ()) {
-        // Sent when a driver picks up an order. Call Parse stuff here.
+        // Sent when a driver picks up an order.
         let query = PFQuery(className:"Order")
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
@@ -76,6 +76,7 @@ class Order {
                 print(error)
             } else if let order = order {
                 completion(true)
+                // Changes fields in Parse to reflect new order state.
                 order["isAnyDriver"] = false
                 order["orderIsAcquired"] = true
                 order["driverToDeliver"] = PFUser.currentUser()!

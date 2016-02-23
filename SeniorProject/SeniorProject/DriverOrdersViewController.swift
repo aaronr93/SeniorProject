@@ -59,7 +59,6 @@ class DriverOrdersViewController: UITableViewController {
         var restaurantName: String = order!["restaurant"]["name"] as! String
         makeSentenceCase(&restaurantName)
         cell.restaurant?.text = restaurantName
-
         cell.recipient?.text = order!["OrderingUser"]["username"] as? String
         return cell
     }
