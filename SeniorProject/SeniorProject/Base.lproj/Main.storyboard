@@ -945,19 +945,31 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N75-Qd-5XI">
-                                            <rect key="frame" x="278" y="11" width="281" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N75-Qd-5XI">
+                                            <rect key="frame" x="476" y="11" width="83" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="R2c-ZN-DGu"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recipient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZc-Fs-ph1">
-                                            <rect key="frame" x="17" y="11" width="246" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZc-Fs-ph1">
+                                            <rect key="frame" x="17" y="11" width="72" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="miq-Ex-EWM"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="N75-Qd-5XI" firstAttribute="trailing" secondItem="HfA-3i-AkT" secondAttribute="trailingMargin" id="RiP-VH-Mif"/>
+                                        <constraint firstItem="qZc-Fs-ph1" firstAttribute="leading" secondItem="HfA-3i-AkT" secondAttribute="leadingMargin" constant="9" id="T6b-hR-U0U"/>
+                                        <constraint firstItem="N75-Qd-5XI" firstAttribute="baseline" secondItem="qZc-Fs-ph1" secondAttribute="baseline" id="Wla-GP-hfu"/>
+                                        <constraint firstItem="qZc-Fs-ph1" firstAttribute="centerY" secondItem="HfA-3i-AkT" secondAttribute="centerY" id="fus-MZ-mTc"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="recipient" destination="qZc-Fs-ph1" id="Flo-ue-0Qe"/>
