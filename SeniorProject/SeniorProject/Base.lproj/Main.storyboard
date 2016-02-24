@@ -826,7 +826,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="order" id="vnM-0A-vEe" customClass="OrderCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vnM-0A-vEe" id="mYz-ma-lKI">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -850,18 +850,12 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33n-46-Sjf">
-                                            <rect key="frame" x="222" y="11" width="378" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Q3J-Fb-rWM" firstAttribute="leading" secondItem="mYz-ma-lKI" secondAttribute="leadingMargin" id="DkQ-lV-MES"/>
                                         <constraint firstItem="Q3J-Fb-rWM" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="DmU-iD-Lfa"/>
                                         <constraint firstItem="33n-46-Sjf" firstAttribute="baseline" secondItem="Q3J-Fb-rWM" secondAttribute="baseline" id="OGn-Pv-DXn"/>
-                                        <constraint firstItem="33n-46-Sjf" firstAttribute="trailing" secondItem="mYz-ma-lKI" secondAttribute="trailingMargin" id="dhS-h3-0du"/>
+                                        <constraint firstItem="33n-46-Sjf" firstAttribute="trailing" secondItem="mYz-ma-lKI" secondAttribute="trailingMargin" id="Yj1-2P-Fly"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
