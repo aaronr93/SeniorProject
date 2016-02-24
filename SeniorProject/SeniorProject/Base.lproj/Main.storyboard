@@ -426,6 +426,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="usernameChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="cZ1-QK-hRv"/>
+                                    <action selector="usernameEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="CJi-a0-xp1"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y77-MG-oAJ">
@@ -437,6 +438,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="phoneNumberChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="bhg-n7-Xke"/>
+                                    <action selector="phoneNumberEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="j91-ot-zVf"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wIC-1t-RzD">
@@ -448,6 +450,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="emailChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="LDk-wO-pof"/>
+                                    <action selector="emailEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="OEy-e8-JbC"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sj0-5E-drn">
@@ -459,6 +462,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="Daa-wP-uZo"/>
+                                    <action selector="passwordEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="af0-z1-ntY"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EGS-6u-Ona">
@@ -470,6 +474,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="confirmPasswordChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="TiX-gL-Wlz"/>
+                                    <action selector="confirmPasswordEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="D2J-1K-PRn"/>
                                 </connections>
                             </textField>
                         </subviews>
