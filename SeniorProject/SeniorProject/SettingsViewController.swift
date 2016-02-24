@@ -60,7 +60,12 @@ class SettingsViewController: UIViewController {
         }
     }
 
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        phoneField.resignFirstResponder()
+        userNameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        super.touchesBegan(touches, withEvent: event)
+    }
 
     /*
     // MARK: - Navigation

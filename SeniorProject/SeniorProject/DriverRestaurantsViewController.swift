@@ -92,10 +92,10 @@ class DriverRestaurantsViewController: UITableViewController {
             let exampleTime = "26:42"
             expirationCell.textLabel!.text = "Availability expires in: \(exampleTime)"
             expirationCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            //tableView.deselectRowAtIndexPath(indexPath, animated: true)
             return expirationCell
         } else if indexPath.row == 1 {
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
-            availabilityCell.focusStyle = UITableViewCellFocusStyle.Custom
             availabilityCell.available.selected = prefs.active
             return availabilityCell
         } else {

@@ -15,6 +15,7 @@
 		36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */; };
 		36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F771C7A73B2005B1E90 /* Drivers.swift */; };
 		36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */; };
+		36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
@@ -74,6 +75,7 @@
 		36D08F771C7A73B2005B1E90 /* Drivers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drivers.swift; sourceTree = "<group>"; };
 		36D08F791C7ABC74005B1E90 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUITests.swift; sourceTree = "<group>"; };
+		36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderUITests.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -272,6 +274,7 @@
 				96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */,
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				96DD81F81C56B8AF004CE3A7 /* Info.plist */,
+				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
 			);
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			files = (
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */,
+				36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

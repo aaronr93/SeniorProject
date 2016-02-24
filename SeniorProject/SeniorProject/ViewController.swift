@@ -118,6 +118,10 @@ class ViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        super.touchesBegan(touches, withEvent: event)
+    }
 }
 

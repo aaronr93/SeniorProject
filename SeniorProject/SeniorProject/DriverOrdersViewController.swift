@@ -59,7 +59,6 @@ class DriverOrdersViewController: UITableViewController {
         var restaurantName: String = order!["restaurant"]["name"] as! String
         makeSentenceCase(&restaurantName)
         cell.restaurant?.text = restaurantName
-
         cell.recipient?.text = order!["OrderingUser"]["username"] as? String
         return cell
     }
@@ -103,12 +102,18 @@ class DriverOrdersViewController: UITableViewController {
         dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
     }
     
-    override func viewDidLoad() {
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
+        if !driverOrders.isEmpty{
+            driverOrders.removeAll()
+        }
         //get orders sent to the driver
         let ordersForDriverQuery = PFQuery(className:"Order")
         ordersForDriverQuery.includeKey("restaurant")
         ordersForDriverQuery.includeKey("OrderingUser")
         ordersForDriverQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
+        ordersForDriverQuery.whereKey("orderIsAcquired", equalTo: false)
+    
     
         ordersForDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -129,6 +134,10 @@ class DriverOrdersViewController: UITableViewController {
         }
         
         //get any driver available orders
+        
+        if !anyDriverOrders.isEmpty{
+            anyDriverOrders.removeAll()
+        }
         
         let ordersForAnyDriverQuery = PFQuery(className:"Order")
         ordersForAnyDriverQuery.includeKey("restaurant")
