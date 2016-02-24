@@ -25,6 +25,11 @@ class SettingsViewController: UIViewController {
         checkThisField[sender.tag] = true
     }
     
+    @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
+        removeInputHighlightInField(sender)
+    }
+    
+    
     
     @IBAction func doneChangingUsername(sender: UITextField) {
         if checkThisField[0] && !validatedUsername(sender) {

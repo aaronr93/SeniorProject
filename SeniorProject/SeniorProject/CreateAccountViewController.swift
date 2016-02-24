@@ -17,6 +17,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
+        removeInputHighlightInField(sender)
+    }
+    
     let newAccount = CreateAccount()
     
     @IBAction func usernameChanged(sender: UITextField) {
