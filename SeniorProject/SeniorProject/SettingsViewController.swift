@@ -13,10 +13,43 @@ import ParseUI
 
 class SettingsViewController: UIViewController {
     
+    var checkThisField = [false, false, false]
+    
     @IBOutlet weak var phoneField : UITextField!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userImage: PFImageView!
     @IBOutlet weak var emailField: UITextField!
+    
+    @IBAction func checkThisField(sender: UITextField) {
+        //tags are 0,1,2 for username, phone#, email
+        checkThisField[sender.tag] = true
+    }
+    
+    
+    @IBAction func doneChangingUsername(sender: UITextField) {
+        if checkThisField[0] && !validatedUsername(sender) {
+            if let userNameTemp = PFUser.currentUser()!["username"] as? String {
+                if(userNameTemp == userNameField.text!){
+                    print("...but username unchanged, so it's OK")
+                    removeInputHighlightInField(userNameField)
+                }
+            }
+        }
+    }
+    
+    @IBAction func doneChangingPhoneNumber(sender: UITextField) {
+        if checkThisField[1] {
+            validatedPhoneNumber(sender)
+        }
+    }
+    
+    @IBAction func doneChangingEmailAddress(sender: UITextField) {
+        if checkThisField[2] {
+            validatedEmail(sender)
+        }
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +84,49 @@ class SettingsViewController: UIViewController {
     //need to use this instead of prepareForSegue with back buttons
     override func viewWillDisappear(animated : Bool) {
         super.viewWillDisappear(animated)
-        //comment
+        var validatedSomething = false
         if (self.isMovingFromParentViewController()){
-            //save phone
-            PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
-            PFUser.currentUser()?.saveInBackground()
-            NSLog("saved phone")
+            //side note: short-circuits here save time...no data change = no validation check
+            //save username if legitimate and changed...
+            if(checkThisField[0] &&
+                validatedUsername(userNameField)) {
+                validatedSomething = true
+                PFUser.currentUser()?.setObject(userNameField.text!, forKey: "username")
+                NSLog("saved username")
+            } else {
+                if let userNameTemp = PFUser.currentUser()!["username"] as? String {
+                    if(userNameTemp == userNameField.text!){
+                        print("..but username unchanged, so it's OK")
+                        removeInputHighlightInField(userNameField)
+                    } else {
+                        print("invalid username...not saved in DB")
+                    }
+                }
+                print("invalid username...not saved in DB")
+            }
+            //...and phone...
+            if(checkThisField[1] &&
+                validatedPhoneNumber(phoneField)) {
+                validatedSomething = true
+                PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
+                NSLog("saved phone")
+            } else {
+                print("invalid phone number...not saved in DB")
+            }
+            
+            //...and email
+            if(checkThisField[2] &&
+                validatedEmail(emailField)) {
+                validatedSomething = true
+                PFUser.currentUser()?.setObject(emailField.text!, forKey: "email")
+                NSLog("saved email")
+            } else {
+                print("invalid email address...not saved in DB")
+            }
+            
+            if(validatedSomething) {//only save once for all updates
+                PFUser.currentUser()?.saveInBackground()
+            }
         }
     }
 

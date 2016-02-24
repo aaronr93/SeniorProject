@@ -316,10 +316,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="usernameChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="Nw2-yx-rGv"/>
+                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="CoL-s4-57T"/>
+                                    <action selector="doneChangingUsername:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="IXG-6t-0L1"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add email address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ww-lO-Kty">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add email address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9ww-lO-Kty">
                                 <rect key="frame" x="42" y="233" width="516" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Hxn-QY-p7B"/>
@@ -332,10 +333,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="emailChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="lrF-Ux-0rd"/>
+                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="rmc-rL-989"/>
+                                    <action selector="doneChangingEmailAddress:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="qbO-XD-fBf"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add phone number here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHh-ma-bKN">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add phone number here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jHh-ma-bKN">
                                 <rect key="frame" x="42" y="195" width="516" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="u8U-XT-DTn"/>
@@ -348,7 +350,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="phoneNumberChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="d18-Z3-xrP"/>
+                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="3Ji-af-vEX"/>
+                                    <action selector="doneChangingPhoneNumber:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="yqo-w8-eYN"/>
                                 </connections>
                             </textField>
                         </subviews>
