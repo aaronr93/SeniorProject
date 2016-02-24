@@ -214,14 +214,14 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="10u-XQ-VeS">
-                        <barButtonItem key="leftBarButtonItem" title="My orders" id="riJ-g2-bem">
-                            <connections>
-                                <segue destination="8Eh-wK-row" kind="show" id="YLk-kw-KBP"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="vQE-Iq-bWC">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="vQE-Iq-bWC">
                             <connections>
                                 <segue destination="o8a-E2-DZA" kind="show" id="1oD-X7-Zej"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="My orders" id="riJ-g2-bem">
+                            <connections>
+                                <segue destination="8Eh-wK-row" kind="show" id="YLk-kw-KBP"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -927,7 +927,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Jc-Gq-3qP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2732" y="1883"/>
+            <point key="canvasLocation" x="2775" y="1883"/>
         </scene>
         <!--Orders-->
         <scene sceneID="Of5-YR-dYo">
@@ -984,11 +984,11 @@
                             <outlet property="delegate" destination="G9f-zb-JFa" id="y0I-f4-uD3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Orders" id="tnA-0U-fzk"/>
+                    <tabBarItem key="tabBarItem" id="tnA-0U-fzk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhv-FU-Zpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016" y="2675"/>
+            <point key="canvasLocation" x="1982" y="2675"/>
         </scene>
         <!--I'm Picking Up Food-->
         <scene sceneID="olp-Z5-rsN">
@@ -1108,7 +1108,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moK-Ch-ilo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="2675"/>
+            <point key="canvasLocation" x="2775" y="2675"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="qKS-jg-Wcs">
@@ -1187,7 +1187,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P3X-dl-7aQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016" y="3393"/>
+            <point key="canvasLocation" x="1982" y="3415"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Ea-Z0-eXr">
@@ -1205,7 +1205,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJu-xe-shr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1243" y="2945"/>
+            <point key="canvasLocation" x="1265" y="2675"/>
         </scene>
     </scenes>
     <resources>

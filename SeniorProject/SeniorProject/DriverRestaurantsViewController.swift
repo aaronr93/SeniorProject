@@ -96,7 +96,6 @@ class DriverRestaurantsViewController: UITableViewController {
             return expirationCell
         } else if indexPath.row == 1 {
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
-            availabilityCell.focusStyle = UITableViewCellFocusStyle.Custom
             availabilityCell.available.selected = prefs.active
             return availabilityCell
         } else {

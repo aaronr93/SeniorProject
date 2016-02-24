@@ -85,30 +85,36 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
         let restaurantName: String = order.restaurantName
+        // TODO: Replace the following line with Mike's string extension for capitalizing the first letter
         //makeSentenceCase(&restaurantName)
         restaurantCell.name.text = restaurantName
         return restaurantCell
     }
     
+    // TODO: Replace the following function with Mike's string extension for capitalizing the first letter
     func makeSentenceCase(inout str: String) {
         str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("newFoodCell", forIndexPath: indexPath) as! NewFoodItemCell
+        
         foodCell.foodItem.text = order.foodItems[indexPath.row]["food"]["name"] as? String
         foodCell.foodDescription.text = order.foodItems[indexPath.row]["description"] as? String
+        
         return foodCell
     }
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath) as! NewDeliveryItemCell
+        
         deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
-        deliveryCell.value.text = fillValuesBasedOn(indexPath.row)
+        deliveryCell.value.text = getTextFor(indexPath.row)
+        
         return deliveryCell
     }
     
-    func fillValuesBasedOn(row: Int) -> String {
+    func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
         case 0:
@@ -163,6 +169,40 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
             }
         default:
             break
+        }
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let headerFrame:CGRect = tableView.frame
+            
+            let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
+            title.text = "Food items"
+            
+            let headBttn = UIButton(type: UIButtonType.ContactAdd) as UIButton
+            headBttn.enabled = true
+            headBttn.titleLabel?.text = title.text
+            
+            headBttn.addTarget(self, action: "showAddVC:", forControlEvents: UIControlEvents.TouchUpInside)
+            
+            let headerView:UIView = UIView(frame: CGRectMake(0, 0, headerFrame.size.width, headerFrame.size.height))
+            headerView.addSubview(title)
+            headerView.addSubview(headBttn)
+            headBttn.center.x = headerView.bounds.width - headBttn.frame.width
+            headBttn.center.y = headBttn.center.y + 10
+            
+            return headerView
+        } else {
+            return nil
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            // Food items section
+            return 52
+        } else {
+            return 44
         }
     }
     

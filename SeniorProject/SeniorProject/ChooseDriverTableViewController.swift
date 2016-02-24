@@ -87,7 +87,7 @@ class ChooseDriverTableViewController: UITableViewController {
         // (02/21 6:17 PM) In the future, highlight the driver that is already selected.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if indexPath.section == 0 {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
@@ -95,8 +95,8 @@ class ChooseDriverTableViewController: UITableViewController {
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                     chosenDriver = cell.textLabel!.text!
+                    cell.selected = false
                 }
-                cell.selected = false
             }
         } else if indexPath.section == 1 {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
@@ -105,10 +105,11 @@ class ChooseDriverTableViewController: UITableViewController {
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                     chosenDriver = cell.textLabel!.text!
+                    cell.selected = false
                 }
-                cell.selected = false
             }
         }
+        return indexPath
     }
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
