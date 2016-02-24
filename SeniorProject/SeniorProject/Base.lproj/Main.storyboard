@@ -984,7 +984,7 @@
                             <outlet property="delegate" destination="G9f-zb-JFa" id="y0I-f4-uD3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" id="tnA-0U-fzk"/>
+                    <tabBarItem key="tabBarItem" title="Orders" id="tnA-0U-fzk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xhv-FU-Zpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
