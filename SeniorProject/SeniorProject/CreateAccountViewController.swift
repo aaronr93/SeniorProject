@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Parse
+//import Parse
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate
 {
@@ -23,25 +23,28 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         newAccount.username = sender.text
     }
     @IBAction func usernameEditComplete(sender: UITextField) {
-        validatedUsername()
+        validatedUsername(usernameField)
     }
     
     @IBAction func phoneNumberChanged(sender: UITextField) {
         newAccount.phone = sender.text
     }
     @IBAction func phoneNumberEditComplete(sender: UITextField) {
-        validatedPhoneNumber()
+        validatedPhoneNumber(phoneNumberField)
     }
     
     @IBAction func emailChanged(sender: UITextField) {
         newAccount.email = sender.text
     }
     @IBAction func emailEditComplete(sender: UITextField) {
-        validatedEmail()
+        validatedEmail(emailField)
     }
     
     @IBAction func passwordChanged(sender: UITextField) {
         newAccount.password = sender.text
+        newAccount.passwordConfirm = ""
+        confirmPasswordField.text = ""
+        removeInputHighlightInField(confirmPasswordField)
     }
     @IBAction func passwordEditComplete(sender: UITextField) {
         validatedPassword(sender)
@@ -70,9 +73,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     }
     
     func validate() {
-        if validatedUsername() &&
-            validatedPhoneNumber() &&
-            validatedEmail() &&
+        if validatedUsername(usernameField) &&
+            validatedPhoneNumber(phoneNumberField) &&
+            validatedEmail(emailField) &&
             validatedPassword(passwordField) &&
             validatedPassword(confirmPasswordField) &&
             newAccount.checkPasswordIsNotHorrible() &&
@@ -89,131 +92,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
                 //*****************************************
                 
         }
-    }
-    
-    func validatedUsername() -> Bool {
-        let validation = Validation()
-        if let fieldText = usernameField.text {
-            let textFields = ["username": fieldText]
-            validation.check(textFields, items: [
-                "username" : ["required": true, "min": 4, "max": 20]
-            ])
-        }
-        if (!validation.passed || usernameExistsInParse()) {
-            //validation failed
-            print(validation.errors)
-            showBadInputWarningInField(usernameField)
-            return false
-        } else {
-            showGoodInputInField(usernameField)
-            return true
-        }
-    }
-    
-    func usernameExistsInParse() -> Bool {
-        // Synchronous and is skipped by iOS as a long-running blocking function
-        let query: PFQuery = PFUser.query()!
-        var usernameExists = true
-        query.whereKey("username", equalTo: usernameField.text!)
-        do {
-            let results: [PFObject] = try query.findObjects()
-            print(results.count)
-            if results.count > 0 {
-                print("Username already exists.")
-                usernameExists = true
-            } else {
-                usernameExists = false
-            }
-        } catch {
-            print(error)
-        }
-        return usernameExists
-    }
-    
-    func validatedPassword(field: UITextField?) -> Bool {
-        let validation = Validation()
-        if let fieldText = field!.text {
-            let textFields = ["password": fieldText]
-            validation.check(textFields, items: [
-                "password" : ["required": true, "min": 6, "max": 20]
-            ])
-        }
-        if (!validation.passed) {
-            //validation failed
-            print(validation.errors)
-            showBadInputWarningInField(passwordField)
-            return false
-        } else {
-            showGoodInputInField(passwordField)
-            return true
-        }
-    }
-    
-    func validatedPhoneNumber() -> Bool {
-        let validation = Validation()
-        if let fieldText = phoneNumberField.text {
-            let textFields = ["phonenum": fieldText]
-            validation.check(textFields, items: ["phonenum" : ["required": true, "min": 10, "max": 10]
-                ])
-            //if it's the right length, check for numeric chars only
-            for c in fieldText.characters {
-                if(c < "0" || c > "9") {
-                    print("invalid digit in phone number string")
-                    validation.passed = false;
-                    break;
-                }
-            }
-        }
-        if(!validation.passed) {
-            //validation failed
-            print(validation.errors)
-            showBadInputWarningInField(phoneNumberField)
-            return false
-        } else {
-            showGoodInputInField(phoneNumberField)
-            return true
-        }
-    }
-    
-    func validatedEmail() -> Bool {
-        if let fieldText = emailField.text {
-            if(emailStringFilter(fieldText)){
-                showGoodInputInField(emailField)
-                return true
-            } else {
-                //validation failed
-                print("invalid email in verification step.")
-                showBadInputWarningInField(emailField)
-                return false
-            }
-        } else {//let check failed
-            print("email text field not valid.")
-            showBadInputWarningInField(emailField)
-            return false
-        }
-    }
-    
-    func emailStringFilter(email: String) -> Bool {
-        //a bit of Objective-C to do regex
-        let filterString = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", filterString)
-        return emailTest.evaluateWithObject(email)
-    }
-    
-    func showBadInputWarningInField(field: UITextField) {
-        // Called when the text in the param of type UITextField is invalid.
-        let myColor: UIColor = UIColor(red: 0.9, green: 0, blue: 0, alpha: 0.3 )
-        field.layer.backgroundColor = myColor.CGColor
-    }
-    
-    func showGoodInputInField(field: UITextField) {
-        // Called when the text in the param of type UITextField is valid.
-        let myColor: UIColor = UIColor(red: 0, green: 0.9, blue: 0, alpha: 0.3 )
-        field.layer.backgroundColor = myColor.CGColor
-    }
-    
-    func removeInputHighlightInField(field: UITextField) {
-        field.layer.backgroundColor = UIColor.whiteColor().CGColor
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
