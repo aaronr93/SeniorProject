@@ -214,6 +214,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         addBorderToTextField(borderBottomEmail, field: emailField, color: color)
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        usernameField.resignFirstResponder()
+        phoneNumberField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        confirmPasswordField.resignFirstResponder()
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "validateSegue" {
             let svc = segue.destinationViewController as! FinishCreateAccountViewController
