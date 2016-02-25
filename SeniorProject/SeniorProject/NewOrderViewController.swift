@@ -84,16 +84,13 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
-        let restaurantName: String = order.restaurantName
-        // TODO: Replace the following line with Mike's string extension for capitalizing the first letter
-        //makeSentenceCase(&restaurantName)
+        var restaurantName: String = order.restaurantName
+
+        
+        restaurantName.makeFirstLetterInStringUpperCase()
+        
         restaurantCell.name.text = restaurantName
         return restaurantCell
-    }
-    
-    // TODO: Replace the following function with Mike's string extension for capitalizing the first letter
-    func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
