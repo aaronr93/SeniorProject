@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Parse
 
 class DriverRestaurantPreferences {
     var active: Bool = false
-    var restaurants: [String] = []
+    var restaurants = [PFObject]()
     var expirationTime: NSDate = NSDate()
     
-    func addRestaurant(toAdd: String) {
+    func addRestaurant(toAdd: PFObject) {
         if !restaurants.contains(toAdd) {
             restaurants.append(toAdd)
         } else {
@@ -21,7 +22,7 @@ class DriverRestaurantPreferences {
         }
     }
     
-    func removeRestaurant(toRemove: String) {
+    func removeRestaurant(toRemove: PFObject) {
         if let removeIndex = restaurants.indexOf(toRemove) {
             restaurants.removeAtIndex(removeIndex)
         } else {
@@ -40,15 +41,6 @@ class DriverRestaurantPreferences {
     
     func setInactive() {
         active = false
-    }
-    
-    func getFromParse() {
-        let parseRestaurants = ["Sheetz", "McDonald's", "Primanti's", "Elephant & Castle"]
-        restaurants = parseRestaurants
-    }
-    
-    func updateParse() {
-        
     }
     
 }
