@@ -36,5 +36,11 @@ class NewOrderUITests: SeniorProjectUITests {
     func addFoodItemDrag() {
         // Unsupported - should do nothing
     }
+    
+    func cancelNewOrder() {
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
+    }
 
 }

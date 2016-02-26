@@ -273,8 +273,8 @@
 			children = (
 				96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */,
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
-				96DD81F81C56B8AF004CE3A7 /* Info.plist */,
 				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
+				96DD81F81C56B8AF004CE3A7 /* Info.plist */,
 			);
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";

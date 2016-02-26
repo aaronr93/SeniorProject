@@ -14,11 +14,17 @@ class OrderCell: UITableViewCell {
     @IBOutlet weak var recipient: UILabel!
 }
 
-class DriverOrdersViewController: UITableViewController {
+class DriverOrdersViewController: UITableViewController, CLLocationManagerDelegate {
     
     var sectionHeaders = ["Requests For Me", "Requests For Anyone"]
     var driverOrders = [PFObject]()
     var anyDriverOrders = [PFObject]()
+    
+    
+    let locationManager = CLLocationManager()
+    let geocoder = CLGeocoder()
+    var location : CLLocationCoordinate2D?
+    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -57,15 +63,14 @@ class DriverOrdersViewController: UITableViewController {
         }
     
         var restaurantName: String = order!["restaurant"]["name"] as! String
-        makeSentenceCase(&restaurantName)
+        
+        restaurantName.makeFirstLetterInStringUpperCase()
+        
         cell.restaurant?.text = restaurantName
         cell.recipient?.text = order!["OrderingUser"]["username"] as? String
         return cell
     }
-    
-    func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
-    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.backBarButtonItem?.title = ""
@@ -102,8 +107,66 @@ class DriverOrdersViewController: UITableViewController {
         dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
     }
     
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        //TODO: load any driver requests by distance
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        let addressString : String = "89-30 70th road Forest Hills, NY"
+        
+        
+        self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+            if error != nil {
+                print("Geocode failed with error: \(error!.localizedDescription)")
+            } else if placemarks!.count > 0 {
+                let placemark = placemarks![0]
+                self.location = placemark.location?.coordinate
+                print(self.location)
+                //TODO: load any driver requests by last recorded distance
+                
+            }
+        })
+    }
+    
+    
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
+        
+        // For use in foreground
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            //accurate active location
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            
+            locationManager.requestLocation()
+            
+        }else{
+            //need to use last location in table since we cannot use location services
+            
+            let addressString : String = "89-30 70th road Forest Hills, NY"
+            self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                if error != nil {
+                    print("Geocode failed with error: \(error!.localizedDescription)")
+                } else if placemarks!.count > 0 {
+                    let placemark = placemarks![0]
+                    self.location = placemark.location?.coordinate
+                    print(self.location)
+                    //TODO: load any driver requests by last recorded or inputted distance
+                    
+                }
+            })
+        }
+        
+        
+        
+        
+            
+        
         if !driverOrders.isEmpty{
             driverOrders.removeAll()
         }
