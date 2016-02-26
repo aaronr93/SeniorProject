@@ -13,17 +13,14 @@ import ParseUI
 
 class SettingsViewController: UIViewController {
     
-    var checkThisField = [false, false, false]
+    var originalUserName = "username not loaded...this is here to fail validation"
+    var originalPhone = "phone num not loaded"
+    var originalEmail = "email addr not loaded"
     
     @IBOutlet weak var phoneField : UITextField!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userImage: PFImageView!
     @IBOutlet weak var emailField: UITextField!
-    
-    @IBAction func checkThisField(sender: UITextField) {
-        //tags are 0,1,2 for username, phone#, email
-        checkThisField[sender.tag] = true
-    }
     
     @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
         removeInputHighlightInField(sender)
@@ -32,24 +29,19 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func doneChangingUsername(sender: UITextField) {
-        if checkThisField[0] && !validatedUsername(sender) {
-            if let userNameTemp = PFUser.currentUser()!["username"] as? String {
-                if(userNameTemp == userNameField.text!){
-                    print("...but username unchanged, so it's OK")
-                    removeInputHighlightInField(userNameField)
-                }
-            }
+        if (sender.text! != originalUserName) { //if same as before, don't highlight
+            validatedUsername(sender) //only run the DB call incurred here if it's a different username than before
         }
     }
     
     @IBAction func doneChangingPhoneNumber(sender: UITextField) {
-        if checkThisField[1] {
+        if (sender.text! != originalPhone) { //if same as before, don't highlight
             validatedPhoneNumber(sender)
         }
     }
     
     @IBAction func doneChangingEmailAddress(sender: UITextField) {
-        if checkThisField[2] {
+        if (sender.text! != originalEmail) { //if same as before, don't highlight
             validatedEmail(sender)
         }
     }
@@ -64,18 +56,23 @@ class SettingsViewController: UIViewController {
         //userImage.file = someObject.picture // remote image
         
         //userImage.loadInBackground()
+        
+        //storing these items for the view to reuse would save several database calls
         if let phone = PFUser.currentUser()!["phone"] as? String {
             phoneField.text = phone
+            originalPhone = phone
         } else {
             phoneField.text = "none"
         }
         if let email = PFUser.currentUser()!["email"] as? String{
             emailField.text = email
+            originalEmail = email
         } else{
             emailField.text = "none"
         }
         if let userName = PFUser.currentUser()!["username"] as? String{
             userNameField.text = userName
+            originalUserName = userName
         } else{
             userNameField.text = "none"
         }
@@ -87,46 +84,46 @@ class SettingsViewController: UIViewController {
     }
     
     //need to use this instead of prepareForSegue with back buttons
-    override func viewWillDisappear(animated : Bool) {
+    override func viewDidDisappear(animated : Bool) {
         super.viewWillDisappear(animated)
         var validatedSomething = false
         if (self.isMovingFromParentViewController()){
             //side note: short-circuits here save time...no data change = no validation check
             //save username if legitimate and changed...
-            if(checkThisField[0] &&
+            if(userNameField.text! != originalUserName && //dirrerent and valid //this will short-circuit to avoid DB call if unchanged
                 validatedUsername(userNameField)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(userNameField.text!, forKey: "username")
                 NSLog("saved username")
-            } else {
-                if let userNameTemp = PFUser.currentUser()!["username"] as? String {
-                    if(userNameTemp == userNameField.text!){
-                        print("..but username unchanged, so it's OK")
-                        removeInputHighlightInField(userNameField)
-                    } else {
-                        print("invalid username...not saved in DB")
-                    }
-                }
-                print("invalid username...not saved in DB")
+            } else if(userNameField.text! == originalUserName){ //same
+                print("username unchanged--not saved in DB")
+            } else { //invalid
+                print("invalid username not saved in DB")
             }
             //...and phone...
-            if(checkThisField[1] &&
+            if(phoneField.text! != originalPhone && //different and valid
                 validatedPhoneNumber(phoneField)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
                 NSLog("saved phone")
-            } else {
-                print("invalid phone number...not saved in DB")
+            } else if(phoneField.text! == originalPhone){ //same
+                print("phone number unchanged--not saved in DB")
+                removeInputHighlightInField(phoneField)
+            } else { //invalid
+                print("invalid phone number not saved in DB")
             }
             
             //...and email
-            if(checkThisField[2] &&
+            if(emailField.text! != originalEmail && //different and valid
                 validatedEmail(emailField)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(emailField.text!, forKey: "email")
                 NSLog("saved email")
-            } else {
-                print("invalid email address...not saved in DB")
+            } else if(emailField.text! == originalEmail) { //same
+                print("email address unchanged--not saved in DB")
+                removeInputHighlightInField(emailField)
+            } else { //invalid
+                print("invalid email address not saved in DB")
             }
             
             if(validatedSomething) {//only save once for all updates
