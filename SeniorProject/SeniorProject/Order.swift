@@ -17,7 +17,7 @@ enum OrderState {
 }
 
 class Order {
-    var restaurantName: String = ""
+    var restaurantName: String = "Select a Restaurant"
     var orderID: String = ""
     var deliverTo: String = ""
     var deliveredBy: String = ""
