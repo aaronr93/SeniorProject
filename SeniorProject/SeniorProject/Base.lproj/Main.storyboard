@@ -316,7 +316,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="CoL-s4-57T"/>
                                     <action selector="doneChangingUsername:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="IXG-6t-0L1"/>
                                     <action selector="touchedInFieldResetHighlight:" destination="o8a-E2-DZA" eventType="editingDidBegin" id="Vtz-Sk-g6m"/>
                                 </connections>
@@ -334,7 +333,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="rmc-rL-989"/>
                                     <action selector="doneChangingEmailAddress:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="qbO-XD-fBf"/>
                                     <action selector="touchedInFieldResetHighlight:" destination="o8a-E2-DZA" eventType="editingDidBegin" id="Db4-kL-8VR"/>
                                 </connections>
@@ -352,7 +350,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="checkThisField:" destination="o8a-E2-DZA" eventType="editingChanged" id="3Ji-af-vEX"/>
                                     <action selector="doneChangingPhoneNumber:" destination="o8a-E2-DZA" eventType="editingDidEnd" id="yqo-w8-eYN"/>
                                     <action selector="touchedInFieldResetHighlight:" destination="o8a-E2-DZA" eventType="editingDidBegin" id="ys4-TM-lbS"/>
                                 </connections>

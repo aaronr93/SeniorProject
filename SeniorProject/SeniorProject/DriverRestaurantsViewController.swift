@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AvailabilityCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
@@ -18,10 +19,31 @@ class DriverRestaurantsViewController: UITableViewController {
     let prefs = DriverRestaurantPreferences()
     let sectionHeaders = ["Restaurants", "Settings"]
     
+    func getFromParse() {
+        let itemsForDriverQuery = PFQuery(className:"Restaurant")
+        //itemsForDriverQuery.includeKey("name")
+        itemsForDriverQuery.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let items = objects {
+                    for item in items {
+                        self.prefs.addRestaurant(item)
+                    }
+                    self.tableView.reloadData()
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prefs.getFromParse()
+        getFromParse()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -80,7 +102,7 @@ class DriverRestaurantsViewController: UITableViewController {
         if indexPath.row > prefs.restaurants.count {
             print("Somehow, there are more rows than there are restaurants.")
         } else {
-            restaurantCell.textLabel!.text = prefs.restaurants[indexPath.row]
+            restaurantCell.textLabel!.text = prefs.restaurants[indexPath.row]["name"] as? String
         }
         return restaurantCell
     }
