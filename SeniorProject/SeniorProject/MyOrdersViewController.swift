@@ -117,7 +117,9 @@ class MyOrdersViewController: UITableViewController {
         }
         
         var restaurantName: String = order!["restaurant"]["name"] as! String
-        makeSentenceCase(&restaurantName)
+        
+        restaurantName.makeFirstLetterInStringUpperCase()
+    
         cell.restaurant?.text = restaurantName
         if indexPath.section == 0 {
             if (order!["driverToDeliver"] != nil){
@@ -183,7 +185,7 @@ class MyOrdersViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section){
-        case 0:
+        case 0://make enum
             performSegueWithIdentifier("myOrderSegue", sender: self)
         case 1:
             performSegueWithIdentifier("getThatOrderSegue", sender: self)
@@ -191,11 +193,4 @@ class MyOrdersViewController: UITableViewController {
             NSLog("shouldn't ever be here")
         }
     }
-
-    
-    func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
-    }
-
-   
 }

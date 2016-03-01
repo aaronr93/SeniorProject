@@ -33,10 +33,11 @@
 		96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */; };
 		96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9D1C5AFF2C00DF6038 /* libz.tbd */; };
 		96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */; };
+		96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */; };
 		96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */; };
 		96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF85C1C796FA70090F7F6 /* ParseDate.swift */; };
 		96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */; };
-		96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D81C56B8AE004CE3A7 /* ViewController.swift */; };
+		96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D81C56B8AE004CE3A7 /* LogInViewController.swift */; };
 		96DD81DC1C56B8AE004CE3A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */; };
 		96DD81DE1C56B8AE004CE3A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */; };
 		96DD81E11C56B8AE004CE3A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DD81DF1C56B8AE004CE3A7 /* LaunchScreen.storyboard */; };
@@ -95,11 +96,12 @@
 		96B36A9D1C5AFF2C00DF6038 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		96B36AA11C5AFF4700DF6038 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversOrdersUITests.swift; sourceTree = "<group>"; };
 		96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewController.swift; sourceTree = "<group>"; };
 		96DBF85C1C796FA70090F7F6 /* ParseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDate.swift; sourceTree = "<group>"; };
 		96DD81D31C56B8AE004CE3A7 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96DD81D81C56B8AE004CE3A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		96DD81D81C56B8AE004CE3A7 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		96DD81DB1C56B8AE004CE3A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96DD81E01C56B8AE004CE3A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -176,7 +178,7 @@
 		36D08F231C7222CB005B1E90 /* Other ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				96DD81D81C56B8AE004CE3A7 /* ViewController.swift */,
+				96DD81D81C56B8AE004CE3A7 /* LogInViewController.swift */,
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
 				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
 				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
@@ -275,6 +277,7 @@
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
 				96DD81F81C56B8AF004CE3A7 /* Info.plist */,
+				96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */,
 			);
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
@@ -425,7 +428,7 @@
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
-				96DD81D91C56B8AE004CE3A7 /* ViewController.swift in Sources */,
+				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */,
@@ -451,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */,
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */,
 				36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */,

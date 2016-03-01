@@ -48,6 +48,12 @@ class Validation
                                     addError("\(item) must be a maximum of \(rv) characters.")
                                 }
                             }
+                        case "lengthEqualTo":
+                            if let rv = rule_value as? Int{
+                                if val.length != rv{
+                                    addError("\(item) must be \(rv) characters long.")
+                                }
+                            }
                         case "doesNotContain":
                             if let rv = rule_value as? String {
                                 if (val.containsString(rv)) {
@@ -102,7 +108,7 @@ func validatedPhoneNumber(passedField: UITextField) -> Bool {
     let validation = Validation()
     if let fieldText = passedField.text {
         let textFields = ["phonenum": fieldText]
-        validation.check(textFields, items: ["phonenum" : ["required": true, "min": 10, "max": 10]
+        validation.check(textFields, items: ["phonenum" : ["required": true, "lengthEqualTo": 10]
             ])
         //if it's the right length, check for numeric chars only
         for c in fieldText.characters {
