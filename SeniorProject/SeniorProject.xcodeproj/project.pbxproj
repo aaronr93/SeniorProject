@@ -18,9 +18,6 @@
 		36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
-		36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204781C5A893000A9CC59 /* Bolts.framework */; };
-		36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204791C5A893000A9CC59 /* Parse.framework */; };
-		36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047A1C5A893000A9CC59 /* ParseUI.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
 		36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E204801C5BD03D00A9CC59 /* Settings.swift */; };
 		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
@@ -44,6 +41,15 @@
 		96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */; };
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
 		9B8E40C61C85181300B4B77E /* MyOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E40C51C85181300B4B77E /* MyOrdersUITests.swift */; };
+		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
+		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
+		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
+		9B8E40CF1C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
+		9B8E40D01C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
+		9B8E40D11C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
+		9B8E40D31C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
+		9B8E40D41C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
+		9B8E40D51C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
 		9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */; };
 		9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */; };
 		9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */; };
@@ -80,9 +86,6 @@
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		36E204781C5A893000A9CC59 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		36E204791C5A893000A9CC59 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		36E2047A1C5A893000A9CC59 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		36E2047E1C5A897500A9CC59 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		36E204801C5BD03D00A9CC59 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
@@ -110,9 +113,11 @@
 		96DD81ED1C56B8AF004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96DD81F21C56B8AF004CE3A7 /* SeniorProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
-		96DD81F81C56B8AF004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9B8E40C51C85181300B4B77E /* MyOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersUITests.swift; sourceTree = "<group>"; };
+		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
@@ -128,10 +133,10 @@
 				96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */,
 				96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */,
 				96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */,
+				9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */,
+				9B8E40D31C85199B00B4B77E /* ParseUI.framework in Frameworks */,
+				9B8E40CF1C85199100B4B77E /* Parse.framework in Frameworks */,
 				96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */,
-				36E2047B1C5A893000A9CC59 /* Bolts.framework in Frameworks */,
-				36E2047C1C5A893000A9CC59 /* Parse.framework in Frameworks */,
-				36E2047D1C5A893000A9CC59 /* ParseUI.framework in Frameworks */,
 				36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */,
 				36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */,
 				36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */,
@@ -142,6 +147,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E40D41C85199B00B4B77E /* ParseUI.framework in Frameworks */,
+				9B8E40D01C85199100B4B77E /* Parse.framework in Frameworks */,
+				9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +157,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E40D51C85199B00B4B77E /* ParseUI.framework in Frameworks */,
+				9B8E40D11C85199100B4B77E /* Parse.framework in Frameworks */,
+				9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,14 +220,14 @@
 				96B36AA11C5AFF4700DF6038 /* StoreKit.framework */,
 				96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */,
 				96B36A9D1C5AFF2C00DF6038 /* libz.tbd */,
+				9B8E40CA1C85198200B4B77E /* Bolts.framework */,
+				9B8E40CE1C85199100B4B77E /* Parse.framework */,
+				9B8E40D21C85199B00B4B77E /* ParseUI.framework */,
 				96B36A9A1C5AFE4A00DF6038 /* CoreLocation.framework */,
 				96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */,
 				96B36A961C5AFE2900DF6038 /* CFNetwork.framework */,
 				96B36A941C5AFE1600DF6038 /* Security.framework */,
 				36E2047E1C5A897500A9CC59 /* MapKit.framework */,
-				36E204781C5A893000A9CC59 /* Bolts.framework */,
-				36E204791C5A893000A9CC59 /* Parse.framework */,
-				36E2047A1C5A893000A9CC59 /* ParseUI.framework */,
 				36E204761C5A889100A9CC59 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
@@ -623,6 +634,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
@@ -635,6 +650,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
@@ -646,6 +665,10 @@
 		96DD82021C56B8AF004CE3A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;
@@ -658,6 +681,10 @@
 		96DD82031C56B8AF004CE3A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;

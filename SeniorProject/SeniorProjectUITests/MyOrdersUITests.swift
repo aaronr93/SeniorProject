@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Parse
 
 class MyOrdersUITests: SeniorProjectUITests {
     
