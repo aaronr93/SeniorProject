@@ -9,22 +9,19 @@
 import UIKit
 import Parse
 
-protocol ChooseDriverDelegate {
-    func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController)
-}
-
 class ChooseDriverTableViewController: UITableViewController {
-    
-    var delegate: ChooseDriverDelegate!
+
     let drivers = Drivers()
-    //var chosenDriver = PFObject()
     var chosenDriver: String = ""
+    var chosenRestaurant: String = "Sheetz"
     let sectionHeaders = ["", "Choose a driver"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drivers.itemsForDriverQuery.findObjectsInBackgroundWithBlock {
+        drivers.restaurant = chosenRestaurant
+        
+        drivers.availableDrivers.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 // The find succeeded.
@@ -40,6 +37,7 @@ class ChooseDriverTableViewController: UITableViewController {
                 print("Error: \(error!) \(error!.userInfo)")
             }
         }
+        
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -114,9 +112,16 @@ class ChooseDriverTableViewController: UITableViewController {
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath)
-        driverCell.textLabel!.text = drivers.list[indexPath.row].objectId! as String
+        driverCell.textLabel!.text = drivers.list[indexPath.row]["driver"]["username"] as? String
         // not sure what to do here ^
         return driverCell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "chooseDriver" {
+            let newOrder = segue.destinationViewController as! NewOrderViewController
+            newOrder.order.deliveredBy = chosenDriver
+        }
     }
 
 }

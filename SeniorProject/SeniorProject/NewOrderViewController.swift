@@ -27,7 +27,7 @@ class NewDeliveryItemCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
 }
 
-class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
+class NewOrderViewController: UITableViewController {
     
     var delegate: NewOrderViewDelegate!
     
@@ -207,16 +207,11 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         super.viewDidLoad()
     }
     
-    func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController) {
-        order.deliveredBy = chooseDriver.chosenDriver
-        print(chooseDriver.chosenDriver)
-        chooseDriver.navigationController?.popViewControllerAnimated(true)
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
-            chooseDriver.delegate = self
+            // Pass data to tell which driver should be selected by default
+            chooseDriver.chosenRestaurant = order.restaurantName
         }
     }
 }
