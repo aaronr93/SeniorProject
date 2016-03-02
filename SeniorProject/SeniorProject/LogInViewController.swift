@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LogInViewController.swift
 //  SeniorProject
 //
 //  Created by Michael Kytka on 1/25/16.
@@ -11,7 +11,7 @@ import Parse
 
 
 
-class ViewController: UIViewController,UITextFieldDelegate {
+class LogInViewController: UIViewController,UITextFieldDelegate {
     
     func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
     {

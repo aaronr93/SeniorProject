@@ -14,17 +14,16 @@ class OrderCell: UITableViewCell {
     @IBOutlet weak var recipient: UILabel!
 }
 
-class DriverOrdersViewController: UITableViewController, CLLocationManagerDelegate {
+class DriverOrdersViewController: UITableViewController {
     
     var sectionHeaders = ["Requests For Me", "Requests For Anyone"]
     var driverOrders = [PFObject]()
     var anyDriverOrders = [PFObject]()
     
-    
-    let locationManager = CLLocationManager()
-    let geocoder = CLGeocoder()
-    var location : CLLocationCoordinate2D?
-    
+    enum sectionTypes : Int{
+        case driverOrders
+        case anyDriverOrders
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -32,9 +31,9 @@ class DriverOrdersViewController: UITableViewController, CLLocationManagerDelega
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case sectionTypes.driverOrders.rawValue:
             return driverOrders.count
-        case 1:
+        case sectionTypes.anyDriverOrders.rawValue:
             return anyDriverOrders.count
         default:
             return 0
@@ -44,9 +43,9 @@ class DriverOrdersViewController: UITableViewController, CLLocationManagerDelega
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case sectionTypes.driverOrders.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case sectionTypes.anyDriverOrders.rawValue:
             return sectionHeaders[1]
         default:
             return ""
@@ -61,16 +60,34 @@ class DriverOrdersViewController: UITableViewController, CLLocationManagerDelega
         } else if indexPath.section == 1 {
             order = anyDriverOrders[indexPath.row]
         }
-    
-        var restaurantName: String = order!["restaurant"]["name"] as! String
         
-        restaurantName.makeFirstLetterInStringUpperCase()
+        
+        var restaurantName: String = "Not Available"
+        
+        if let thisOrder = order{
+            if let restaurant = thisOrder["restaurant"] as? PFObject{
+                if let restaurantNameText = restaurant["name"] as? String{
+                    restaurantName = restaurantNameText
+                }
+            }
+        }
+        
+        var userName: String = "Not Available"
+        if let thisOrder = order{
+            if let user = thisOrder["OrderingUser"] as? PFObject{
+                if let userNameText = user["username"] as? String{
+                    userName = userNameText
+                }
+            }
+        }
+        
+        //restaurantName.makeFirstLetterInStringUpperCase()
         
         cell.restaurant?.text = restaurantName
-        cell.recipient?.text = order!["OrderingUser"]["username"] as? String
+        cell.recipient?.text = userName
         return cell
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.backBarButtonItem?.title = ""
@@ -107,66 +124,8 @@ class DriverOrdersViewController: UITableViewController, CLLocationManagerDelega
         dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        
-        //TODO: load any driver requests by distance
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let addressString : String = "89-30 70th road Forest Hills, NY"
-        
-        
-        self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            if error != nil {
-                print("Geocode failed with error: \(error!.localizedDescription)")
-            } else if placemarks!.count > 0 {
-                let placemark = placemarks![0]
-                self.location = placemark.location?.coordinate
-                print(self.location)
-                //TODO: load any driver requests by last recorded distance
-                
-            }
-        })
-    }
-    
-    
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
-        
-        // For use in foreground
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            //accurate active location
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            
-            locationManager.requestLocation()
-            
-        }else{
-            //need to use last location in table since we cannot use location services
-            
-            let addressString : String = "89-30 70th road Forest Hills, NY"
-            self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                if error != nil {
-                    print("Geocode failed with error: \(error!.localizedDescription)")
-                } else if placemarks!.count > 0 {
-                    let placemark = placemarks![0]
-                    self.location = placemark.location?.coordinate
-                    print(self.location)
-                    //TODO: load any driver requests by last recorded or inputted distance
-                    
-                }
-            })
-        }
-        
-        
-        
-        
-            
-        
         if !driverOrders.isEmpty{
             driverOrders.removeAll()
         }
@@ -176,8 +135,8 @@ class DriverOrdersViewController: UITableViewController, CLLocationManagerDelega
         ordersForDriverQuery.includeKey("OrderingUser")
         ordersForDriverQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersForDriverQuery.whereKey("orderIsAcquired", equalTo: false)
-    
-    
+        
+        
         ordersForDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             

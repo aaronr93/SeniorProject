@@ -63,13 +63,9 @@ class MyOrderTableViewController: UITableViewController {
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
         var restaurantName: String = order.restaurantName
-        makeSentenceCase(&restaurantName)
+        restaurantName.makeFirstLetterInStringUpperCase()
         restaurantCell.name.text = restaurantName
         return restaurantCell
-    }
-    
-    func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

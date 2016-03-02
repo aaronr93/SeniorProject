@@ -20,9 +20,9 @@ class DriverRestaurantsViewController: UITableViewController {
     let sectionHeaders = ["Restaurants", "Settings"]
     
     func getFromParse() {
-        let itemsForDriverQuery = PFQuery(className:"Restaurant")
+        let getNearbyRestaurants = PFQuery(className:"Restaurant")
         //itemsForDriverQuery.includeKey("name")
-        itemsForDriverQuery.findObjectsInBackgroundWithBlock {
+        getNearbyRestaurants.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 // The find succeeded.
@@ -66,7 +66,7 @@ class DriverRestaurantsViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch (section) {
-        case 0:
+        case 0://change case names
             return prefs.restaurants.count
         case 1:
             return 2
