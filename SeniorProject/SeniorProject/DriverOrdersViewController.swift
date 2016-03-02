@@ -20,15 +20,20 @@ class DriverOrdersViewController: UITableViewController {
     var driverOrders = [PFObject]()
     var anyDriverOrders = [PFObject]()
     
+    enum sectionTypes : Int{
+        case driverOrders
+        case anyDriverOrders
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case sectionTypes.driverOrders.rawValue:
             return driverOrders.count
-        case 1:
+        case sectionTypes.anyDriverOrders.rawValue:
             return anyDriverOrders.count
         default:
             return 0
@@ -38,9 +43,9 @@ class DriverOrdersViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case sectionTypes.driverOrders.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case sectionTypes.anyDriverOrders.rawValue:
             return sectionHeaders[1]
         default:
             return ""
@@ -55,16 +60,34 @@ class DriverOrdersViewController: UITableViewController {
         } else if indexPath.section == 1 {
             order = anyDriverOrders[indexPath.row]
         }
-    
-        var restaurantName: String = order!["restaurant"]["name"] as! String
         
-        restaurantName.makeFirstLetterInStringUpperCase()
+        
+        var restaurantName: String = "Not Available"
+        
+        if let thisOrder = order{
+            if let restaurant = thisOrder["restaurant"] as? PFObject{
+                if let restaurantNameText = restaurant["name"] as? String{
+                    restaurantName = restaurantNameText
+                }
+            }
+        }
+        
+        var userName: String = "Not Available"
+        if let thisOrder = order{
+            if let user = thisOrder["OrderingUser"] as? PFObject{
+                if let userNameText = user["username"] as? String{
+                    userName = userNameText
+                }
+            }
+        }
+        
+        //restaurantName.makeFirstLetterInStringUpperCase()
         
         cell.restaurant?.text = restaurantName
-        cell.recipient?.text = order!["OrderingUser"]["username"] as? String
+        cell.recipient?.text = userName
         return cell
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.backBarButtonItem?.title = ""
@@ -112,8 +135,8 @@ class DriverOrdersViewController: UITableViewController {
         ordersForDriverQuery.includeKey("OrderingUser")
         ordersForDriverQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersForDriverQuery.whereKey("orderIsAcquired", equalTo: false)
-    
-    
+        
+        
         ordersForDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             

@@ -148,7 +148,7 @@ class GetThatOrderTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
-        switch section {
+        switch section {//make variables and make cases readable
         case 0: return 44
         case 1: return 60
         case 2: return 44
