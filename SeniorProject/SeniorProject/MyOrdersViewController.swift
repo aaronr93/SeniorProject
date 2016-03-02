@@ -194,7 +194,7 @@ class MyOrdersViewController: UITableViewController {
 
     
     func makeSentenceCase(inout str: String) {
-        str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)
+        if(str != ""){str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)}
     }
 
    

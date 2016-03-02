@@ -50,6 +50,7 @@
 		9B8E40D31C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
 		9B8E40D41C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
 		9B8E40D51C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
+		9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */; };
 		9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */; };
 		9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */; };
 		9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */; };
@@ -118,6 +119,7 @@
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersUnitTests.swift; sourceTree = "<group>"; };
 		9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			children = (
 				96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */,
 				96DD81ED1C56B8AF004CE3A7 /* Info.plist */,
+				9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
