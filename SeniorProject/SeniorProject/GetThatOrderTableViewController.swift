@@ -44,7 +44,7 @@ class GetThatOrderTableViewController: UITableViewController {
                 if result {
                     //order successfully acquired
                     sender.setTitle(self.buttonTitle[4], forState: UIControlState.Normal)
-                    sender.backgroundColor = UIColor.greenColor()
+                    sender.enabled = false
                     sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                 } else {
                     //error not acquired
