@@ -35,6 +35,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
     let order = Order()
     
+    
     @IBAction func orderCancelled(sender: UIBarButtonItem) {
         delegate.cancelNewOrder(self)
     }
@@ -159,7 +160,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
                 break
             case 2:
                 // Expiration field
-                //performSegueWithIdentifier("chooseExpiration", sender: self)
+                performSegueWithIdentifier("chooseExpiration", sender: self)
                 break
             default:
                 break
@@ -218,6 +219,15 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
             chooseDriver.delegate = self
         }
+        if segue.identifier == "chooseExpiration" {
+            let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
+            chooseExpiration.parent = self
+            if(order.expiresIn != ""){
+                chooseExpiration.selectedTime = order.expiresIn
+            }
+            
+        }
+        
     }
 }
 
