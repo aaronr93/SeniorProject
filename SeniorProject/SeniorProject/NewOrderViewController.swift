@@ -85,7 +85,8 @@ class NewOrderViewController: UITableViewController {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        default: //shouldn't get here!
+        }
+        else{//shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -166,7 +167,7 @@ class NewOrderViewController: UITableViewController {
                 performSegueWithIdentifier("chooseDriver", sender: self)
             case 1:
                 // Location field
-                //performSegueWithIdentifier("chooseLocation", sender: self)
+                performSegueWithIdentifier("chooseLocation", sender: self)
                 break
             case 2:
                 // Expiration field

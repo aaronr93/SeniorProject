@@ -82,7 +82,8 @@ class ChooseDriverTableViewController: UITableViewController {
             return anyDriverCell
         } else if indexPath.section == Section.ChooseDriver.rawValue {
             return cellForDriversList(tableView, indexPath: indexPath)
-        default: //shouldn't get here!
+        }
+        else{ //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
