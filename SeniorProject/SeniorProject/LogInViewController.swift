@@ -9,6 +9,22 @@
 import UIKit
 import Parse
 
+func showBadInputWarningInField(field: UITextField) {
+    // Called when the text in the param of type UITextField is invalid.
+    let myColor: UIColor = UIColor(red: 0.9, green: 0, blue: 0, alpha: 0.3 )
+    field.layer.backgroundColor = myColor.CGColor
+}
+
+func showGoodInputInField(field: UITextField) {
+    // Called when the text in the param of type UITextField is valid.
+    let myColor: UIColor = UIColor(red: 0, green: 0.9, blue: 0, alpha: 0.3 )
+    field.layer.backgroundColor = myColor.CGColor
+}
+
+func removeInputHighlightInField(field: UITextField) {
+    field.layer.backgroundColor = UIColor.whiteColor().CGColor
+}
+
 
 
 class LogInViewController: UIViewController,UITextFieldDelegate {

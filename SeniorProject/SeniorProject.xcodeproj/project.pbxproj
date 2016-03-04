@@ -31,6 +31,7 @@
 		96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9D1C5AFF2C00DF6038 /* libz.tbd */; };
 		96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */; };
 		96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */; };
+		96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */; };
 		96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */; };
 		96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DBF85C1C796FA70090F7F6 /* ParseDate.swift */; };
 		96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */; };
@@ -104,6 +105,7 @@
 		96B36A9F1C5AFF3800DF6038 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		96B36AA11C5AFF4700DF6038 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversOrdersUITests.swift; sourceTree = "<group>"; };
+		96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		96DBF85A1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewController.swift; sourceTree = "<group>"; };
 		96DBF85C1C796FA70090F7F6 /* ParseDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDate.swift; sourceTree = "<group>"; };
 		96DD81D31C56B8AE004CE3A7 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 				9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */,
 				9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */,
 				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
+				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
+				96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */,
 				9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */,
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */,
