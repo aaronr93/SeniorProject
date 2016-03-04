@@ -35,6 +35,12 @@ class NewOrderViewController: UITableViewController {
     var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
     let order = Order()
     
+    enum Section: Int {
+        case Restaurant = 0
+        case Food = 1
+        case Settings = 2
+    }
+    
     
     @IBAction func orderCancelled(sender: UIBarButtonItem) {
         delegate.cancelNewOrder(self)
@@ -46,11 +52,11 @@ class NewOrderViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return 1
-        case 1:
+        case Section.Food.rawValue:
             return order.foodItems.count
-        case 2:
+        case Section.Settings.rawValue:
             return deliverySectionTitles.count
         default:
             return 0
@@ -59,11 +65,11 @@ class NewOrderViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case Section.Food.rawValue:
             return sectionHeaders[1]
-        case 2:
+        case Section.Settings.rawValue:
             return sectionHeaders[2]
         default:
             return ""
@@ -71,11 +77,11 @@ class NewOrderViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Section.Restaurant.rawValue {
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.Food.rawValue {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
         } else {
             let cell: UITableViewCell! = nil
@@ -115,11 +121,11 @@ class NewOrderViewController: UITableViewController {
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
-        case 0:
+        case Section.Restaurant.rawValue:
             value = order.deliveredBy
-        case 1:
+        case Section.Food.rawValue:
             value = order.location
-        case 2:
+        case Section.Settings.rawValue:
             value = order.expiresIn
         default:
             value = ""
@@ -131,25 +137,25 @@ class NewOrderViewController: UITableViewController {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44
-        case 1: return 60
-        case 2: return 44
+        case Section.Restaurant.rawValue: return 44
+        case Section.Food.rawValue: return 60
+        case Section.Settings.rawValue: return 44
         default: return 44
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
-        case 0:
+        case Section.Restaurant.rawValue:
             if indexPath.row == 0 {
                 // Restaurant field
                 //performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
-        case 1:
+        case Section.Food.rawValue:
             // Food item field
             //performSegueWithIdentifier("editFoodItem", sender: self)
             break
-        case 2:
+        case Section.Settings.rawValue:
             switch indexPath.row {
             case 0:
                 // Driver field
@@ -171,7 +177,7 @@ class NewOrderViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
+        if section == Section.Food.rawValue {
             let headerFrame:CGRect = tableView.frame
             
             let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
@@ -196,7 +202,7 @@ class NewOrderViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
+        if section == Section.Food.rawValue {
             // Food items section
             return 52
         } else {

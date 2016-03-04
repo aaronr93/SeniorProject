@@ -14,7 +14,11 @@ class MyOrderTableViewController: UITableViewController {
     var deliverySectionTitles = ["Delivered By", "Location", "Expires In"]
     let order = Order()
     
-   
+    enum Section: Int {
+        case Restaurant = 0
+        case Food = 1
+        case Settings = 2
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -22,11 +26,11 @@ class MyOrderTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return 1
-        case 1:
+        case Section.Food.rawValue:
             return order.foodItems.count
-        case 2:
+        case Section.Settings.rawValue:
             return deliverySectionTitles.count
         default:
             return 0
@@ -36,11 +40,11 @@ class MyOrderTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case Section.Food.rawValue:
             return sectionHeaders[1]
-        case 2:
+        case Section.Settings.rawValue:
             return sectionHeaders[2]
         default:
             return ""
@@ -48,11 +52,11 @@ class MyOrderTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Section.Restaurant.rawValue {
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.Food.rawValue {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
         } else {
             let cell: UITableViewCell! = nil
@@ -85,11 +89,11 @@ class MyOrderTableViewController: UITableViewController {
     func fillValuesBasedOn(row: Int) -> String {
         var value : String = ""
         switch row {
-        case 0:
+        case Section.Restaurant.rawValue:
             value = order.deliverTo
-        case 1:
+        case Section.Food.rawValue:
             value = order.location
-        case 2:
+        case Section.Settings.rawValue:
             value = order.expiresIn
         default:
             value = ""
@@ -101,9 +105,9 @@ class MyOrderTableViewController: UITableViewController {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44
-        case 1: return 60
-        case 2: return 44
+        case Section.Restaurant.rawValue: return 44
+        case Section.Food.rawValue: return 60
+        case Section.Settings.rawValue: return 44
         default: return 44
         }
     }

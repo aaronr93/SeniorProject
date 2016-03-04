@@ -15,6 +15,11 @@ class ChooseDriverTableViewController: UITableViewController {
     var chosenDriver: String = ""
     var chosenRestaurant: String = "Sheetz"
     let sectionHeaders = ["", "Choose a driver"]
+    
+    enum Section: Int {
+        case AnyDriver = 0
+        case ChooseDriver = 1
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +56,9 @@ class ChooseDriverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0:
+        case Section.AnyDriver.rawValue:
             return 1
-        case 1:
+        case Section.ChooseDriver.rawValue:
             return drivers.list.count
         default:
             return 0
@@ -62,9 +67,9 @@ class ChooseDriverTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case Section.AnyDriver.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case Section.ChooseDriver.rawValue:
             return sectionHeaders[1]
         default:
             return ""
@@ -72,10 +77,10 @@ class ChooseDriverTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Section.AnyDriver.rawValue {
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.ChooseDriver.rawValue {
             return cellForDriversList(tableView, indexPath: indexPath)
         } else {
             let cell: UITableViewCell! = nil
@@ -86,7 +91,7 @@ class ChooseDriverTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == 0 {
+        if indexPath.section == Section.AnyDriver.rawValue {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
                     cell.accessoryType = UITableViewCellAccessoryType.None
@@ -96,7 +101,7 @@ class ChooseDriverTableViewController: UITableViewController {
                     cell.selected = false
                 }
             }
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.ChooseDriver.rawValue {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
                     cell.accessoryType = UITableViewCellAccessoryType.None
