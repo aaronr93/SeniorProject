@@ -147,7 +147,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
             }
         case 1:
             // Food item field
-            //performSegueWithIdentifier("editFoodItem", sender: self)
+            performSegueWithIdentifier("editFoodItem", sender: self)
             break
         case 2:
             switch indexPath.row {
@@ -195,6 +195,10 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         }
     }
     
+    func showAddVC(sender: UIButton) {
+        performSegueWithIdentifier("editFoodItem", sender: self)
+    }
+    
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
             // Food items section
@@ -225,13 +229,17 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
             if(order.expiresIn != ""){
                 chooseExpiration.selectedTime = order.expiresIn
             }
-            
         }
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.parent = self
         }
-        
+        if segue.identifier == "editFoodItem" {
+            let foodName = segue.destinationViewController as! NewFoodItemViewController
+            foodName.parent = self
+            let foodDescription = segue.destinationViewController as! NewFoodItemViewController
+            foodDescription.parent = self
+        }
     }
 }
 
