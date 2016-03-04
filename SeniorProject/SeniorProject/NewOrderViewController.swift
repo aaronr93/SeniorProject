@@ -143,7 +143,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         case 0:
             if indexPath.row == 0 {
                 // Restaurant field
-                //performSegueWithIdentifier("chooseRestaurant", sender: self)
+                performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
         case 1:
             // Food item field
@@ -226,6 +226,10 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
                 chooseExpiration.selectedTime = order.expiresIn
             }
             
+        }
+        if segue.identifier == "chooseRestaurant" {
+            let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
+            chooseRestaurant.parent = self
         }
         
     }

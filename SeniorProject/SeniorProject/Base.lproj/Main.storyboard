@@ -729,7 +729,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMr-DZ-DgX">
-                                            <rect key="frame" x="8" y="11" width="133" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="289" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -824,6 +824,7 @@
                     <connections>
                         <segue destination="J97-a9-9gJ" kind="show" identifier="chooseDriver" id="D1d-Hd-PKR"/>
                         <segue destination="pyO-EU-ybm" kind="show" identifier="chooseExpiration" id="uMw-V3-isa"/>
+                        <segue destination="uPO-o4-vEz" kind="show" identifier="chooseRestaurant" id="uAR-tm-ggz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tct-VG-Ky4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -977,6 +978,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diK-QM-gPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3421" y="1883"/>
+        </scene>
+        <!--Select Restaurant-->
+        <scene sceneID="WhK-8U-rF1">
+            <objects>
+                <tableViewController title="Select Restaurant" id="uPO-o4-vEz" customClass="RestaurantsNewOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WWL-iy-jtE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" id="LRX-1j-iDb" customClass="RestaurantTableViewCell" customModule="SeniorProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LRX-1j-iDb" id="I3t-gw-nrV">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PS3-Zy-Qjz">
+                                            <rect key="frame" x="8" y="11" width="434" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwg-0L-PAf">
+                                            <rect key="frame" x="512" y="11" width="80" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" id="cWA-IA-C33"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Pwg-0L-PAf" firstAttribute="trailing" secondItem="I3t-gw-nrV" secondAttribute="trailingMargin" id="3GR-kb-e5K"/>
+                                        <constraint firstItem="Pwg-0L-PAf" firstAttribute="leading" secondItem="PS3-Zy-Qjz" secondAttribute="trailing" constant="70" id="Qwf-ux-dWv"/>
+                                        <constraint firstItem="Pwg-0L-PAf" firstAttribute="centerY" secondItem="I3t-gw-nrV" secondAttribute="centerY" id="his-zD-gmm"/>
+                                        <constraint firstItem="Pwg-0L-PAf" firstAttribute="baseline" secondItem="PS3-Zy-Qjz" secondAttribute="baseline" id="kYb-62-Xa7"/>
+                                        <constraint firstItem="PS3-Zy-Qjz" firstAttribute="leading" secondItem="I3t-gw-nrV" secondAttribute="leadingMargin" id="q2d-t9-hmZ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="distanceLabel" destination="Pwg-0L-PAf" id="rtb-JY-82m"/>
+                                    <outlet property="nameLabel" destination="PS3-Zy-Qjz" id="nNn-pj-1YX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uPO-o4-vEz" id="O9e-xm-syZ"/>
+                            <outlet property="delegate" destination="uPO-o4-vEz" id="JH9-yI-usL"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Jq-cH-w0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4091" y="1883"/>
         </scene>
         <!--Orders-->
         <scene sceneID="Of5-YR-dYo">

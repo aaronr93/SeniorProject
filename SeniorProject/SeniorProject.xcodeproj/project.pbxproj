@@ -42,6 +42,8 @@
 		96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */; };
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
 		9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */; };
+		9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */; };
+		9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */; };
 		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
@@ -118,6 +120,8 @@
 		96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewController.swift; sourceTree = "<group>"; };
+		9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTableViewController.swift; sourceTree = "<group>"; };
+		9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
 				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */,
+				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
+				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -449,12 +455,14 @@
 				9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */,
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */,
+				9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */,
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
+				9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */,
 				36F506801C64E9500014D506 /* CreateAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
