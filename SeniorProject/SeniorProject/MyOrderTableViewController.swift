@@ -17,16 +17,16 @@ class MyOrderTableViewController: UITableViewController {
    
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 3 //'restaurant', 'food' and 'delivery' respectively
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case 0:
+        case 0: //single restaurant allowed (or 'select a restaurant' if none yet)
             return 1
-        case 1:
+        case 1: //2nd section lists food items
             return order.foodItems.count
-        case 2:
+        case 2: //3 rows in 3rd section -- 'delivered by', 'location', and 'expires in'
             return deliverySectionTitles.count
         default:
             return 0
@@ -34,27 +34,30 @@ class MyOrderTableViewController: UITableViewController {
         
     }
     
+    //hard-coded section headers from the String array sectionHeaders (above)
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case 0: //'restaurant'
             return sectionHeaders[0]
-        case 1:
+        case 1: //'food'
             return sectionHeaders[1]
-        case 2:
+        case 2: //'delivery'
             return sectionHeaders[2]
-        default:
+        default: //shouln't get here
             return ""
         }
     }
     
+    //display custom row data based on the section in question--restaurant, food, or delivery
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0: //list restaurant choice (only 1 row)
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        case 1: //list food item in respective row
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 2 {
+        case 2: //list one of the three 'delivery' rows ('delivered by', 'location', or 'expires in')
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        default: //shouldn't get here
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -82,29 +85,31 @@ class MyOrderTableViewController: UITableViewController {
         return deliveryCell
     }
     
+    //fill cell data for the 'delivery' section of the table
     func fillValuesBasedOn(row: Int) -> String {
         var value : String = ""
         switch row {
-        case 0:
-            value = order.deliverTo
-        case 1:
+        case 0: //list deliverer
+            value = order.deliveredBy
+        case 1: //delivery location
             value = order.location
-        case 2:
+        case 2: //time unti order expiration
             value = order.expiresIn
-        default:
+        default: //shouldn't get here
             value = ""
         }
         return value
     }
     
+    //manually set row heights for different sections in the table
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44
-        case 1: return 60
-        case 2: return 44
-        default: return 44
+        case 0: return 44 //"Restaurant"
+        case 1: return 60 //"Food"
+        case 2: return 44 //"Delivery"
+        default: return 44 //shouldn't get here
         }
     }
     

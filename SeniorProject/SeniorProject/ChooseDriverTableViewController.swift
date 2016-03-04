@@ -43,7 +43,7 @@ class ChooseDriverTableViewController: UITableViewController {
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if drivers.list.count < 1 {
+        if drivers.list.count < 1 { //if there are no drivers, don't display the 'choose a driver' section
             return 1
         } else {
             return 2
@@ -51,35 +51,36 @@ class ChooseDriverTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0:
+        case 0: //single static 'Any driver' row
             return 1
-        case 1:
+        case 1: //number of drivers available will populate in this 2nd row
             return drivers.list.count
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case 0: //no title for first header--just for looks
             return sectionHeaders[0]
-        case 1:
+        case 1: //2nd header title: "choose a driver"
             return sectionHeaders[1]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
+    //populates table rows according to driver section semantics
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0: //static 'any driver' row
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
-        } else if indexPath.section == 1 {
+        case 1: //populate available driver for that row of the section
             return cellForDriversList(tableView, indexPath: indexPath)
-        } else {
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }

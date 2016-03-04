@@ -99,16 +99,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
-        if textField == usernameField { // Switch focus to other text field
+        switch textField {
+        case usernameField: // Switch focus to other text field
             phoneNumberField.becomeFirstResponder()
-        } else if textField == phoneNumberField {
+        case phoneNumberField:
             emailField.becomeFirstResponder()
-        } else if textField == emailField {
+        case emailField:
             passwordField.becomeFirstResponder()
-        } else if textField == passwordField {
+        case passwordField:
             confirmPasswordField.becomeFirstResponder()
-        } else if textField == confirmPasswordField {
+        case confirmPasswordField:
             confirmPasswordField.resignFirstResponder()
+        default:
+            print("bad case in textFieldShouldReturn")
         }
         return true
     }

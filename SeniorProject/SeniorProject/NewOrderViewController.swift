@@ -41,43 +41,46 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 3 //"Restaurant", "Food items", and "Delivery"
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case 0:
+        case 0: // single, static "select a restaurant" cell (for now)
             return 1
-        case 1:
+        case 1: //based on number of food items in order
             return order.foodItems.count
-        case 2:
+        case 2: // 3 -- 'delivered by', 'location', and 'expires in'
             return deliverySectionTitles.count
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
     
+    //populates New Order screen headers
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case 0: //"Restaurant" header
             return sectionHeaders[0]
-        case 1:
+        case 1: //"Food items" header
             return sectionHeaders[1]
-        case 2:
+        case 2: //"Delivery" header
             return sectionHeaders[2]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
+    //populates different custom cell types based on the table section
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0: //static "select a restaurant" cell (for now)
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        case 1: //2nd section has the food info
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 2 {
+        case 2: //3rd section has delivery info
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -112,6 +115,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         return deliveryCell
     }
     
+    //populate row data for the Delivery section. (Value names show what each row is)
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
@@ -127,14 +131,15 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         return value
     }
     
+    //manual row heights based on table section
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44
-        case 1: return 60
-        case 2: return 44
-        default: return 44
+        case 0: return 44 //'Restaurant' section
+        case 1: return 60 //'Food items'
+        case 2: return 44 //'Delivery'
+        default: return 44 //shouldn't get here
         }
     }
     
@@ -171,7 +176,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
+        if section == 1 {//only the 'Food items' section needs this (section '1' zero-indexed)
             let headerFrame:CGRect = tableView.frame
             
             let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
@@ -199,6 +204,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         performSegueWithIdentifier("editFoodItem", sender: self)
     }
     
+    //manually set section header box heights
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 1 {
             // Food items section
