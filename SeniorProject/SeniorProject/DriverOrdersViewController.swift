@@ -32,10 +32,10 @@ class DriverOrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case sectionTypes.driverOrders.rawValue:
-            return driverOrders.count
+            return driverOrders.count //count of 'requests for me' items
         case sectionTypes.anyDriverOrders.rawValue:
-            return anyDriverOrders.count
-        default:
+            return anyDriverOrders.count //count of 'quests for anyone' items
+        default: //shouldn't get here
             return 0
         }
         
@@ -44,10 +44,10 @@ class DriverOrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case sectionTypes.driverOrders.rawValue:
-            return sectionHeaders[0]
+            return sectionHeaders[0] //'requests for me'
         case sectionTypes.anyDriverOrders.rawValue:
-            return sectionHeaders[1]
-        default:
+            return sectionHeaders[1] //'requests for anyone'
+        default: //shouldn't get here
             return ""
         }
     }

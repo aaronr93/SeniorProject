@@ -47,7 +47,7 @@ class NewOrderViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 3 //"Restaurant", "Food items", and "Delivery"
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,11 +58,12 @@ class NewOrderViewController: UITableViewController {
             return order.foodItems.count
         case Section.Settings.rawValue:
             return deliverySectionTitles.count
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
     
+    //populates New Order screen headers
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
         case Section.Restaurant.rawValue:
@@ -71,11 +72,12 @@ class NewOrderViewController: UITableViewController {
             return sectionHeaders[1]
         case Section.Settings.rawValue:
             return sectionHeaders[2]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
+    //populates different custom cell types based on the table section
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == Section.Restaurant.rawValue {
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
@@ -83,7 +85,7 @@ class NewOrderViewController: UITableViewController {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -118,6 +120,7 @@ class NewOrderViewController: UITableViewController {
         return deliveryCell
     }
     
+    //populate row data for the Delivery section. (Value names show what each row is)
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
@@ -133,6 +136,7 @@ class NewOrderViewController: UITableViewController {
         return value
     }
     
+    //manual row heights based on table section
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
@@ -149,11 +153,11 @@ class NewOrderViewController: UITableViewController {
         case Section.Restaurant.rawValue:
             if indexPath.row == 0 {
                 // Restaurant field
-                //performSegueWithIdentifier("chooseRestaurant", sender: self)
+                performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
         case Section.Food.rawValue:
             // Food item field
-            //performSegueWithIdentifier("editFoodItem", sender: self)
+            performSegueWithIdentifier("editFoodItem", sender: self)
             break
         case Section.Settings.rawValue:
             switch indexPath.row {
@@ -201,6 +205,11 @@ class NewOrderViewController: UITableViewController {
         }
     }
     
+    func showAddVC(sender: UIButton) {
+        performSegueWithIdentifier("editFoodItem", sender: self)
+    }
+    
+    //manually set section header box heights
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == Section.Food.rawValue {
             // Food items section
@@ -226,9 +235,17 @@ class NewOrderViewController: UITableViewController {
             if(order.expiresIn != ""){
                 chooseExpiration.selectedTime = order.expiresIn
             }
-            
         }
-        
+        if segue.identifier == "chooseRestaurant" {
+            let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
+            chooseRestaurant.parent = self
+        }
+        if segue.identifier == "editFoodItem" {
+            let foodName = segue.destinationViewController as! NewFoodItemViewController
+            foodName.parent = self
+            let foodDescription = segue.destinationViewController as! NewFoodItemViewController
+            foodDescription.parent = self
+        }
     }
 }
 

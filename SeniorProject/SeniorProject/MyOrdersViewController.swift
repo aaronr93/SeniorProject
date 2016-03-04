@@ -80,29 +80,29 @@ class MyOrdersViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 2 //"requests I've sent" and "requests I'm picking up"
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
+        case 0: //section 1--number of "requests I've sent"
             return ordersISent.count
-        case 1:
+        case 1: //section 2--number of "requests I'm picking up"
             return ordersIReceived.count
-        default:
+        default: //shouldn't get here
             return 0
         }
 
     }
     
+    //hard-coded section header names (in string array above)
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case 0: //"Requests I've Sent"
             return sectionHeaders[0]
-        case 1:
+        case 1: //"Requests I'm Picking Up"
             return sectionHeaders[1]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
@@ -185,11 +185,11 @@ class MyOrdersViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch (indexPath.section){
-        case 0://make enum
+        case 0: //row in prior personal orders section
             performSegueWithIdentifier("myOrderSegue", sender: self)
-        case 1:
+        case 1: //row in potential customer orders section
             performSegueWithIdentifier("getThatOrderSegue", sender: self)
-        default:
+        default: //code error!
             NSLog("shouldn't ever be here")
         }
     }

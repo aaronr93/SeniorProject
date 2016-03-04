@@ -21,7 +21,7 @@ class MyOrderTableViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 3 //'restaurant', 'food' and 'delivery' respectively
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,6 +38,7 @@ class MyOrderTableViewController: UITableViewController {
         
     }
     
+    //hard-coded section headers from the String array sectionHeaders (above)
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
         case Section.Restaurant.rawValue:
@@ -46,11 +47,12 @@ class MyOrderTableViewController: UITableViewController {
             return sectionHeaders[1]
         case Section.Settings.rawValue:
             return sectionHeaders[2]
-        default:
+        default: //shouln't get here
             return ""
         }
     }
     
+    //display custom row data based on the section in question--restaurant, food, or delivery
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == Section.Restaurant.rawValue {
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
@@ -58,7 +60,7 @@ class MyOrderTableViewController: UITableViewController {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
         } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        default: //shouldn't get here
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -86,6 +88,7 @@ class MyOrderTableViewController: UITableViewController {
         return deliveryCell
     }
     
+    //fill cell data for the 'delivery' section of the table
     func fillValuesBasedOn(row: Int) -> String {
         var value : String = ""
         switch row {
@@ -95,12 +98,13 @@ class MyOrderTableViewController: UITableViewController {
             value = order.location
         case Section.Settings.rawValue:
             value = order.expiresIn
-        default:
+        default: //shouldn't get here
             value = ""
         }
         return value
     }
     
+    //manually set row heights for different sections in the table
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         

@@ -46,7 +46,7 @@ class ChooseDriverTableViewController: UITableViewController {
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if drivers.list.count < 1 {
+        if drivers.list.count < 1 { //if there are no drivers, don't display the 'choose a driver' section
             return 1
         } else {
             return 2
@@ -54,13 +54,12 @@ class ChooseDriverTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch section {
         case Section.AnyDriver.rawValue:
             return 1
         case Section.ChooseDriver.rawValue:
             return drivers.list.count
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
@@ -71,18 +70,19 @@ class ChooseDriverTableViewController: UITableViewController {
             return sectionHeaders[0]
         case Section.ChooseDriver.rawValue:
             return sectionHeaders[1]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
+    //populates table rows according to driver section semantics
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == Section.AnyDriver.rawValue {
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
         } else if indexPath.section == Section.ChooseDriver.rawValue {
             return cellForDriversList(tableView, indexPath: indexPath)
-        } else {
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }

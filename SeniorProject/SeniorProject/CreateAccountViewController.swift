@@ -27,21 +27,21 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         newAccount.username = sender.text
     }
     @IBAction func usernameEditComplete(sender: UITextField) {
-        validatedUsername(usernameField)
+        validatedUsername(usernameField.text!)
     }
     
     @IBAction func phoneNumberChanged(sender: UITextField) {
         newAccount.phone = sender.text
     }
     @IBAction func phoneNumberEditComplete(sender: UITextField) {
-        validatedPhoneNumber(phoneNumberField)
+        validatedPhoneNumber(phoneNumberField.text!)
     }
     
     @IBAction func emailChanged(sender: UITextField) {
         newAccount.email = sender.text
     }
     @IBAction func emailEditComplete(sender: UITextField) {
-        validatedEmail(emailField)
+        validatedEmail(emailField.text!)
     }
     
     @IBAction func passwordChanged(sender: UITextField) {
@@ -51,14 +51,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         removeInputHighlightInField(confirmPasswordField)
     }
     @IBAction func passwordEditComplete(sender: UITextField) {
-        validatedPassword(sender)
+        validatedPassword(sender.text!)
     }
     
     @IBAction func confirmPasswordChanged(sender: UITextField) {
         newAccount.passwordConfirm = sender.text
     }
     @IBAction func confirmPasswordEditComplete(sender: UITextField) {
-        if(validatedPassword(sender) &&
+        if(validatedPassword(sender.text!) &&
         newAccount.confirmPasswordEqualsPassword()) {
             showGoodInputInField(confirmPasswordField)
         } else {
@@ -77,11 +77,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     }
     
     func validate() {
-        if validatedUsername(usernameField) &&
-            validatedPhoneNumber(phoneNumberField) &&
-            validatedEmail(emailField) &&
-            validatedPassword(passwordField) &&
-            validatedPassword(confirmPasswordField) &&
+        if validatedUsername(usernameField.text!) &&
+            validatedPhoneNumber(phoneNumberField.text!) &&
+            validatedEmail(emailField.text!) &&
+            validatedPassword(passwordField.text!) &&
+            validatedPassword(confirmPasswordField.text!) &&
             newAccount.checkPasswordIsNotHorrible() &&
             newAccount.confirmPasswordEqualsPassword() {
                 newAccount.isValidated = true
@@ -99,16 +99,19 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
-        if textField == usernameField { // Switch focus to other text field
+        switch textField {
+        case usernameField: // Switch focus to other text field
             phoneNumberField.becomeFirstResponder()
-        } else if textField == phoneNumberField {
+        case phoneNumberField:
             emailField.becomeFirstResponder()
-        } else if textField == emailField {
+        case emailField:
             passwordField.becomeFirstResponder()
-        } else if textField == passwordField {
+        case passwordField:
             confirmPasswordField.becomeFirstResponder()
-        } else if textField == confirmPasswordField {
+        case confirmPasswordField:
             confirmPasswordField.resignFirstResponder()
+        default:
+            print("bad case in textFieldShouldReturn")
         }
         return true
     }

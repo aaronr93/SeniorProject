@@ -30,19 +30,19 @@ class SettingsViewController: UIViewController {
     
     @IBAction func doneChangingUsername(sender: UITextField) {
         if (sender.text! != originalUserName) { //if same as before, don't highlight
-            validatedUsername(sender) //only run the DB call incurred here if it's a different username than before
+            validatedUsername(sender.text!) //only run the DB call incurred here if it's a different username than before
         }
     }
     
     @IBAction func doneChangingPhoneNumber(sender: UITextField) {
         if (sender.text! != originalPhone) { //if same as before, don't highlight
-            validatedPhoneNumber(sender)
+            validatedPhoneNumber(sender.text!)
         }
     }
     
     @IBAction func doneChangingEmailAddress(sender: UITextField) {
         if (sender.text! != originalEmail) { //if same as before, don't highlight
-            validatedEmail(sender)
+            validatedEmail(sender.text!)
         }
     }
     
@@ -78,6 +78,9 @@ class SettingsViewController: UIViewController {
         }
     }
 
+   
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,7 +94,7 @@ class SettingsViewController: UIViewController {
             //side note: short-circuits here save time...no data change = no validation check
             //save username if legitimate and changed...
             if(userNameField.text! != originalUserName && //dirrerent and valid //this will short-circuit to avoid DB call if unchanged
-                validatedUsername(userNameField)) {
+                validatedUsername(userNameField.text!)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(userNameField.text!, forKey: "username")
                 NSLog("saved username")
@@ -102,7 +105,7 @@ class SettingsViewController: UIViewController {
             }
             //...and phone...
             if(phoneField.text! != originalPhone && //different and valid
-                validatedPhoneNumber(phoneField)) {
+                validatedPhoneNumber(phoneField.text!)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(phoneField.text!, forKey: "phone")
                 NSLog("saved phone")
@@ -115,7 +118,7 @@ class SettingsViewController: UIViewController {
             
             //...and email
             if(emailField.text! != originalEmail && //different and valid
-                validatedEmail(emailField)) {
+                validatedEmail(emailField.text!)) {
                 validatedSomething = true
                 PFUser.currentUser()?.setObject(emailField.text!, forKey: "email")
                 NSLog("saved email")
