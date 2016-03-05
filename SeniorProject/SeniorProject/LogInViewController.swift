@@ -74,6 +74,12 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                         if user != nil {
                             print("success!!")
                             self.performSegueWithIdentifier("loginSegue", sender: self)
+                            //clear the password field after login attempt
+                            //prevents storage of password in the VC stack--otherwise it's usable after logout (security issue)
+                            self.passwordField.text = ""
+                            self.usernameField.text = "" //clear username to prevent inconsistencies in displayed name
+                                //certain program states could cause the wrong username to be displayed after logout
+                                //so it's a lot easier to instead just not display any username
                         } else {
                             print("Invalid loging credentials")
                         }
@@ -139,5 +145,9 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         passwordField.resignFirstResponder()
         super.touchesBegan(touches, withEvent: event)
     }
+    
+    // MARK: - Navigation
+    
+    @IBAction func unwindSegueLogoutFromSettingsController(segue: UIStoryboardSegue) {}
 }
 
