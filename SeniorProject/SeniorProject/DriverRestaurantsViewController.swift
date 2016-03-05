@@ -64,34 +64,34 @@ class DriverRestaurantsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch (section) {
-        case 0://change case names
+        case 0: //'restaurants' section -- number of restaurants available to select from
             return prefs.restaurants.count
-        case 1:
+        case 1: //'settings' section, which always has two rows (availability expiration and available yes/no)
             return 2
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case 0: //'Restaurants'
             return sectionHeaders[0]
-        case 1:
+        case 1: //'Settings'
             return sectionHeaders[1]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0: //respective restaurant in 'restaurants' list
             return cellForRestaurants(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        case 1: //settings data row ( 1) availabilty expiration 2) available yes/no )
             return cellsForSettings(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }

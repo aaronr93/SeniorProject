@@ -11,14 +11,19 @@ import Parse
 
 class Drivers {
     var list = [PFObject]()
-    let itemsForDriverQuery = PFQuery(className:"DriverAvailability")
+    var availableDrivers = PFQuery(className: "DriverAvailableRestaurants")
+    let itemsForDriverQuery = PFQuery(className: "DriverAvailability")
+    var restaurant = "Sheetz"
     
     init() {
         itemsForDriverQuery.includeKey("driver")
         itemsForDriverQuery.includeKey("username")
-        itemsForDriverQuery.limit = 10
         itemsForDriverQuery.whereKey("isCurrentlyAvailable", equalTo: true)
-    }
+        
+        availableDrivers.includeKey("restaurant")
+        availableDrivers.limit = 10
+        availableDrivers.whereKey("name", equalTo: restaurant)
+    }    
     
     func add(driver: PFObject) {
         if !list.contains(driver) {
@@ -28,21 +33,4 @@ class Drivers {
         }
     }
     
-    func getDriversFromParse() {
-        itemsForDriverQuery.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.add(item)
-                    }
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-            }
-        }
-    }
 }

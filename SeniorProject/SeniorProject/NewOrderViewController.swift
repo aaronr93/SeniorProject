@@ -27,7 +27,7 @@ class NewDeliveryItemCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
 }
 
-class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
+class NewOrderViewController: UITableViewController {
     
     var delegate: NewOrderViewDelegate!
     
@@ -35,49 +35,58 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
     let order = Order()
     
+    enum Section: Int {
+        case Restaurant = 0
+        case Food = 1
+        case Settings = 2
+    }
+    
     
     @IBAction func orderCancelled(sender: UIBarButtonItem) {
         delegate.cancelNewOrder(self)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 3 //"Restaurant", "Food items", and "Delivery"
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return 1
-        case 1:
+        case Section.Food.rawValue:
             return order.foodItems.count
-        case 2:
+        case Section.Settings.rawValue:
             return deliverySectionTitles.count
-        default:
+        default: //shouldn't get here
             return 0
         }
     }
     
+    //populates New Order screen headers
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case 0:
+        case Section.Restaurant.rawValue:
             return sectionHeaders[0]
-        case 1:
+        case Section.Food.rawValue:
             return sectionHeaders[1]
-        case 2:
+        case Section.Settings.rawValue:
             return sectionHeaders[2]
-        default:
+        default: //shouldn't get here
             return ""
         }
     }
     
+    //populates different custom cell types based on the table section
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Section.Restaurant.rawValue {
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == Section.Food.rawValue {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == Section.Settings.rawValue {
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else {
+        }
+        else{//shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -112,14 +121,15 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         return deliveryCell
     }
     
+    //populate row data for the Delivery section. (Value names show what each row is)
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
-        case 0:
+        case Section.Restaurant.rawValue:
             value = order.deliveredBy
-        case 1:
+        case Section.Food.rawValue:
             value = order.location
-        case 2:
+        case Section.Settings.rawValue:
             value = order.expiresIn
         default:
             value = ""
@@ -127,36 +137,37 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         return value
     }
     
+    //manual row heights based on table section
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44
-        case 1: return 60
-        case 2: return 44
+        case Section.Restaurant.rawValue: return 44
+        case Section.Food.rawValue: return 60
+        case Section.Settings.rawValue: return 44
         default: return 44
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
-        case 0:
+        case Section.Restaurant.rawValue:
             if indexPath.row == 0 {
                 // Restaurant field
                 performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
-        case 1:
+        case Section.Food.rawValue:
             // Food item field
-            //performSegueWithIdentifier("editFoodItem", sender: self)
+            performSegueWithIdentifier("editFoodItem", sender: self)
             break
-        case 2:
+        case Section.Settings.rawValue:
             switch indexPath.row {
             case 0:
                 // Driver field
                 performSegueWithIdentifier("chooseDriver", sender: self)
             case 1:
                 // Location field
-                //performSegueWithIdentifier("chooseLocation", sender: self)
+                performSegueWithIdentifier("chooseLocation", sender: self)
                 break
             case 2:
                 // Expiration field
@@ -171,7 +182,7 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
+        if section == Section.Food.rawValue {
             let headerFrame:CGRect = tableView.frame
             
             let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
@@ -195,8 +206,13 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         }
     }
     
+    func showAddVC(sender: UIButton) {
+        performSegueWithIdentifier("editFoodItem", sender: self)
+    }
+    
+    //manually set section header box heights
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
+        if section == Section.Food.rawValue {
             // Food items section
             return 52
         } else {
@@ -208,16 +224,11 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
         super.viewDidLoad()
     }
     
-    func returnFromSubScreen(chooseDriver: ChooseDriverTableViewController) {
-        order.deliveredBy = chooseDriver.chosenDriver
-        print(chooseDriver.chosenDriver)
-        chooseDriver.navigationController?.popViewControllerAnimated(true)
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
-            chooseDriver.delegate = self
+            // Pass data to tell which driver should be selected by default
+            chooseDriver.chosenRestaurant = order.restaurantName
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
@@ -225,13 +236,17 @@ class NewOrderViewController: UITableViewController, ChooseDriverDelegate {
             if(order.expiresIn != ""){
                 chooseExpiration.selectedTime = order.expiresIn
             }
-            
         }
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.parent = self
         }
-        
+        if segue.identifier == "editFoodItem" {
+            let foodName = segue.destinationViewController as! NewFoodItemViewController
+            foodName.parent = self
+            let foodDescription = segue.destinationViewController as! NewFoodItemViewController
+            foodDescription.parent = self
+        }
     }
 }
 
