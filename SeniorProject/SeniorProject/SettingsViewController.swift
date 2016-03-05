@@ -26,6 +26,17 @@ class SettingsViewController: UIViewController {
         removeInputHighlightInField(sender)
     }
     
+    @IBAction func logoutButtonTapped(sender: UIButton) {
+        let currentUser = PFUser.currentUser()
+        if currentUser != nil {
+            PFUser.logOut()
+            performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
+            print("logout successful")
+        } else {
+            print("user logout error")
+        }
+        
+    }
     
     
     @IBAction func doneChangingUsername(sender: UITextField) {

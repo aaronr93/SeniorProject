@@ -60,6 +60,8 @@
 		9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */; };
 		9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */; };
 		9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */; };
+		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
+		9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF31C89F52A00F3D3F9 /* example.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
+		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
+		9BF07BF31C89F52A00F3D3F9 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +310,7 @@
 				96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */,
 				96DD81ED1C56B8AF004CE3A7 /* Info.plist */,
 				9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */,
+				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
 				96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */,
+				9BF07BF31C89F52A00F3D3F9 /* example.swift */,
 			);
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
@@ -493,6 +499,7 @@
 			files = (
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
+				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */,
 				96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */,
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */,

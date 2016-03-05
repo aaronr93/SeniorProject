@@ -1,14 +1,14 @@
 //
-//  SeniorProjectUITests.swift
-//  SeniorProjectUITests
+//  example.swift
+//  SeniorProject
 //
-//  Created by Michael Kytka on 1/25/16.
+//  Created by Zach Nafziger on 3/4/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
 
-class SeniorProjectUITests: XCTestCase {
+class example: XCTestCase {
         
     override func setUp() {
         super.setUp()
@@ -18,6 +18,7 @@ class SeniorProjectUITests: XCTestCase {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
+        XCUIApplication().launch()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }

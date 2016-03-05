@@ -279,6 +279,9 @@
                                         <exclude reference="oZV-zs-T6c"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="3MB-nc-TUN"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8B158964-053B-42EE-B396-624A95004B4E" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
                                 <rect key="frame" x="42" y="87" width="100" height="100"/>
@@ -386,6 +389,7 @@
                         <outlet property="emailField" destination="9ww-lO-Kty" id="UhC-fj-jDI"/>
                         <outlet property="phoneField" destination="jHh-ma-bKN" id="NsW-Ez-zrK"/>
                         <outlet property="userNameField" destination="Y1n-gb-NcW" id="aRT-9K-ast"/>
+                        <segue destination="aHs-Pg-pgR" kind="unwind" identifier="unwindSegueLogoutFromSettingsController" unwindAction="unwindSegueLogoutFromSettingsController:" id="d5C-jB-Uxx"/>
                     </connections>
                 </viewController>
             </objects>
@@ -414,7 +418,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ON-XC-Fmr">
                                 <rect key="frame" x="41" y="92" width="137" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ioy-O2-uYF">
@@ -436,7 +440,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIs-66-9qG">
                                 <rect key="frame" x="38" y="180" width="140" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcQ-pn-IRJ">
@@ -462,7 +466,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXe-09-6zT">
                                 <rect key="frame" x="41" y="135" width="137" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -951,7 +955,7 @@
         <!--My Orders-->
         <scene sceneID="KfZ-1I-Q8F">
             <objects>
-                <tableViewController id="8Eh-wK-row" customClass="MyOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myOrders" id="8Eh-wK-row" customClass="MyOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KI5-cq-vSN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1195,7 +1199,7 @@
         <!--Orders-->
         <scene sceneID="Of5-YR-dYo">
             <objects>
-                <tableViewController title="I'm picking up food" id="G9f-zb-JFa" userLabel="Orders" customClass="DriverOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="driverOrders" title="I'm picking up food" id="G9f-zb-JFa" userLabel="Orders" customClass="DriverOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="tY0-fd-dPI" userLabel="Orders">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4294,6 +4298,6 @@ AAAAAAACdSA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Omd-mY-WVB"/>
-        <segue reference="9vk-JT-Ujd"/>
+        <segue reference="51v-Qf-B92"/>
     </inferredMetricsTieBreakers>
 </document>

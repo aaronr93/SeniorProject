@@ -166,7 +166,7 @@ class NewOrderViewController: UITableViewController {
                 performSegueWithIdentifier("chooseDriver", sender: self)
             case 1:
                 // Location field
-                //performSegueWithIdentifier("chooseLocation", sender: self)
+                performSegueWithIdentifier("chooseLocation", sender: self)
                 break
             case 2:
                 // Expiration field
