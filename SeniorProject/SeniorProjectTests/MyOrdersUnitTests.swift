@@ -17,22 +17,22 @@ class MyOrdersUnitTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MyOrdersViewController") as! MyOrdersViewController
+        viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("myOrders") as! MyOrdersViewController
     }
     
-    func checkLoggedIn(){
+    func testLoggedIn(){
         XCTAssertNotNil(PFUser.currentUser())
     }
     
-    func checkOrdersISentNotNil(){
+    func testOrdersISentNotNil(){
         XCTAssertNotNil(viewController.ordersISent)
     }
     
-    func checkOrdersIReceivedNotNil(){
+    func testOrdersIReceivedNotNil(){
         XCTAssertNotNil(viewController.ordersIReceived)
     }
     
-    func checkOrdersISentPopulated(){
+    func testOrdersISentPopulated(){
         //check that orders i sent have been properly created in the table
         for i in 0..<viewController.ordersISent.count{
             XCTAssertNotNil(viewController.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)))
@@ -40,7 +40,7 @@ class MyOrdersUnitTests: XCTestCase {
         
     }
     
-    func checkOrdersIReceivedPopulated(){
+    func testOrdersIReceivedPopulated(){
         //check that orders i received have been properly created in the table
         for i in 0..<viewController.ordersIReceived.count{
             XCTAssertNotNil(viewController.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 1)))
@@ -48,7 +48,7 @@ class MyOrdersUnitTests: XCTestCase {
         
     }
     
-    func checkMakeSentenceCase(){
+    func testMakeSentenceCase(){
         var test = ""
         viewController.makeSentenceCase(&test)
         XCTAssert(test == "")

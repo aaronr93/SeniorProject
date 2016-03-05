@@ -12,7 +12,8 @@ class DriversOrdersUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-       
+        continueAfterFailure = false
+        XCUIApplication().launch()
         
     }
     
@@ -21,12 +22,12 @@ class DriversOrdersUITests: XCTestCase {
         super.tearDown()
     }
 
-    func requestsForMeTap() {
+    func testrequestsForMeTap() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         
-        XCUIApplication().navigationBars["I'm Picking Up Food"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).pressForDuration(0.05)
+        //XCUIApplication().navigationBars["I'm Picking Up Food"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).pressForDuration(0.05)
         
         
     }
