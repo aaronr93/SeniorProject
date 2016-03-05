@@ -10,14 +10,46 @@ import UIKit
 import Parse
 
 class MyOrderTableViewController: UITableViewController {
+    
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Delivered By", "Location", "Expires In"]
+    
     let order = Order()
+    let manip = InterfaceManipulation()
     
     enum Section: Int {
         case Restaurant = 0
         case Food = 1
         case Settings = 2
+    }
+    
+    @IBOutlet weak var actionButton: UIButton!
+    
+    @IBAction func buttonPress(sender: UIButton) {
+        if order.orderState == OrderState.Available {
+            // The order will be cancelled.
+            order.delete() {
+                result in
+                if result {
+                    // Order successfully deleted
+                    self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Deleted)
+                } else {
+                    //error, not deleted
+                    print("Error: not deleted")
+                }
+            }
+        } else if order.orderState == OrderState.Delivered {
+            // The driver will be reimbursed.
+            order.reimburse() {
+                result in
+                if result {
+                    // Driver successfully reimbursed
+                    self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Completed)
+                } else {
+                    //error, not reimbursed
+                }
+            }
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -117,24 +149,42 @@ class MyOrderTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        //get orders sent to the driver
-        order.itemsForOrderQuery.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.order.addFoodItem(item)
-                    }
-                    self.tableView.reloadData()
-                }
+        super.viewDidLoad()
+        
+        order.getFoodItemsFromParse() {
+            result in
+            if result {
+                // Food items successfully retrieved
+                self.tableView.reloadData()
             } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                // Error, didn't get food items
             }
         }
+        
+        let currentStatus = order.orderState
+        
+        if currentStatus == OrderState.Available {
+            
+        } else if currentStatus == OrderState.Acquired {
+            
+        } else if currentStatus == OrderState.Deleted {
+            
+        } else if currentStatus == OrderState.PaidFor {
+            
+        } else if currentStatus == OrderState.Delivered {
+            
+        } else if currentStatus == OrderState.Completed {
+            
+        }
+        
+        manip.setCustomerStyleFor(actionButton, toReflect: currentStatus)
     }
 
 }
+
+
+
+
+
+
+

@@ -34,33 +34,43 @@ class GetThatOrderTableViewController: UITableViewController {
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
     var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete","Acquired ✓"]
+    
     let order = Order()
+    let manip = InterfaceManipulation()
     
     @IBAction func driverAction(sender: UIButton) {
-        switch order.orderState {
-        case OrderState.Available:
+        if order.orderState == OrderState.Available {
             order.acquire(){
                 result in
                 if result {
-                    //order successfully acquired
-                    sender.setTitle(self.buttonTitle[4], forState: UIControlState.Normal)
-                    sender.enabled = false
-                    sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                    // Order successfully acquired
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
                 } else {
-                    //error not acquired
+                    print("Error: not acquired")
                 }
             }
-        case OrderState.Acquired:
-            if sender.titleLabel?.text != self.buttonTitle[4]{
-                order.payFor()
-                sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+        } else if order.orderState == OrderState.Acquired {
+            order.payFor() {
+                result in
+                if result {
+                    // Order successfully paid for
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
+                } else {
+                    print("Error: not paid for")
+                }
             }
-        case OrderState.PaidFor:
-            order.deliver()
-            sender.enabled = false
-            sender.setTitle(buttonTitle[3], forState: UIControlState.Disabled)
-        default:
-            break
+        } else if order.orderState == OrderState.PaidFor {
+            order.deliver() {
+                result in
+                if result {
+                    // Order successfully delivered
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Delivered)
+                } else {
+                    print("Error: not delivered")
+                }
+            }
+        } else if order.orderState == OrderState.Completed {
+            manip.setDriverStyleFor(sender, toReflect: OrderState.Completed)
         }
     }
     

@@ -14,6 +14,8 @@ enum OrderState {
     case Acquired
     case PaidFor
     case Delivered
+    case Completed
+    case Deleted
 }
 
 class Order {
@@ -49,9 +51,10 @@ class Order {
         }
     }
     
-    func getFromParse() {
+    func getFoodItemsFromParse(completion: (Bool) -> ()) {
         itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
+            
             if error == nil {
                 // The find succeeded.
                 // Do something with the found objects
@@ -67,8 +70,9 @@ class Order {
         }
     }
     
-    func acquire(completion:(Bool) -> ()) {
+    func acquire(completion: (Bool) -> ()) {
         // Sent when a driver picks up an order.
+        
         let query = PFQuery(className:"Order")
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
@@ -83,19 +87,51 @@ class Order {
                 order.saveInBackground()
             }
         }
+        
         orderState = OrderState.Acquired
     }
     
-    func payFor() {
+    func payFor(completion: (Bool) -> ()) {
         // Sent when a driver pays for an order. Call Parse stuff here.
-        print("Paid for")
+        
+        let query = PFQuery(className: "Order")
+        query.getObjectInBackgroundWithId(orderID) {
+            (order: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let order = order {
+                completion(true)
+                order["paidForByDriver"] = true
+                order.saveInBackground()
+            }
+        }
+        
         orderState = OrderState.PaidFor
     }
     
-    func deliver() {
+    func deliver(completion: (Bool) -> ()) {
         // Sent when a driver delivers an order. Call Parse stuff here.
-        print("Delivered")
+        
+        
+        
         orderState = OrderState.Delivered
+    }
+    
+    func reimburse(completion: (Bool) -> ()) {
+        // Sent when a customer reimburses a driver. Call Parse stuff here.
+        
+        
+        
+        orderState = OrderState.Completed
+    }
+    
+    func delete(completion: (Bool) -> ()) {
+        // Sent when a customer deletes an order. Call Parse stuff here.
+        // NOTE: orders can only be deleted before a driver has picked up an order.
+        
+        
+        
+        orderState = OrderState.Deleted
     }
 }
 
