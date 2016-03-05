@@ -191,12 +191,9 @@
 		36D08F211C7222A4005B1E90 /* Customer side */ = {
 			isa = PBXGroup;
 			children = (
-				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
+				36D090321C89F028005B1E90 /* Subscreens */,
 				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
-				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */,
-				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
-				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -228,6 +225,17 @@
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		36D090321C89F028005B1E90 /* Subscreens */ = {
+			isa = PBXGroup;
+			children = (
+				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
+				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
+				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
+				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
+			);
+			name = Subscreens;
 			sourceTree = "<group>";
 		};
 		96B36A9C1C5AFEC700DF6038 /* Frameworks */ = {

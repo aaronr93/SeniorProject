@@ -20,9 +20,9 @@ class DriverOrdersViewController: UITableViewController {
     var driverOrders = [PFObject]()
     var anyDriverOrders = [PFObject]()
     
-    enum sectionTypes : Int{
-        case driverOrders
-        case anyDriverOrders
+    enum sectionTypes: Int {
+        case driverOrders = 0
+        case anyDriverOrders = 1
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -55,16 +55,16 @@ class DriverOrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("order", forIndexPath: indexPath) as! OrderCell
         var order : PFObject?
-        if indexPath.section == 0 {
+        if indexPath.section == sectionTypes.driverOrders.rawValue {
             order = driverOrders[indexPath.row]
-        } else if indexPath.section == 1 {
+        } else if indexPath.section == sectionTypes.anyDriverOrders.rawValue {
             order = anyDriverOrders[indexPath.row]
         }
         
         
         var restaurantName: String = "Not Available"
         
-        if let thisOrder = order{
+        if let thisOrder = order {
             if let restaurant = thisOrder["restaurant"] as? PFObject{
                 if let restaurantNameText = restaurant["name"] as? String{
                     restaurantName = restaurantNameText
@@ -73,15 +73,13 @@ class DriverOrdersViewController: UITableViewController {
         }
         
         var userName: String = "Not Available"
-        if let thisOrder = order{
+        if let thisOrder = order {
             if let user = thisOrder["OrderingUser"] as? PFObject{
                 if let userNameText = user["username"] as? String{
                     userName = userNameText
                 }
             }
         }
-        
-        //restaurantName.makeFirstLetterInStringUpperCase()
         
         cell.restaurant?.text = restaurantName
         cell.recipient?.text = userName

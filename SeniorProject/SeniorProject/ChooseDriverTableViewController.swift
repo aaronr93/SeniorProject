@@ -82,7 +82,7 @@ class ChooseDriverTableViewController: UITableViewController {
             return anyDriverCell
         } else if indexPath.section == Section.ChooseDriver.rawValue {
             return cellForDriversList(tableView, indexPath: indexPath)
-        default: //shouldn't get here!
+        } else { //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -117,8 +117,16 @@ class ChooseDriverTableViewController: UITableViewController {
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath)
-        driverCell.textLabel!.text = drivers.list[indexPath.row]["driver"]["username"] as? String
-        // not sure what to do here ^
+        var cellText = ""
+        let list = drivers.list[indexPath.row]
+        if let driverAvailability = list["driverAvailability"] as? PFObject {
+            if let driver = driverAvailability["driver"] as? PFObject {
+                if let name = driver["name"] as? String {
+                    cellText = name
+                }
+            }
+        }
+        driverCell.textLabel!.text = cellText
         return driverCell
     }
     
