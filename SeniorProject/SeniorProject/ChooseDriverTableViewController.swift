@@ -55,9 +55,9 @@ class ChooseDriverTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case Section.AnyDriver.rawValue:
+        case Section.AnyDriver.rawValue: //single static 'Any driver' row
             return 1
-        case Section.ChooseDriver.rawValue:
+        case Section.ChooseDriver.rawValue: //number of drivers available will populate in this 2nd row
             return drivers.list.count
         default: //shouldn't get here
             return 0
@@ -66,9 +66,9 @@ class ChooseDriverTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case Section.AnyDriver.rawValue:
+        case Section.AnyDriver.rawValue: //no title for first header--just for looks
             return sectionHeaders[0]
-        case Section.ChooseDriver.rawValue:
+        case Section.ChooseDriver.rawValue: //2nd header title: "choose a driver"
             return sectionHeaders[1]
         default: //shouldn't get here
             return ""
@@ -77,10 +77,11 @@ class ChooseDriverTableViewController: UITableViewController {
     
     //populates table rows according to driver section semantics
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == Section.AnyDriver.rawValue {
+        switch indexPath.section {
+        case Section.AnyDriver.rawValue: //static 'any driver' row
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
-        } else if indexPath.section == Section.ChooseDriver.rawValue {
+        case Section.ChooseDriver.rawValue: //populate available driver for that row of the section
             return cellForDriversList(tableView, indexPath: indexPath)
         } else { //shouldn't get here!
             let cell: UITableViewCell! = nil

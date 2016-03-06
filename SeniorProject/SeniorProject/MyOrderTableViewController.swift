@@ -58,11 +58,11 @@ class MyOrderTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case Section.Restaurant.rawValue:
+        case Section.Restaurant.rawValue: //single restaurant allowed (or 'select a restaurant' if none yet)
             return 1
-        case Section.Food.rawValue:
+        case Section.Food.rawValue: //2nd section lists food items
             return order.foodItems.count
-        case Section.Settings.rawValue:
+        case Section.Settings.rawValue: //3 rows in 3rd section -- 'delivered by', 'location', and 'expires in'
             return deliverySectionTitles.count
         default:
             return 0
@@ -86,11 +86,12 @@ class MyOrderTableViewController: UITableViewController {
     
     //display custom row data based on the section in question--restaurant, food, or delivery
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == Section.Restaurant.rawValue {
+        switch indexPath.section {
+        case Section.Restaurant.rawValue: //list restaurant choice (only 1 row)
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == Section.Food.rawValue {
+        case Section.Food.rawValue: //list food item in respective row
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == Section.Settings.rawValue {
+        case Section.Settings.rawValue: //list one of the three 'delivery' rows ('delivered by', 'location', or 'expires in')
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
         } else { //shouldn't get here
             let cell: UITableViewCell! = nil
@@ -124,11 +125,11 @@ class MyOrderTableViewController: UITableViewController {
     func fillValuesBasedOn(row: Int) -> String {
         var value : String = ""
         switch row {
-        case Section.Restaurant.rawValue:
-            value = order.deliverTo
-        case Section.Food.rawValue:
+        case 0: //list deliverer
+            value = order.deliveredBy
+        case 1: //delivery location
             value = order.location
-        case Section.Settings.rawValue:
+        case 2: //time unti order expiration
             value = order.expiresIn
         default: //shouldn't get here
             value = ""

@@ -52,11 +52,11 @@ class NewOrderViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case Section.Restaurant.rawValue:
+        case Section.Restaurant.rawValue: // single, static "select a restaurant" cell (for now)
             return 1
-        case Section.Food.rawValue:
+        case Section.Food.rawValue: //based on number of food items in order
             return order.foodItems.count
-        case Section.Settings.rawValue:
+        case Section.Settings.rawValue: // 3 -- 'delivered by', 'location', and 'expires in'
             return deliverySectionTitles.count
         default: //shouldn't get here
             return 0
@@ -66,11 +66,11 @@ class NewOrderViewController: UITableViewController {
     //populates New Order screen headers
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section{
-        case Section.Restaurant.rawValue:
+        case Section.Restaurant.rawValue: //"Restaurant" header
             return sectionHeaders[0]
-        case Section.Food.rawValue:
+        case Section.Food.rawValue: //"Food items" header
             return sectionHeaders[1]
-        case Section.Settings.rawValue:
+        case Section.Settings.rawValue: //"Delivery" header
             return sectionHeaders[2]
         default: //shouldn't get here
             return ""
@@ -79,11 +79,12 @@ class NewOrderViewController: UITableViewController {
     
     //populates different custom cell types based on the table section
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == Section.Restaurant.rawValue {
+        switch indexPath.section {
+        case Section.Restaurant.rawValue: //static "select a restaurant" cell (for now)
             return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == Section.Food.rawValue {
+        case Section.Food.rawValue: //2nd section has the food info
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        } else if indexPath.section == Section.Settings.rawValue {
+        case Section.Settings.rawValue: //3rd section has delivery info
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
         } else { //shouldn't get here!
             let cell: UITableViewCell! = nil
@@ -124,11 +125,11 @@ class NewOrderViewController: UITableViewController {
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
-        case Section.Restaurant.rawValue:
+        case 0:
             value = order.deliveredBy
-        case Section.Food.rawValue:
+        case 1:
             value = order.location
-        case Section.Settings.rawValue:
+        case 2:
             value = order.expiresIn
         default:
             value = ""
@@ -181,7 +182,7 @@ class NewOrderViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == Section.Food.rawValue {
+        if section == Section.Food.rawValue {//only the 'Food items' section needs this (section '1' zero-indexed)
             let headerFrame:CGRect = tableView.frame
             
             let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
