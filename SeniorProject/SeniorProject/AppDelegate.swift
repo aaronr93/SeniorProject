@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("j28gc7OUqKZFc47nvyoRDPnZnaCRqh3mV8RiULMK", clientKey: "Il9Xid8E9BI7G6pkwUUQLKSO0kL9FKtwNtlSL1O3")
         // Override point for customization after application launch.
         self.storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle());
-        let currentUser = PFUser.currentUser()
+        /*let currentUser = PFUser.currentUser()
         if currentUser != nil {
             self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController");
-        }
+        }*/
         return true
     }
 

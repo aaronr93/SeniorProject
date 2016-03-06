@@ -137,7 +137,11 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
         addBorderToTextField(borderBottomUser, field: usernameField, color: color)
         addBorderToTextField(borderBottomPass, field: passwordField, color: color)
         
-        
+        //if the user is already logged in, immediately go to the HomeViewController
+        let currentUser = PFUser.currentUser()
+        if currentUser != nil {
+            performSegueWithIdentifier("loginSegue", sender: self)
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
