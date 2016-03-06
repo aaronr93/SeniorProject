@@ -50,6 +50,7 @@ class MyOrdersViewController: UITableViewController {
         ordersIReceivedQuery.includeKey("OrderingUser")
         ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Completed")
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
         
         ordersIReceivedQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in

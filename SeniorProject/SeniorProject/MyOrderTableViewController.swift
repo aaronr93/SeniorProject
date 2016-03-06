@@ -93,7 +93,7 @@ class MyOrderTableViewController: UITableViewController {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
         case Section.Settings.rawValue: //list one of the three 'delivery' rows ('delivered by', 'location', or 'expires in')
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else { //shouldn't get here
+        default: //shouldn't get here
             let cell: UITableViewCell! = nil
             return cell
         }

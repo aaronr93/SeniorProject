@@ -83,7 +83,7 @@ class ChooseDriverTableViewController: UITableViewController {
             return anyDriverCell
         case Section.ChooseDriver.rawValue: //populate available driver for that row of the section
             return cellForDriversList(tableView, indexPath: indexPath)
-        } else { //shouldn't get here!
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
@@ -127,7 +127,7 @@ class ChooseDriverTableViewController: UITableViewController {
                 }
             }
         }
-        driverCell.textLabel!.text = cellText
+        driverCell.textLabel?.text = cellText
         return driverCell
     }
     

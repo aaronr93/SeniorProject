@@ -86,7 +86,7 @@ class NewOrderViewController: UITableViewController {
             return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
         case Section.Settings.rawValue: //3rd section has delivery info
             return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        } else { //shouldn't get here!
+        default: //shouldn't get here!
             let cell: UITableViewCell! = nil
             return cell
         }
