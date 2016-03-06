@@ -60,8 +60,10 @@
 		9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */; };
 		9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */; };
 		9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */; };
+		9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF31C89F52A00F3D3F9 /* example.swift */; };
+		9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,8 +139,10 @@
 		9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
+		9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BF31C89F52A00F3D3F9 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
+		9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountClassTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +315,8 @@
 				96DD81ED1C56B8AF004CE3A7 /* Info.plist */,
 				9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */,
 				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
+				9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */,
+				9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -498,7 +504,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
+				9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
+				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
