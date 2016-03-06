@@ -14,6 +14,8 @@ enum OrderState {
     case Acquired
     case PaidFor
     case Delivered
+    case Completed
+    case Deleted
 }
 
 class Order {
@@ -49,9 +51,10 @@ class Order {
         }
     }
     
-    func getFromParse() {
+    func getFoodItemsFromParse(completion: (Bool) -> ()) {
         itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
+            
             if error == nil {
                 // The find succeeded.
                 // Do something with the found objects
@@ -59,6 +62,7 @@ class Order {
                     for item in items {
                         self.addFoodItem(item)
                     }
+                    completion(true)
                 }
             } else {
                 // Log details of the failure
@@ -67,8 +71,9 @@ class Order {
         }
     }
     
-    func acquire(completion:(Bool) -> ()) {
+    func acquire(completion: (Bool) -> ()) {
         // Sent when a driver picks up an order.
+        
         let query = PFQuery(className:"Order")
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
@@ -78,24 +83,82 @@ class Order {
                 completion(true)
                 // Changes fields in Parse to reflect new order state.
                 order["isAnyDriver"] = false
-                order["orderIsAcquired"] = true
+                order["OrderState"] = "Acquired"
                 order["driverToDeliver"] = PFUser.currentUser()!
                 order.saveInBackground()
             }
         }
+        
         orderState = OrderState.Acquired
     }
     
-    func payFor() {
+    func payFor(completion: (Bool) -> ()) {
         // Sent when a driver pays for an order. Call Parse stuff here.
-        print("Paid for")
-        orderState = OrderState.PaidFor
+        
+        let query = PFQuery(className: "Order")
+        query.getObjectInBackgroundWithId(orderID) {
+            (order: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let order = order {
+                order["OrderState"] = "PaidFor"
+                self.orderState = OrderState.PaidFor
+                order.saveInBackground()
+                completion(true)
+            }
+        }
     }
     
-    func deliver() {
+    func deliver(completion: (Bool) -> ()) {
         // Sent when a driver delivers an order. Call Parse stuff here.
-        print("Delivered")
-        orderState = OrderState.Delivered
+        
+        let query = PFQuery(className: "Order")
+        query.getObjectInBackgroundWithId(orderID) {
+            (order: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let order = order {
+                order["OrderState"] = "Delivered"
+                self.orderState = OrderState.Delivered
+                order.saveInBackground()
+                completion(true)
+            }
+        }
+    }
+    
+    func reimburse(completion: (Bool) -> ()) {
+        // Sent when a customer reimburses a driver. Call Parse stuff here.
+        
+        let query = PFQuery(className: "Order")
+        query.getObjectInBackgroundWithId(orderID) {
+            (order: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let order = order {
+                order["OrderState"] = "Completed"
+                self.orderState = OrderState.Completed
+                order.saveInBackground()
+                completion(true)
+            }
+        }
+    }
+    
+    func delete(completion: (Bool) -> ()) {
+        // Sent when a customer deletes an order. Call Parse stuff here.
+        // NOTE: orders can only be deleted before a driver has picked up an order.
+        
+        let query = PFQuery(className: "Order")
+        query.getObjectInBackgroundWithId(orderID) {
+            (order: PFObject?, error: NSError?) -> Void in
+            if error != nil {
+                print(error)
+            } else if let order = order {
+                order["OrderState"] = "Deleted"
+                self.orderState = OrderState.Deleted
+                order.saveInBackground()
+                completion(true)
+            }
+        }
     }
 }
 

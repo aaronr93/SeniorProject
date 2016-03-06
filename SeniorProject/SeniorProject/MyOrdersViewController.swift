@@ -24,7 +24,7 @@ class MyOrdersViewController: UITableViewController {
         ordersISentQuery.includeKey("restaurant")
         ordersISentQuery.includeKey("driverToDeliver")
         ordersISentQuery.whereKey("OrderingUser", equalTo: PFUser.currentUser()!)
-        ordersISentQuery.whereKey("delivered", equalTo: false)
+        ordersISentQuery.whereKey("OrderState", notEqualTo: "Completed")
         
         ordersISentQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -49,7 +49,8 @@ class MyOrdersViewController: UITableViewController {
         ordersIReceivedQuery.includeKey("restaurant")
         ordersIReceivedQuery.includeKey("OrderingUser")
         ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
-        ordersIReceivedQuery.whereKey("delivered", equalTo: false)
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Completed")
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
         
         ordersIReceivedQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -149,17 +150,38 @@ class MyOrdersViewController: UITableViewController {
     }
     
     func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
-        dest.order.restaurantName  = ordersISent[index]["restaurant"]["name"] as! String
-        dest.order.orderID  = ordersISent[index].objectId!
-        if (ordersISent[index]["driverToDeliver"] != nil){
-            dest.order.deliverTo = ordersISent[index]["driverToDeliver"]["username"] as! String
+        let order = ordersISent[index]
+        
+        dest.order.restaurantName  = order["restaurant"]["name"] as! String
+        dest.order.orderID  = order.objectId!
+        if (order["driverToDeliver"] != nil) {
+            dest.order.deliverTo = order["driverToDeliver"]["username"] as! String
         } else {
             dest.order.deliverTo = "Not Accepted"
         }
         
-        let locationString: String = (ordersISent[index]["DeliveryAddress"] as! String) + " " + (ordersISent[index]["DeliveryCity"] as! String) + ", " + (ordersISent[index]["DeliveryState"] as! String) + " " + (ordersISent[index]["DeliveryZip"] as! String)
+        let orderStatus = order["OrderState"] as! String
+        
+        switch orderStatus {
+        case "Available":
+            dest.order.orderState = OrderState.Available
+        case "Acquired":
+            dest.order.orderState = OrderState.Acquired
+        case "Deleted":
+            dest.order.orderState = OrderState.Deleted
+        case "PaidFor":
+            dest.order.orderState = OrderState.PaidFor
+        case "Delivered":
+            dest.order.orderState = OrderState.Delivered
+        case "Completed":
+            dest.order.orderState = OrderState.Completed
+        default:
+            print("Order Status N/A")
+        }
+        
+        let locationString: String = (order["DeliveryAddress"] as! String) + " " + (order["DeliveryCity"] as! String) + ", " + (order["DeliveryState"] as! String) + " " + (order["DeliveryZip"] as! String)
         dest.order.location = locationString
-        dest.order.expiresIn = ParseDate.timeLeft(ordersISent[index]["expirationDate"] as! NSDate)
+        dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

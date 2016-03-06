@@ -23,7 +23,7 @@ class DeliveryItemCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
 }
 
-extension String{
+extension String {
     mutating func makeFirstLetterInStringUpperCase() {
         self.replaceRange(self.startIndex...self.startIndex, with: String(self[self.startIndex]).capitalizedString)
     }
@@ -33,34 +33,49 @@ class GetThatOrderTableViewController: UITableViewController {
     
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
-    var buttonTitle = ["I'll get that", "Pay for food", "I've arrived at the delivery location", "Order complete","Acquired ✓"]
+    
     let order = Order()
+    let manip = InterfaceManipulation()
+    
+    @IBOutlet weak var actionButton: UIButton!
     
     @IBAction func driverAction(sender: UIButton) {
-        switch order.orderState {
-        case OrderState.Available:
-            order.acquire(){
+        if order.orderState == OrderState.Available {
+            order.acquire() {
                 result in
                 if result {
-                    //order successfully acquired
-                    sender.setTitle(self.buttonTitle[4], forState: UIControlState.Normal)
-                    sender.enabled = false
-                    sender.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                    // Order successfully acquired
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
                 } else {
-                    //error not acquired
+                    print("Error: not acquired")
                 }
             }
-        case OrderState.Acquired:
-            if sender.titleLabel?.text != self.buttonTitle[4]{
-                order.payFor()
-                sender.setTitle(buttonTitle[2], forState: UIControlState.Normal)
+        } else if order.orderState == OrderState.Acquired {
+            order.payFor() {
+                result in
+                if result {
+                    // Order successfully paid for
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
+                } else {
+                    print("Error: not paid for")
+                }
             }
-        case OrderState.PaidFor:
-            order.deliver()
+        } else if order.orderState == OrderState.PaidFor {
+            order.deliver() {
+                result in
+                if result {
+                    // Order successfully delivered
+                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Delivered)
+                } else {
+                    print("Error: not delivered")
+                }
+            }
+        } else if order.orderState == OrderState.Delivered {
+            sender.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
+            sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
             sender.enabled = false
-            sender.setTitle(buttonTitle[3], forState: UIControlState.Disabled)
-        default:
-            break
+        } else if order.orderState == OrderState.Completed {
+            manip.setDriverStyleFor(sender, toReflect: OrderState.Completed)
         }
     }
     
@@ -69,7 +84,7 @@ class GetThatOrderTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
+        switch section {
         case 0: //single 'restaurant' cell
             return 1
         case 1: //number of food items in order
@@ -83,7 +98,7 @@ class GetThatOrderTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
+        switch section {
         case 0: //'Deliver to'
             return sectionHeaders[0]
         case 1: //'Location'
@@ -160,24 +175,19 @@ class GetThatOrderTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        //get orders sent to the driver
-        order.itemsForOrderQuery.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.order.addFoodItem(item)
-                    }
-                    self.tableView.reloadData()
-                }
+        super.viewDidLoad()
+        
+        order.getFoodItemsFromParse() {
+            result in
+            if result {
+                // Food items retrieved
+                self.tableView.reloadData()
             } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                print("Error: food items not retrieved")
             }
         }
+        
+        manip.setDriverStyleFor(actionButton, toReflect: order.orderState)
     }
 
 }

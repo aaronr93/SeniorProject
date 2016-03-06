@@ -16,6 +16,7 @@
 		36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F771C7A73B2005B1E90 /* Drivers.swift */; };
 		36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */; };
 		36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */; };
+		36D090411C8B6D86005B1E90 /* InterfaceManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D090401C8B6D86005B1E90 /* InterfaceManipulation.swift */; };
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
@@ -93,6 +94,7 @@
 		36D08F791C7ABC74005B1E90 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUITests.swift; sourceTree = "<group>"; };
 		36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderUITests.swift; sourceTree = "<group>"; };
+		36D090401C8B6D86005B1E90 /* InterfaceManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceManipulation.swift; sourceTree = "<group>"; };
 		36E204721C5A886200A9CC59 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -199,12 +201,8 @@
 		36D08F211C7222A4005B1E90 /* Customer side */ = {
 			isa = PBXGroup;
 			children = (
-				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
 				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
-				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */,
-				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
-				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -218,8 +216,6 @@
 				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
 				9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */,
 				9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */,
-				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
-				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -236,6 +232,19 @@
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		36D090321C89F028005B1E90 /* Subscreens */ = {
+			isa = PBXGroup;
+			children = (
+				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
+				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
+				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
+				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
+				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
+				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
+			);
+			name = Subscreens;
 			sourceTree = "<group>";
 		};
 		96B36A9C1C5AFEC700DF6038 /* Frameworks */ = {
@@ -284,10 +293,12 @@
 			isa = PBXGroup;
 			children = (
 				36D08F241C7222F4005B1E90 /* Classes */,
+				36D090321C89F028005B1E90 /* Subscreens */,
 				36D08F231C7222CB005B1E90 /* Other ViewControllers */,
 				36D08F211C7222A4005B1E90 /* Customer side */,
 				36D08F1F1C722291005B1E90 /* Driver side */,
 				96DD81DA1C56B8AE004CE3A7 /* Main.storyboard */,
+				36D090401C8B6D86005B1E90 /* InterfaceManipulation.swift */,
 				96DD81D61C56B8AE004CE3A7 /* AppDelegate.swift */,
 				96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */,
 				96DD81DF1C56B8AE004CE3A7 /* LaunchScreen.storyboard */,
@@ -479,6 +490,7 @@
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */,
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
+				36D090411C8B6D86005B1E90 /* InterfaceManipulation.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
