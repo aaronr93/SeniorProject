@@ -233,7 +233,6 @@
         <!--Settings-->
         <scene sceneID="4CV-U9-Zw4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="olJ-eb-4AU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="o8a-E2-DZA" customClass="SettingsViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KvJ-zb-5sU"/>
@@ -283,7 +282,7 @@
                                     <action selector="logoutButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="3MB-nc-TUN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8B158964-053B-42EE-B396-624A95004B4E" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C17C7382-2B7D-4B9D-AD98-CC0E23FBBB7B" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
                                 <rect key="frame" x="42" y="87" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="GME-ad-eMn"/>
@@ -392,6 +391,8 @@
                         <segue destination="aHs-Pg-pgR" kind="unwind" identifier="unwindSegueLogoutFromSettingsController" unwindAction="unwindSegueLogoutFromSettingsController:" id="d5C-jB-Uxx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="olJ-eb-4AU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aHs-Pg-pgR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2820" y="378"/>
         </scene>
@@ -465,6 +466,9 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXe-09-6zT">
                                 <rect key="frame" x="41" y="135" width="137" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="137" id="DTd-54-JmC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -487,6 +491,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ioy-O2-uYF" secondAttribute="trailing" constant="178" id="Wjh-8I-6zq"/>
                             <constraint firstItem="CPz-iK-BK6" firstAttribute="centerX" secondItem="jcQ-pn-IRJ" secondAttribute="centerX" id="ch5-ld-WtE"/>
                             <constraint firstItem="0ON-XC-Fmr" firstAttribute="leading" secondItem="dnV-6y-EQk" secondAttribute="leadingMargin" constant="21" id="gGr-qz-3B3"/>
+                            <constraint firstItem="WXe-09-6zT" firstAttribute="leading" secondItem="dnV-6y-EQk" secondAttribute="leadingMargin" constant="21" id="gPT-Hj-IGH"/>
                             <constraint firstItem="0ON-XC-Fmr" firstAttribute="centerY" secondItem="Bj7-nF-wFG" secondAttribute="centerY" id="gQE-OI-kZ1"/>
                             <constraint firstItem="aIs-66-9qG" firstAttribute="leading" secondItem="dnV-6y-EQk" secondAttribute="leadingMargin" constant="18" id="jSq-Lv-oeQ"/>
                             <constraint firstItem="CPz-iK-BK6" firstAttribute="trailing" secondItem="ioy-O2-uYF" secondAttribute="trailing" id="lYh-FB-d2p"/>
@@ -511,7 +516,6 @@
         <!--Create Account 1-->
         <scene sceneID="xiX-rP-QNB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J4b-cd-u37" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Create Account 1" id="bsD-ip-mg7" customClass="CreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u7h-q5-dZP"/>
@@ -652,13 +656,13 @@
                         <segue destination="LZA-1I-Abq" kind="show" identifier="validateSegue" id="lf9-pe-J9K"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J4b-cd-u37" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1265" y="1134"/>
         </scene>
         <!--Create Account 2-->
         <scene sceneID="p6D-Vn-eww">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9pk-aZ-acO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Create Account 2" id="LZA-1I-Abq" customClass="FinishCreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nCE-fn-8CR"/>
@@ -805,13 +809,13 @@
                         <segue destination="5Ri-t9-43E" kind="show" identifier="createAccountSegue" id="CEV-uE-pkl"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9pk-aZ-acO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1265" y="1883"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9s-lR-Dg2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jdc-fz-1yI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jJQ-B6-c1d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="htg-KO-q9d">
@@ -823,6 +827,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HeC-P3-3AL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdc-fz-1yI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="417" y="378"/>
         </scene>
@@ -1265,11 +1270,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="haz-Bz-wme">
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="haz-Bz-wme">
                             <rect key="frame" x="0.0" y="288" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <state key="normal" title="I'll get that">
                                 <color key="titleColor" red="0.233292166" green="0.56951587140000004" blue="0.81491315360000005" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -1372,6 +1376,9 @@
                             <outlet property="delegate" destination="9ih-Hs-QGC" id="tUa-ee-OGP"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="actionButton" destination="haz-Bz-wme" id="5yq-Gq-AdW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moK-Ch-ilo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1600,7 +1607,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="8B158964-053B-42EE-B396-624A95004B4E" width="180" height="220">
+        <image name="C17C7382-2B7D-4B9D-AD98-CC0E23FBBB7B" width="180" height="220">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

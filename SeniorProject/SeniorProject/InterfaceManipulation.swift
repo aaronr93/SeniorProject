@@ -39,64 +39,65 @@ class InterfaceManipulation {
     }
     
     func customer_setCancelStyleFor(button: UIButton) {
-        button.titleLabel?.text = "Cancel"
-        button.titleLabel?.textColor = UIColor.redColor()
+        button.setTitle("Cancel", forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         button.enabled = true
     }
     
     func customer_setAcquiredStyleFor(button: UIButton) {
-        button.titleLabel?.textColor = UIColor.grayColor()
-        button.titleLabel?.text = "Acquired by driver"
+        button.setTitle("Acquired by driver", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         button.enabled = false
     }
     
     func customer_setDeletedStyleFor(button: UIButton) {
-        button.titleLabel?.textColor = UIColor.grayColor()
-        button.titleLabel?.text = "Order deleted"
+        button.setTitle("Order deleted", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         button.enabled = false
     }
     
     func customer_setPaidForStyleFor(button: UIButton) {
-        let blueColor = UIColor(colorLiteralRed: 13, green: 95, blue: 250, alpha: 1)
-        button.titleLabel?.textColor = blueColor
-        button.titleLabel?.text = "Order paid for by driver"
+        button.setTitle("Order paid for by driver", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         button.enabled = false
     }
     
     func customer_setDeliveredStyleFor(button: UIButton) {
-        let blueColor = UIColor(colorLiteralRed: 13, green: 95, blue: 250, alpha: 1)
-        button.titleLabel?.textColor = blueColor
-        button.titleLabel?.text = "Reimburse driver"
+        button.setTitle("Reimburse driver", forState: UIControlState.Normal)
         button.enabled = true
     }
     
     func customer_setCompletedStyleFor(button: UIButton) {
-        button.titleLabel?.textColor = UIColor.grayColor()
-        button.titleLabel?.text = "Order completed"
+        button.setTitle("Order completed", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         button.enabled = false
     }
     
     // Driver
     
     func driver_setIllGetThatStyleFor(button: UIButton) {
-        button.titleLabel?.text = "I'll get that"
+        button.setTitle("I'll get that", forState: UIControlState.Normal)
+        button.enabled = true
     }
     
     func driver_setAcquiredStyleFor(button: UIButton) {
-        button.titleLabel?.text = "Acquired ✓"
+        button.setTitle("Acquired ✓", forState: UIControlState.Normal)
+        button.enabled = true
     }
     
     func driver_setPayForStyleFor(button: UIButton) {
-        button.titleLabel?.text = "I paid for the food"
+        button.setTitle("I paid for the food", forState: UIControlState.Normal)
+        button.enabled = true
     }
     
     func driver_setDeliveredStyleFor(button: UIButton) {
-        button.titleLabel?.text = "I arrived at the delivery location"
+        button.setTitle("I arrived at the delivery location", forState: UIControlState.Normal)
+        button.enabled = true
     }
     
     func driver_setCompletedStyleFor(button: UIButton) {
-        button.titleLabel?.textColor = UIColor.grayColor()
-        button.titleLabel?.text = "Order completed"
+        button.setTitle("Order completed", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         button.enabled = false
     }
 }

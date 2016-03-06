@@ -197,7 +197,6 @@
 		36D08F211C7222A4005B1E90 /* Customer side */ = {
 			isa = PBXGroup;
 			children = (
-				36D090321C89F028005B1E90 /* Subscreens */,
 				4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */,
 				9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */,
 			);
@@ -213,8 +212,6 @@
 				3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */,
 				9B9A0EEC1C74113D00983BA9 /* SettingsViewController.swift */,
 				9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */,
-				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
-				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -236,6 +233,8 @@
 		36D090321C89F028005B1E90 /* Subscreens */ = {
 			isa = PBXGroup;
 			children = (
+				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
+				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
 				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
 				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
@@ -290,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				36D08F241C7222F4005B1E90 /* Classes */,
+				36D090321C89F028005B1E90 /* Subscreens */,
 				36D08F231C7222CB005B1E90 /* Other ViewControllers */,
 				36D08F211C7222A4005B1E90 /* Customer side */,
 				36D08F1F1C722291005B1E90 /* Driver side */,

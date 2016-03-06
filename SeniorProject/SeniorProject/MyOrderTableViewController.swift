@@ -161,23 +161,7 @@ class MyOrderTableViewController: UITableViewController {
             }
         }
         
-        let currentStatus = order.orderState
-        
-        if currentStatus == OrderState.Available {
-            
-        } else if currentStatus == OrderState.Acquired {
-            
-        } else if currentStatus == OrderState.Deleted {
-            
-        } else if currentStatus == OrderState.PaidFor {
-            
-        } else if currentStatus == OrderState.Delivered {
-            
-        } else if currentStatus == OrderState.Completed {
-            
-        }
-        
-        manip.setCustomerStyleFor(actionButton, toReflect: currentStatus)
+        manip.setCustomerStyleFor(actionButton, toReflect: order.orderState)
     }
 
 }
