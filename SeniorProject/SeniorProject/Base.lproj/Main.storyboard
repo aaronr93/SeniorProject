@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -261,6 +261,10 @@
                                         <exclude reference="4ni-M1-gBe"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="deleteButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="zcB-nr-imD"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="VlR-nX-l7d"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOi-OM-xGT">
                                 <rect key="frame" x="139" y="363" width="322" height="46"/>
@@ -282,7 +286,7 @@
                                     <action selector="logoutButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="3MB-nc-TUN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C17C7382-2B7D-4B9D-AD98-CC0E23FBBB7B" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="864C8DA0-0E7F-4A3B-BA54-CB835BB3AF86" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
                                 <rect key="frame" x="42" y="87" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="GME-ad-eMn"/>
@@ -1607,7 +1611,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="C17C7382-2B7D-4B9D-AD98-CC0E23FBBB7B" width="180" height="220">
+        <image name="864C8DA0-0E7F-4A3B-BA54-CB835BB3AF86" width="180" height="220">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
@@ -4305,6 +4309,7 @@ AAAAAAACdSA
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Omd-mY-WVB"/>
+        <segue reference="VlR-nX-l7d"/>
         <segue reference="51v-Qf-B92"/>
     </inferredMetricsTieBreakers>
 </document>

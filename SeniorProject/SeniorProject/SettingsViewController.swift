@@ -38,6 +38,11 @@ class SettingsViewController: UIViewController {
         
     }
     
+    @IBAction func deleteButtonTapped(sender: UIButton) {
+        let deleted = true
+        PFUser.currentUser()?.setObject(deleted, forKey: "deleted")
+        PFUser.currentUser()?.saveInBackground()
+    }
     
     @IBAction func doneChangingUsername(sender: UITextField) {
         if (sender.text! != originalUserName) { //if same as before, don't highlight

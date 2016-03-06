@@ -45,6 +45,7 @@ class FinishCreateAccountViewController: UIViewController
             if let password = newAcct.password {
                 user.password = password
             }
+            user["deleted"] = false
         }
     }
     
