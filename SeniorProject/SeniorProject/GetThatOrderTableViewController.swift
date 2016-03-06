@@ -65,15 +65,13 @@ class GetThatOrderTableViewController: UITableViewController {
                 result in
                 if result {
                     // Order successfully delivered
-                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Delivered)
+                    sender.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
+                    sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+                    sender.enabled = false
                 } else {
                     print("Error: not delivered")
                 }
             }
-        } else if order.orderState == OrderState.Delivered {
-            sender.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
-            sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
-            sender.enabled = false
         } else if order.orderState == OrderState.Completed {
             manip.setDriverStyleFor(sender, toReflect: OrderState.Completed)
         }
