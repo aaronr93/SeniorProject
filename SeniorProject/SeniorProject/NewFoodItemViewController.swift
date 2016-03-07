@@ -18,8 +18,8 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate{
 
     var delegate : NewOrderViewController!
     
-    @IBOutlet weak var foodName: UITextField!
-    @IBOutlet weak var foodDescription: UITextField!
+    @IBOutlet weak var foodDescriptionField: UITextField!
+    @IBOutlet weak var foodNameField: UITextField!
     
     var foodNameText = ""
     var foodDescriptionText = ""
@@ -27,26 +27,26 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        foodName.delegate = self
-        foodDescription.delegate = self
+        foodNameField.delegate = self
+        foodDescriptionField.delegate = self
         
-        foodName.becomeFirstResponder()
+        foodNameField.becomeFirstResponder()
         
-        foodName.returnKeyType = UIReturnKeyType.Next
-        foodDescription.returnKeyType = UIReturnKeyType.Done
-    }
-    
-    @IBAction func addFoodItem(sender: UIButton) {
-        foodNameText = foodName.text!
-        foodDescriptionText = foodDescription.text!
-        delegate.saveNewItem(self)
+        foodNameField.returnKeyType = UIReturnKeyType.Next
+        foodDescriptionField.returnKeyType = UIReturnKeyType.Done
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == foodName { // Switch focus to other text field
-            foodDescription.becomeFirstResponder()
-        }else if textField == foodDescription{
-            foodDescription.resignFirstResponder()
+        if textField == foodNameField { // Switch focus to other text field
+            foodDescriptionField.becomeFirstResponder()
+        }else if textField == foodDescriptionField{
+            foodDescriptionField.resignFirstResponder()
+            foodNameText = foodNameField.text!
+            foodDescriptionText = foodDescriptionField.text!
+            if foodNameText.isEmpty{
+                delegate.cancelNewItem(self)
+                return true
+            }
             delegate.saveNewItem(self)
         }
         return true
