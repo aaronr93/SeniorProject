@@ -1051,8 +1051,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="driver" textLabel="Im0-qI-Lz8" style="IBUITableViewCellStyleDefault" id="Zr4-TH-M85">
-                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="driver" textLabel="Im0-qI-Lz8" style="IBUITableViewCellStyleDefault" id="Zr4-TH-M85" customClass="DriverCell" customModule="SeniorProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zr4-TH-M85" id="dsT-Ot-11H">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1067,6 +1067,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="driverName" destination="Im0-qI-Lz8" id="C0Z-uS-AFL"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -11,31 +11,37 @@ import Parse
 
 class Drivers {
     var list = [PFObject]()
-    var availableDrivers = PFQuery(className: "DriverAvailableRestaurants")
-    //let itemsForDriverQuery = PFQuery(className: "DriverAvailability")
+    var availableDriversForRestaurant = PFQuery(className: "DriverAvailableRestaurants")
     var restaurant : PFObject?
     
     func getDriversFromDB(completion: (success: Bool) -> Void){
         
-        /*itemsForDriverQuery.includeKey("driver")
-        itemsForDriverQuery.whereKey("isCurrentlyAvailable", equalTo: true)*/
         
-        availableDrivers.includeKey("restaurant")
-        availableDrivers.limit = 10
-        availableDrivers.whereKey("restaurant", equalTo: restaurant!)
-        availableDrivers.whereKey("driver", notEqualTo: PFUser.currentUser()!)
-        availableDrivers.orderByDescending("createdAt")
+        availableDriversForRestaurant.includeKey("driverAvailability")
+        availableDriversForRestaurant.includeKey("restaurant")
+        availableDriversForRestaurant.limit = 10
+        availableDriversForRestaurant.whereKey("restaurant", equalTo: restaurant!)
+        availableDriversForRestaurant.whereKey("driver", notEqualTo: PFUser.currentUser()!)
+        availableDriversForRestaurant.orderByDescending("createdAt")
+        availableDriversForRestaurant.includeKey("driverAvailability.driver")
         
-        availableDrivers.findObjectsInBackgroundWithBlock {
+        
+        availableDriversForRestaurant.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 // The find succeeded.
                 // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.add(item)
+                if let drivers = objects {
+                    for driver in drivers {
+                        if let driverAvailability = driver["driverAvailability"]{
+                            if let currentlyAvailable = driverAvailability["isCurrentlyAvailable"]{
+                                if (currentlyAvailable as! Bool){//if the drive is currently available then add the item
+                                    self.add(driver)
+                                }
+                            }
+                        }
                     }
-                    print(self.list)
+                    print(self.list.count)
                     completion(success: true)
                 }
             } else {
