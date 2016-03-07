@@ -117,16 +117,16 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("newFoodCell", forIndexPath: indexPath) as! NewFoodItemCell
-        
-        foodCell.foodItem.text = order.foodItems[indexPath.row].name
-        foodCell.foodDescription.text = order.foodItems[indexPath.row].description
+        print(order.foodItems[indexPath.row].name!)
+        foodCell.foodItem.text = order.foodItems[indexPath.row].name!
+        foodCell.foodDescription.text = order.foodItems[indexPath.row].description!
         
         return foodCell
     }
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath) as! NewDeliveryItemCell
-        
+       
         deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
         deliveryCell.value.text = getTextFor(indexPath.row)
         

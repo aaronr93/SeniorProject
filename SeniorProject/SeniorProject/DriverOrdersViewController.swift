@@ -204,8 +204,6 @@ class DriverOrdersViewController: UITableViewController {
         ordersForAnyDriverQuery.whereKey("OrderState", equalTo: "Available")
         ordersForAnyDriverQuery.whereKey("expirationDate", greaterThan: NSDate())
         
-        
-        
         ordersForAnyDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             

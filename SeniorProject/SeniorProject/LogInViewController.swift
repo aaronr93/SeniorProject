@@ -69,26 +69,27 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                     print(validation.errors)
                 } else {
                     //checks to see if the user's account has been deleted or not
-                    let modifiedStatus = PFUser.currentUser()?.objectForKey("deleted")
-                    print(modifiedStatus?.boolValue)
-                    if modifiedStatus?.boolValue == false {
+                    
                         //validation passed
                         PFUser.logInWithUsernameInBackground(usernameFieldText, password:passwordFieldText) {
                             (user: PFUser?, error: NSError?) -> Void in
                             if user != nil {
-                                print("success!!")
-                                self.performSegueWithIdentifier("loginSegue", sender: self)
-                                //clear the password field after login attempt
-                                //prevents storage of password in the VC stack--otherwise it's usable after logout (security issue)
-                                self.passwordField.text = ""
-                                self.usernameField.text = "" //clear username to prevent inconsistencies in displayed name
-                                    //certain program states could cause the wrong username to be displayed after logout
-                                    //so it's a lot easier to instead just not display any username
+                                let modifiedStatus = PFUser.currentUser()?.objectForKey("deleted")
+                                if modifiedStatus?.boolValue == false{
+                                    print("success!!")
+                                    self.performSegueWithIdentifier("loginSegue", sender: self)
+                                    //clear the password field after login attempt
+                                    //prevents storage of password in the VC stack--otherwise it's usable after logout (security issue)
+                                    self.passwordField.text = ""
+                                    self.usernameField.text = "" //clear username to prevent inconsistencies in displayed name
+                                        //certain program states could cause the wrong username to be displayed after logout
+                                        //so it's a lot easier to instead just not display any username
+                                }
                             } else {
                                 print("Invalid loging credentials")
                             }
                         }
-                    }
+                    
                 }
             }
         }
@@ -157,5 +158,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     }
     
     // MARK: - Navigation
+    @IBAction func unwindSegueLogoutFromSettingsController(segue: UIStoryboardSegue) {}
+
 }
 

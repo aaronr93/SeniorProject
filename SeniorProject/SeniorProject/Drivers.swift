@@ -28,7 +28,6 @@ class Drivers {
         
         availableDrivers.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
             if error == nil {
                 // The find succeeded.
                 // Do something with the found objects
@@ -47,8 +46,6 @@ class Drivers {
         }
 
     }
-    
-    
     
     func add(driver: PFObject) {
         if !list.contains(driver) {
