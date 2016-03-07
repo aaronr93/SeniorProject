@@ -25,6 +25,7 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */; };
+		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
@@ -47,6 +48,9 @@
 		9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */; };
 		9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */; };
 		9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */; };
+		9B3202071C8CD7D800749264 /* SettingsClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202061C8CD7D800749264 /* SettingsClassTests.swift */; };
+		9B3202091C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */; };
+		9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */; };
 		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
@@ -104,6 +108,7 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewController.swift; sourceTree = "<group>"; };
+		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -132,6 +137,9 @@
 		9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewController.swift; sourceTree = "<group>"; };
 		9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTableViewController.swift; sourceTree = "<group>"; };
 		9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		9B3202061C8CD7D800749264 /* SettingsClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassTests.swift; sourceTree = "<group>"; };
+		9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
+		9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -230,6 +238,7 @@
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
 				36D08F731C7A3ACD005B1E90 /* Order.swift */,
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
+				963A324C1C8CDFD40090CB2C /* Food.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -317,6 +326,9 @@
 				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
 				9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */,
 				9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */,
+				9B3202061C8CD7D800749264 /* SettingsClassTests.swift */,
+				9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */,
+				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -479,6 +491,7 @@
 				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
+				963A324D1C8CDFD40090CB2C /* Food.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
@@ -503,9 +516,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */,
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
 				9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
+				9B3202091C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift in Sources */,
+				9B3202071C8CD7D800749264 /* SettingsClassTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
 			);

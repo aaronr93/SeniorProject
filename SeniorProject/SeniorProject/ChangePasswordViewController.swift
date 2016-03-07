@@ -35,26 +35,32 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func submitButtonTapped(sender: UIButton) {
         
-        let currentUser = PFUser.currentUser()
+        var currentUser = PFUser.currentUser()
         
         if let password = currentPasswordField.text{
             if validatedPassword(password){
-                if currentUser?.password == password{
-                    print("here")
-                    if let newPass = newPasswordField.text{
-                        if let confirm = confirmPassword.text{
-                            if newPass == confirm{
-                                currentUser?.password = newPass
-                                do{
-                                    try currentUser?.save()
-                                }catch {
-                                    print(error)
+                PFUser.logInWithUsernameInBackground((currentUser?.username)!, password:password) {
+                    (user: PFUser?, error: NSError?) -> Void in
+                    if user != nil {
+                        print(self.newPasswordField.text! + " " + self.confirmPassword.text!)
+                        if self.newPasswordField.text == self.confirmPassword.text{
+                            //passwords are the same so change password
+                            currentUser = PFUser.currentUser()
+                            currentUser?.password = self.newPasswordField.text
+                            currentUser?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                if error == nil{
+                                    print("success")
+                                }else{
+                                    print("password not changed")
                                 }
-                                
-                            }else{
-                                //passwords do not match
-                            }
+                            })
+                            
+                        }else{
+                            //user needs to re-enter password
+                            print("passwords dont match...try again")
                         }
+                    } else {
+                        print("Invalid loging credentials")
                     }
                 }
             }

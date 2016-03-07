@@ -13,7 +13,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     
     var restaurants = [PFObject]()
     var currentCell : Int = 0
-    var parent = NewOrderViewController()
+    var delegate : NewOrderViewController!
     var selectedSomething : Bool = false
     
 
@@ -73,9 +73,9 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         if(selectedSomething){
-            parent.order.restaurantName = restaurants[currentCell]["name"] as! String
+            delegate.order.restaurantName = restaurants[currentCell]["name"] as! String
         }
-        parent.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
+        delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
         
     }
 

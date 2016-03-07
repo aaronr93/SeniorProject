@@ -27,7 +27,7 @@ class NewDeliveryItemCell: UITableViewCell {
     @IBOutlet weak var value: UILabel!
 }
 
-class NewOrderViewController: UITableViewController {
+class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     var delegate: NewOrderViewDelegate!
     
@@ -39,6 +39,17 @@ class NewOrderViewController: UITableViewController {
         case Restaurant = 0
         case Food = 1
         case Settings = 2
+    }
+    
+    func cancelNewItem(newFoodItemVC: NewFoodItemViewController){
+        newFoodItemVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    func saveNewItem(newFoodItemVC: NewFoodItemViewController){
+        let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodNameText)
+        order.addFoodItem(foodItem)
+        newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
     
@@ -106,8 +117,8 @@ class NewOrderViewController: UITableViewController {
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("newFoodCell", forIndexPath: indexPath) as! NewFoodItemCell
         
-        foodCell.foodItem.text = order.foodItems[indexPath.row]["food"]["name"] as? String
-        foodCell.foodDescription.text = order.foodItems[indexPath.row]["description"] as? String
+        foodCell.foodItem.text = order.foodItems[indexPath.row].name
+        foodCell.foodDescription.text = order.foodItems[indexPath.row].description
         
         return foodCell
     }
@@ -232,20 +243,18 @@ class NewOrderViewController: UITableViewController {
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
-            chooseExpiration.parent = self
+            chooseExpiration.delegate = self
             if(order.expiresIn != ""){
                 chooseExpiration.selectedTime = order.expiresIn
             }
         }
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
-            chooseRestaurant.parent = self
+            chooseRestaurant.delegate = self
         }
         if segue.identifier == "editFoodItem" {
-            let foodName = segue.destinationViewController as! NewFoodItemViewController
-            foodName.parent = self
-            let foodDescription = segue.destinationViewController as! NewFoodItemViewController
-            foodDescription.parent = self
+            let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
+            newFoodItemVC.delegate = self
         }
     }
 }
