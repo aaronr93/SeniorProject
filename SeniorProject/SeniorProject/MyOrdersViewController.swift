@@ -25,6 +25,7 @@ class MyOrdersViewController: UITableViewController {
         ordersISentQuery.includeKey("driverToDeliver")
         ordersISentQuery.whereKey("OrderingUser", equalTo: PFUser.currentUser()!)
         ordersISentQuery.whereKey("OrderState", notEqualTo: "Completed")
+        //ordersISentQuery.whereKey("OrderState", notEqualTo: "Available")
         
         ordersISentQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -50,7 +51,7 @@ class MyOrdersViewController: UITableViewController {
         ordersIReceivedQuery.includeKey("OrderingUser")
         ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Completed")
-        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
+        //ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
         
         ordersIReceivedQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -147,6 +148,24 @@ class MyOrdersViewController: UITableViewController {
         let locationString: String = (ordersIReceived[index]["DeliveryAddress"] as! String) + " " + (ordersIReceived[index]["DeliveryCity"] as! String) + ", " + (ordersIReceived[index]["DeliveryState"] as! String) + " " + (ordersIReceived[index]["DeliveryZip"] as! String)
         dest.order.location = locationString
         dest.order.expiresIn = ParseDate.timeLeft(ordersIReceived[index]["expirationDate"] as! NSDate)
+        
+        let orderStatus = ordersIReceived[index]["OrderState"] as! String
+        switch orderStatus {
+        case "Available":
+            dest.order.orderState = OrderState.Available
+        case "Acquired":
+            dest.order.orderState = OrderState.Acquired
+        case "Deleted":
+            dest.order.orderState = OrderState.Deleted
+        case "PaidFor":
+            dest.order.orderState = OrderState.PaidFor
+        case "Delivered":
+            dest.order.orderState = OrderState.Delivered
+        case "Completed":
+            dest.order.orderState = OrderState.Completed
+        default:
+            print("Order Status N/A")
+        }
     }
     
     func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
@@ -161,7 +180,6 @@ class MyOrdersViewController: UITableViewController {
         }
         
         let orderStatus = order["OrderState"] as! String
-        
         switch orderStatus {
         case "Available":
             dest.order.orderState = OrderState.Available

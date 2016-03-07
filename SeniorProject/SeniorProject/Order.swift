@@ -25,33 +25,58 @@ class Order {
     var deliveredBy: String = ""
     var location: String = ""
     var expiresIn: String = ""
-    var foodItems = [PFObject]()
+    var foodItems = [Food]()
     var orderState = OrderState.Available
     let itemsForOrderQuery = PFQuery(className:"OrderedItems")
     
-    init() {
-        itemsForOrderQuery.includeKey("food")
-        itemsForOrderQuery.includeKey("order")
-        itemsForOrderQuery.whereKey("order", equalTo: PFObject(withoutDataWithClassName: "Order", objectId: orderID))
-    }
+
     
-    func addFoodItem(toAdd: PFObject) {
-        if !foodItems.contains(toAdd) {
+    func addFoodItem(toAdd: Food) {
+        if !foodItems.contains( {$0.name == toAdd.name} ) {
             foodItems.append(toAdd)
         } else {
             print("Food item already exists.")
         }
     }
     
-    func removeFoodItem(toRemove: PFObject) {
-        if let removeIndex = foodItems.indexOf(toRemove) {
+    func removeFoodItem(toRemove: Food) {
+        if let removeIndex = foodItems.indexOf( {$0.name == toRemove.name} ) {
             foodItems.removeAtIndex(removeIndex)
         } else {
             print("Food item to remove does not exist.")
         }
     }
     
-    func getFoodItemsFromParse(completion: (Bool) -> ()) {
+    func foodItemsToPFObjects(foodItems: [Food]) -> [PFObject]{
+        let order = PFObject(withoutDataWithObjectId: self.orderID)
+        var parseFoodItems = [PFObject]()
+        for foodItem in foodItems{
+            let orderedItem = PFObject(className: "OrderedItems")
+            //var food = PFObject(className: "Food")
+            orderedItem["order"] = order
+            orderedItem["description"] = foodItem.description
+            parseFoodItems += [orderedItem]
+        }
+        return parseFoodItems
+    }
+    
+    func addFoodItemsToOrderInDB(foodItems: [Food]){
+        let parseFoodItems = foodItemsToPFObjects(foodItems)
+        PFObject.saveAllInBackground(parseFoodItems, block: {
+            (succeeded: Bool, error: NSError?) -> Void in
+            if succeeded{
+                print("parse items save succeeded")
+            }else{
+                print("parse items save failed :(")
+            }
+        })
+        print(parseFoodItems)
+    }
+    
+    func getFoodItemsFromParse(completion: (success: Bool) -> Void) {
+        itemsForOrderQuery.whereKey("order", equalTo: PFObject(withoutDataWithClassName: "Order", objectId: orderID))
+        itemsForOrderQuery.includeKey("food")
+        itemsForOrderQuery.includeKey("order")
         itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -60,13 +85,25 @@ class Order {
                 // Do something with the found objects
                 if let items = objects {
                     for item in items {
-                        self.addFoodItem(item)
+                        var foodName = ""
+                        var foodDescription = ""
+                        if let food = item["food"]{
+                            if let fn = food["name"] as? String{
+                                foodName = fn
+                            }
+                        }
+                        if let fd = item["description"] as? String{
+                            foodDescription = fd
+                        }
+                        let foodItem = Food(name: foodName, description: foodDescription)
+                        self.addFoodItem(foodItem)
                     }
-                    completion(true)
+                    completion(success: true)
                 }
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.userInfo)")
+                completion(success: false)
             }
         }
     }

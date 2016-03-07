@@ -111,6 +111,24 @@ class DriverOrdersViewController: UITableViewController {
         let locationString: String = (driverOrders[index]["DeliveryAddress"] as! String) + " " + (driverOrders[index]["DeliveryCity"] as! String) + ", " + (driverOrders[index]["DeliveryState"] as! String) + " " + (driverOrders[index]["DeliveryZip"] as! String)
         dest.order.location = locationString
         dest.order.expiresIn = ParseDate.timeLeft(driverOrders[index]["expirationDate"] as! NSDate)
+        
+        let orderStatus = driverOrders[index]["OrderState"] as! String
+        switch orderStatus {
+        case "Available":
+            dest.order.orderState = OrderState.Available
+        case "Acquired":
+            dest.order.orderState = OrderState.Acquired
+        case "Deleted":
+            dest.order.orderState = OrderState.Deleted
+        case "PaidFor":
+            dest.order.orderState = OrderState.PaidFor
+        case "Delivered":
+            dest.order.orderState = OrderState.Delivered
+        case "Completed":
+            dest.order.orderState = OrderState.Completed
+        default:
+            print("Order Status N/A")
+        }
     }
     
     func passAnyOrdersInfo(index: Int, dest: GetThatOrderTableViewController) {
@@ -120,12 +138,31 @@ class DriverOrdersViewController: UITableViewController {
         let locationString: String = (anyDriverOrders[index]["DeliveryAddress"] as! String) + " " + (anyDriverOrders[index]["DeliveryCity"] as! String) + ", " + (anyDriverOrders[index]["DeliveryState"] as! String) + " " + (anyDriverOrders[index]["DeliveryZip"] as! String)
         dest.order.location = locationString
         dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
+        
+        let orderStatus = anyDriverOrders[index]["OrderState"] as! String
+        switch orderStatus {
+        case "Available":
+            dest.order.orderState = OrderState.Available
+        case "Acquired":
+            dest.order.orderState = OrderState.Acquired
+        case "Deleted":
+            dest.order.orderState = OrderState.Deleted
+        case "PaidFor":
+            dest.order.orderState = OrderState.PaidFor
+        case "Delivered":
+            dest.order.orderState = OrderState.Delivered
+        case "Completed":
+            dest.order.orderState = OrderState.Completed
+        default:
+            print("Order Status N/A")
+        }
     }
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
         if !driverOrders.isEmpty{
             driverOrders.removeAll()
+            tableView.reloadData()
         }
         //get orders sent to the driver
         let ordersForDriverQuery = PFQuery(className:"Order")
@@ -157,6 +194,7 @@ class DriverOrdersViewController: UITableViewController {
         
         if !anyDriverOrders.isEmpty{
             anyDriverOrders.removeAll()
+             tableView.reloadData()
         }
         
         let ordersForAnyDriverQuery = PFQuery(className:"Order")

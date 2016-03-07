@@ -25,6 +25,7 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */; };
+		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
@@ -107,6 +108,7 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewController.swift; sourceTree = "<group>"; };
+		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -236,6 +238,7 @@
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
 				36D08F731C7A3ACD005B1E90 /* Order.swift */,
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
+				963A324C1C8CDFD40090CB2C /* Food.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
+				963A324D1C8CDFD40090CB2C /* Food.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
