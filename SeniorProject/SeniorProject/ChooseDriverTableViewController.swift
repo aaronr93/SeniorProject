@@ -9,6 +9,10 @@
 import UIKit
 import Parse
 
+class DriverCell : UITableViewCell{
+    @IBOutlet weak var driverName: UILabel!
+}
+
 class ChooseDriverTableViewController: UITableViewController {
 
     let drivers = Drivers()
@@ -29,7 +33,8 @@ class ChooseDriverTableViewController: UITableViewController {
         
         drivers.getDriversFromDB { (success) -> Void in
             if success{
-                print(self.drivers.list)
+                print("success")
+                self.tableView.reloadData()
             }else{
                 print("error getting drivers")
             }
@@ -109,17 +114,15 @@ class ChooseDriverTableViewController: UITableViewController {
     }
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
-        let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath)
+        let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath) as! DriverCell
         var cellText = ""
         let list = drivers.list[indexPath.row]
-        //if let driverAvailability = list["driverAvailability"] as? PFObject {
-            if let driver = list["driver"] as? PFObject {
-                if let name = driver["username"] as? String {
-                    cellText = name
-                }
+        if let driverAvailability = list["driverAvailability"]{
+            if let driver = driverAvailability["driver"] as? PFUser {
+                cellText = driver.username!
             }
-        //}
-        driverCell.textLabel?.text = cellText
+        }
+        driverCell.driverName.text = cellText
         return driverCell
     }
     

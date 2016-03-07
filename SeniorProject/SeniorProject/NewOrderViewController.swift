@@ -117,7 +117,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("newFoodCell", forIndexPath: indexPath) as! NewFoodItemCell
-        print(order.foodItems[indexPath.row].name!)
+  
         foodCell.foodItem.text = order.foodItems[indexPath.row].name!
         foodCell.foodDescription.text = order.foodItems[indexPath.row].description!
         
