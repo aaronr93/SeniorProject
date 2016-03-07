@@ -42,6 +42,8 @@ class SettingsViewController: UIViewController {
         let deleted = true
         PFUser.currentUser()?.setObject(deleted, forKey: "deleted")
         PFUser.currentUser()?.saveInBackground()
+        PFUser.logOut()
+        performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
     }
     
     @IBAction func doneChangingUsername(sender: UITextField) {
