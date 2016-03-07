@@ -158,5 +158,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     }
     
     // MARK: - Navigation
+    @IBAction func unwindSegueLogoutFromSettingsController(segue: UIStoryboardSegue) {}
+
 }
 
