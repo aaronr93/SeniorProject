@@ -21,6 +21,7 @@ class DriverRestaurantsViewController: UITableViewController {
     
     func getFromParse() {
         let getNearbyRestaurants = PFQuery(className:"Restaurant")
+        
         //itemsForDriverQuery.includeKey("name")
         getNearbyRestaurants.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in

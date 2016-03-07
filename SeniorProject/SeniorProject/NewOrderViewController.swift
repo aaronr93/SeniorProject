@@ -47,8 +47,9 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     
     func saveNewItem(newFoodItemVC: NewFoodItemViewController){
-        let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodNameText)
+        let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
         order.addFoodItem(foodItem)
+        self.tableView.reloadData()
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     

@@ -286,7 +286,7 @@
                                     <action selector="logoutButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="3MB-nc-TUN"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0711E61F-7305-489D-835E-3BC2D1AD5E9A" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="0D9EFF92-20E7-4B66-9D5A-76BF0EE0819F" translatesAutoresizingMaskIntoConstraints="NO" id="VYo-zU-8pX">
                                 <rect key="frame" x="42" y="87" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="GME-ad-eMn"/>
@@ -1200,6 +1200,10 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0ue-7C-0PC" secondAttribute="trailing" id="vS2-xk-7N5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="foodDescriptionField" destination="0ue-7C-0PC" id="Cp2-ze-vIl"/>
+                        <outlet property="foodNameField" destination="VZ8-a5-ShG" id="5k5-VU-reg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOC-H2-X2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1611,10 +1615,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="0711E61F-7305-489D-835E-3BC2D1AD5E9A" width="180" height="220">
+        <image name="0D9EFF92-20E7-4B66-9D5A-76BF0EE0819F" width="180" height="220">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
-GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
 c1dOU0NvbG9ygAKADRIgwAAAgAOAC1p7MTgwLCAyMjB90hUKFhhaTlMub2JqZWN0c6EXgASACtIVChod
 ohscgAWABoAJEADSIAohIl8QFE5TVElGRlJlcHJlc2VudGF0aW9ugAeACE8SAAJzbk1NACoAAmrI4ODg
 /+Dg4P/g4OD/4ODg/+Dg4P/g4OD/4ODg/+Dg4P/g4OD/4ODg/+Dg4P/g4OD/4ODg/+Dg4P/g4OD/4ODg
@@ -4294,15 +4298,15 @@ ZQBuAGUAcgBpAGMAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGV0ZXh0AAAAAENvcHlyaWdodCAyMDA3IEFw
 cGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQuAFhZWiAAAAAAAADzUgABAAAAARbPWFlaIAAAAAAA
 AHRNAAA97gAAA9BYWVogAAAAAAAAWnUAAKxzAAAXNFhZWiAAAAAAAAAoGgAAFZ8AALg2Y3VydgAAAAAA
 AAABAc0AAHNmMzIAAAAAAAEMQgAABd7///MmAAAHkgAA/ZH///ui///9owAAA9wAAMBs0iUmJyhaJGNs
-YXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0bWFwSW1hZ2VSZXCjKSorXxAQTlNCaXRtYXBJbWFnZVJlcFpO
-U0ltYWdlUmVwWE5TT2JqZWN00iUmLS5XTlNBcnJheaItK9IlJjAxXk5TTXV0YWJsZUFycmF5ozAtK9Mz
-NAo1NjdXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAzSJSY5OldOU0NvbG9yojkr0iUmPD1XTlNJ
-bWFnZaI8K18QD05TS2V5ZWRBcmNoaXZlctFAQVRyb290gAEAAAAIAAAAEQAAABoAAAAjAAAALQAAADIA
-AAA3AAAARgAAAEwAAABXAAAAXgAAAGUAAAByAAAAeQAAAIEAAACDAAAAhQAAAIoAAACMAAAAjgAAAJkA
-AACeAAAAqQAAAKsAAACtAAAArwAAALQAAAC3AAAAuQAAALsAAAC9AAAAvwAAAMQAAADbAAAA3QAAAN8A
-AnRTAAJ0WAACdGMAAnRsAAJ0fwACdIMAAnSWAAJ0oQACdKoAAnSvAAJ0twACdLoAAnS/AAJ0zgACdNIA
-AnTZAAJ04QACdO4AAnTzAAJ09QACdPcAAnT8AAJ1BAACdQcAAnUMAAJ1FAACdRcAAnUpAAJ1LAACdTEA
-AAAAAAAEAQAAAAAAAABCAAAAAAAAAAAAAAAAAAJ1Mw
+YXNzbmFtZVgkY2xhc3Nlc18QEE5TQml0bWFwSW1hZ2VSZXCjJykqWk5TSW1hZ2VSZXBYTlNPYmplY3TS
+JSYsLVdOU0FycmF5oiwq0iUmLzBeTlNNdXRhYmxlQXJyYXmjLywq0zIzCjQ1NldOU1doaXRlXE5TQ29s
+b3JTcGFjZUQwIDAAEAOADNIlJjg5V05TQ29sb3KiOCrSJSY7PFdOU0ltYWdlojsqXxAPTlNLZXllZEFy
+Y2hpdmVy0T9AVHJvb3SAAQAAAAgAAAARAAAAGgAAACMAAAAtAAAAMgAAADcAAABGAAAATAAAAFcAAABe
+AAAAZQAAAHIAAAB5AAAAgQAAAIMAAACFAAAAigAAAIwAAACOAAAAmQAAAJ4AAACpAAAAqwAAAK0AAACv
+AAAAtAAAALcAAAC5AAAAuwAAAL0AAAC/AAAAxAAAANsAAADdAAAA3wACdFMAAnRYAAJ0YwACdGwAAnR/
+AAJ0gwACdI4AAnSXAAJ0nAACdKQAAnSnAAJ0rAACdLsAAnS/AAJ0xgACdM4AAnTbAAJ04AACdOIAAnTk
+AAJ06QACdPEAAnT0AAJ0+QACdQEAAnUEAAJ1FgACdRkAAnUeAAAAAAAABAEAAAAAAAAAQQAAAAAAAAAA
+AAAAAAACdSA
 </mutableData>
         </image>
         <image name="vector gooey" width="1452" height="1897"/>

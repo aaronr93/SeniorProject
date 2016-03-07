@@ -13,7 +13,7 @@ class ChooseDriverTableViewController: UITableViewController {
 
     let drivers = Drivers()
     var chosenDriver: String = ""
-    var chosenRestaurant: String = "Sheetz"
+    var chosenRestaurant = ""
     let sectionHeaders = ["", "Choose a driver"]
     
     enum Section: Int {
@@ -24,22 +24,14 @@ class ChooseDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drivers.restaurant = chosenRestaurant
+        drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: "Oux08UfbZc")
+
         
-        drivers.availableDrivers.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.drivers.add(item)
-                    }
-                    self.tableView.reloadData()
-                }
-            } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+        drivers.getDriversFromDB { (success) -> Void in
+            if success{
+                print(self.drivers.list)
+            }else{
+                print("error getting drivers")
             }
         }
         
