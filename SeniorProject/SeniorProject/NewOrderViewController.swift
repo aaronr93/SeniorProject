@@ -170,7 +170,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             }
         case Section.Food.rawValue:
             // Food item field
-            performSegueWithIdentifier("editFoodItem", sender: self)
+            performSegueWithIdentifier("foodItem", sender: "fromCell")
             break
         case Section.Settings.rawValue:
             switch indexPath.row {
@@ -219,7 +219,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     }
     
     func showAddVC(sender: UIButton) {
-        performSegueWithIdentifier("editFoodItem", sender: self)
+        performSegueWithIdentifier("foodItem", sender: "fromPlus")
     }
     
     //manually set section header box heights
@@ -241,6 +241,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
             // Pass data to tell which driver should be selected by default
             chooseDriver.chosenRestaurant = order.restaurantName
+            chooseDriver.restaurantId = order.restaurantId
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
@@ -253,8 +254,15 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.delegate = self
         }
-        if segue.identifier == "editFoodItem" {
+        if segue.identifier == "foodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
+            var source = sender as? String
+            if source == "fromCell"{
+                //if user clicks a cell to edit
+                newFoodItemVC.foodNameText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].name!
+                newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!
+            }
+            
             newFoodItemVC.delegate = self
         }
     }

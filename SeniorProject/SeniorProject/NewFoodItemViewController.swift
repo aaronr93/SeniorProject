@@ -30,6 +30,14 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate{
         foodNameField.delegate = self
         foodDescriptionField.delegate = self
         
+        if !foodNameText.isEmpty{
+            foodNameField.text = foodNameText
+        }
+        
+        if !foodDescriptionText.isEmpty{
+            foodDescriptionField.text = foodDescriptionText
+        }
+        
         foodNameField.becomeFirstResponder()
         
         foodNameField.returnKeyType = UIReturnKeyType.Next

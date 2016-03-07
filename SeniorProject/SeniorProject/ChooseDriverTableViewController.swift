@@ -18,6 +18,7 @@ class ChooseDriverTableViewController: UITableViewController {
     let drivers = Drivers()
     var chosenDriver: String = ""
     var chosenRestaurant = ""
+    var restaurantId : String!
     let sectionHeaders = ["", "Choose a driver"]
     
     enum Section: Int {
@@ -28,7 +29,7 @@ class ChooseDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: "Oux08UfbZc")
+        drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: restaurantId)
 
         
         drivers.getDriversFromDB { (success) -> Void in

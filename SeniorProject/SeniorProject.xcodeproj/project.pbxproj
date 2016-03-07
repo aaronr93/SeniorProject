@@ -25,6 +25,7 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */; };
+		960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960813361C8E2252009AE1FE /* DriversClassTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
@@ -109,6 +110,7 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewController.swift; sourceTree = "<group>"; };
+		960813361C8E2252009AE1FE /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -332,6 +334,7 @@
 				9B3202061C8CD7D800749264 /* SettingsClassTests.swift */,
 				9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */,
 				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
+				960813361C8E2252009AE1FE /* DriversClassTests.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */,
 				9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */,
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
 				9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */,
