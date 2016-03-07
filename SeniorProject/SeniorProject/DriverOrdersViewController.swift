@@ -200,6 +200,7 @@ class DriverOrdersViewController: UITableViewController {
         ordersForAnyDriverQuery.includeKey("OrderingUser")
         ordersForAnyDriverQuery.whereKey("isAnyDriver", equalTo: true)
         ordersForAnyDriverQuery.whereKey("OrderingUser", notEqualTo: PFUser.currentUser()!)
+        ordersForAnyDriverQuery.whereKey("OrderState", equalTo: "Available")
         
         ordersForAnyDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in

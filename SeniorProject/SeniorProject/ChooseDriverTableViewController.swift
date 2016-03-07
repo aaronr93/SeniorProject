@@ -120,13 +120,13 @@ class ChooseDriverTableViewController: UITableViewController {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath)
         var cellText = ""
         let list = drivers.list[indexPath.row]
-        if let driverAvailability = list["driverAvailability"] as? PFObject {
-            if let driver = driverAvailability["driver"] as? PFObject {
-                if let name = driver["name"] as? String {
+        //if let driverAvailability = list["driverAvailability"] as? PFObject {
+            if let driver = list["driver"] as? PFObject {
+                if let name = driver["username"] as? String {
                     cellText = name
                 }
             }
-        }
+        //}
         driverCell.textLabel?.text = cellText
         return driverCell
     }

@@ -12,18 +12,54 @@ import Parse
 class Drivers {
     var list = [PFObject]()
     var availableDrivers = PFQuery(className: "DriverAvailableRestaurants")
-    let itemsForDriverQuery = PFQuery(className: "DriverAvailability")
     var restaurant = "Sheetz"
     
     init() {
-        itemsForDriverQuery.includeKey("driver")
-        itemsForDriverQuery.includeKey("username")
-        itemsForDriverQuery.whereKey("isCurrentlyAvailable", equalTo: true)
-        
-        availableDrivers.includeKey("restaurant")
         availableDrivers.limit = 10
-        availableDrivers.whereKey("name", equalTo: restaurant)
-    }    
+        
+        let availability = PFQuery(className: "DriverAvailability")
+        availability.whereKey("isCurrentlyAvailable", equalTo: true)
+        
+        var drivers = [PFObject]()
+        availability.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let items = objects {
+                    for item in items {
+                        drivers.append(item)
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+        let rests = PFQuery(className: "Restaurant")
+        rests.whereKey("name", equalTo: restaurant)
+        
+        var restaurants = [PFObject]()
+        rests.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let items = objects {
+                    for item in items {
+                        restaurants.append(item)
+                    }
+                }
+            } else {
+                // Log details of the failure
+                print("Error: \(error!) \(error!.userInfo)")
+            }
+        }
+        
+        availableDrivers.whereKey("driver", containedIn: drivers)
+        availableDrivers.whereKey("restaurant", containedIn: restaurants)
+    }
     
     func add(driver: PFObject) {
         if !list.contains(driver) {
