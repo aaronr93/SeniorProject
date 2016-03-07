@@ -109,8 +109,8 @@ class MyOrderTableViewController: UITableViewController {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        foodCell.foodItem.text = order.foodItems[indexPath.row]["food"]["name"] as? String
-        foodCell.foodDescription.text = order.foodItems[indexPath.row]["description"] as? String
+        foodCell.foodItem.text = order.foodItems[indexPath.row].name
+        foodCell.foodDescription.text = order.foodItems[indexPath.row].description
         return foodCell
     }
     
@@ -149,20 +149,19 @@ class MyOrderTableViewController: UITableViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        order.getFoodItemsFromParse() {
-            result in
-            if result {
-                // Food items successfully retrieved
-                self.tableView.reloadData()
-            } else {
-                // Error, didn't get food items
-            }
-        }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         manip.setCustomerStyleFor(actionButton, toReflect: order.orderState)
+        //get orders sent to the driver
+        order.getFoodItemsFromParse({
+            (success: Bool) in
+            if success == true{
+                print(self.order.foodItems)
+            }else{
+                print("items could not be retrieved")
+            }
+        })
     }
 
 }

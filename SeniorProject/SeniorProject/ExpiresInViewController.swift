@@ -13,7 +13,7 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var timePicker : UIPickerView!
     let timePickerData = ["15 Minutes", "30 Minutes", "1 Hour", "2 Hours"]
     var selectedTime = "15 Minutes"
-    var parent = NewOrderViewController()
+    var delegate : NewOrderViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +46,9 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
    
     
     override func viewWillDisappear(animated: Bool) {
-        parent.order.expiresIn = selectedTime
-        parent.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
-        NSLog(parent.order.expiresIn)
+        delegate.order.expiresIn = selectedTime
+        delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
+        NSLog(delegate.order.expiresIn)
     }
     
     

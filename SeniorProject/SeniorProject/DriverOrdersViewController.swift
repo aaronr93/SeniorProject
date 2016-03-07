@@ -162,6 +162,7 @@ class DriverOrdersViewController: UITableViewController {
         super.viewWillAppear(animated)
         if !driverOrders.isEmpty{
             driverOrders.removeAll()
+            tableView.reloadData()
         }
         //get orders sent to the driver
         let ordersForDriverQuery = PFQuery(className:"Order")
@@ -193,6 +194,7 @@ class DriverOrdersViewController: UITableViewController {
         
         if !anyDriverOrders.isEmpty{
             anyDriverOrders.removeAll()
+             tableView.reloadData()
         }
         
         let ordersForAnyDriverQuery = PFQuery(className:"Order")
