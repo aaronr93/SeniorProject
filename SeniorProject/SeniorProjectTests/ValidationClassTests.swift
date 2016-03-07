@@ -125,7 +125,7 @@ class ValidationClassTests: XCTestCase {
         XCTAssertFalse(usernameExistsInParse((testUsername)))
         
         //existing username
-        XCTAssertTrue(usernameExistsInParse("testuser123"))
+        XCTAssertTrue(usernameExistsInParse("kamkamkam"))
         
         
     }
