@@ -183,7 +183,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             }
         case Section.Food.rawValue:
             // Food item field
-            performSegueWithIdentifier("foodItem", sender: "fromCell")
+            performSegueWithIdentifier("editFoodItem", sender: "fromCell")
             break
         case Section.Settings.rawValue:
             switch indexPath.row {
@@ -232,7 +232,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     }
     
     func showAddVC(sender: UIButton) {
-        performSegueWithIdentifier("foodItem", sender: "fromPlus")
+        performSegueWithIdentifier("editFoodItem", sender: "fromPlus")
     }
     
     //manually set section header box heights
@@ -271,7 +271,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.delegate = self
         }
-        if segue.identifier == "foodItem" {
+        if segue.identifier == "editFoodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
             let source = sender as? String
             if source == "fromCell"{
