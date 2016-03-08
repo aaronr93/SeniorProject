@@ -14,7 +14,7 @@ protocol NewFoodItemViewDelegate {
     func saveNewItem(newOrderVC: NewFoodItemViewController)
 }
 
-class NewFoodItemViewController: UIViewController, UITextFieldDelegate{
+class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
 
     var delegate : NewOrderViewController!
     

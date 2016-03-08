@@ -27,9 +27,8 @@ class Order {
     var expiresIn: String = ""
     var foodItems = [Food]()
     var orderState = OrderState.Available
-    let itemsForOrderQuery = PFQuery(className:"OrderedItems")
     
-
+    let itemsForOrderQuery = PFQuery(className:"OrderedItems")
     
     func addFoodItem(toAdd: Food) {
         if !foodItems.contains( {$0.name == toAdd.name} ) {
@@ -117,16 +116,15 @@ class Order {
             if error != nil {
                 print(error)
             } else if let order = order {
-                completion(true)
                 // Changes fields in Parse to reflect new order state.
                 order["isAnyDriver"] = false
                 order["OrderState"] = "Acquired"
                 order["driverToDeliver"] = PFUser.currentUser()!
+                self.orderState = OrderState.Acquired
                 order.saveInBackground()
+                completion(true)
             }
         }
-        
-        orderState = OrderState.Acquired
     }
     
     func payFor(completion: (Bool) -> ()) {

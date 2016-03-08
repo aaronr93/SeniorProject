@@ -108,7 +108,7 @@ class DriverOrdersViewController: UITableViewController {
         dest.order.restaurantName  = driverOrders[index]["restaurant"]["name"] as! String
         dest.order.orderID  = driverOrders[index].objectId!
         dest.order.deliverTo = driverOrders[index]["OrderingUser"]["username"] as! String
-        let locationString: String = (driverOrders[index]["DeliveryAddress"] as! String) + " " + (driverOrders[index]["DeliveryCity"] as! String) + ", " + (driverOrders[index]["DeliveryState"] as! String) + " " + (driverOrders[index]["DeliveryZip"] as! String)
+        let locationString: String = driverOrders[index]["destination"]["name"] as! String
         dest.order.location = locationString
         dest.order.expiresIn = ParseDate.timeLeft(driverOrders[index]["expirationDate"] as! NSDate)
         
@@ -135,7 +135,7 @@ class DriverOrdersViewController: UITableViewController {
         dest.order.restaurantName  = anyDriverOrders[index]["restaurant"]["name"] as! String
         dest.order.orderID  = anyDriverOrders[index].objectId!
         dest.order.deliverTo = anyDriverOrders[index]["OrderingUser"]["username"] as! String
-        let locationString: String = (anyDriverOrders[index]["DeliveryAddress"] as! String) + " " + (anyDriverOrders[index]["DeliveryCity"] as! String) + ", " + (anyDriverOrders[index]["DeliveryState"] as! String) + " " + (anyDriverOrders[index]["DeliveryZip"] as! String)
+        let locationString: String = anyDriverOrders[index]["destination"]["name"] as! String
         dest.order.location = locationString
         dest.order.expiresIn = ParseDate.timeLeft(anyDriverOrders[index]["expirationDate"] as! NSDate)
         
@@ -168,6 +168,7 @@ class DriverOrdersViewController: UITableViewController {
         let ordersForDriverQuery = PFQuery(className:"Order")
         ordersForDriverQuery.includeKey("restaurant")
         ordersForDriverQuery.includeKey("OrderingUser")
+        ordersForDriverQuery.includeKey("destination")
         ordersForDriverQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersForDriverQuery.whereKey("OrderState", equalTo: "Available")
         ordersForDriverQuery.whereKey("expirationDate", greaterThan: NSDate())
@@ -200,6 +201,7 @@ class DriverOrdersViewController: UITableViewController {
         let ordersForAnyDriverQuery = PFQuery(className:"Order")
         ordersForAnyDriverQuery.includeKey("restaurant")
         ordersForAnyDriverQuery.includeKey("OrderingUser")
+        ordersForAnyDriverQuery.includeKey("destination")
         ordersForAnyDriverQuery.whereKey("isAnyDriver", equalTo: true)
         ordersForAnyDriverQuery.whereKey("OrderState", equalTo: "Available")
         ordersForAnyDriverQuery.whereKey("expirationDate", greaterThan: NSDate())

@@ -72,7 +72,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        if(selectedSomething){
+        if selectedSomething {
             delegate.order.restaurantName = restaurants[currentCell]["name"] as! String
         }
         delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
