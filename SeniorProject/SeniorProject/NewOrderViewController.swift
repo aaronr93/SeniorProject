@@ -45,6 +45,19 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
+    func editNewItem(newFoodItemVC: NewFoodItemViewController){
+        if let index = newFoodItemVC.index{
+            if !newFoodItemVC.foodNameText.isEmpty{
+                order.foodItems[index].name = newFoodItemVC.foodNameText
+            }
+            if !newFoodItemVC.foodDescriptionText.isEmpty{
+                order.foodItems[index].description = newFoodItemVC.foodDescriptionText
+            }
+        }
+        self.tableView.reloadData()
+        newFoodItemVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     func saveNewItem(newFoodItemVC: NewFoodItemViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
@@ -256,11 +269,12 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         }
         if segue.identifier == "foodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
-            var source = sender as? String
+            let source = sender as? String
             if source == "fromCell"{
                 //if user clicks a cell to edit
                 newFoodItemVC.foodNameText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].name!
                 newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!
+                newFoodItemVC.index = self.tableView.indexPathForSelectedRow?.row
             }
             
             newFoodItemVC.delegate = self
