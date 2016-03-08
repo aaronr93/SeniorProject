@@ -45,6 +45,19 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
+    func editNewItem(newFoodItemVC: NewFoodItemViewController){
+        if let index = newFoodItemVC.index{
+            if !newFoodItemVC.foodNameText.isEmpty{
+                order.foodItems[index].name = newFoodItemVC.foodNameText
+            }
+            if !newFoodItemVC.foodDescriptionText.isEmpty{
+                order.foodItems[index].description = newFoodItemVC.foodDescriptionText
+            }
+        }
+        self.tableView.reloadData()
+        newFoodItemVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
     
     func saveNewItem(newFoodItemVC: NewFoodItemViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
@@ -170,7 +183,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             }
         case Section.Food.rawValue:
             // Food item field
-            performSegueWithIdentifier("editFoodItem", sender: self)
+            performSegueWithIdentifier("foodItem", sender: "fromCell")
             break
         case Section.Settings.rawValue:
             switch indexPath.row {
@@ -219,7 +232,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     }
     
     func showAddVC(sender: UIButton) {
-        performSegueWithIdentifier("editFoodItem", sender: self)
+        performSegueWithIdentifier("foodItem", sender: "fromPlus")
     }
     
     //manually set section header box heights
@@ -241,6 +254,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
             // Pass data to tell which driver should be selected by default
             chooseDriver.chosenRestaurant = order.restaurantName
+            chooseDriver.restaurantId = order.restaurantId
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
@@ -257,8 +271,16 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.delegate = self
         }
-        if segue.identifier == "editFoodItem" {
+        if segue.identifier == "foodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
+            let source = sender as? String
+            if source == "fromCell"{
+                //if user clicks a cell to edit
+                newFoodItemVC.foodNameText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].name!
+                newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!
+                newFoodItemVC.index = self.tableView.indexPathForSelectedRow?.row
+            }
+            
             newFoodItemVC.delegate = self
         }
     }

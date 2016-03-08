@@ -13,7 +13,7 @@ class HomeUITests: SeniorProjectUITests {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        XCUIApplication().launch()
+        //XCUIApplication().launch()
     }
     
     override func tearDown() {

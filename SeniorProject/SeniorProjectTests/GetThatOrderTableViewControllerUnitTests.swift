@@ -52,9 +52,9 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
         //order has to be acquired before it can be paid for
         viewController.order.acquire(){
             result in
-            result
+            XCTAssert(self.viewController.order.orderState == OrderState.Acquired)
         }
-        XCTAssert(viewController.order.orderState == OrderState.Acquired)
+        
         
         viewController.order.payFor(){
             result in

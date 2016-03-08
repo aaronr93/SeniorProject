@@ -12,6 +12,7 @@ import Parse
 protocol NewFoodItemViewDelegate {
     func cancelNewItem(newOrderVC: NewFoodItemViewController)
     func saveNewItem(newOrderVC: NewFoodItemViewController)
+    func editNewItem(newOrderVC: NewFoodItemViewController)
 }
 
 class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
@@ -23,12 +24,21 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     
     var foodNameText = ""
     var foodDescriptionText = ""
+    var index : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         foodNameField.delegate = self
         foodDescriptionField.delegate = self
+        
+        if !foodNameText.isEmpty{
+            foodNameField.text = foodNameText
+        }
+        
+        if !foodDescriptionText.isEmpty{
+            foodDescriptionField.text = foodDescriptionText
+        }
         
         foodNameField.becomeFirstResponder()
         
@@ -43,6 +53,10 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
             foodDescriptionField.resignFirstResponder()
             foodNameText = foodNameField.text!
             foodDescriptionText = foodDescriptionField.text!
+            if (index != nil){
+                delegate.editNewItem(self)
+                return true
+            }
             if foodNameText.isEmpty{
                 delegate.cancelNewItem(self)
                 return true
