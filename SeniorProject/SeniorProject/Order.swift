@@ -125,7 +125,26 @@ class Order {
         }
         
         newOrder["driverToDeliver"] = deliveredByID
+        newOrder["restaurant"] = restaurantId
+        //let ti = NSTimeInterval.init(Int(expiresIn)!)
+        //let expDate = NSDate().dateByAddingTimeInterval(ti)
+        //let expDate = NSDate().addHours(Int(expiresIn)!)
+        newOrder["expirationDate"] = NSDate()
         
+        createDestination(newOrder) {
+            result in
+            if result {
+                // Destination successful
+                print("Success in creating destination for order")
+                newOrder.saveInBackground()
+            } else {
+                print("Error: destination unsuccessful")
+            }
+        }
+        
+    }
+    
+    func createDestination(newOrder: PFObject, completion: (Bool) -> ()) {
         let destinationQuery = PFQuery(className: "CustomerDestinations")
         destinationQuery.getFirstObjectInBackgroundWithBlock {
             (object: PFObject?, error: NSError?) -> Void in
@@ -134,13 +153,13 @@ class Order {
                 // Do something with the found objects
                 if let item = object {
                     newOrder["destination"] = item.objectId
+                    completion(true)
                 }
             } else {
                 // Log details of the failure
                 print(error)
             }
         }
-        
     }
     
     func acquire(completion: (Bool) -> ()) {
