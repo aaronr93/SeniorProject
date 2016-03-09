@@ -41,9 +41,14 @@ class SettingsViewController: UIViewController {
     @IBAction func deleteButtonTapped(sender: UIButton) {
         let deleted = true
         PFUser.currentUser()?.setObject(deleted, forKey: "deleted")
-        PFUser.currentUser()?.saveInBackground()
-        PFUser.logOut()
-        performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
+        PFUser.currentUser()?.saveInBackgroundWithBlock({ (x: Bool, error: NSError?) -> Void in
+            if error != nil {
+                NSLog("error in delete account save")
+            } else {
+                PFUser.logOut()
+                self.performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
+            }
+        })
     }
     
     @IBAction func doneChangingUsername(sender: UITextField) {
