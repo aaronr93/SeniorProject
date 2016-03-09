@@ -39,25 +39,16 @@ class CustomerDestinations {
         return item
     }
     
-    func addDestinationItemToDB(destinationItem: Destination) {
-        let parseDestinationItem = destinationItemToPFObject(destinationItem)
-        
-        let alreadyThereQuery = PFQuery(className: "CustomerDestinations")
-        alreadyThereQuery.whereKey("name", equalTo: parseDestinationItem["name"])
-        alreadyThereQuery.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-            if error == nil {
-                if let item = object {
-                    if item["name"] as! String != parseDestinationItem["name"] as! String {
-                        parseDestinationItem.saveInBackground()
-                    } else {
-                        print("Item \(parseDestinationItem["name"]) already exists")
-                    }
-                }
-            } else {
-                print(error)
+    func addDestinationItemToDB(destinationItem: Destination) -> Bool {
+        for dest in history {
+            if dest.name == destinationItem.name {
+                print("Destination already exists")
+                return false
             }
         }
-        
+        let parseDestinationItem = destinationItemToPFObject(destinationItem)
+        parseDestinationItem.saveInBackground()
+        return true
     }
     
     func getDestinationItemsFromParse(completion: (success: Bool) -> Void) {

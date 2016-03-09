@@ -847,6 +847,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Submit"/>
+                            <connections>
+                                <action selector="submit:" destination="Bxg-Sp-IY2" eventType="touchUpInside" id="Uj6-TX-lMJ"/>
+                            </connections>
                         </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="chooseRestaurantCell" id="WdE-IY-aDx" customClass="ChooseRestaurantCell" customModule="SeniorProject" customModuleProvider="target">
@@ -1080,14 +1083,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMJ-3O-397">
-                                <rect key="frame" x="0.0" y="192" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="106" width="600" height="216"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EMJ-3O-397" firstAttribute="centerY" secondItem="day-KT-Qiu" secondAttribute="centerY" id="HLd-fF-Zyz"/>
-                            <constraint firstItem="EMJ-3O-397" firstAttribute="leading" secondItem="day-KT-Qiu" secondAttribute="leading" id="Zce-lZ-lg0"/>
-                            <constraint firstAttribute="trailing" secondItem="EMJ-3O-397" secondAttribute="trailing" id="nLp-uy-4ra"/>
+                            <constraint firstItem="EMJ-3O-397" firstAttribute="top" secondItem="mLr-ym-mhX" secondAttribute="bottom" constant="42" id="HOT-XL-zro"/>
+                            <constraint firstAttribute="trailing" secondItem="EMJ-3O-397" secondAttribute="trailing" id="Ogf-NS-Ls3"/>
+                            <constraint firstItem="EMJ-3O-397" firstAttribute="leading" secondItem="day-KT-Qiu" secondAttribute="leading" id="c0g-hv-eg3"/>
                         </constraints>
                     </view>
                     <connections>

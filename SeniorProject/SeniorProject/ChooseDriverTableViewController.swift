@@ -114,6 +114,7 @@ class ChooseDriverTableViewController: UITableViewController {
         if let driverAvailability = list["driverAvailability"] {
             if let driver = driverAvailability["driver"] as? PFUser {
                 cellText = driver.username!
+                
             }
         }
         driverCell.driverName.text = cellText

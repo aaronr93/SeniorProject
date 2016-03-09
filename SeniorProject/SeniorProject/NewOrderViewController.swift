@@ -54,14 +54,12 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
-    
     func saveNewItem(newFoodItemVC: NewFoodItemViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
         order.addFoodItem(foodItem)
         self.tableView.reloadData()
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
-    
     
     @IBAction func orderCancelled(sender: UIBarButtonItem) {
         delegate.cancelNewOrder(self)
@@ -280,6 +278,11 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
             newFoodItemVC.delegate = self
         }
     }
+    
+    @IBAction func submit(sender: UIButton) {
+        order.create()
+    }
+    
 }
 
 

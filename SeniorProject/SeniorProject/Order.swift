@@ -23,7 +23,9 @@ class Order {
     var restaurantName: String = "Select a Restaurant"
     var orderID: String = ""
     var deliverTo: String = ""
+    var deliverToID = PFUser()
     var deliveredBy: String = ""
+    var deliveredByID = PFUser()
     var location: String = ""
     var expiresIn: String = ""
     var foodItems = [Food]()
@@ -106,6 +108,39 @@ class Order {
                 completion(success: false)
             }
         }
+    }
+    
+    func create() {
+        // Sent when a customer submits an order.
+        
+        let newOrder = PFObject(className: "Order")
+        
+        newOrder["OrderingUser"] = PFUser.currentUser()!
+        newOrder["OrderState"] = "Available"
+        
+        if deliveredBy == "Any driver" {
+            newOrder["isAnyDriver"] = true
+        } else {
+            newOrder["isAnyDriver"] = false
+        }
+        
+        newOrder["driverToDeliver"] = deliveredByID
+        
+        let destinationQuery = PFQuery(className: "CustomerDestinations")
+        destinationQuery.getFirstObjectInBackgroundWithBlock {
+            (object: PFObject?, error: NSError?) -> Void in
+            if error == nil {
+                // The find succeeded.
+                // Do something with the found objects
+                if let item = object {
+                    newOrder["destination"] = item.objectId
+                }
+            } else {
+                // Log details of the failure
+                print(error)
+            }
+        }
+        
     }
     
     func acquire(completion: (Bool) -> ()) {
