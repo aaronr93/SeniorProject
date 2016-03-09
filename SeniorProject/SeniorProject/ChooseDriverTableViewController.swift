@@ -21,6 +21,8 @@ class ChooseDriverTableViewController: UITableViewController {
     var restaurantId : String!
     let sectionHeaders = ["", "Choose a driver"]
     
+    var delegate: NewOrderViewController!
+    
     enum Section: Int {
         case AnyDriver = 0
         case ChooseDriver = 1
@@ -29,14 +31,16 @@ class ChooseDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        chosenRestaurant = delegate.order.restaurantName
+        restaurantId = delegate.order.restaurantId
+        
         drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: restaurantId)
-
         
         drivers.getDriversFromDB { (success) -> Void in
-            if success{
+            if success {
                 print("success")
                 self.tableView.reloadData()
-            }else{
+            } else {
                 print("error getting drivers")
             }
         }
@@ -63,7 +67,7 @@ class ChooseDriverTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
+        switch section {
         case Section.AnyDriver.rawValue: //no title for first header--just for looks
             return sectionHeaders[0]
         case Section.ChooseDriver.rawValue: //2nd header title: "choose a driver"
@@ -75,50 +79,39 @@ class ChooseDriverTableViewController: UITableViewController {
     
     //populates table rows according to driver section semantics
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         switch indexPath.section {
         case Section.AnyDriver.rawValue: //static 'any driver' row
+            
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
+            
         case Section.ChooseDriver.rawValue: //populate available driver for that row of the section
+            
             return cellForDriversList(tableView, indexPath: indexPath)
+            
         default: //shouldn't get here!
+            
             let cell: UITableViewCell! = nil
             return cell
+            
         }
         
         // (02/21 6:17 PM) In the future, highlight the driver that is already selected.
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.section == Section.AnyDriver.rawValue {
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
-                    cell.accessoryType = UITableViewCellAccessoryType.None
-                } else if cell.accessoryType == UITableViewCellAccessoryType.None {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    chosenDriver = cell.textLabel!.text!
-                    cell.selected = false
-                }
-            }
-        } else if indexPath.section == Section.ChooseDriver.rawValue {
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
-                    cell.accessoryType = UITableViewCellAccessoryType.None
-                } else if cell.accessoryType == UITableViewCellAccessoryType.None {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    chosenDriver = cell.textLabel!.text!
-                    cell.selected = false
-                }
-            }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            let driver = cell.textLabel!.text!
+            chosenDriver = driver
         }
-        return indexPath
     }
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath) as! DriverCell
         var cellText = ""
         let list = drivers.list[indexPath.row]
-        if let driverAvailability = list["driverAvailability"]{
+        if let driverAvailability = list["driverAvailability"] {
             if let driver = driverAvailability["driver"] as? PFUser {
                 cellText = driver.username!
             }
@@ -127,11 +120,9 @@ class ChooseDriverTableViewController: UITableViewController {
         return driverCell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "chooseDriver" {
-            let newOrder = segue.destinationViewController as! NewOrderViewController
-            newOrder.order.deliveredBy = chosenDriver
-        }
+    override func viewWillDisappear(animated: Bool) {
+        delegate.order.deliveredBy = chosenDriver
+        delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 2)], withRowAnimation: .None)
     }
 
 }

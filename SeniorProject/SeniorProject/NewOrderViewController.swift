@@ -22,11 +22,6 @@ class NewFoodItemCell: UITableViewCell {
     @IBOutlet weak var foodDescription: UILabel!
 }
 
-class NewDeliveryItemCell: UITableViewCell {
-    @IBOutlet weak var deliveryTitle: UILabel!
-    @IBOutlet weak var value: UILabel!
-}
-
 class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     var delegate: NewOrderViewDelegate!
@@ -34,6 +29,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
     let order = Order()
+    var current = NSIndexPath()
     
     enum Section: Int {
         case Restaurant = 0
@@ -45,7 +41,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
-    func editNewItem(newFoodItemVC: NewFoodItemViewController){
+    func editNewItem(newFoodItemVC: NewFoodItemViewController) {
         if let index = newFoodItemVC.index{
             if !newFoodItemVC.foodNameText.isEmpty{
                 order.foodItems[index].name = newFoodItemVC.foodNameText
@@ -138,10 +134,10 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     }
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath) as! NewDeliveryItemCell
+        let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath)
        
-        deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
-        deliveryCell.value.text = getTextFor(indexPath.row)
+        deliveryCell.textLabel!.text! = deliverySectionTitles[indexPath.row]
+        deliveryCell.detailTextLabel!.text! = getTextFor(indexPath.row)
         
         return deliveryCell
     }
@@ -179,6 +175,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         case Section.Restaurant.rawValue:
             if indexPath.row == 0 {
                 // Restaurant field
+                current = indexPath
                 performSegueWithIdentifier("chooseRestaurant", sender: self)
             }
         case Section.Food.rawValue:
@@ -208,7 +205,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == Section.Food.rawValue {//only the 'Food items' section needs this (section '1' zero-indexed)
-            let headerFrame:CGRect = tableView.frame
+            let headerFrame: CGRect = tableView.frame
             
             let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
             title.text = "Food items"
@@ -253,13 +250,12 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
             // Pass data to tell which driver should be selected by default
-            chooseDriver.chosenRestaurant = order.restaurantName
-            chooseDriver.restaurantId = order.restaurantId
+            chooseDriver.delegate = self
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
-            chooseExpiration.delegate = self
-            if(order.expiresIn != ""){
+            chooseExpiration.newOrderDelegate = self
+            if (order.expiresIn != "") {
                 chooseExpiration.selectedTime = order.expiresIn
             }
         }
@@ -274,7 +270,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         if segue.identifier == "editFoodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
             let source = sender as? String
-            if source == "fromCell"{
+            if source == "fromCell" {
                 //if user clicks a cell to edit
                 newFoodItemVC.foodNameText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].name!
                 newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!

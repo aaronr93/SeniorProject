@@ -17,14 +17,14 @@ protocol NewFoodItemViewDelegate {
 
 class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
 
-    var delegate : NewOrderViewController!
+    var delegate: NewOrderViewController!
     
     @IBOutlet weak var foodDescriptionField: UITextField!
     @IBOutlet weak var foodNameField: UITextField!
     
     var foodNameText = ""
     var foodDescriptionText = ""
-    var index : Int?
+    var index: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +32,11 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
         foodNameField.delegate = self
         foodDescriptionField.delegate = self
         
-        if !foodNameText.isEmpty{
+        if !foodNameText.isEmpty {
             foodNameField.text = foodNameText
         }
         
-        if !foodDescriptionText.isEmpty{
+        if !foodDescriptionText.isEmpty {
             foodDescriptionField.text = foodDescriptionText
         }
         
@@ -49,15 +49,15 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == foodNameField { // Switch focus to other text field
             foodDescriptionField.becomeFirstResponder()
-        }else if textField == foodDescriptionField{
+        } else if textField == foodDescriptionField {
             foodDescriptionField.resignFirstResponder()
             foodNameText = foodNameField.text!
             foodDescriptionText = foodDescriptionField.text!
-            if (index != nil){
+            if (index != nil) {
                 delegate.editNewItem(self)
                 return true
             }
-            if foodNameText.isEmpty{
+            if foodNameText.isEmpty {
                 delegate.cancelNewItem(self)
                 return true
             }

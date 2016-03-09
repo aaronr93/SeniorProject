@@ -12,7 +12,7 @@ import Parse
 class DriverRestaurantPreferences {
     var active: Bool = false
     var restaurants = [PFObject]()
-    var expirationTime: NSDate = NSDate()
+    var expirationTime = ""
     
     func addRestaurant(toAdd: PFObject) {
         if !restaurants.contains(toAdd) {

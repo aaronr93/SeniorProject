@@ -103,21 +103,25 @@ class DriverRestaurantsViewController: UITableViewController {
     }
     
     func cellsForSettings(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if indexPath.row == 0 {     // "Expiration time" cell
+            
             let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: indexPath)
-            expirationCell.focusStyle = UITableViewCellFocusStyle.Custom
-            let exampleTime = "26:42"
-            expirationCell.textLabel!.text = "Availability expires in: \(exampleTime)"
-            expirationCell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            //tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            expirationCell.textLabel!.text! = "Expires In"
+            let time = prefs.expirationTime
+            expirationCell.detailTextLabel!.text! = time
             return expirationCell
-        } else if indexPath.row == 1 {
+            
+        } else if indexPath.row == 1 {  // "Availability" cell
+            
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
             availabilityCell.available.selected = prefs.active
             return availabilityCell
+            
         } else {
+            
             let cell: UITableViewCell! = nil
             return cell
+            
         }
     }
     
@@ -134,8 +138,19 @@ class DriverRestaurantsViewController: UITableViewController {
             }
         } else if indexPath.section == 1 {
             // Settings
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-                cell.selected = false
+            if indexPath.row == 0 {
+                // Expiration time
+                performSegueWithIdentifier("expiresInSegue", sender: self)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "expiresInSegue" {
+            let dest = segue.destinationViewController as! ExpiresInViewController
+            dest.driverRestaurantDelegate = self
+            if prefs.expirationTime != "" {
+                dest.selectedTime = prefs.expirationTime
             }
         }
     }
