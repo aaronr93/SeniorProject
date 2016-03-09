@@ -170,6 +170,7 @@ class DriverOrdersViewController: UITableViewController {
         ordersForDriverQuery.includeKey("OrderingUser")
         ordersForDriverQuery.includeKey("destination")
         ordersForDriverQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
+        ordersForDriverQuery.whereKey("OrderingUser", notEqualTo: PFUser.currentUser()!)
         ordersForDriverQuery.whereKey("OrderState", equalTo: "Available")
         ordersForDriverQuery.whereKey("expirationDate", greaterThan: NSDate())
         
@@ -205,6 +206,7 @@ class DriverOrdersViewController: UITableViewController {
         ordersForAnyDriverQuery.whereKey("isAnyDriver", equalTo: true)
         ordersForAnyDriverQuery.whereKey("OrderState", equalTo: "Available")
         ordersForAnyDriverQuery.whereKey("expirationDate", greaterThan: NSDate())
+        ordersForAnyDriverQuery.whereKey("OrderingUser", notEqualTo: PFUser.currentUser()!)
         
         ordersForAnyDriverQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
