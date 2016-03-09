@@ -26,6 +26,10 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     var foodDescriptionText = ""
     var index: Int?
     
+    @IBAction func done(sender: UIBarButtonItem) {
+        sendFoodItem()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -51,21 +55,24 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
             foodDescriptionField.becomeFirstResponder()
         } else if textField == foodDescriptionField {
             foodDescriptionField.resignFirstResponder()
-            foodNameText = foodNameField.text!
-            foodDescriptionText = foodDescriptionField.text!
-            if (index != nil) {
-                delegate.editNewItem(self)
-                return true
-            }
-            if foodNameText.isEmpty {
-                delegate.cancelNewItem(self)
-                return true
-            }
-            delegate.saveNewItem(self)
+            return sendFoodItem()
         }
         return true
     }
     
-    
+    func sendFoodItem() -> Bool {
+        foodNameText = foodNameField.text!
+        foodDescriptionText = foodDescriptionField.text!
+        if (index != nil) {
+            delegate.editNewItem(self)
+            return true
+        }
+        if foodNameText.isEmpty {
+            delegate.cancelNewItem(self)
+            return true
+        }
+        delegate.saveNewItem(self)
+        return true
+    }
     
 }

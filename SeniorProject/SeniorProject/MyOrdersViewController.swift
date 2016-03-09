@@ -23,6 +23,7 @@ class MyOrdersViewController: UITableViewController {
         let ordersISentQuery = PFQuery(className:"Order")
         ordersISentQuery.includeKey("restaurant")
         ordersISentQuery.includeKey("driverToDeliver")
+        ordersISentQuery.includeKey("destination")
         ordersISentQuery.whereKey("OrderingUser", equalTo: PFUser.currentUser()!)
         ordersISentQuery.whereKey("OrderState", notEqualTo: "Completed")
         //ordersISentQuery.whereKey("OrderState", notEqualTo: "Available")
@@ -49,6 +50,7 @@ class MyOrdersViewController: UITableViewController {
         let ordersIReceivedQuery = PFQuery(className:"Order")
         ordersIReceivedQuery.includeKey("restaurant")
         ordersIReceivedQuery.includeKey("OrderingUser")
+        ordersIReceivedQuery.includeKey("destination")
         ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
         ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Completed")
         //ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
@@ -142,14 +144,23 @@ class MyOrdersViewController: UITableViewController {
     }
     
     func passOrdersIReceivedInfo(index: Int, dest: GetThatOrderTableViewController) {
-        dest.order.restaurantName  = ordersIReceived[index]["restaurant"]["name"] as! String
-        dest.order.orderID  = ordersIReceived[index].objectId!
-        dest.order.deliverTo = ordersIReceived[index]["OrderingUser"]["username"] as! String
-        let locationString: String = (ordersIReceived[index]["DeliveryAddress"] as! String) + " " + (ordersIReceived[index]["DeliveryCity"] as! String) + ", " + (ordersIReceived[index]["DeliveryState"] as! String) + " " + (ordersIReceived[index]["DeliveryZip"] as! String)
-        dest.order.location = locationString
-        dest.order.expiresIn = ParseDate.timeLeft(ordersIReceived[index]["expirationDate"] as! NSDate)
+        let order = ordersIReceived[index]
+        dest.order.restaurantName  = order["restaurant"]["name"] as! String
+        dest.order.orderID  = order.objectId!
+        dest.order.deliverTo = order["OrderingUser"]["username"] as! String
         
-        let orderStatus = ordersIReceived[index]["OrderState"] as! String
+        if let destination = order["destination"] as? PFObject {
+            if let destName = destination["name"] as? String {
+                if !destName.isEmpty {
+                    dest.order.location = destName
+                } else {
+                    dest.order.location = ""
+                }
+            }
+        }
+        dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
+        
+        let orderStatus = order["OrderState"] as! String
         switch orderStatus {
         case "Available":
             dest.order.orderState = OrderState.Available
@@ -171,34 +182,50 @@ class MyOrdersViewController: UITableViewController {
     func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
         let order = ordersISent[index]
         
-        dest.order.restaurantName  = order["restaurant"]["name"] as! String
+        if let restaurant = order["restaurant"] as? PFObject {
+            if let name = restaurant["name"] as? String {
+                dest.order.restaurantName = name
+            }
+        }
         dest.order.orderID  = order.objectId!
         if (order["driverToDeliver"] != nil) {
-            dest.order.deliverTo = order["driverToDeliver"]["username"] as! String
+            if let driverToDeliver = order["driverToDeliver"] as? PFObject {
+                if let username = driverToDeliver["username"] as? String {
+                    dest.order.deliverTo = username
+                }
+            }
         } else {
-            dest.order.deliverTo = "Not Accepted"
+            dest.order.deliverTo = "Not accepted"
         }
         
-        let orderStatus = order["OrderState"] as! String
-        switch orderStatus {
-        case "Available":
-            dest.order.orderState = OrderState.Available
-        case "Acquired":
-            dest.order.orderState = OrderState.Acquired
-        case "Deleted":
-            dest.order.orderState = OrderState.Deleted
-        case "PaidFor":
-            dest.order.orderState = OrderState.PaidFor
-        case "Delivered":
-            dest.order.orderState = OrderState.Delivered
-        case "Completed":
-            dest.order.orderState = OrderState.Completed
-        default:
-            print("Order Status N/A")
+        if let orderStatus = order["OrderState"] as? String {
+            switch orderStatus {
+            case "Available":
+                dest.order.orderState = OrderState.Available
+            case "Acquired":
+                dest.order.orderState = OrderState.Acquired
+            case "Deleted":
+                dest.order.orderState = OrderState.Deleted
+            case "PaidFor":
+                dest.order.orderState = OrderState.PaidFor
+            case "Delivered":
+                dest.order.orderState = OrderState.Delivered
+            case "Completed":
+                dest.order.orderState = OrderState.Completed
+            default:
+                print("Order Status N/A")
+            }
         }
         
-        let locationString: String = (order["DeliveryAddress"] as! String) + " " + (order["DeliveryCity"] as! String) + ", " + (order["DeliveryState"] as! String) + " " + (order["DeliveryZip"] as! String)
-        dest.order.location = locationString
+        if let destination = order["destination"] as? PFObject {
+            if let destName = destination["name"] as? String {
+                if !destName.isEmpty {
+                    dest.order.location = destName
+                } else {
+                    dest.order.location = ""
+                }
+            }
+        }
         dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
     }
     

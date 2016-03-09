@@ -1019,15 +1019,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="anyDriver" textLabel="xup-r5-gMh" style="IBUITableViewCellStyleDefault" id="zY4-uj-QhY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="anyDriver" textLabel="xup-r5-gMh" style="IBUITableViewCellStyleDefault" id="zY4-uj-QhY">
                                 <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zY4-uj-QhY" id="1Kj-hi-nOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="561" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Any driver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xup-r5-gMh">
-                                            <rect key="frame" x="15" y="0.0" width="546" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1154,7 +1154,7 @@
             </objects>
             <point key="canvasLocation" x="4091" y="1883"/>
         </scene>
-        <!--New Food Item View Controller-->
+        <!--Food item-->
         <scene sceneID="VW9-C9-PBw">
             <objects>
                 <viewController storyboardIdentifier="newFoodItem" id="OFI-uE-9TK" customClass="NewFoodItemViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -1189,6 +1189,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0ue-7C-0PC" secondAttribute="trailing" id="vS2-xk-7N5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Food item" id="je1-eC-fGM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="VrQ-lJ-IZD">
+                            <connections>
+                                <action selector="done:" destination="OFI-uE-9TK" id="K0x-vd-x8g"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="foodDescriptionField" destination="0ue-7C-0PC" id="Cp2-ze-vIl"/>
                         <outlet property="foodNameField" destination="VZ8-a5-ShG" id="5k5-VU-reg"/>
