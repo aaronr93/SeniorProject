@@ -13,6 +13,10 @@ class DriverCell : UITableViewCell{
     @IBOutlet weak var driverName: UILabel!
 }
 
+protocol ChooseDriverDelegate {
+    func saveDriverToDeliver(chooseDriverVC: ChooseDriverTableViewController)
+}
+
 class ChooseDriverTableViewController: UITableViewController {
 
     let drivers = Drivers()
@@ -104,6 +108,7 @@ class ChooseDriverTableViewController: UITableViewController {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             let driver = cell.textLabel!.text!
             chosenDriver = driver
+            delegate.saveDriverToDeliver(self)
         }
     }
     
@@ -123,7 +128,7 @@ class ChooseDriverTableViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         delegate.order.deliveredBy = chosenDriver
-        delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 2)], withRowAnimation: .None)
+        //delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 2)], withRowAnimation: .None)
     }
 
 }

@@ -9,6 +9,10 @@
 import UIKit
 import Parse
 
+protocol RestaurantsNewOrderDelegate {
+    func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController)
+}
+
 class RestaurantsNewOrderTableViewController: UITableViewController {
     
     var restaurants = [PFObject]()
@@ -57,10 +61,10 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
         return self.restaurants.count
     }
 
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         currentCell = indexPath.row
         selectedSomething  = true
-        return indexPath
+        delegate.saveRestaurant(self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

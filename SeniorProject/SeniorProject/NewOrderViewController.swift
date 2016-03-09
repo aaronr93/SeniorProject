@@ -22,7 +22,7 @@ class NewFoodItemCell: UITableViewCell {
     @IBOutlet weak var foodDescription: UILabel!
 }
 
-class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
+class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, ChooseDriverDelegate, RestaurantsNewOrderDelegate, DeliveryLocationDelegate {
     
     var delegate: NewOrderViewDelegate!
     
@@ -54,11 +54,30 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
+    // Delegate method for New Food Item
     func saveNewItem(newFoodItemVC: NewFoodItemViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
         order.addFoodItem(foodItem)
         self.tableView.reloadData()
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // Delegate method for Choose Driver
+    func saveDriverToDeliver(chooseDriverVC: ChooseDriverTableViewController) {
+        self.tableView.reloadData()
+        chooseDriverVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // Delegate mehtod for Choose Restaurant
+    func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController) {
+        self.tableView.reloadData()
+        restaurantsNewOrderVC.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // Delegate method for Choose Delivery Location
+    func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController) {
+        self.tableView.reloadData()
+        deliveryLocationVC.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func orderCancelled(sender: UIBarButtonItem) {

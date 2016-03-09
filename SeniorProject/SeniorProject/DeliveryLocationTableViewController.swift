@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DeliveryLocationDelegate {
+    func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController)
+}
+
 class DeliveryLocationTableViewController: UITableViewController, CustomDeliveryLocationDelegate {
     
     var deliveryLocation: String = ""
@@ -81,12 +85,12 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
         }
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 { // History of delivery locations
             let index = indexPath.row
             deliveryLocation = dest.history[index].name!
         }
-        return indexPath
+        delegate.saveDeliveryLocation(self)
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

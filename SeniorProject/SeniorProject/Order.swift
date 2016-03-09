@@ -117,13 +117,6 @@ class Order {
         
         newOrder["OrderingUser"] = PFUser.currentUser()!
         newOrder["OrderState"] = "Available"
-        
-        if deliveredBy == "Any driver" {
-            newOrder["isAnyDriver"] = true
-        } else {
-            newOrder["isAnyDriver"] = false
-        }
-        
         newOrder["driverToDeliver"] = deliveredByID
         newOrder["restaurant"] = restaurantId
         //let ti = NSTimeInterval.init(Int(expiresIn)!)
@@ -131,12 +124,24 @@ class Order {
         //let expDate = NSDate().addHours(Int(expiresIn)!)
         newOrder["expirationDate"] = NSDate()
         
+        if deliveredBy == "Any driver" {
+            newOrder["isAnyDriver"] = true
+        } else {
+            newOrder["isAnyDriver"] = false
+        }
+        
         createDestination(newOrder) {
             result in
             if result {
                 // Destination successful
                 print("Success in creating destination for order")
-                newOrder.saveInBackground()
+                newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        print("Success saving order!")
+                    }
+                })
             } else {
                 print("Error: destination unsuccessful")
             }
@@ -165,7 +170,7 @@ class Order {
     func acquire(completion: (Bool) -> ()) {
         // Sent when a driver picks up an order.
         
-        let query = PFQuery(className:"Order")
+        let query = PFQuery(className: "Order")
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
