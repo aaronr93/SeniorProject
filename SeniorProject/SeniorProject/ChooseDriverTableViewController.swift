@@ -21,6 +21,7 @@ class ChooseDriverTableViewController: UITableViewController {
 
     let drivers = Drivers()
     var chosenDriver: String = ""
+    var chosenDriverID: String = ""
     var chosenRestaurant = ""
     var restaurantId : String!
     let sectionHeaders = ["", "Choose a driver"]
@@ -108,7 +109,18 @@ class ChooseDriverTableViewController: UITableViewController {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             let driver = cell.textLabel!.text!
             chosenDriver = driver
-            delegate.saveDriverToDeliver(self)
+            let index = indexPath.row
+            
+            let driverAvailabilityForRestaurant = drivers.list[index]
+            
+            if let driverAvailability = driverAvailabilityForRestaurant["driverAvailability"]{
+                if let driver = driverAvailability["driver"] as? PFObject{
+                    chosenDriverID = driver.objectId!
+                    print("chosen driver ID" + chosenDriverID)
+                    print("chosen driver ID" + (driver["username"] as! String))
+                    delegate.saveDriverToDeliver(self)
+                }
+            }
         }
     }
     

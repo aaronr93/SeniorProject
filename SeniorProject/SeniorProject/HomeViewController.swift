@@ -14,6 +14,10 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
         newOrderVC.navigationController?.popViewControllerAnimated(true)
     }
+    
+    func orderSaved(newOrderVC: NewOrderViewController){
+        newOrderVC.navigationController?.popViewControllerAnimated(true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

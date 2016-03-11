@@ -23,9 +23,10 @@ class Order {
     var restaurantName: String = "Select a Restaurant"
     var orderID: String = ""
     var deliverTo: String = ""
-    var deliverToID = PFUser()
+    var deliverToID: String = ""
+    var destinationID: String = ""
     var deliveredBy: String = ""
-    var deliveredByID = PFUser()
+    var deliveredByID: String = ""
     var location: String = ""
     var expiresIn: String = ""
     var foodItems = [Food]()
@@ -110,54 +111,67 @@ class Order {
         }
     }
     
-    func create() {
+    func create(completion: (success: Bool) -> Void) {
         // Sent when a customer submits an order.
         
         let newOrder = PFObject(className: "Order")
         
         newOrder["OrderingUser"] = PFUser.currentUser()!
         newOrder["OrderState"] = "Available"
-        newOrder["driverToDeliver"] = deliveredByID
-        newOrder["restaurant"] = restaurantId
-        //let ti = NSTimeInterval.init(Int(expiresIn)!)
-        //let expDate = NSDate().dateByAddingTimeInterval(ti)
-        //let expDate = NSDate().addHours(Int(expiresIn)!)
-        newOrder["expirationDate"] = NSDate()
-        
-        if deliveredBy == "Any driver" {
-            newOrder["isAnyDriver"] = true
-        } else {
-            newOrder["isAnyDriver"] = false
-        }
-        
-        createDestination(newOrder) {
-            result in
-            if result {
-                // Destination successful
-                print("Success in creating destination for order")
-                newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                    if error != nil {
-                        print(error)
+        let getDriverToDeliver = PFUser.query()!
+        getDriverToDeliver.whereKey("objectId", equalTo: deliveredByID)
+
+        getDriverToDeliver.getFirstObjectInBackgroundWithBlock { (user, error) -> Void in
+            if error == nil{
+                newOrder["driverToDeliver"] = user
+                newOrder["restaurant"] = PFObject(withoutDataWithClassName: "Restaurant", objectId: self.restaurantId)
+                //let ti = NSTimeInterval.init(Int(expiresIn)!)
+                //let expDate = NSDate().dateByAddingTimeInterval(ti)
+                //let expDate = NSDate().addHours(Int(expiresIn)!)
+                newOrder["expirationDate"] = NSDate()
+                
+                if self.deliveredBy == "Any driver" {
+                    newOrder["isAnyDriver"] = true
+                } else {
+                    newOrder["isAnyDriver"] = false
+                }
+                
+                self.createDestination(newOrder) {
+                    result in
+                    if result {
+                        // Destination successful
+                        print("Success in creating destination for order")
+                        newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                            if error != nil {
+                                print(error)
+                                return
+                            } else {
+                                print("Success saving order!")
+                                completion(success: true)
+                            }
+                        })
                     } else {
-                        print("Success saving order!")
+                        print("Error: destination unsuccessful")
+                        return
                     }
-                })
-            } else {
-                print("Error: destination unsuccessful")
+                }
+            }else{
+                print("error")
+                return
             }
         }
-        
     }
     
     func createDestination(newOrder: PFObject, completion: (Bool) -> ()) {
         let destinationQuery = PFQuery(className: "CustomerDestinations")
+        destinationQuery.whereKey("objectId", equalTo: destinationID)
         destinationQuery.getFirstObjectInBackgroundWithBlock {
             (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
                 // The find succeeded.
                 // Do something with the found objects
                 if let item = object {
-                    newOrder["destination"] = item.objectId
+                    newOrder["destination"] = item
                     completion(true)
                 }
             } else {

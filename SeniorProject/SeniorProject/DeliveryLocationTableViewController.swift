@@ -15,6 +15,7 @@ protocol DeliveryLocationDelegate {
 class DeliveryLocationTableViewController: UITableViewController, CustomDeliveryLocationDelegate {
     
     var deliveryLocation: String = ""
+    var destinationID: String = ""
     var delegate: NewOrderViewController!
     var selectIndex = NSIndexPath()
     let dest = CustomerDestinations()
@@ -89,6 +90,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
         if indexPath.section == 1 { // History of delivery locations
             let index = indexPath.row
             deliveryLocation = dest.history[index].name!
+            destinationID = dest.history[index].id!
         }
         delegate.saveDeliveryLocation(self)
     }
@@ -109,13 +111,27 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
             delegate.order.location = customValue
             
             // Add the newly typed item to the database for later use
-            let destItem = Destination(name: customValue)
+            let destItem = Destination(name: customValue, id: nil)
+            for destI in (dest.history) {
+                if destI.name == destI.name {
+                    print("Destination already exists")
+                    return
+                }
+            }
             if destItem.name != "" {
-                dest.addDestinationItemToDB(destItem)
+                dest.addDestinationItemToDB(destItem, completion: { (success, id) in
+                    if success{
+                        destItem.id = id
+                        self.delegate.order.destinationID = id!
+                    }else{
+                        print("error adding destination item to DB")
+                    }
+                })
             }
             
         } else {
             delegate.order.location = deliveryLocation
+            delegate.order.destinationID = destinationID
         }
         delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 2)], withRowAnimation: .Automatic)
     }

@@ -39,16 +39,17 @@ class CustomerDestinations {
         return item
     }
     
-    func addDestinationItemToDB(destinationItem: Destination) -> Bool {
-        for dest in history {
-            if dest.name == destinationItem.name {
-                print("Destination already exists")
-                return false
-            }
-        }
+    func addDestinationItemToDB(destinationItem: Destination, completion: (success: Bool, id: String?) -> Void){
         let parseDestinationItem = destinationItemToPFObject(destinationItem)
-        parseDestinationItem.saveInBackground()
-        return true
+        parseDestinationItem.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if (success) {
+                completion(success: true, id: parseDestinationItem.objectId)
+            }
+            else
+            {
+                completion(success: false, id: nil)
+            }
+        })
     }
     
     func getDestinationItemsFromParse(completion: (success: Bool) -> Void) {
@@ -64,7 +65,8 @@ class CustomerDestinations {
                 if let items = objects {
                     for item in items {
                         let name = item["name"] as! String
-                        let destinationItem = Destination(name: name)
+                        let id = item.objectId!
+                        let destinationItem = Destination(name: name, id: id)
                         self.add(destinationItem)
                         // Populate the history of destinations
                     }

@@ -11,6 +11,7 @@ import Parse
 
 protocol NewOrderViewDelegate {
     func cancelNewOrder(newOrderVC: NewOrderViewController)
+    func orderSaved(newOrderVC: NewOrderViewController)
 }
 
 class ChooseRestaurantCell: UITableViewCell {
@@ -64,6 +65,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     
     // Delegate method for Choose Driver
     func saveDriverToDeliver(chooseDriverVC: ChooseDriverTableViewController) {
+        self.order.deliveredByID = chooseDriverVC.chosenDriverID
         self.tableView.reloadData()
         chooseDriverVC.navigationController?.popViewControllerAnimated(true)
     }
@@ -77,6 +79,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     // Delegate method for Choose Delivery Location
     func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController) {
         self.tableView.reloadData()
+        order.destinationID = deliveryLocationVC.destinationID
+        print(order.destinationID)
         deliveryLocationVC.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -299,7 +303,14 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     @IBAction func submit(sender: UIButton) {
-        order.create()
+        order.create { (success) -> Void in
+            if success{
+                print("order successful")
+                self.delegate.cancelNewOrder(self)
+            }else{
+                print("order failed")
+            }
+        }
     }
     
 }
