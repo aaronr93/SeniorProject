@@ -60,7 +60,7 @@ class ChangePasswordViewController: UIViewController {
                             print("passwords dont match...try again")
                         }
                     } else {
-                        print("Invalid loging credentials")
+                        print("Invalid login credentials")
                     }
                 }
             }

@@ -114,70 +114,126 @@ class Order {
     func create(completion: (success: Bool) -> Void) {
         // Sent when a customer submits an order.
         
-        let newOrder = PFObject(className: "Order")
+        if foodItems.isEmpty{
+            completion(success: false)
+            return
+        }
         
-        newOrder["OrderingUser"] = PFUser.currentUser()!
-        newOrder["OrderState"] = "Available"
-        let getDriverToDeliver = PFUser.query()!
-        getDriverToDeliver.whereKey("objectId", equalTo: deliveredByID)
-
-        getDriverToDeliver.getFirstObjectInBackgroundWithBlock { (user, error) -> Void in
-            if error == nil{
-                newOrder["driverToDeliver"] = user
-                newOrder["restaurant"] = PFObject(withoutDataWithClassName: "Restaurant", objectId: self.restaurantId)
-                //let ti = NSTimeInterval.init(Int(expiresIn)!)
-                //let expDate = NSDate().dateByAddingTimeInterval(ti)
-                //let expDate = NSDate().addHours(Int(expiresIn)!)
-                newOrder["expirationDate"] = NSDate()
+        if restaurantId != ""{
+            let newOrder = PFObject(className: "Order")
+            
+            newOrder["OrderingUser"] = PFUser.currentUser()!
+            newOrder["OrderState"] = "Available"
+            //if specific driver
+            if !deliveredByID.isEmpty{
+                let getDriverToDeliver = PFUser.query()!
+                getDriverToDeliver.whereKey("objectId", equalTo: deliveredByID)
                 
-                if self.deliveredBy == "Any driver" {
-                    newOrder["isAnyDriver"] = true
-                } else {
-                    newOrder["isAnyDriver"] = false
-                }
-                
-                self.createDestination(newOrder) {
-                    result in
-                    if result {
-                        // Destination successful
-                        print("Success in creating destination for order")
-                        newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                            if error != nil {
-                                print(error)
-                                return
-                            } else {
-                                print("Success saving order!")
+                //get the driver
+                getDriverToDeliver.getFirstObjectInBackgroundWithBlock { (user, error) -> Void in
+                    if error == nil{
+                        newOrder["isAnyDriver"] = false
+                        newOrder["driverToDeliver"] = user
+                        //finish order
+                        self.newOrderSetup(newOrder, completion: { (success) -> Void in
+                            if success{
                                 completion(success: true)
+                                return
+                            }else{
+                                completion(success: false)
+                                return
                             }
                         })
-                    } else {
-                        print("Error: destination unsuccessful")
+                    }else{
+                        print("error")
+                        completion(success: false)
                         return
                     }
                 }
-            }else{
-                print("error")
+                //if any driver
+            }else if deliveredByID.isEmpty && deliveredBy == "Any driver"{
+                newOrder["isAnyDriver"] = true
+                self.newOrderSetup(newOrder, completion: { (success) -> Void in
+                    if success{
+                        completion(success: true)
+                    }else{
+                        completion(success: false)
+                    }
+                })
+            }
+            else{
+                print("must select a driver")
+            }
+        }
+        else{
+            print("must select a restaurant")
+        }
+        
+    }
+    
+    func newOrderSetup(newOrder: PFObject,completion: (success: Bool) -> Void){
+        let restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: self.restaurantId)
+        
+        newOrder["restaurant"] = restaurant
+        
+        //need to add future date based on selection picked
+        newOrder["expirationDate"] = NSDate()
+        
+        self.createDestination(newOrder) {
+            result in
+            if result {
+                // Destination successful
+                print("Success in creating destination for order")
+                newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    if error != nil {
+                        completion(success: false)
+                        print(error)
+                        return
+                    } else {
+                        print("Success saving order!")
+                        /*for foodItem in self.foodItems{
+                            let newFoodItem = PFObject(className: "OrderedItems")
+                            newFoodItem["order"] = newOrder
+                            let doesFoodExistQuery = PFQuery(className: "Food")
+                            doesFoodExistQuery.whereKey("restaurant", equalTo: restaurant)
+                            doesFoodExistQuery.whereKey("name", equalTo: foodItem.name!.lowercaseString)
+                            doesFoodExistQuery.getFirstObjectInBackgroundWithBlock({ (food, error) -> Void in
+                                
+                            })
+                        }*/
+                        completion(success: true)
+                    }
+                })
+            } else {
+                print("Error: destination unsuccessful")
+                completion(success: false)
                 return
             }
         }
+
     }
     
-    func createDestination(newOrder: PFObject, completion: (Bool) -> ()) {
+    func createDestination(newOrder: PFObject, completion: (success: Bool) -> Void) {
         let destinationQuery = PFQuery(className: "CustomerDestinations")
-        destinationQuery.whereKey("objectId", equalTo: destinationID)
-        destinationQuery.getFirstObjectInBackgroundWithBlock {
-            (object: PFObject?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let item = object {
-                    newOrder["destination"] = item
-                    completion(true)
+        if !destinationID.isEmpty{
+            destinationQuery.whereKey("objectId", equalTo: destinationID)
+            destinationQuery.getFirstObjectInBackgroundWithBlock {
+                (object: PFObject?, error: NSError?) -> Void in
+                if error == nil {
+                    // The find succeeded.
+                    // Do something with the found objects
+                    if let item = object {
+                        newOrder["destination"] = item
+                        completion(success: true)
+                    }
+                } else {
+                    // Log details of the failure
+                    print(error)
                 }
-            } else {
-                // Log details of the failure
-                print(error)
             }
+        }else{
+            print("location must be entered")
+            completion(success: false)
         }
     }
     
