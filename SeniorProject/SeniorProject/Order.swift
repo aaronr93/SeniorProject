@@ -191,16 +191,43 @@ class Order {
                         return
                     } else {
                         print("Success saving order!")
-                        /*for foodItem in self.foodItems{
+                        for foodItem in self.foodItems{
                             let newFoodItem = PFObject(className: "OrderedItems")
+                            newFoodItem["description"] = foodItem.description
                             newFoodItem["order"] = newOrder
                             let doesFoodExistQuery = PFQuery(className: "Food")
                             doesFoodExistQuery.whereKey("restaurant", equalTo: restaurant)
                             doesFoodExistQuery.whereKey("name", equalTo: foodItem.name!.lowercaseString)
-                            doesFoodExistQuery.getFirstObjectInBackgroundWithBlock({ (food, error) -> Void in
-                                
+                            doesFoodExistQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
+                                if error == nil{
+                                    if let matchedFoodItems = results{
+                                        if !matchedFoodItems.isEmpty{
+                                            //add to ordered items but not food
+                                            newFoodItem["food"] = matchedFoodItems.first
+                                            print(foodItem.name!.lowercaseString + " already added to foodclass")
+                                            newFoodItem.saveInBackground()
+                                        }else{
+                                            //add to ordered itsm and food
+                                            print("adding " + foodItem.name!.lowercaseString + " to food class")
+                                            let foodItemForClass = PFObject(className: "Food")
+                                            foodItemForClass["name"] = foodItem.name!.lowercaseString
+                                            foodItemForClass["restaurant"] = restaurant
+                                            foodItemForClass.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                                if success{
+                                                    newFoodItem["food"] = foodItemForClass
+                                                    newFoodItem.saveInBackground()
+                                                }else{
+                                                    print("error saving food")
+                                                }
+                                            })
+                                        }
+                                    }
+                                }else{
+                                    print("error getting food item match")
+                                }
                             })
-                        }*/
+                            
+                        }
                         completion(success: true)
                     }
                 })
