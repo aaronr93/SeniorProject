@@ -306,9 +306,10 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         order.create { (success) -> Void in
             if success{
                 print("order successful")
-                self.delegate.cancelNewOrder(self)
+                self.delegate.orderSaved(self)
             }else{
                 print("order failed")
+                self.delegate.cancelNewOrder(self)
             }
         }
     }

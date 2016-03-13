@@ -190,7 +190,7 @@ class Order {
                         print(error)
                         return
                     } else {
-                        print("Success saving order!")
+                        var foodCount = 0
                         for foodItem in self.foodItems{
                             let newFoodItem = PFObject(className: "OrderedItems")
                             newFoodItem["description"] = foodItem.description
@@ -205,7 +205,16 @@ class Order {
                                             //add to ordered items but not food
                                             newFoodItem["food"] = matchedFoodItems.first
                                             print(foodItem.name!.lowercaseString + " already added to foodclass")
-                                            newFoodItem.saveInBackground()
+                                            newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                                if success{
+                                                    print(foodCount)
+                                                    if foodCount == self.foodItems.count{
+                                                        //then this is the last item in the array
+                                                        completion(success: true)
+                                                        return
+                                                    }
+                                                }
+                                            })
                                         }else{
                                             //add to ordered itsm and food
                                             print("adding " + foodItem.name!.lowercaseString + " to food class")
@@ -215,7 +224,16 @@ class Order {
                                             foodItemForClass.saveInBackgroundWithBlock({ (success, error) -> Void in
                                                 if success{
                                                     newFoodItem["food"] = foodItemForClass
-                                                    newFoodItem.saveInBackground()
+                                                    newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
+                                                        if success{
+                                                            print(foodCount)
+                                                            if foodCount == self.foodItems.count{
+                                                                //then this is the last item in the array
+                                                                completion(success: true)
+                                                                return
+                                                            }
+                                                        }
+                                                    })
                                                 }else{
                                                     print("error saving food")
                                                 }
@@ -226,9 +244,9 @@ class Order {
                                     print("error getting food item match")
                                 }
                             })
-                            
+                            foodCount += 1
                         }
-                        completion(success: true)
+                        print("Success saving order!")
                     }
                 })
             } else {
@@ -256,6 +274,7 @@ class Order {
                 } else {
                     // Log details of the failure
                     print(error)
+                    completion(success: false)
                 }
             }
         }else{
