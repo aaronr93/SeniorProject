@@ -132,8 +132,20 @@ class GetThatOrderTableViewController: UITableViewController {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        foodCell.foodItem.text = order.foodItems[indexPath.row].name
-        foodCell.foodDescription.text = order.foodItems[indexPath.row].description
+        print(indexPath.row)
+        if let foodName = order.foodItems[indexPath.row].name{
+            print(foodName)
+            foodCell.foodItem.text = foodName
+        }else{
+            foodCell.foodItem.text = ""
+        }
+        
+        if let foodDescription = order.foodItems[indexPath.row].description{
+            foodCell.foodDescription.text = foodDescription
+        }else{
+            foodCell.foodDescription.text = ""
+        }
+        
         return foodCell
     }
     
