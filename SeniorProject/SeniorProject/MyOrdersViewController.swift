@@ -148,6 +148,7 @@ class MyOrdersViewController: UITableViewController {
         dest.order.restaurantName  = order["restaurant"]["name"] as! String
         dest.order.orderID  = order.objectId!
         dest.order.deliverTo = order["OrderingUser"]["username"] as! String
+        dest.order.deliverToID = order["OrderingUser"].objectId!!
         
         if let destination = order["destination"] as? PFObject {
             if let destName = destination["name"] as? String {

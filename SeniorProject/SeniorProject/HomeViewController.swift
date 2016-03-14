@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 
 class HomeViewController: UIViewController, NewOrderViewDelegate {
     
@@ -21,8 +21,13 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        //set installation user for push notifications
+        let installation = PFInstallation.currentInstallation()
+        installation["user"] = PFUser.currentUser()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

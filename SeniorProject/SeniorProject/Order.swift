@@ -315,7 +315,13 @@ class Order {
                 order["OrderState"] = "PaidFor"
                 self.orderState = OrderState.PaidFor
                 order.saveInBackground()
+                //send notification
+                let name:String = (PFUser.currentUser()?.username!)!
+                let notification = Notification(content: "\(name) paid for your order!", sendToID: self.deliverToID)
+                notification.push()
+                
                 completion(true)
+                
             }
         }
     }

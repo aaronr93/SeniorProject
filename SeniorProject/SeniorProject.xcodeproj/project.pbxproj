@@ -59,6 +59,7 @@
 		9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020C1C8DF58600749264 /* AppDelegate.swift */; };
 		9B32020F1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */; };
 		9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */; };
+		9B3202531C97599100749264 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202521C97599100749264 /* Notification.swift */; };
 		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
@@ -156,6 +157,7 @@
 		9B32020C1C8DF58600749264 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUITests.swift; sourceTree = "<group>"; };
+		9B3202521C97599100749264 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				963A324C1C8CDFD40090CB2C /* Food.swift */,
 				3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */,
 				3641A59B1C8E568C0046BC97 /* Destination.swift */,
+				9B3202521C97599100749264 /* Notification.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -437,8 +440,12 @@
 				TargetAttributes = {
 					96DD81D21C56B8AE004CE3A7 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 74YMV2J9D7;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -525,6 +532,7 @@
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */,
 				9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */,
+				9B3202531C97599100749264 /* Notification.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */,
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
@@ -700,9 +708,8 @@
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey.foodini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -722,9 +729,8 @@
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey.foodini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
 			};
 			name = Release;
