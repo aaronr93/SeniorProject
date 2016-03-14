@@ -160,6 +160,7 @@ class DriverOrdersViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
+        
         if !driverOrders.isEmpty{
             driverOrders.removeAll()
             tableView.reloadData()

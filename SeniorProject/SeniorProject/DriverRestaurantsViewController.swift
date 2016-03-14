@@ -14,10 +14,83 @@ class AvailabilityCell: UITableViewCell {
     @IBOutlet weak var available: UISwitch!
 }
 
-class DriverRestaurantsViewController: UITableViewController {
+class DriverRestaurantsViewController: UITableViewController, CLLocationManagerDelegate {
     
     let prefs = DriverRestaurantPreferences()
     let sectionHeaders = ["Restaurants", "Settings"]
+    let user = PFUser.currentUser()!
+    var nearbyRestaurants = [PFObject]()
+    let driver = PFUser.currentUser()!
+    
+    let defaultMileage = 15.0
+    
+    let locationManager = CLLocationManager()
+    let geocoder = CLGeocoder()
+    var location : CLLocationCoordinate2D?
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        print("location manager")
+        
+        //update their location in the database
+        let point = PFGeoPoint(latitude:locValue.latitude, longitude:locValue.longitude)
+        user["locationCoord"] = point
+        user.saveInBackground()
+        
+        self.updateRestaurants()
+        
+        
+        //TODO: load any driver requests by distance
+    }
+    
+    func getRestaurantsByDistance(userGeoPoint: PFGeoPoint){
+        // Create a query for places
+        let query = PFQuery(className:"Restaurant")
+        // Interested in locations near user.
+        query.whereKey("locationCoord", nearGeoPoint:userGeoPoint, withinMiles:defaultMileage)
+        // Limit what could be a lot of points.
+        query.limit = 20
+        // Final list of objects
+        _ = query.findObjectsInBackgroundWithBlock { (restaurantObjects, error) -> Void in
+            if error == nil{
+                if let restaurants = restaurantObjects{
+                    self.nearbyRestaurants = restaurants
+                    self.tableView.reloadData()
+                }else{
+                    self.tableView.reloadData()
+                    print("No closeby restaurants")
+                }
+            }else{
+                print("error getting closeby restaurants")
+            }
+        }
+    }
+    
+    func updateRestaurants(){
+        if let userGeoPoint = user["locationCoord"] as? PFGeoPoint{
+                getRestaurantsByDistance(userGeoPoint)
+        }else{
+            print("no user location")
+        }
+    }
+    
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        let addressString : String = "89-30 70th road Forest Hills, NY"
+        
+        self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+            if error != nil {
+                print("Geocode failed with error: \(error!.localizedDescription)")
+            } else if placemarks!.count > 0 {
+                let placemark = placemarks![0]
+                self.location = placemark.location?.coordinate
+                print(self.location)
+                //TODO: load any driver requests by last recorded distance
+                
+            }
+        })
+    }
     
     func getFromParse() {
         let getNearbyRestaurants = PFQuery(className:"Restaurant")
@@ -43,7 +116,38 @@ class DriverRestaurantsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getFromParse()
+        //getFromParse()
+    }
+    
+    func findDriversLocation(){
+        // For use in foreground
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            //accurate active location
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.requestLocation()
+            
+        }else{
+            //need to use last location in table since we cannot use location services
+            
+            let addressString : String = "89-30 70th road Forest Hills, NY"
+            self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+                if error != nil {
+                    print("Geocode failed with error: \(error!.localizedDescription)")
+                } else if placemarks!.count > 0 {
+                    self.updateRestaurants()
+                    //TODO: load any driver requests by last recorded or inputted distance
+                    
+                }
+            })
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        findDriversLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +165,7 @@ class DriverRestaurantsViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case 0: //'restaurants' section -- number of restaurants available to select from
-            return prefs.restaurants.count
+            return nearbyRestaurants.count
         case 1: //'settings' section, which always has two rows (availability expiration and available yes/no)
             return 2
         default: //shouldn't get here
@@ -94,10 +198,10 @@ class DriverRestaurantsViewController: UITableViewController {
     
     func cellForRestaurants(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurant", forIndexPath: indexPath)
-        if indexPath.row > prefs.restaurants.count {
+        if indexPath.row > nearbyRestaurants.count {
             print("Somehow, there are more rows than there are restaurants.")
         } else {
-            restaurantCell.textLabel!.text = prefs.restaurants[indexPath.row]["name"] as? String
+            restaurantCell.textLabel!.text = nearbyRestaurants[indexPath.row]["name"] as? String
         }
         return restaurantCell
     }
@@ -125,14 +229,112 @@ class DriverRestaurantsViewController: UITableViewController {
         }
     }
     
+    func addRestaurantPreference(restaurant: PFObject, completion: (success: Bool) -> Void){
+        let driverAvailableRestaurant = PFObject(className: "DriverAvailableRestaurants")
+        
+        driverAvailableRestaurant["restaurant"] = restaurant
+        
+        let driverAvailablityQuery = PFQuery(className: "DriverAvailability")
+        
+        driverAvailablityQuery.whereKey("driver", equalTo: driver)
+        
+        driverAvailablityQuery.findObjectsInBackgroundWithBlock { (driverAvailabilityObjects, error) -> Void in
+            if error == nil{
+                if let driverAvailablities = driverAvailabilityObjects{
+                    if !driverAvailablities.isEmpty{
+                        driverAvailableRestaurant["driverAvailability"] = driverAvailablities.first!
+                        driverAvailableRestaurant.saveInBackgroundWithBlock({ (success, error) -> Void in
+                            if error == nil && success{
+                                completion(success: true)
+                            }else{
+                                print("Error: Saving driver available restaurant")
+                                completion(success: false)
+                            }
+                        })
+                        
+                    }else{
+                        print("Error: No driver availabilities!")
+                        completion(success: false)
+                    }
+                }
+            }else{
+                print("Error: Error querying driver availibility")
+                completion(success: false)
+            }
+        }
+    }
+    
+    func deleteRestaurantPreference(restaurant: PFObject, completion: (success: Bool) -> Void){
+        
+        let driverAvailablityQuery = PFQuery(className: "DriverAvailability")
+        
+        driverAvailablityQuery.whereKey("driver", equalTo: driver)
+        
+        driverAvailablityQuery.findObjectsInBackgroundWithBlock { (driverAvailabilityObjects, error) -> Void in
+            if error == nil{
+                if let driverAvailablities = driverAvailabilityObjects{
+                    if !driverAvailablities.isEmpty{
+                        let driverAvailableRestaurantQuery = PFQuery(className: "DriverAvailableRestaurants")
+                        print(driverAvailablities.first!.objectId)
+                        print(restaurant.objectId)
+                        driverAvailableRestaurantQuery.whereKey("driverAvailability", equalTo: driverAvailablities.first!)
+                        driverAvailableRestaurantQuery.whereKey("restaurant", equalTo: restaurant)
+                        
+                        driverAvailableRestaurantQuery.findObjectsInBackgroundWithBlock({ (driverAvailableRestaurantsObjects, errorDriverAvailableRestaurant) -> Void in
+                            if errorDriverAvailableRestaurant == nil{
+                                if let driverAvailableRestaurants = driverAvailableRestaurantsObjects{
+                                    if !driverAvailableRestaurants.isEmpty{
+                                        driverAvailableRestaurants.first!.deleteInBackgroundWithBlock({ (deleteSuccess, deleteError) -> Void in
+                                            if deleteError == nil && deleteSuccess{
+                                                completion(success: true)
+                                            }else{
+                                                print("Error: Saving driver available restaurant")
+                                                completion(success: false)
+                                            }
+                                        })
+                                    }else{
+                                        print("Error: Query yielded no results")
+                                        completion(success: false)
+                                    }
+                                }
+                            }
+                        })
+                    }else{
+                        print("Error: No driver availabilities!")
+                        completion(success: false)
+                    }
+                }
+            }else{
+                print("Error: Error querying driver availibility")
+                completion(success: false)
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if indexPath.section == 0 {
             // Restaurants
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
-                    cell.accessoryType = UITableViewCellAccessoryType.None
+                    deleteRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
+                        if success{
+                            print("successfully deleted restaurant preference")
+                            cell.accessoryType = UITableViewCellAccessoryType.None
+                        }else{
+                            print("error deleting restaurant preference")
+                        }
+                        
+                    })
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    addRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
+                        if success{
+                            print("successfully added restaurant preference")
+                            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                        }else{
+                            print("error adding restaurant preference")
+                        }
+                        
+                    })
                 }
                 cell.selected = false
             }
