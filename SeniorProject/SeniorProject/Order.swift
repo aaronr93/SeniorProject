@@ -246,6 +246,14 @@ class Order {
                             })
                             foodCount += 1
                         }
+                        
+                        if(!self.deliveredByID.isEmpty){
+                            //notify the driver
+                            let name:String = (PFUser.currentUser()?.username!)!
+                            let notification = Notification(content: "\(name) sent you an order!", sendToID: self.deliveredByID)
+                            notification.push()
+                        }
+                        
                         print("Success saving order!")
                     }
                 })
@@ -338,6 +346,10 @@ class Order {
                 order["OrderState"] = "Delivered"
                 self.orderState = OrderState.Delivered
                 order.saveInBackground()
+                //send notification
+                let name:String = (PFUser.currentUser()?.username!)!
+                let notification = Notification(content: "\(name) is at the delivery location!", sendToID: self.deliverToID)
+                notification.push()
                 completion(true)
             }
         }
