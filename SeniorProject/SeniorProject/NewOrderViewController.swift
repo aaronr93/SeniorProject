@@ -276,6 +276,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         if indexPath.section == Section.Food.rawValue {
             return UITableViewCellEditingStyle.Delete
+        } else {
+            return UITableViewCellEditingStyle.None
         }
     }
     
