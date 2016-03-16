@@ -214,6 +214,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		364A6FDF1C98EDE50088116D /* Driver side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Driver side";
+			sourceTree = "<group>";
+		};
+		364A6FE01C98EDEB0088116D /* Customer side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Customer side";
+			sourceTree = "<group>";
+		};
+		364A6FE11C98EDF20088116D /* Other ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other ViewControllers";
+			sourceTree = "<group>";
+		};
+		364A6FE21C98EDFA0088116D /* Subscreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Subscreens;
+			sourceTree = "<group>";
+		};
+		364A6FE31C98EE010088116D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		364A6FE41C98EE0D0088116D /* Driver side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Driver side";
+			sourceTree = "<group>";
+		};
+		364A6FE51C98EE120088116D /* Customer side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Customer side";
+			sourceTree = "<group>";
+		};
+		364A6FE61C98EE180088116D /* Other ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Other ViewControllers";
+			sourceTree = "<group>";
+		};
+		364A6FE71C98EE1F0088116D /* Subscreens */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Subscreens;
+			sourceTree = "<group>";
+		};
+		364A6FE81C98EE240088116D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		36D08F1F1C722291005B1E90 /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +413,11 @@
 		96DD81EA1C56B8AF004CE3A7 /* SeniorProjectTests */ = {
 			isa = PBXGroup;
 			children = (
+				364A6FE31C98EE010088116D /* Classes */,
+				364A6FE21C98EDFA0088116D /* Subscreens */,
+				364A6FE11C98EDF20088116D /* Other ViewControllers */,
+				364A6FE01C98EDEB0088116D /* Customer side */,
+				364A6FDF1C98EDE50088116D /* Driver side */,
 				96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */,
 				9B32020C1C8DF58600749264 /* AppDelegate.swift */,
 				96DD81ED1C56B8AF004CE3A7 /* Info.plist */,
@@ -362,6 +437,11 @@
 		96DD81F51C56B8AF004CE3A7 /* SeniorProjectUITests */ = {
 			isa = PBXGroup;
 			children = (
+				364A6FE81C98EE240088116D /* Classes */,
+				364A6FE71C98EE1F0088116D /* Subscreens */,
+				364A6FE61C98EE180088116D /* Other ViewControllers */,
+				364A6FE51C98EE120088116D /* Customer side */,
+				364A6FE41C98EE0D0088116D /* Driver side */,
 				96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */,
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
