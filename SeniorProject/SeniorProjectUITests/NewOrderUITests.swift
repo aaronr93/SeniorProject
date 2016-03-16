@@ -27,19 +27,87 @@ class NewOrderUITests: SeniorProjectUITests {
     func testRestaurantTap() {
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
+        
+        //not selecting a restaurant - none selected
+        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
         app.tables.staticTexts["Select a Restaurant"].tap()
+        XCTAssertNotNil(app.navigationBars["Select Restaurant"].buttons["New Order"])
         app.navigationBars["Select Restaurant"].buttons["New Order"].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
+        
+        //selecting a restaurant
+        app.tables.staticTexts["Select a Restaurant"].tap()
+       app.tables.staticTexts["sheetz"].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Sheetz"])
+        
+        //not selecting a restaurant - already something selected
+        app.tables.staticTexts["Sheetz"].tap()
+        app.navigationBars["Select Restaurant"].buttons["New Order"].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Sheetz"])
         app.navigationBars["New Order"].buttons["Cancel"].tap()
         
     }
     
-    func testRestaurantDrag() {
-        // Unsupported - should do nothing
+    func testAddFoodItem(){
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.textFields["Enter Food Name"].typeText("test")
+        app.buttons["Next"].tap()
+        let enterFoodDescriptionTextField = app.textFields["Enter Food Description"]
+        enterFoodDescriptionTextField.tap()
+        enterFoodDescriptionTextField.typeText("test")
+        app.keyboards.buttons["Done"].tap()
+        
+        //should take us to edit food item screen, which means the food item was created
+        app.tables.element.cells.elementBoundByIndex(1).tap()
+        XCTAssertNotNil(app.textFields["Enter Food Name"])
+        app.navigationBars["Food item"].buttons["New Order"].tap()
+        
+        
     }
     
-    func testAddFoodItemTap() {
-        // Should segue to new screen
+    
+    func testSelectDriver(){
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        
+        //need to select a restaurant first
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Select a Restaurant"].tap()
+        tablesQuery.staticTexts["sheetz"].tap()
+        
+        //can't test the values in cells, so basically just making sure it doesn't crash and goes to correct view
+        let deliveredByStaticText = tablesQuery.staticTexts["Delivered by"]
+        deliveredByStaticText.tap()
+        tablesQuery.staticTexts["testAccount"].tap()
+        XCTAssertNotNil(app.navigationBars["SeniorProject.ChooseDriverTableView"].buttons["New Order"])
+        deliveredByStaticText.tap()
+        XCTAssertNotNil(app.navigationBars["SeniorProject.ChooseDriverTableView"].buttons["New Order"])
+        tablesQuery.staticTexts["Any driver"].tap()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
     }
+    
+    func testSelectLocation(){
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        let tablesQuery2 = app.tables
+        let tablesQuery = tablesQuery2
+        tablesQuery.staticTexts["Location"].tap()
+        tablesQuery.textFields["Custom delivery location..."].tap()
+        tablesQuery2.cells.containingType(.Button, identifier:"Add").childrenMatchingType(.TextField).element.typeText("test")
+        tablesQuery.buttons["Add"].tap()
+        app.navigationBars["Select Delivery Location"].buttons["New Order"].tap()
+        tablesQuery.staticTexts["Location"].tap()
+        //new table item should exist, tapping it should not break
+        XCTAssertNotNil(app.tables.element.cells.elementBoundByIndex(1))
+        app.tables.element.cells.elementBoundByIndex(1).tap()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
+        
+        
+        
+    }
+    
     
     func testAddFoodItemDrag() {
         // Unsupported - should do nothing
