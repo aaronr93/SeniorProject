@@ -127,7 +127,7 @@ class DriverOrdersViewController: UITableViewController {
         case "Completed":
             dest.order.orderState = OrderState.Completed
         default:
-            print("Order Status N/A")
+            logError("Order Status N/A")
         }
     }
     
@@ -154,7 +154,7 @@ class DriverOrdersViewController: UITableViewController {
         case "Completed":
             dest.order.orderState = OrderState.Completed
         default:
-            print("Order Status N/A")
+            logError("Order Status N/A")
         }
     }
     
@@ -189,7 +189,7 @@ class DriverOrdersViewController: UITableViewController {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("\(error!) \(error!.userInfo)")
             }
         }
         
@@ -225,7 +225,7 @@ class DriverOrdersViewController: UITableViewController {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("\(error!) \(error!.userInfo)")
             }
         }
         

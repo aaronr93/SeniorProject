@@ -17,7 +17,7 @@ class AvailabilityCell: UITableViewCell {
 class DriverRestaurantsViewController: UITableViewController, CLLocationManagerDelegate {
     
     let prefs = DriverRestaurantPreferences()
-    let sectionHeaders = ["Restaurants", "Settings"]
+    let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
     let user = PFUser.currentUser()!
     var nearbyRestaurants = [PFObject]()
     let driver = PFUser.currentUser()!
@@ -30,8 +30,6 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        print("location manager")
         
         //update their location in the database
         let point = PFGeoPoint(latitude:locValue.latitude, longitude:locValue.longitude)
@@ -59,10 +57,10 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                     self.tableView.reloadData()
                 }else{
                     self.tableView.reloadData()
-                    print("No closeby restaurants")
+                    logError("No closeby restaurants")
                 }
             }else{
-                print("error getting closeby restaurants")
+                logError("error getting closeby restaurants")
             }
         }
     }
@@ -71,7 +69,7 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
         if let userGeoPoint = user["locationCoord"] as? PFGeoPoint{
                 getRestaurantsByDistance(userGeoPoint)
         }else{
-            print("no user location")
+            logError("no user location")
         }
     }
     
@@ -81,11 +79,10 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
         
         self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if error != nil {
-                print("Geocode failed with error: \(error!.localizedDescription)")
+                logError("Geocode failed with error: \(error!.localizedDescription)")
             } else if placemarks!.count > 0 {
                 let placemark = placemarks![0]
                 self.location = placemark.location?.coordinate
-                print(self.location)
                 //TODO: load any driver requests by last recorded distance
                 
             }
@@ -109,7 +106,7 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("Error: \(error!) \(error!.userInfo)")
             }
         }
     }
@@ -135,7 +132,7 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
             let addressString : String = "89-30 70th road Forest Hills, NY"
             self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
                 if error != nil {
-                    print("Geocode failed with error: \(error!.localizedDescription)")
+                    logError("Geocode failed with error: \(error!.localizedDescription)")
                 } else if placemarks!.count > 0 {
                     self.updateRestaurants()
                     //TODO: load any driver requests by last recorded or inputted distance
@@ -199,7 +196,7 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
     func cellForRestaurants(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurant", forIndexPath: indexPath)
         if indexPath.row > nearbyRestaurants.count {
-            print("Somehow, there are more rows than there are restaurants.")
+            logError("Somehow, there are more rows than there are restaurants.")
         } else {
             restaurantCell.textLabel!.text = nearbyRestaurants[indexPath.row]["name"] as? String
         }
@@ -247,18 +244,18 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                             if error == nil && success{
                                 completion(success: true)
                             }else{
-                                print("Error: Saving driver available restaurant")
+                                logError("Error: Saving driver available restaurant")
                                 completion(success: false)
                             }
                         })
                         
                     }else{
-                        print("Error: No driver availabilities!")
+                        logError("Error: No driver availabilities!")
                         completion(success: false)
                     }
                 }
             }else{
-                print("Error: Error querying driver availibility")
+                logError("Error: Error querying driver availibility")
                 completion(success: false)
             }
         }
@@ -275,8 +272,6 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                 if let driverAvailablities = driverAvailabilityObjects{
                     if !driverAvailablities.isEmpty{
                         let driverAvailableRestaurantQuery = PFQuery(className: "DriverAvailableRestaurants")
-                        print(driverAvailablities.first!.objectId)
-                        print(restaurant.objectId)
                         driverAvailableRestaurantQuery.whereKey("driverAvailability", equalTo: driverAvailablities.first!)
                         driverAvailableRestaurantQuery.whereKey("restaurant", equalTo: restaurant)
                         
@@ -288,24 +283,24 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                                             if deleteError == nil && deleteSuccess{
                                                 completion(success: true)
                                             }else{
-                                                print("Error: Saving driver available restaurant")
+                                                logError("Error: Saving driver available restaurant")
                                                 completion(success: false)
                                             }
                                         })
                                     }else{
-                                        print("Error: Query yielded no results")
+                                        logError("Error: Query yielded no results")
                                         completion(success: false)
                                     }
                                 }
                             }
                         })
                     }else{
-                        print("Error: No driver availabilities!")
+                        logError("Error: No driver availabilities!")
                         completion(success: false)
                     }
                 }
             }else{
-                print("Error: Error querying driver availibility")
+                logError("Error: Error querying driver availibility")
                 completion(success: false)
             }
         }
@@ -318,20 +313,18 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
                     deleteRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
                         if success{
-                            print("successfully deleted restaurant preference")
                             cell.accessoryType = UITableViewCellAccessoryType.None
                         }else{
-                            print("error deleting restaurant preference")
+                            logError("error deleting restaurant preference")
                         }
                         
                     })
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
                     addRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
                         if success{
-                            print("successfully added restaurant preference")
                             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                         }else{
-                            print("error adding restaurant preference")
+                            logError("error adding restaurant preference")
                         }
                         
                     })

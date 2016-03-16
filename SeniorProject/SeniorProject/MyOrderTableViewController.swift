@@ -34,8 +34,7 @@ class MyOrderTableViewController: UITableViewController {
                     // Order successfully deleted
                     self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Deleted)
                 } else {
-                    //error, not deleted
-                    print("Error: not deleted")
+                    logError("Order not deleted")
                 }
             }
         } else if order.orderState == OrderState.Delivered {
@@ -46,7 +45,7 @@ class MyOrderTableViewController: UITableViewController {
                     // Driver successfully reimbursed
                     self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Completed)
                 } else {
-                    //error, not reimbursed
+                    logError("Order not reimbursed")
                 }
             }
         }
@@ -109,10 +108,8 @@ class MyOrderTableViewController: UITableViewController {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        print(indexPath.row)
         if let foodName = order.foodItems[indexPath.row].name{
-            print(foodName)
-            foodCell.foodItem.text = foodName
+            foodCell.foodItem.text! = foodName
         }else{
             foodCell.foodItem.text = ""
         }
@@ -168,11 +165,10 @@ class MyOrderTableViewController: UITableViewController {
         //get orders sent to the driver
         order.getFoodItemsFromParse({
             (success: Bool) in
-            if success == true{
-                print(self.order.foodItems)
+            if success == true {
                 self.tableView.reloadData()
-            }else{
-                print("items could not be retrieved")
+            } else {
+                logError("items could not be retrieved")
             }
         })
     }

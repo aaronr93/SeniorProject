@@ -76,7 +76,6 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                             if user != nil {
                                 if let modifiedStatus = PFUser.currentUser()?.objectForKey("deleted"){
                                     if modifiedStatus.boolValue == false{
-                                        print("success!!")
                                         self.performSegueWithIdentifier("loginSegue", sender: self)
                                         //clear the password field after login attempt
                                         //prevents storage of password in the VC stack--otherwise it's usable after logout (security issue)
@@ -87,7 +86,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                                     }
                                 }
                             } else {
-                                print("Invalid loging credentials")
+                                logError("Invalid loging credentials")
                             }
                         }
                     

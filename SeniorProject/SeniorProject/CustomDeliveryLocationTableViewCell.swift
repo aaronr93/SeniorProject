@@ -25,7 +25,7 @@ class CustomDeliveryLocationTableViewCell: UITableViewCell, UITextFieldDelegate 
                 self.delegate.tableView.reloadData()
                 self.delegate.deliveryLocation = newDest.name!
             }else{
-                print("add unsuccessful")
+                logError("add unsuccessful")
             }
         })
             }

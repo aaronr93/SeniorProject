@@ -22,6 +22,7 @@ class ChooseDriverTableViewController: UITableViewController {
     let drivers = Drivers()
     var chosenDriver: String = ""
     var chosenDriverID: String = ""
+    var isAnyDriver: Bool = false
     var chosenRestaurant = ""
     var restaurantId : String!
     let sectionHeaders = ["", "Choose a driver"]
@@ -39,14 +40,14 @@ class ChooseDriverTableViewController: UITableViewController {
         chosenRestaurant = delegate.order.restaurantName
         restaurantId = delegate.order.restaurantId
         
+        drivers.clear()
         drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: restaurantId)
         
         drivers.getDriversFromDB { (success) -> Void in
             if success {
-                print("success")
                 self.tableView.reloadData()
             } else {
-                print("error getting drivers")
+                logError("Couldn't get drivers from database")
             }
         }
         
@@ -106,19 +107,23 @@ class ChooseDriverTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            let driver = cell.textLabel!.text!
-            chosenDriver = driver
-            let index = indexPath.row
-            
-            let driverAvailabilityForRestaurant = drivers.list[index]
-            
-            if let driverAvailability = driverAvailabilityForRestaurant["driverAvailability"]{
-                if let driver = driverAvailability["driver"] as? PFObject{
-                    chosenDriverID = driver.objectId!
-                    print("chosen driver ID" + chosenDriverID)
-                    print("chosen driver ID" + (driver["username"] as! String))
-                    delegate.saveDriverToDeliver(self)
+        if indexPath.section == Section.AnyDriver.rawValue {
+            chosenDriver = "Any driver"
+            isAnyDriver = true
+            delegate.saveDriverToDeliver(self)
+        } else {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                let driverName = cell.textLabel!.text!
+                chosenDriver = driverName
+                let index = indexPath.row
+                
+                let driverAvailabilityForRestaurant = drivers.list[index]
+                
+                if let driverAvailability = driverAvailabilityForRestaurant["driverAvailability"]{
+                    if let driver = driverAvailability["driver"] as? PFObject{
+                        chosenDriverID = driver.objectId!
+                        delegate.saveDriverToDeliver(self)
+                    }
                 }
             }
         }

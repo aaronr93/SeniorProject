@@ -18,7 +18,7 @@ class CustomerDestinations {
         if !history.contains( {$0.name == destination.name} ) {
             history.append(destination)
         } else {
-            print("Destination already exists.")
+            logError("Destination already exists.")
         }
     }
     
@@ -26,7 +26,7 @@ class CustomerDestinations {
         if let removeIndex = history.indexOf( {$0.name == destination.name} ) {
             history.removeAtIndex(removeIndex)
         } else {
-            print("Destination item to remove does not exist.")
+            logError("Destination item to remove does not exist.")
         }
     }
     
@@ -74,7 +74,7 @@ class CustomerDestinations {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("\(error!) \(error!.userInfo)")
                 completion(success: false)
             }
         }

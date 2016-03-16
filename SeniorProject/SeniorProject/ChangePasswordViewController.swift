@@ -42,25 +42,22 @@ class ChangePasswordViewController: UIViewController {
                 PFUser.logInWithUsernameInBackground((currentUser?.username)!, password:password) {
                     (user: PFUser?, error: NSError?) -> Void in
                     if user != nil {
-                        print(self.newPasswordField.text! + " " + self.confirmPassword.text!)
                         if self.newPasswordField.text == self.confirmPassword.text{
                             //passwords are the same so change password
                             currentUser = PFUser.currentUser()
                             currentUser?.password = self.newPasswordField.text
                             currentUser?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                if error == nil{
-                                    print("success")
-                                }else{
-                                    print("password not changed")
+                                if error != nil{
+                                    logError("password not changed")
                                 }
                             })
                             
                         }else{
                             //user needs to re-enter password
-                            print("passwords dont match...try again")
+                            logError("passwords dont match...try again")
                         }
                     } else {
-                        print("Invalid login credentials")
+                        logError("Invalid login credentials")
                     }
                 }
             }

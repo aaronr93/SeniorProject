@@ -33,6 +33,8 @@ class InterfaceManipulation {
             driver_setPayForStyleFor(button)
         } else if currentStatus == OrderState.PaidFor {
             driver_setDeliveredStyleFor(button)
+        } else if currentStatus == OrderState.Delivered {
+            driver_setCompletedStyleFor(button)
         } else if currentStatus == OrderState.Completed {
             driver_setCompletedStyleFor(button)
         }

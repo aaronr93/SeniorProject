@@ -31,7 +31,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                 // Order successfully delivered
                 self.tableView.reloadData()
             } else {
-                print("Error: not delivered")
+                logError("Error fetching destination items from parse")
             }
         }
 
@@ -114,7 +114,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
             let destItem = Destination(name: customValue, id: nil)
             for destI in (dest.history) {
                 if destI.name == destI.name {
-                    print("Destination already exists")
+                    logError("Destination already exists")
                     return
                 }
             }
@@ -124,7 +124,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                         destItem.id = id
                         self.delegate.order.destinationID = id!
                     }else{
-                        print("error adding destination item to DB")
+                        logError("error adding destination item to DB")
                     }
                 })
             }

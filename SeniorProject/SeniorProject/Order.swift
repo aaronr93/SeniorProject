@@ -27,6 +27,7 @@ class Order {
     var destinationID: String = ""
     var deliveredBy: String = ""
     var deliveredByID: String = ""
+    var isAnyDriver: Bool = false
     var location: String = ""
     var expiresIn: String = ""
     var foodItems = [Food]()
@@ -38,7 +39,7 @@ class Order {
         if !foodItems.contains( {$0.name == toAdd.name} ) {
             foodItems.append(toAdd)
         } else {
-            print("Food item already exists.")
+            logError("Food item already exists.")
         }
     }
     
@@ -46,7 +47,7 @@ class Order {
         if let removeIndex = foodItems.indexOf( {$0.name == toRemove.name} ) {
             foodItems.removeAtIndex(removeIndex)
         } else {
-            print("Food item to remove does not exist.")
+            logError("Food item to remove does not exist.")
         }
     }
     
@@ -67,13 +68,10 @@ class Order {
         let parseFoodItems = foodItemsToPFObjects(foodItems)
         PFObject.saveAllInBackground(parseFoodItems, block: {
             (succeeded: Bool, error: NSError?) -> Void in
-            if succeeded{
-                print("parse items save succeeded")
-            }else{
-                print("parse items save failed :(")
+            if !succeeded{
+                logError("parse items save failed :(")
             }
         })
-        print(parseFoodItems)
     }
     
     func getFoodItemsFromParse(completion: (success: Bool) -> Void) {
@@ -105,7 +103,7 @@ class Order {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("Error: \(error!) \(error!.userInfo)")
                 completion(success: false)
             }
         }
@@ -145,7 +143,7 @@ class Order {
                             }
                         })
                     }else{
-                        print("error")
+                        logError("Couldn't get Driver to Deliver")
                         completion(success: false)
                         return
                     }
@@ -162,11 +160,11 @@ class Order {
                 })
             }
             else{
-                print("must select a driver")
+                logError("must select a driver")
             }
         }
         else{
-            print("must select a restaurant")
+            logError("must select a restaurant")
         }
         
     }
@@ -177,17 +175,16 @@ class Order {
         newOrder["restaurant"] = restaurant
         
         //need to add future date based on selection picked
-        newOrder["expirationDate"] = NSDate()
+        newOrder["expirationDate"] = getActualTimeFromNow()
         
         self.createDestination(newOrder) {
             result in
             if result {
                 // Destination successful
-                print("Success in creating destination for order")
                 newOrder.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                     if error != nil {
                         completion(success: false)
-                        print(error)
+                        logError(error!)
                         return
                     } else {
                         var foodCount = 0
@@ -204,10 +201,9 @@ class Order {
                                         if !matchedFoodItems.isEmpty{
                                             //add to ordered items but not food
                                             newFoodItem["food"] = matchedFoodItems.first
-                                            print(foodItem.name!.lowercaseString + " already added to foodclass")
+                                            logError(foodItem.name!.lowercaseString + " already added to foodclass")
                                             newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
                                                 if success{
-                                                    print(foodCount)
                                                     if foodCount == self.foodItems.count{
                                                         //then this is the last item in the array
                                                         completion(success: true)
@@ -217,7 +213,6 @@ class Order {
                                             })
                                         }else{
                                             //add to ordered itsm and food
-                                            print("adding " + foodItem.name!.lowercaseString + " to food class")
                                             let foodItemForClass = PFObject(className: "Food")
                                             foodItemForClass["name"] = foodItem.name!.lowercaseString
                                             foodItemForClass["restaurant"] = restaurant
@@ -226,7 +221,6 @@ class Order {
                                                     newFoodItem["food"] = foodItemForClass
                                                     newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
                                                         if success{
-                                                            print(foodCount)
                                                             if foodCount == self.foodItems.count{
                                                                 //then this is the last item in the array
                                                                 completion(success: true)
@@ -235,13 +229,13 @@ class Order {
                                                         }
                                                     })
                                                 }else{
-                                                    print("error saving food")
+                                                    logError("error saving food")
                                                 }
                                             })
                                         }
                                     }
                                 }else{
-                                    print("error getting food item match")
+                                    logError("error getting food item match")
                                 }
                             })
                             foodCount += 1
@@ -254,16 +248,34 @@ class Order {
                             notification.push()
                         }
                         
-                        print("Success saving order!")
                     }
                 })
             } else {
-                print("Error: destination unsuccessful")
+                logError("Error: destination unsuccessful")
                 completion(success: false)
                 return
             }
         }
 
+    }
+    
+    func getActualTimeFromNow() -> NSDate {
+        switch expiresIn {
+        case "15 minutes":
+            return NSDate().addHours(1)
+        case "30 minutes":
+            return NSDate().addHours(1)
+        case "1 hour":
+            return NSDate().addHours(1)
+        case "2 hours":
+            return NSDate().addHours(2)
+        case "3 hours":
+            return NSDate().addHours(3)
+        case "4 hours":
+            return NSDate().addHours(4)
+        default:
+            return NSDate().addHours(1)
+        }
     }
     
     func createDestination(newOrder: PFObject, completion: (success: Bool) -> Void) {
@@ -281,12 +293,12 @@ class Order {
                     }
                 } else {
                     // Log details of the failure
-                    print(error)
+                    logError(error!)
                     completion(success: false)
                 }
             }
         }else{
-            print("location must be entered")
+            logError("location must be entered")
             completion(success: false)
         }
     }
@@ -298,7 +310,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                logError(error!)
             } else if let order = order {
                 // Changes fields in Parse to reflect new order state.
                 order["isAnyDriver"] = false
@@ -318,7 +330,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                logError(error!)
             } else if let order = order {
                 order["OrderState"] = "PaidFor"
                 self.orderState = OrderState.PaidFor
@@ -341,7 +353,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                logError(error!)
             } else if let order = order {
                 order["OrderState"] = "Delivered"
                 self.orderState = OrderState.Delivered
@@ -362,7 +374,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                logError(error!)
             } else if let order = order {
                 order["OrderState"] = "Completed"
                 self.orderState = OrderState.Completed
@@ -380,7 +392,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                logError(error!)
             } else if let order = order {
                 order["OrderState"] = "Deleted"
                 self.orderState = OrderState.Deleted

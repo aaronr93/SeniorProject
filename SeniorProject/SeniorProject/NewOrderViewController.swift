@@ -66,6 +66,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     // Delegate method for Choose Driver
     func saveDriverToDeliver(chooseDriverVC: ChooseDriverTableViewController) {
         self.order.deliveredByID = chooseDriverVC.chosenDriverID
+        self.order.deliveredBy = chooseDriverVC.chosenDriver
+        self.order.isAnyDriver = chooseDriverVC.isAnyDriver
         self.tableView.reloadData()
         chooseDriverVC.navigationController?.popViewControllerAnimated(true)
     }
@@ -80,7 +82,6 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController) {
         self.tableView.reloadData()
         order.destinationID = deliveryLocationVC.destinationID
-        print(order.destinationID)
         deliveryLocationVC.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -263,6 +264,21 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         }
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == Section.Restaurant.rawValue && indexPath.row == 0 {
+            // Restaurant (i) tapped
+            
+            // If we want to add a map, do it here
+            
+        }
+    }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.section == Section.Food.rawValue {
+            return UITableViewCellEditingStyle.Delete
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -305,11 +321,10 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     @IBAction func submit(sender: UIButton) {
         order.create { (success) -> Void in
             if success{
-                print("order successful")
                 self.delegate.orderSaved(self)
             }else{
-                print("order failed")
-                self.delegate.cancelNewOrder(self)
+                logError("order failed")
+                //self.delegate.cancelNewOrder(self)
             }
         }
     }

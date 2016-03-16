@@ -21,7 +21,7 @@ class FinishCreateAccountViewController: UIViewController
             createAccount()
             self.performSegueWithIdentifier("createAccountSegue", sender: self)
         } else {
-            print("Failure")
+            logError("Failure")
         }
     }
     
@@ -55,7 +55,7 @@ class FinishCreateAccountViewController: UIViewController
             if let error = error {
                 let errorString = error.userInfo["error"] as? NSString
                 // Show the errorString somewhere and let the user try again.
-                print(errorString)
+                logError(errorString!)
             }
         }
     }

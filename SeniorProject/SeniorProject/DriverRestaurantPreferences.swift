@@ -18,7 +18,7 @@ class DriverRestaurantPreferences {
         if !restaurants.contains(toAdd) {
             restaurants.append(toAdd)
         } else {
-            print("Restaurant already exists in preferences.")
+            logError("Restaurant already exists in preferences.")
         }
     }
     
@@ -26,7 +26,7 @@ class DriverRestaurantPreferences {
         if let removeIndex = restaurants.indexOf(toRemove) {
             restaurants.removeAtIndex(removeIndex)
         } else {
-            print("Restaurant to remove does not exist in preferences.")
+            logError("Restaurant to remove does not exist in preferences.")
         }
     }
     
@@ -35,7 +35,7 @@ class DriverRestaurantPreferences {
             active = true
         } else {
             active = false
-            print("You cannot become active if no restaurants are selected")
+            logError("You cannot become active if no restaurants are selected")
         }
     }
     

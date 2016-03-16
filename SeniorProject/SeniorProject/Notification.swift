@@ -14,9 +14,9 @@ class Notification {
     var message: String = ""
     var sendToID: String? = ""
     
-    func push(){
+    func push() {
         let pushQuery = PFInstallation.query()!
-        do{
+        do {
             let user = try PFQuery.getUserObjectWithId(sendToID!)
             pushQuery.whereKey("user", equalTo: user)
             let push = PFPush()
@@ -24,8 +24,8 @@ class Notification {
             push.setQuery(pushQuery)
             push.setData(pushData)
             push.sendPushInBackground()
-        }catch{
-            print("could find user with id " + sendToID!)
+        } catch {
+            logError("could not find user with id " + sendToID!)
         }
         
     }

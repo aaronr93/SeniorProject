@@ -14,6 +14,10 @@ class Drivers {
     var availableDriversForRestaurant = PFQuery(className: "DriverAvailableRestaurants")
     var restaurant : PFObject?
     
+    func clear() {
+        list.removeAll()
+    }
+    
     func getDriversFromDB(completion: (success: Bool) -> Void){
         
         
@@ -41,12 +45,11 @@ class Drivers {
                             }
                         }
                     }
-                    print(self.list.count)
                     completion(success: true)
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("Error: \(error!) \(error!.userInfo)")
                 completion(success: false)
             }
         }
@@ -57,7 +60,7 @@ class Drivers {
         if !list.contains(driver) {
             list.append(driver)
         } else {
-            print("Duplicate driver")
+            logError("Duplicate driver")
         }
     }
     

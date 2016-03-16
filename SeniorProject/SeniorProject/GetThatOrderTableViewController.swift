@@ -47,7 +47,7 @@ class GetThatOrderTableViewController: UITableViewController {
                     // Order successfully acquired
                     self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
                 } else {
-                    print("Error: not acquired")
+                    logError("Order not acquired")
                 }
             }
         } else if order.orderState == OrderState.Acquired {
@@ -57,7 +57,7 @@ class GetThatOrderTableViewController: UITableViewController {
                     // Order successfully paid for
                     self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
                 } else {
-                    print("Error: not paid for")
+                    logError("Order not paid for")
                 }
             }
         } else if order.orderState == OrderState.PaidFor {
@@ -69,7 +69,7 @@ class GetThatOrderTableViewController: UITableViewController {
                     sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
                     sender.enabled = false
                 } else {
-                    print("Error: not delivered")
+                    logError("Order not delivered")
                 }
             }
         } else if order.orderState == OrderState.Completed {
@@ -132,9 +132,8 @@ class GetThatOrderTableViewController: UITableViewController {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        print(indexPath.row)
+        logError("\(indexPath.row)")
         if let foodName = order.foodItems[indexPath.row].name{
-            print(foodName)
             foodCell.foodItem.text = foodName
         }else{
             foodCell.foodItem.text = ""
@@ -190,10 +189,9 @@ class GetThatOrderTableViewController: UITableViewController {
         order.getFoodItemsFromParse({
             (success: Bool) in
             if success == true{
-                print(self.order.foodItems)
                 self.tableView.reloadData()
             }else{
-                print("items could not be retrieved")
+                logError("Food items could not be retrieved")
             }
         })
         manip.setDriverStyleFor(actionButton, toReflect: order.orderState)

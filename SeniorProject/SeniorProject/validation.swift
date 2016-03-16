@@ -173,5 +173,11 @@ func usernameExistsInParse(username: String) -> Bool {
     return usernameExists
 }
 
-
+func logError(error: AnyObject) {
+    NSLog("BAD SHIT:\n\(error)")
+    
+    // Send notification
+    let notification = Notification(content: "BAD SHIT:   \(error)", sendToID: (PFUser.currentUser()?.objectId)!)
+    notification.push()
+}
 

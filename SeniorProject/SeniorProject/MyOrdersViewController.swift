@@ -25,8 +25,8 @@ class MyOrdersViewController: UITableViewController {
         ordersISentQuery.includeKey("driverToDeliver")
         ordersISentQuery.includeKey("destination")
         ordersISentQuery.whereKey("OrderingUser", equalTo: PFUser.currentUser()!)
-        ordersISentQuery.whereKey("OrderState", notEqualTo: "Completed")
-        //ordersISentQuery.whereKey("OrderState", notEqualTo: "Available")
+        ordersISentQuery.whereKey("OrderState", notEqualTo: "Delivered")
+        ordersISentQuery.whereKey("OrderState", notEqualTo: "Deleted")
         
         ordersISentQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -42,7 +42,7 @@ class MyOrdersViewController: UITableViewController {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("Error: \(error!) \(error!.userInfo)")
             }
         }
         
@@ -52,8 +52,9 @@ class MyOrdersViewController: UITableViewController {
         ordersIReceivedQuery.includeKey("OrderingUser")
         ordersIReceivedQuery.includeKey("destination")
         ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
-        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Completed")
-        //ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Delivered")
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
+        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Deleted")
         
         ordersIReceivedQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
@@ -69,7 +70,7 @@ class MyOrdersViewController: UITableViewController {
                 }
             } else {
                 // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
+                logError("Error: \(error!) \(error!.userInfo)")
             }
         }
 
@@ -129,7 +130,7 @@ class MyOrdersViewController: UITableViewController {
             if (order!["driverToDeliver"] != nil){
                 cell.recipient?.text = order!["driverToDeliver"]["username"] as? String
             } else {
-                cell.recipient?.text = "Not Accepted"
+                cell.recipient?.text = "Any driver"
             }
             
         } else {
@@ -149,6 +150,7 @@ class MyOrdersViewController: UITableViewController {
         dest.order.orderID  = order.objectId!
         dest.order.deliverTo = order["OrderingUser"]["username"] as! String
         dest.order.deliverToID = order["OrderingUser"].objectId!!
+        dest.order.isAnyDriver = order["isAnyDriver"] as! Bool
         
         if let destination = order["destination"] as? PFObject {
             if let destName = destination["name"] as? String {
@@ -176,7 +178,7 @@ class MyOrdersViewController: UITableViewController {
         case "Completed":
             dest.order.orderState = OrderState.Completed
         default:
-            print("Order Status N/A")
+            logError("OrderState is N/A")
         }
     }
     
@@ -192,12 +194,13 @@ class MyOrdersViewController: UITableViewController {
         if (order["driverToDeliver"] != nil) {
             if let driverToDeliver = order["driverToDeliver"] as? PFObject {
                 if let username = driverToDeliver["username"] as? String {
-                    dest.order.deliverTo = username
+                    dest.order.deliveredBy = username
                 }
             }
         } else {
-            dest.order.deliverTo = "Not accepted"
+            dest.order.deliveredBy = "Any driver"
         }
+        dest.order.isAnyDriver = order["isAnyDriver"] as! Bool
         
         if let orderStatus = order["OrderState"] as? String {
             switch orderStatus {
@@ -214,7 +217,7 @@ class MyOrdersViewController: UITableViewController {
             case "Completed":
                 dest.order.orderState = OrderState.Completed
             default:
-                print("Order Status N/A")
+                logError("OrderState is N/A")
             }
         }
         
@@ -258,7 +261,7 @@ class MyOrdersViewController: UITableViewController {
         case 1: //row in potential customer orders section
             performSegueWithIdentifier("getThatOrderSegue", sender: self)
         default: //code error!
-            NSLog("shouldn't ever be here")
+            NSLog("BAD SHIT: Performing unidentified segue")
         }
     }
 
