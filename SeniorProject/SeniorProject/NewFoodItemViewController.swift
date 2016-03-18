@@ -26,6 +26,10 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     var foodDescriptionText = ""
     var index: Int?
     
+    @IBAction func cancel(sender: UIBarButtonItem) {
+        delegate.cancelNewItem(self)
+    }
+    
     @IBAction func done(sender: UIBarButtonItem) {
         sendFoodItem()
     }

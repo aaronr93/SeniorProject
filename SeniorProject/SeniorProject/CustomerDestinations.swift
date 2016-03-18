@@ -44,9 +44,7 @@ class CustomerDestinations {
         parseDestinationItem.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
             if (success) {
                 completion(success: true, id: parseDestinationItem.objectId)
-            }
-            else
-            {
+            } else {
                 completion(success: false, id: nil)
             }
         })

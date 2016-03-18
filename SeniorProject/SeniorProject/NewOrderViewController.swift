@@ -225,43 +225,22 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         }
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == Section.Food.rawValue {//only the 'Food items' section needs this (section '1' zero-indexed)
-            let headerFrame: CGRect = tableView.frame
-            
-            let title = UILabel(frame: CGRectMake(10, 10, 100, 30))
-            title.text = "Food items"
-            
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section == Section.Food.rawValue {
             let headBttn = UIButton(type: UIButtonType.ContactAdd) as UIButton
             headBttn.enabled = true
-            headBttn.titleLabel?.text = title.text
-            
+            headBttn.titleLabel?.text = "Food items"
             headBttn.addTarget(self, action: "showAddVC:", forControlEvents: UIControlEvents.TouchUpInside)
             
-            let headerView:UIView = UIView(frame: CGRectMake(0, 0, headerFrame.size.width, headerFrame.size.height))
-            headerView.addSubview(title)
-            headerView.addSubview(headBttn)
-            headBttn.center.x = headerView.bounds.width - headBttn.frame.width
-            headBttn.center.y = headBttn.center.y + 10
+            view.addSubview(headBttn)
             
-            return headerView
-        } else {
-            return nil
+            headBttn.center.x = view.bounds.width - headBttn.frame.width
+            headBttn.center.y = headBttn.center.y + 10
         }
     }
     
     func showAddVC(sender: UIButton) {
         performSegueWithIdentifier("editFoodItem", sender: "fromPlus")
-    }
-    
-    //manually set section header box heights
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == Section.Food.rawValue {
-            // Food items section
-            return 52
-        } else {
-            return 44
-        }
     }
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
@@ -278,6 +257,23 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             return UITableViewCellEditingStyle.Delete
         } else {
             return UITableViewCellEditingStyle.None
+        }
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == Section.Food.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            let index = indexPath.row
+            order.removeFoodItem(index)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
     }
     

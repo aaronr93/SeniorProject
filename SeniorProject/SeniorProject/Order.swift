@@ -51,6 +51,10 @@ class Order {
         }
     }
     
+    func removeFoodItem(index: Int) {
+        foodItems.removeAtIndex(index)
+    }
+    
     func foodItemsToPFObjects(foodItems: [Food]) -> [PFObject]{
         let order = PFObject(withoutDataWithObjectId: self.orderID)
         var parseFoodItems = [PFObject]()

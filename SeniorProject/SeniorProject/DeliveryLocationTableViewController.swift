@@ -120,15 +120,14 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
             }
             if destItem.name != "" {
                 dest.addDestinationItemToDB(destItem, completion: { (success, id) in
-                    if success{
+                    if success {
                         destItem.id = id
                         self.delegate.order.destinationID = id!
-                    }else{
+                    } else {
                         logError("error adding destination item to DB")
                     }
                 })
             }
-            
         } else {
             delegate.order.location = deliveryLocation
             delegate.order.destinationID = destinationID
