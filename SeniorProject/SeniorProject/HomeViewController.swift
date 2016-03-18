@@ -11,6 +11,8 @@ import Parse
 
 class HomeViewController: UIViewController, NewOrderViewDelegate {
     
+    let POIs = PointsOfInterest()
+    
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
         newOrderVC.navigationController?.popViewControllerAnimated(true)
     }
@@ -22,11 +24,19 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        POIs.searchFor("Food")
+        POIs.saveRestaurantsToParse() { result in
+            if result {
+                print("Saved new restaurants to Parse")
+            } else {
+                logError("Didn't save new restaurants to Parse")
+            }
+        }
+        
         // Do any additional setup after loading the view.
         //set installation user for push notifications
         let installation = PFInstallation.currentInstallation()
         installation["user"] = PFUser.currentUser()
-        
         
     }
 
@@ -41,6 +51,12 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
         if segue.identifier == "newOrder" {
             let newOrder = segue.destinationViewController as! NewOrderViewController
             newOrder.delegate = self
+        } else if segue.identifier == "imPickingUpFoodSegue" {
+            let tabController = segue.destinationViewController as! UITabBarController
+            let restaurantsTab = tabController.viewControllers![0] as! DriverRestaurantsViewController
+            for loc in POIs.restaurants {
+                restaurantsTab.prefs.addRestaurant(loc)
+            }
         }
     }
     

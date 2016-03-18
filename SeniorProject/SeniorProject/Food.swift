@@ -9,11 +9,10 @@
 import Foundation
 
 class Food {
-    var description : String?
-    var name : String?
+    var description: String?
+    var name: String?
     
-    init(name: String?, description : String?)
-    {
+    init(name: String?, description: String?) {
         self.name = name
         self.description = description
     }
