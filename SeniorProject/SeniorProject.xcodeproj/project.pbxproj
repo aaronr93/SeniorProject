@@ -12,6 +12,8 @@
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
+		36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */; };
+		36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */; };
 		36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */; };
 		36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */; };
 		36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */; };
@@ -102,6 +104,8 @@
 		3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCell.swift; sourceTree = "<group>"; };
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
 		3641A59B1C8E568C0046BC97 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
+		36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewController.swift; sourceTree = "<group>"; };
 		36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsViewController.swift; sourceTree = "<group>"; };
 		36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantPreferences.swift; sourceTree = "<group>"; };
@@ -284,6 +288,16 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		36B92B711C9BA48700E29A3B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */,
+				3641A59B1C8E568C0046BC97 /* Destination.swift */,
+				963A324C1C8CDFD40090CB2C /* Food.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		36D08F1F1C722291005B1E90 /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,10 +340,9 @@
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
 				36D08F731C7A3ACD005B1E90 /* Order.swift */,
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
-				963A324C1C8CDFD40090CB2C /* Food.swift */,
 				3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */,
-				3641A59B1C8E568C0046BC97 /* Destination.swift */,
 				9B3202521C97599100749264 /* Notification.swift */,
+				36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -394,6 +407,7 @@
 		96DD81D51C56B8AE004CE3A7 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
+				36B92B711C9BA48700E29A3B /* Models */,
 				36D08F241C7222F4005B1E90 /* Classes */,
 				36D090321C89F028005B1E90 /* Subscreens */,
 				36D08F231C7222CB005B1E90 /* Other ViewControllers */,
@@ -599,12 +613,14 @@
 				36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */,
 				9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */,
 				795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */,
+				36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */,
 				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
 				964B36361C5FF1E100B305CA /* Validation.swift in Sources */,
 				963A324D1C8CDFD40090CB2C /* Food.swift in Sources */,
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
+				36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */,
 				3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */,

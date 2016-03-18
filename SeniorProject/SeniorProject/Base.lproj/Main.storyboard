@@ -194,7 +194,7 @@
                                 <state key="normal" title="I'm picking up food"/>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0TG-Be-dbS"/>
-                                    <segue destination="f8C-9t-3cn" kind="show" id="X91-gP-jr4"/>
+                                    <segue destination="f8C-9t-3cn" kind="show" identifier="imPickingUpFoodSegue" id="X91-gP-jr4"/>
                                 </connections>
                             </button>
                         </subviews>
