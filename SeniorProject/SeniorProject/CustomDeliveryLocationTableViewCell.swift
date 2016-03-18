@@ -16,19 +16,21 @@ class CustomDeliveryLocationTableViewCell: UITableViewCell, UITextFieldDelegate 
     var delegate: DeliveryLocationTableViewController!
     
     @IBAction func add(sender: UIButton) {
-        let newDest = Destination(name: customField.text!, id: nil)
-        delegate.dest.addDestinationItemToDB(newDest, completion: {
-            (success, id) in
-            if success{
-                newDest.id = id
-                self.delegate.dest.add(newDest)
-                self.delegate.tableView.reloadData()
-                self.delegate.deliveryLocation = newDest.name!
-            }else{
-                logError("add unsuccessful")
-            }
-        })
-            }
+        if customField.text! != "" {
+            let newDest = Destination(name: customField.text!, id: nil)
+            delegate.dest.addDestinationItemToDB(newDest, completion: {
+                (success, id) in
+                if success {
+                    newDest.id = id
+                    self.delegate.dest.add(newDest)
+                    self.delegate.tableView.reloadData()
+                    self.delegate.deliveryLocation = newDest.name!
+                } else {
+                    logError("Adding custom destination was unsuccessful")
+                }
+            })
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
