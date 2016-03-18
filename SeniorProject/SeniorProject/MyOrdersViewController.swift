@@ -17,6 +17,11 @@ class MyOrdersViewController: UITableViewController {
     var ordersISent = [PFObject]()
     var ordersIReceived = [PFObject]()
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //get orders sent by the user

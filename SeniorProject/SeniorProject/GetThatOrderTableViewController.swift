@@ -132,16 +132,15 @@ class GetThatOrderTableViewController: UITableViewController {
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        logError("\(indexPath.row)")
-        if let foodName = order.foodItems[indexPath.row].name{
+        if let foodName = order.foodItems[indexPath.row].name {
             foodCell.foodItem.text = foodName
-        }else{
+        } else {
             foodCell.foodItem.text = ""
         }
         
-        if let foodDescription = order.foodItems[indexPath.row].description{
+        if let foodDescription = order.foodItems[indexPath.row].description {
             foodCell.foodDescription.text = foodDescription
-        }else{
+        } else {
             foodCell.foodDescription.text = ""
         }
         
@@ -188,9 +187,9 @@ class GetThatOrderTableViewController: UITableViewController {
         //get orders sent to the driver
         order.getFoodItemsFromParse({
             (success: Bool) in
-            if success == true{
+            if success == true {
                 self.tableView.reloadData()
-            }else{
+            } else {
                 logError("Food items could not be retrieved")
             }
         })
