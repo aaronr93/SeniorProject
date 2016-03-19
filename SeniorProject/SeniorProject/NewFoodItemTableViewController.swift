@@ -51,6 +51,12 @@ class NewFoodItemTableViewController: UITableViewController, UITextFieldDelegate
         foodNameField.becomeFirstResponder()
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        foodDescriptionField.resignFirstResponder()
+        foodNameField.resignFirstResponder()
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == foodNameField { // Switch focus to other text field
             foodDescriptionField.becomeFirstResponder()

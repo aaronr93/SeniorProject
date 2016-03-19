@@ -73,7 +73,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         chooseDriverVC.navigationController?.popViewControllerAnimated(true)
     }
     
-    // Delegate mehtod for Choose Restaurant
+    // Delegate method for Choose Restaurant
     func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController) {
         self.tableView.reloadData()
         restaurantsNewOrderVC.navigationController?.popViewControllerAnimated(true)
@@ -330,11 +330,13 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     @IBAction func submit(sender: UIButton) {
+        sender.enabled = false//prevents multiple rapid submissions (accidentally?)
         order.create { (success) -> Void in
             if success{
                 self.delegate.orderSaved(self)
             }else{
                 logError("order failed")
+                sender.enabled = true
                 //self.delegate.cancelNewOrder(self)
             }
         }
