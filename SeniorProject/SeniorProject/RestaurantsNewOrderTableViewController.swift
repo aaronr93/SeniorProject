@@ -70,7 +70,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantTableViewCell
         cell.nameLabel.text = restaurants[indexPath.row]["name"] as? String
-        cell.distanceLabel.text = "69 mi"
+        cell.distanceLabel.text = "6.9 mi"
         
         return cell
     }

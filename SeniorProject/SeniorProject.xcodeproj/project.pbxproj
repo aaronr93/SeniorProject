@@ -14,10 +14,11 @@
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
 		36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */; };
 		36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */; };
+		36B92B731C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B721C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift */; };
+		36B92B751C9DEC4400E29A3B /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B741C9DEC4400E29A3B /* Order.swift */; };
 		36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */; };
 		36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */; };
 		36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */; };
-		36D08F741C7A3ACD005B1E90 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F731C7A3ACD005B1E90 /* Order.swift */; };
 		36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */; };
 		36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F771C7A73B2005B1E90 /* Drivers.swift */; };
 		36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */; };
@@ -30,7 +31,6 @@
 		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
-		795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */; };
 		960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960813361C8E2252009AE1FE /* DriversClassTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
@@ -106,10 +106,11 @@
 		3641A59B1C8E568C0046BC97 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
 		36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		36B92B721C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemTableViewController.swift; sourceTree = "<group>"; };
+		36B92B741C9DEC4400E29A3B /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		36D08F251C72232C005B1E90 /* DriverOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewController.swift; sourceTree = "<group>"; };
 		36D08F6D1C775B59005B1E90 /* DriverRestaurantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsViewController.swift; sourceTree = "<group>"; };
 		36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantPreferences.swift; sourceTree = "<group>"; };
-		36D08F731C7A3ACD005B1E90 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDriverTableViewController.swift; sourceTree = "<group>"; };
 		36D08F771C7A73B2005B1E90 /* Drivers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drivers.swift; sourceTree = "<group>"; };
 		36D08F791C7ABC74005B1E90 /* SeniorProject-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SeniorProject-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -124,7 +125,6 @@
 		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
-		795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewController.swift; sourceTree = "<group>"; };
 		960813361C8E2252009AE1FE /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 				36E204801C5BD03D00A9CC59 /* Settings.swift */,
 				36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */,
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
-				36D08F731C7A3ACD005B1E90 /* Order.swift */,
+				36B92B741C9DEC4400E29A3B /* Order.swift */,
 				36D08F771C7A73B2005B1E90 /* Drivers.swift */,
 				3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */,
 				9B3202521C97599100749264 /* Notification.swift */,
@@ -352,7 +352,7 @@
 			children = (
 				96C886D91C891BCE008E668B /* ChangePasswordViewController.swift */,
 				9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */,
-				795482E41C8987130015A8C1 /* NewFoodItemViewController.swift */,
+				36B92B721C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift */,
 				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
 				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
@@ -608,11 +608,9 @@
 			files = (
 				36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */,
 				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
-				36D08F741C7A3ACD005B1E90 /* Order.swift in Sources */,
 				3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */,
 				36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */,
 				9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */,
-				795482E51C8987130015A8C1 /* NewFoodItemViewController.swift in Sources */,
 				36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */,
 				96DBF85B1C7924FB0090F7F6 /* GetThatOrderTableViewController.swift in Sources */,
 				96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */,
@@ -634,11 +632,13 @@
 				9B9A0EED1C74113D00983BA9 /* SettingsViewController.swift in Sources */,
 				3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */,
 				3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */,
+				36B92B751C9DEC4400E29A3B /* Order.swift in Sources */,
 				36D090411C8B6D86005B1E90 /* InterfaceManipulation.swift in Sources */,
 				96DD81D71C56B8AE004CE3A7 /* AppDelegate.swift in Sources */,
 				36D08F761C7A72C6005B1E90 /* ChooseDriverTableViewController.swift in Sources */,
 				4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */,
 				9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */,
+				36B92B731C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift in Sources */,
 				36F506801C64E9500014D506 /* CreateAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

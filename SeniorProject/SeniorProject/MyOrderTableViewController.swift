@@ -16,6 +16,9 @@ class MyOrderTableViewController: UITableViewController {
     
     let order = Order()
     let manip = InterfaceManipulation()
+    var index: NSIndexPath?
+    
+    var delegate: MyOrdersViewController!
     
     enum Section: Int {
         case Restaurant = 0
