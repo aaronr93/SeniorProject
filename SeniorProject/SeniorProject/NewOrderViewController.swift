@@ -28,7 +28,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     var delegate: NewOrderViewDelegate!
     
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
-    var deliverySectionTitles = ["Delivered by", "Location", "Expires In"]
+    var deliverySectionTitles = ["Delivered by", "Location", "Expires in"]
+    var deliverySectionPrompts = ["Select a driver...", "Select delivery location...", "Select expiration time..."]
     let order = Order()
     var current = NSIndexPath()
     
@@ -38,11 +39,11 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         case Settings = 2
     }
     
-    func cancelNewItem(newFoodItemVC: NewFoodItemViewController){
+    func cancelNewItem(newFoodItemVC: NewFoodItemTableViewController){
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
-    func editNewItem(newFoodItemVC: NewFoodItemViewController) {
+    func editNewItem(newFoodItemVC: NewFoodItemTableViewController) {
         if let index = newFoodItemVC.index{
             if !newFoodItemVC.foodNameText.isEmpty{
                 order.foodItems[index].name = newFoodItemVC.foodNameText
@@ -56,7 +57,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     // Delegate method for New Food Item
-    func saveNewItem(newFoodItemVC: NewFoodItemViewController){
+    func saveNewItem(newFoodItemVC: NewFoodItemTableViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
         order.addFoodItem(foodItem)
         self.tableView.reloadData()
@@ -72,7 +73,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         chooseDriverVC.navigationController?.popViewControllerAnimated(true)
     }
     
-    // Delegate mehtod for Choose Restaurant
+    // Delegate method for Choose Restaurant
     func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController) {
         self.tableView.reloadData()
         restaurantsNewOrderVC.navigationController?.popViewControllerAnimated(true)
@@ -139,9 +140,13 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
         var restaurantName: String = order.restaurantName
 
+        if restaurantName == "Select a Restaurant" {
+            restaurantCell.name.textColor = UIColor.grayColor()
+        } else {
+            restaurantCell.name.textColor = UIColor.blackColor()
+        }
         
         restaurantName.makeFirstLetterInStringUpperCase()
-        
         restaurantCell.name.text = restaurantName
         return restaurantCell
     }
@@ -157,9 +162,17 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let deliveryCell = tableView.dequeueReusableCellWithIdentifier("newDeliveryCell", forIndexPath: indexPath)
-       
-        deliveryCell.textLabel!.text! = deliverySectionTitles[indexPath.row]
-        deliveryCell.detailTextLabel!.text! = getTextFor(indexPath.row)
+        
+        let data = getTextFor(indexPath.row)
+        if data.isEmpty {
+            deliveryCell.textLabel!.text! = deliverySectionPrompts[indexPath.row]
+            deliveryCell.textLabel!.textColor = UIColor.grayColor()
+            deliveryCell.detailTextLabel!.text! = ""
+        } else {
+            deliveryCell.textLabel!.text! = deliverySectionTitles[indexPath.row]
+            deliveryCell.textLabel!.textColor = UIColor.blackColor()
+            deliveryCell.detailTextLabel!.text! = getTextFor(indexPath.row)
+        }
         
         return deliveryCell
     }
@@ -303,7 +316,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             chooseRestaurant.delegate = self
         }
         if segue.identifier == "editFoodItem" {
-            let newFoodItemVC = segue.destinationViewController as! NewFoodItemViewController
+            let newFoodItemVC = segue.destinationViewController as! NewFoodItemTableViewController
             let source = sender as? String
             if source == "fromCell" {
                 //if user clicks a cell to edit
@@ -317,11 +330,13 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     @IBAction func submit(sender: UIButton) {
+        sender.enabled = false//prevents multiple rapid submissions (accidentally?)
         order.create { (success) -> Void in
             if success{
                 self.delegate.orderSaved(self)
             }else{
                 logError("order failed")
+                sender.enabled = true
                 //self.delegate.cancelNewOrder(self)
             }
         }

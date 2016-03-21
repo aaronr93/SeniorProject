@@ -49,21 +49,36 @@ class NewOrderUITests: SeniorProjectUITests {
     }
     
     func testAddFoodItem(){
+        
         let app = XCUIApplication()
+        //waitForExpectationsWithTimeout(10, handler: nil)
         app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        let tablesQuery = app.tables
+        tablesQuery.otherElements["FOOD"].tap()
+        
+        let clearTextTextField = tablesQuery.textFields.containingType(.Button, identifier:"Clear text").element
+        clearTextTextField.typeText("Test")
+        
+        app.buttons["Next"].tap()
+        app.tables.textFields["Details"].typeText("\n")
+        clearTextTextField.typeText("Test")
+        app.keyboards.buttons["Done"].tap()
+        app.typeText("\n")
+        
+        
+        
+        /*app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
         app.textFields["Enter Food Name"].typeText("test")
         app.buttons["Next"].tap()
         let enterFoodDescriptionTextField = app.textFields["Enter Food Description"]
         enterFoodDescriptionTextField.tap()
         enterFoodDescriptionTextField.typeText("test")
-        app.keyboards.buttons["Done"].tap()
+        app.keyboards.buttons["Done"].tap()*/
         
         //should take us to edit food item screen, which means the food item was created
         app.tables.element.cells.elementBoundByIndex(1).tap()
-        XCTAssertNotNil(app.textFields["Enter Food Name"])
+        XCTAssertNotNil(clearTextTextField)
         app.navigationBars["Food item"].buttons["New Order"].tap()
-        
         
     }
     

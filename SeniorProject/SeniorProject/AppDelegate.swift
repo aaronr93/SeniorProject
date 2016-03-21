@@ -106,11 +106,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.badge = 0
         installation.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
-                print("cleared badges")
                 UIApplication.sharedApplication().applicationIconBadgeNumber = 0
             }
             else {
-                print("failed to clear badges")
+                logError("Failed to clear badges")
             }
         }
     }

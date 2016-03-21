@@ -1,8 +1,8 @@
 //
-//  NewFoodItemViewController.swift
+//  NewFoodItemTableViewController.swift
 //  SeniorProject
 //
-//  Created by Seth Loew on 3/3/16.
+//  Created by Aaron Rosenberger on 3/18/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
@@ -10,21 +10,21 @@ import UIKit
 import Parse
 
 protocol NewFoodItemViewDelegate {
-    func cancelNewItem(newOrderVC: NewFoodItemViewController)
-    func saveNewItem(newOrderVC: NewFoodItemViewController)
-    func editNewItem(newOrderVC: NewFoodItemViewController)
+    func cancelNewItem(newOrderVC: NewFoodItemTableViewController)
+    func saveNewItem(newOrderVC: NewFoodItemTableViewController)
+    func editNewItem(newOrderVC: NewFoodItemTableViewController)
 }
 
-class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
-
-    var delegate: NewOrderViewController!
+class NewFoodItemTableViewController: UITableViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var foodDescriptionField: UITextField!
-    @IBOutlet weak var foodNameField: UITextField!
+    var delegate: NewOrderViewController!
     
     var foodNameText = ""
     var foodDescriptionText = ""
     var index: Int?
+    
+    @IBOutlet weak var foodNameField: UITextField!
+    @IBOutlet weak var foodDescriptionField: UITextField!
     
     @IBAction func cancel(sender: UIBarButtonItem) {
         delegate.cancelNewItem(self)
@@ -36,7 +36,7 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
         foodNameField.delegate = self
         foodDescriptionField.delegate = self
         
@@ -49,9 +49,12 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
         }
         
         foodNameField.becomeFirstResponder()
-        
-        foodNameField.returnKeyType = UIReturnKeyType.Next
-        foodDescriptionField.returnKeyType = UIReturnKeyType.Done
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        foodDescriptionField.resignFirstResponder()
+        foodNameField.resignFirstResponder()
+        super.touchesBegan(touches, withEvent: event)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -67,6 +70,7 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
     func sendFoodItem() -> Bool {
         foodNameText = foodNameField.text!
         foodDescriptionText = foodDescriptionField.text!
+        
         if (index != nil) {
             delegate.editNewItem(self)
             return true
@@ -78,5 +82,5 @@ class NewFoodItemViewController: UIViewController, UITextFieldDelegate {
         delegate.saveNewItem(self)
         return true
     }
-    
+
 }

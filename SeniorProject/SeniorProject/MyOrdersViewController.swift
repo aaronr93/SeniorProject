@@ -9,13 +9,12 @@
 import UIKit
 import Parse
 
-
-
 class MyOrdersViewController: UITableViewController {
     
     let sectionHeaders = ["Requests I've Sent", "Requests I'm Picking Up"]
     var ordersISent = [PFObject]()
     var ordersIReceived = [PFObject]()
+    var current: NSIndexPath?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,7 +24,7 @@ class MyOrdersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //get orders sent by the user
-        let ordersISentQuery = PFQuery(className:"Order")
+        let ordersISentQuery = PFQuery(className: "Order")
         ordersISentQuery.includeKey("restaurant")
         ordersISentQuery.includeKey("driverToDeliver")
         ordersISentQuery.includeKey("destination")
@@ -235,6 +234,8 @@ class MyOrdersViewController: UITableViewController {
                 }
             }
         }
+        
+        dest.index = current
         dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
     }
     
@@ -250,7 +251,8 @@ class MyOrdersViewController: UITableViewController {
             }
         } else if segue.identifier == "myOrderSegue" {
             if let destination = segue.destinationViewController as? MyOrderTableViewController {
-                 if tableView.indexPathForSelectedRow?.section == 0{
+                destination.delegate = self
+                if tableView.indexPathForSelectedRow?.section == 0 {
                     if let ordersISentIndex = tableView.indexPathForSelectedRow?.row {
                         passOrdersISentInfo(ordersISentIndex, dest: destination)
                     }
@@ -260,7 +262,8 @@ class MyOrdersViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch (indexPath.section){
+        current = indexPath
+        switch (indexPath.section) {
         case 0: //row in prior personal orders section
             performSegueWithIdentifier("myOrderSegue", sender: self)
         case 1: //row in potential customer orders section
