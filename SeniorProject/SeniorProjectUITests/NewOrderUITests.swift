@@ -108,6 +108,23 @@ class NewOrderUITests: SeniorProjectUITests {
         
     }
     
+    func testSelectExpiration(){
+        
+        let app = XCUIApplication()
+        let cancelButton = app.navigationBars["New Order"].buttons["Cancel"]
+        app.buttons["I want food"].tap()
+        
+        let app2 = app
+        app2.tables.staticTexts["Expires In"].tap()
+        app2.pickerWheels.element.adjustToPickerWheelValue("2 Hours")
+        XCTAssertNotNil(app.navigationBars["Expires In"].buttons["New Order"])
+        let newOrderButton = app.navigationBars["Expires In"].buttons["New Order"]
+        newOrderButton.tap()
+        cancelButton.tap()
+    }
+    
+    
+    
     
     func testAddFoodItemDrag() {
         // Unsupported - should do nothing
