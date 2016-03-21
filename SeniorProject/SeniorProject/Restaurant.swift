@@ -12,6 +12,13 @@ import MapKit
 class Restaurant: NSObject {
     var name: String
     var loc: MKPlacemark
+
+    // Optional values
+    var objectId: String?
+    var address: String?
+    var city: String?
+    var state: String?
+    var zip: String?
     
     init(name: String, loc: MKPlacemark) {
         self.name = name

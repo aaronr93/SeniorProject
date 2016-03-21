@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */; };
+		363103971CA05BE500536DE4 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363103961CA05BE500536DE4 /* CurrentLocation.swift */; };
 		3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5951C8E28020046BC97 /* DeliveryLocationTableViewController.swift */; };
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
@@ -54,7 +55,6 @@
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
 		9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */; };
 		9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */; };
-		9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */; };
 		9B3202071C8CD7D800749264 /* SettingsClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202061C8CD7D800749264 /* SettingsClassTests.swift */; };
 		9B3202091C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */; };
 		9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */; };
@@ -100,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		363103961CA05BE500536DE4 /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 		3641A5951C8E28020046BC97 /* DeliveryLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryLocationTableViewController.swift; sourceTree = "<group>"; };
 		3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCell.swift; sourceTree = "<group>"; };
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewController.swift; sourceTree = "<group>"; };
 		9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTableViewController.swift; sourceTree = "<group>"; };
-		9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		9B3202061C8CD7D800749264 /* SettingsClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassTests.swift; sourceTree = "<group>"; };
 		9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
 		9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -256,6 +256,7 @@
 		364A6FE41C98EE0D0088116D /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
+				96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */,
 			);
 			name = "Driver side";
 			sourceTree = "<group>";
@@ -263,6 +264,7 @@
 		364A6FE51C98EE120088116D /* Customer side */ = {
 			isa = PBXGroup;
 			children = (
+				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -270,6 +272,7 @@
 		364A6FE61C98EE180088116D /* Other ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 		364A6FE71C98EE1F0088116D /* Subscreens */ = {
 			isa = PBXGroup;
 			children = (
+				9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */,
 			);
 			name = Subscreens;
 			sourceTree = "<group>";
@@ -343,6 +347,7 @@
 				3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */,
 				9B3202521C97599100749264 /* Notification.swift */,
 				36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */,
+				363103961CA05BE500536DE4 /* CurrentLocation.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -355,7 +360,6 @@
 				36B92B721C9C5C4B00E29A3B /* NewFoodItemTableViewController.swift */,
 				36D08F751C7A72C6005B1E90 /* ChooseDriverTableViewController.swift */,
 				9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */,
-				9B049C531C892641002655D0 /* RestaurantTableViewCell.swift */,
 				3641A5951C8E28020046BC97 /* DeliveryLocationTableViewController.swift */,
 				3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */,
 			);
@@ -457,11 +461,7 @@
 				364A6FE51C98EE120088116D /* Customer side */,
 				364A6FE41C98EE0D0088116D /* Driver side */,
 				96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */,
-				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
-				36D08F7C1C7BB29C005B1E90 /* NewOrderUITests.swift */,
-				96C886D71C84F5AC008E668B /* DriversOrdersUITests.swift */,
 				9BF07BF31C89F52A00F3D3F9 /* example.swift */,
-				9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */,
 			);
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
@@ -609,6 +609,7 @@
 				36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */,
 				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
 				3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */,
+				363103971CA05BE500536DE4 /* CurrentLocation.swift in Sources */,
 				36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */,
 				9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */,
 				36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */,
@@ -625,7 +626,6 @@
 				9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */,
 				36D08F701C776AEA005B1E90 /* DriverRestaurantPreferences.swift in Sources */,
 				96DBF85D1C796FA70090F7F6 /* ParseDate.swift in Sources */,
-				9B049C541C892641002655D0 /* RestaurantTableViewCell.swift in Sources */,
 				9B3202531C97599100749264 /* Notification.swift in Sources */,
 				3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */,
 				9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */,
@@ -806,6 +806,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey.foodini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -827,6 +828,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.gcc.gooey.foodini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SeniorProject-Bridging-Header.h";
 			};
 			name = Release;
