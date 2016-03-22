@@ -28,7 +28,11 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     
     func getCurrentLocation() -> CLLocation {
         print(locationManager.location)
-        return locationManager.location!
+        if let loc = locationManager.location {
+            return loc
+        } else {
+            return CLLocation()
+        }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
