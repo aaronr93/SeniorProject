@@ -20,13 +20,12 @@ protocol ChooseDriverDelegate {
 class ChooseDriverTableViewController: UITableViewController {
 
     let drivers = Drivers()
+    
     var chosenDriver: String = ""
     var chosenDriverID: String = ""
     var isAnyDriver: Bool = false
-    var chosenRestaurant = ""
-    var restaurantId : String!
-    let sectionHeaders = ["", "Choose a driver"]
     
+    let sectionHeaders = ["", "Choose a driver"]
     var delegate: NewOrderViewController!
     
     enum Section: Int {
@@ -37,13 +36,10 @@ class ChooseDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        chosenRestaurant = delegate.order.restaurantName
-        restaurantId = delegate.order.restaurantId
-        
         drivers.clear()
-        drivers.restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: restaurantId)
+        drivers.restaurant = delegate.order.restaurant.name
         
-        drivers.getDriversFromDB { (success) -> Void in
+        drivers.getNonDriversFromDB { (success) -> Void in
             if success {
                 self.tableView.reloadData()
             } else {
@@ -113,39 +109,31 @@ class ChooseDriverTableViewController: UITableViewController {
             delegate.saveDriverToDeliver(self)
         } else {
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                
                 let driverName = cell.textLabel!.text!
                 chosenDriver = driverName
                 let index = indexPath.row
-                
-                let driverAvailabilityForRestaurant = drivers.list[index]
-                
-                if let driverAvailability = driverAvailabilityForRestaurant["driverAvailability"]{
-                    if let driver = driverAvailability["driver"] as? PFObject{
-                        chosenDriverID = driver.objectId!
-                        delegate.saveDriverToDeliver(self)
-                    }
-                }
+
+                let availableDriver = drivers.list[index]
+                chosenDriverID = availableDriver.objectId!
+                delegate.saveDriverToDeliver(self)
             }
         }
     }
     
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath) as! DriverCell
-        var cellText = ""
-        let list = drivers.list[indexPath.row]
-        if let driverAvailability = list["driverAvailability"] {
-            if let driver = driverAvailability["driver"] as? PFUser {
-                cellText = driver.username!
-                
-            }
-        }
-        driverCell.driverName.text = cellText
+        
+        let availableDriver = drivers.list[indexPath.row]
+        driverCell.driverName.text = availableDriver.username!
+        
         return driverCell
     }
     
     override func viewWillDisappear(animated: Bool) {
         delegate.order.deliveredBy = chosenDriver
-        //delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 2)], withRowAnimation: .None)
+        delegate.order.deliveredByID = chosenDriverID
+        delegate.order.isAnyDriver = isAnyDriver
     }
 
 }

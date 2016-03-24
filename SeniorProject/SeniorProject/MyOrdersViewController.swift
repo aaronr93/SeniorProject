@@ -12,81 +12,108 @@ import Parse
 class MyOrdersViewController: UITableViewController {
     
     let sectionHeaders = ["Requests I've Sent", "Requests I'm Picking Up"]
-    var ordersISent = [PFObject]()
-    var ordersIReceived = [PFObject]()
+    var ordersISent = [PFOrder]()
+    var ordersIReceived = [PFOrder]()
+    let user = PFUser.currentUser()!
     var current: NSIndexPath?
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+    override func viewDidLoad() {
+        
+        clear(listOfOrders: ordersISent)
+        getOrdersISent() { result in
+            if result { self.tableView.reloadData() }
+        }
+        
+        clear(listOfOrders: ordersIReceived)
+        getOrdersIReceived() { result in
+            if result { self.tableView.reloadData() }
+        }
+        
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //get orders sent by the user
-        let ordersISentQuery = PFQuery(className: "Order")
-        ordersISentQuery.includeKey("restaurant")
-        ordersISentQuery.includeKey("driverToDeliver")
-        ordersISentQuery.includeKey("destination")
-        ordersISentQuery.whereKey("OrderingUser", equalTo: PFUser.currentUser()!)
-        ordersISentQuery.whereKey("OrderState", notEqualTo: "Delivered")
-        ordersISentQuery.whereKey("OrderState", notEqualTo: "Deleted")
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
         
-        ordersISentQuery.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            
+        refresh(listOfOrders: ordersISent)
+        refresh(listOfOrders: ordersIReceived)
+        
+    }
+    
+    func clear(var listOfOrders list: [PFOrder]) {
+        list.removeAll()
+    }
+    
+    func refresh(listOfOrders list: [PFOrder]) {
+        PFOrder.fetchAllIfNeededInBackground(list) { (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
+                self.tableView.reloadData()
+            } else {
+                logError("Couldn't refresh orders.")
+            }
+        }
+    }
+    
+    func getOrdersISent(completion: (success: Bool) -> Void) {
+        let query = PFQuery(className: PFOrder.parseClassName())
+        let user = PFUser.currentUser()!
+        let now = NSDate()
+        
+        query.includeKey("driverToDeliver")
+        query.includeKey("destination")
+        query.whereKey("OrderState", notEqualTo: "Delivered")
+        query.whereKey("OrderState", notEqualTo: "Deleted")
+        query.whereKey("OrderingUser", equalTo: user)
+        query.whereKey("expirationDate", greaterThan: now)
+        
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            if error == nil {
                 if let orders = objects {
                     for order in orders {
+                        let order = order as! PFOrder
                         self.ordersISent.append(order)
                     }
-                    self.tableView.reloadData()
+                    completion(success: true)
                 }
             } else {
-                // Log details of the failure
-                logError("Error: \(error!) \(error!.userInfo)")
+                logError("\(error!.userInfo)")
+                completion(success: false)
             }
         }
+    }
+    
+    func getOrdersIReceived(completion: (success: Bool) -> Void) {
+        let query = PFQuery(className: PFOrder.parseClassName())
+        let user = PFUser.currentUser()!
+        let now = NSDate()
         
-        //get orders received by the user
-        let ordersIReceivedQuery = PFQuery(className:"Order")
-        ordersIReceivedQuery.includeKey("restaurant")
-        ordersIReceivedQuery.includeKey("OrderingUser")
-        ordersIReceivedQuery.includeKey("destination")
-        ordersIReceivedQuery.whereKey("driverToDeliver", equalTo: PFUser.currentUser()!)
-        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Delivered")
-        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Available")
-        ordersIReceivedQuery.whereKey("OrderState", notEqualTo: "Deleted")
+        query.includeKey("OrderingUser")
+        query.includeKey("destination")
+        query.whereKey("driverToDeliver", equalTo: user)
+        query.whereKey("OrderState", notEqualTo: "Delivered")
+        query.whereKey("OrderState", notEqualTo: "Available")
+        query.whereKey("OrderState", notEqualTo: "Deleted")
+        query.whereKey("expirationDate", greaterThan: now)
+        query.whereKey("OrderingUser", notEqualTo: user)
         
-        ordersIReceivedQuery.findObjectsInBackgroundWithBlock {
+        query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
             if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
                 if let orders = objects {
                     for order in orders {
-                        self.ordersIReceived.append(order)
+                        let order = order as! PFOrder
+                        if (order.driverToDeliver != nil) {
+                            self.ordersIReceived.append(order)
+                        }
                     }
-                    self.tableView.reloadData()
+                    completion(success: true)
                 }
             } else {
-                // Log details of the failure
-                logError("Error: \(error!) \(error!.userInfo)")
+                logError("\(error!.userInfo)")
+                completion(success: false)
             }
         }
-
-
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2 //"requests I've sent" and "requests I'm picking up"
@@ -118,96 +145,66 @@ class MyOrdersViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("order", forIndexPath: indexPath) as! OrderCell
-        var order : PFObject?
+        let row = indexPath.row
+        let section = indexPath.section
+        var order = PFOrder()
+        
         if indexPath.section == 0 {
-            order = ordersISent[indexPath.row]
+            order = ordersISent[row]
         } else if indexPath.section == 1 {
-            order = ordersIReceived[indexPath.row]
+            order = ordersIReceived[row]
         }
         
-        var restaurantName: String = order!["restaurant"]["name"] as! String
+        let restaurantName = order.restaurantName
         
-        restaurantName.makeFirstLetterInStringUpperCase()
-    
+        var username = "Not Available"
+        if section == 0 {
+            if let user = order.driverToDeliver as? PFUser {
+                if let usernameText = user.username {
+                    username = usernameText
+                }
+            }
+            
+        } else if section == 1 {
+            if let user = order.OrderingUser as? PFUser {
+                if let usernameText = user.username {
+                    username = usernameText
+                }
+            }
+        }
+        
         cell.restaurant?.text = restaurantName
-        if indexPath.section == 0 {
-            if (order!["driverToDeliver"] != nil){
-                cell.recipient?.text = order!["driverToDeliver"]["username"] as? String
-            } else {
-                cell.recipient?.text = "Any driver"
-            }
-            
-        } else {
-            if (order!["OrderingUser"] != nil){
-                cell.recipient?.text = order!["OrderingUser"]["username"] as? String
-            } else {
-                cell.recipient?.text = "Error"
-            }
-            
-        }
+        cell.recipient?.text = username
+        
         return cell
     }
     
     func passOrdersIReceivedInfo(index: Int, dest: GetThatOrderTableViewController) {
         let order = ordersIReceived[index]
-        dest.order.restaurantName  = order["restaurant"]["name"] as! String
+        
+        let restaurant = Restaurant(name: order.restaurantName)
+        restaurant.loc = order.restaurantLoc
+        dest.order.restaurant = restaurant
+        
         dest.order.orderID  = order.objectId!
-        dest.order.deliverTo = order["OrderingUser"]["username"] as! String
-        dest.order.deliverToID = order["OrderingUser"].objectId!!
-        dest.order.isAnyDriver = order["isAnyDriver"] as! Bool
+        dest.order.expiresIn = ParseDate.timeLeft(order.expirationDate)
         
-        if let destination = order["destination"] as? PFObject {
-            if let destName = destination["name"] as? String {
-                if !destName.isEmpty {
-                    dest.order.location = destName
-                } else {
-                    dest.order.location = ""
-                }
-            }
-        }
-        dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
+        let orderingUser = order.OrderingUser as! PFUser
+        dest.order.deliverTo = orderingUser.username!
+        dest.order.deliverToID = orderingUser.objectId!
+
+        dest.order.isAnyDriver = order.isAnyDriver
         
-        let orderStatus = order["OrderState"] as! String
+        let destination = order.destination as! PFDestination
+        let name = destination.name
+        let id = destination.objectId!
+        let loc = destination.destination
+        let toPass = Destination(name: name, id: id)
+        toPass.loc = loc
+        dest.order.destination = toPass
+        
+        let orderStatus = order.OrderState
         switch orderStatus {
-        case "Available":
-            dest.order.orderState = OrderState.Available
-        case "Acquired":
-            dest.order.orderState = OrderState.Acquired
-        case "Deleted":
-            dest.order.orderState = OrderState.Deleted
-        case "PaidFor":
-            dest.order.orderState = OrderState.PaidFor
-        case "Delivered":
-            dest.order.orderState = OrderState.Delivered
-        case "Completed":
-            dest.order.orderState = OrderState.Completed
-        default:
-            logError("OrderState is N/A")
-        }
-    }
-    
-    func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
-        let order = ordersISent[index]
-        
-        if let restaurant = order["restaurant"] as? PFObject {
-            if let name = restaurant["name"] as? String {
-                dest.order.restaurantName = name
-            }
-        }
-        dest.order.orderID  = order.objectId!
-        if (order["driverToDeliver"] != nil) {
-            if let driverToDeliver = order["driverToDeliver"] as? PFObject {
-                if let username = driverToDeliver["username"] as? String {
-                    dest.order.deliveredBy = username
-                }
-            }
-        } else {
-            dest.order.deliveredBy = "Any driver"
-        }
-        dest.order.isAnyDriver = order["isAnyDriver"] as! Bool
-        
-        if let orderStatus = order["OrderState"] as? String {
-            switch orderStatus {
             case "Available":
                 dest.order.orderState = OrderState.Available
             case "Acquired":
@@ -221,22 +218,52 @@ class MyOrdersViewController: UITableViewController {
             case "Completed":
                 dest.order.orderState = OrderState.Completed
             default:
-                logError("OrderState is N/A")
-            }
+                logError("Order Status N/A")
         }
+    }
+    
+    func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
+        let order = ordersISent[index]
         
-        if let destination = order["destination"] as? PFObject {
-            if let destName = destination["name"] as? String {
-                if !destName.isEmpty {
-                    dest.order.location = destName
-                } else {
-                    dest.order.location = ""
-                }
-            }
-        }
+        let restaurant = Restaurant(name: order.restaurantName)
+        restaurant.loc = order.restaurantLoc
+        dest.order.restaurant = restaurant
         
+        dest.order.orderID  = order.objectId!
+        dest.order.expiresIn = ParseDate.timeLeft(order.expirationDate)
         dest.index = current
-        dest.order.expiresIn = ParseDate.timeLeft(order["expirationDate"] as! NSDate)
+        
+        let driverToDeliver = order.driverToDeliver as! PFUser
+        dest.order.deliveredBy = driverToDeliver.username!
+        dest.order.deliveredByID = driverToDeliver.objectId!
+        
+        dest.order.isAnyDriver = order.isAnyDriver
+        
+        let destination = order.destination as! PFDestination
+        let name = destination.name
+        let id = destination.objectId!
+        let loc = destination.destination
+        let toPass = Destination(name: name, id: id)
+        toPass.loc = loc
+        dest.order.destination = toPass
+        
+        let orderStatus = order.OrderState
+        switch orderStatus {
+            case "Available":
+                dest.order.orderState = OrderState.Available
+            case "Acquired":
+                dest.order.orderState = OrderState.Acquired
+            case "PaidFor":
+                dest.order.orderState = OrderState.PaidFor
+            case "Delivered":
+                dest.order.orderState = OrderState.Delivered
+            case "Completed":
+                dest.order.orderState = OrderState.Completed
+            case "Deleted":
+                dest.order.orderState = OrderState.Deleted
+            default:
+                logError("Order Status N/A")
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

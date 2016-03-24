@@ -46,14 +46,44 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
             newOrderDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
         }
         if driverRestaurantDelegate != nil {
-            driverRestaurantDelegate.prefs.expirationTime = selectedTime
+            driverRestaurantDelegate.prefs.availability!.expirationDate = getActualTimeFromNow()
             driverRestaurantDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: .Automatic)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func getActualTimeFromNow() -> NSDate {
+        let now = NSDate()
+        
+        switch selectedTime {
+            case "15 minutes":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Minute, value: 15, toDate: now, options: [])
+                return date!
+            case "30 minutes":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Minute, value: 30, toDate: now, options: [])
+                return date!
+            case "1 hour":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
+                return date!
+            case "2 hours":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Hour, value: 2, toDate: now, options: [])
+                return date!
+            case "3 hours":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Hour, value: 3, toDate: now, options: [])
+                return date!
+            case "4 hours":
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Hour, value: 4, toDate: now, options: [])
+                return date!
+            default:
+                let calendar = NSCalendar.currentCalendar()
+                let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
+                return date!
+        }
     }
 
 }

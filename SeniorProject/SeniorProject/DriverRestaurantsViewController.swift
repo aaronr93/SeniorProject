@@ -14,136 +14,25 @@ class AvailabilityCell: UITableViewCell {
     @IBOutlet weak var available: UISwitch!
 }
 
-class DriverRestaurantsViewController: UITableViewController, CLLocationManagerDelegate {
+class DriverRestaurantsViewController: UITableViewController {
     
     let prefs = DriverRestaurantPreferences()
-    let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
-    let user = PFUser.currentUser()!
-    var nearbyRestaurants = [PFObject]()
+    let POIs = PointsOfInterest()
     let driver = PFUser.currentUser()!
     
-    let defaultMileage = 20.0
+    var currentLocation = CurrentLocation()
     
-    let locationManager = CLLocationManager()
-    let geocoder = CLGeocoder()
-    var location: CLLocationCoordinate2D?
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // Whenever the user location updates, update the restaurants the user is near.
-        self.updateRestaurants()
-    }
-    
-    func getRestaurantsByDistance(userGeoPoint: PFGeoPoint){
-        // Create a query for places
-        let query = PFQuery(className: "Restaurant")
-        // Interested in locations near user.
-        query.whereKey("locationCoord", nearGeoPoint: userGeoPoint, withinMiles: defaultMileage)
-        // Limit what could be a lot of points.
-        //query.limit = 20
-        // Final list of objects
-        _ = query.findObjectsInBackgroundWithBlock { (restaurantObjects, error) -> Void in
-            if error == nil{
-                if let restaurants = restaurantObjects {
-                    self.nearbyRestaurants = restaurants
-                    self.tableView.reloadData()
-                } else {
-                    self.tableView.reloadData()
-                    logError("No closeby restaurants")
-                }
-            } else {
-                logError("error getting closeby restaurants")
-            }
-        }
-    }
-    
-    func updateRestaurants() {
-        let myLoc = CurrentLocation().getCurrentLocation().coordinate
-        let myLocation = PFGeoPoint(latitude: myLoc.latitude, longitude: myLoc.longitude)
-        getRestaurantsByDistance(myLocation)
-    }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let addressString : String = "89-30 70th road Forest Hills, NY"
-        
-        self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            if error != nil {
-                logError("Geocode failed with error: \(error!.localizedDescription)")
-            } else if placemarks!.count > 0 {
-                let placemark = placemarks![0]
-                self.location = placemark.location?.coordinate
-            }
-        })
-    }
-    
-    func getFromParse() {
-        let getNearbyRestaurants = PFQuery(className:"Restaurant")
-        
-        //itemsForDriverQuery.includeKey("name")
-        getNearbyRestaurants.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.prefs.addRestaurant(item)
-                    }
-                    self.tableView.reloadData()
-                }
-            } else {
-                // Log details of the failure
-                logError("Error: \(error!) \(error!.userInfo)")
-            }
-        }
-    }
+    let sectionHeaders = ["Restaurants I won't go to", "When I'm available"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getFromParse()
+        updateRestaurants()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         updateRestaurants()
     }
-    
-    func findDriversLocation(){
-        // For use in foreground
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            //accurate active location
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.requestLocation()
-            
-        } else {
-            //need to use last location in table since we cannot use location services
-            
-            let addressString : String = "89-30 70th road Forest Hills, NY"
-            self.geocoder.geocodeAddressString(addressString, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                if error != nil {
-                    logError("Geocode failed with error: \(error!.localizedDescription)")
-                } else if placemarks!.count > 0 {
-                    self.updateRestaurants()
-                    //TODO: load any driver requests by last recorded or inputted distance
-                    
-                }
-            })
-        }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        findDriversLocation()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -155,7 +44,7 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
         case 0: //'settings' section, which always has two rows (availability expiration and available yes/no)
             return 2
         case 1: //'restaurants' section -- number of restaurants available to select from
-            return nearbyRestaurants.count
+            return POIs.restaurants.count
         default: //shouldn't get here
             return 0
         }
@@ -186,26 +75,39 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
     
     func cellForRestaurants(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurant", forIndexPath: indexPath)
-        if indexPath.row > nearbyRestaurants.count {
+        let row = indexPath.row
+        
+        if row > POIs.restaurants.count {
             logError("Somehow, there are more rows than there are restaurants.")
         } else {
-            restaurantCell.textLabel!.text = nearbyRestaurants[indexPath.row]["name"] as? String
+            let name = POIs.restaurants[row].name
+            if name == "" {
+                restaurantCell.textLabel?.text = "Loading..."
+                restaurantCell.textLabel?.textColor = UIColor.grayColor()
+            } else {
+                restaurantCell.textLabel?.text = name
+                restaurantCell.textLabel?.textColor = UIColor.blackColor()
+                markExistingPreference(indexPath)
+            }
         }
+        
         return restaurantCell
     }
     
     func cellsForSettings(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {     // "Availability" cell
+        let row = indexPath.row
+        
+        if row == 0 {     // "Availability" cell
             
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
-            availabilityCell.available.selected = prefs.active
+            availabilityCell.available.selected = currentlyAvailable(prefs.availability!.expirationDate)
             return availabilityCell
             
-        } else if indexPath.row == 1 {  // "Expiration time" cell
+        } else if row == 1 {  // "Expiration time" cell
             
             let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: indexPath)
             expirationCell.textLabel!.text! = "Expires In"
-            let time = prefs.expirationTime
+            let time = prefs.getExpirationTime()
             expirationCell.detailTextLabel!.text! = time
             return expirationCell
             
@@ -217,116 +119,69 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
         }
     }
     
-    func addRestaurantPreference(restaurant: PFObject, completion: (success: Bool) -> Void){
-        let driverAvailableRestaurant = PFObject(className: "DriverAvailableRestaurants")
-        
-        driverAvailableRestaurant["restaurant"] = restaurant
-        
-        let driverAvailablityQuery = PFQuery(className: "DriverAvailability")
-        
-        driverAvailablityQuery.whereKey("driver", equalTo: driver)
-        
-        driverAvailablityQuery.findObjectsInBackgroundWithBlock { (driverAvailabilityObjects, error) -> Void in
-            if error == nil{
-                if let driverAvailablities = driverAvailabilityObjects{
-                    if !driverAvailablities.isEmpty{
-                        driverAvailableRestaurant["driverAvailability"] = driverAvailablities.first!
-                        driverAvailableRestaurant.saveInBackgroundWithBlock({ (success, error) -> Void in
-                            if error == nil && success{
-                                completion(success: true)
-                            }else{
-                                logError("Error: Saving driver available restaurant")
-                                completion(success: false)
-                            }
-                        })
-                        
-                    }else{
-                        logError("Error: No driver availabilities!")
-                        completion(success: false)
-                    }
-                }
-            }else{
-                logError("Error: Error querying driver availibility")
-                completion(success: false)
+    func currentlyAvailable(expirationDate: NSDate) -> Bool {
+        let now = NSDate()
+        if expirationDate.isFutureDate(now) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func updateRestaurants() {
+        POIs.searchFor("Food", aroundLocation: currentLocation) { result in
+            if result {
+                // Success
+                self.tableView.reloadData()
+            } else {
+                // Some kind of error occurred while trying to
+                // find nearby locations.
+                logError("Couldn't find searched locations")
             }
         }
     }
     
-    func deleteRestaurantPreference(restaurant: PFObject, completion: (success: Bool) -> Void){
-        
-        let driverAvailablityQuery = PFQuery(className: "DriverAvailability")
-        
-        driverAvailablityQuery.whereKey("driver", equalTo: driver)
-        
-        driverAvailablityQuery.findObjectsInBackgroundWithBlock { (driverAvailabilityObjects, error) -> Void in
-            if error == nil{
-                if let driverAvailablities = driverAvailabilityObjects {
-                    if !driverAvailablities.isEmpty {
-                        let driverAvailableRestaurantQuery = PFQuery(className: "DriverAvailableRestaurants")
-                        driverAvailableRestaurantQuery.whereKey("driverAvailability", equalTo: driverAvailablities.first!)
-                        driverAvailableRestaurantQuery.whereKey("restaurant", equalTo: restaurant)
-                        
-                        driverAvailableRestaurantQuery.findObjectsInBackgroundWithBlock({ (driverAvailableRestaurantsObjects, errorDriverAvailableRestaurant) -> Void in
-                            if errorDriverAvailableRestaurant == nil{
-                                if let driverAvailableRestaurants = driverAvailableRestaurantsObjects {
-                                    if !driverAvailableRestaurants.isEmpty {
-                                        driverAvailableRestaurants.first!.deleteInBackgroundWithBlock({ (deleteSuccess, deleteError) -> Void in
-                                            if deleteError == nil && deleteSuccess {
-                                                completion(success: true)
-                                            }else{
-                                                logError("Error: Saving driver available restaurant")
-                                                completion(success: false)
-                                            }
-                                        })
-                                    }else{
-                                        logError("Error: Query yielded no results")
-                                        completion(success: false)
-                                    }
-                                }
-                            }
-                        })
-                    } else {
-                        logError("Error: No driver availabilities!")
-                        completion(success: false)
-                    }
-                }
-            } else {
-                logError("Error: Error querying driver availibility")
-                completion(success: false)
+    func markExistingPreference(indexPath: NSIndexPath) {
+        // Checks the row at the given indexPath for an existing driver preference.
+        // If it's previously been marked as unavailable, CHECK it. Otherwise, ignore.
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if let name = cell?.textLabel?.text {
+            let restaurant = Restaurant(name: name)
+            if prefs.isUnavailable(restaurant) {
+                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
             }
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        if section == 0 {
             // Settings
-            if indexPath.row == 1 {
+            if row == 1 {
                 // Expiration time
                 performSegueWithIdentifier("expiresInSegue", sender: self)
             }
             
-        } else if indexPath.section == 1 {
+        } else if section == 1 {
             // Restaurants
             if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                
                 if cell.accessoryType == UITableViewCellAccessoryType.Checkmark {
+                    
+                    // If the cell is checked, uncheck it and mark as Available
                     cell.accessoryType = UITableViewCellAccessoryType.None
-                    deleteRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
-                        if !success {
-                            logError("error deleting restaurant preference")
-                            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                        }
-                        
-                    })
+                    prefs.markAvailable(POIs.restaurants[row])
+                    
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
+                    
+                    // If the cell is unchecked, check it and mark as Unavailable
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    addRestaurantPreference(nearbyRestaurants[indexPath.row], completion: { (success) -> Void in
-                        if !success {
-                            logError("error adding restaurant preference")
-                            cell.accessoryType = UITableViewCellAccessoryType.None
-                        }
-                        
-                    })
+                    prefs.markUnavailable(POIs.restaurants[row])
+                    
                 }
+                
                 cell.selected = false
             }
             
@@ -337,10 +192,16 @@ class DriverRestaurantsViewController: UITableViewController, CLLocationManagerD
         if segue.identifier == "expiresInSegue" {
             let dest = segue.destinationViewController as! ExpiresInViewController
             dest.driverRestaurantDelegate = self
-            if prefs.expirationTime != "" {
-                dest.selectedTime = prefs.expirationTime
+            if !currentlyAvailable(prefs.availability!.expirationDate) {
+                // If the Expires In field is NOT counting down
+                dest.selectedTime = "1 hour"
             }
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        prefs.saveAll()
     }
     
 }

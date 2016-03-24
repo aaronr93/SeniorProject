@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 protocol DeliveryLocationDelegate {
     func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController)
@@ -14,19 +15,17 @@ protocol DeliveryLocationDelegate {
 
 class DeliveryLocationTableViewController: UITableViewController, CustomDeliveryLocationDelegate {
     
-    var deliveryLocation: String = ""
-    var destinationID: String = ""
+    var destination: Destination?
     var delegate: NewOrderViewController!
     var selectIndex = NSIndexPath()
     let dest = CustomerDestinations()
+    let user = PFUser.currentUser()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        deliveryLocation = delegate.order.location
-        
-        dest.getDestinationItemsFromParse() {
-            result in
+        destination = delegate.order.destination
+        dest.getDestinationItemsFromParse() { result in
             if result {
                 // Order successfully delivered
                 self.tableView.reloadData()
@@ -34,13 +33,6 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                 logError("Error fetching destination items from parse")
             }
         }
-
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -49,12 +41,16 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: // Custom delivery location
+        case 0:
+            // Custom delivery location
             return 1
-        case 1: // History of delivery locations
+        case 1:
+            // History of delivery locations
             return dest.history.count
-        default: // Shouldn't get here
-            return 1    // Default "no results" cell
+        default:
+            // Shouldn't get here
+            // TODO: Default "no results" cell
+            return 1
         }
     }
 
@@ -77,8 +73,9 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                 historyCell.detailTextLabel!.text! = ""
             } else if dest.history.count > 0 {
                 let index = indexPath.row
-                historyCell.textLabel!.text! = dest.history[index].name!
-                historyCell.detailTextLabel!.text! = "69 mi"
+                historyCell.textLabel!.text! = dest.history[index].name
+                // TODO: REMOVE for presentation
+                historyCell.detailTextLabel!.text! = "6.9 mi"
             }
             
             return historyCell
@@ -89,8 +86,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 { // History of delivery locations
             let index = indexPath.row
-            deliveryLocation = dest.history[index].name!
-            destinationID = dest.history[index].id!
+            destination = dest.history[index]
         }
         delegate.saveDeliveryLocation(self)
     }
@@ -104,34 +100,54 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        let cell = tableView.cellForRowAtIndexPath(selectIndex) as! CustomDeliveryLocationTableViewCell
+        let customValue = cell.customField!.text!
+        
+        for item in dest.history {
+            if item.loc == nil {
+                // Location for a destination is optional, but we prefer to check for
+                //   duplicates based on location. So if it isn't set, just check if
+                //   the names are the same. This encourages setting the location.
+                if customValue == item.name {
+                    logError("Destination already exists")
+                    return false
+                }
+            } else {
+                // The location has (hopefully) been set. Make sure there isn't another destination
+                //   already in the database that's near this one.
+                /*  CURRENTLY UNSUPPORTED
+                TODO: Add a custom map where you can drop a pin for custom destination
+                if item.loc?.isNear(thisPoint: customPoint, within: 0.1) {
+                logError("Destination already exists, or you're picking a location too specific")
+                return
+                }*/
+            }
+        }
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if selectIndex.section == 0 {
+            // Custom destination
+            
             let cell = tableView.cellForRowAtIndexPath(selectIndex) as! CustomDeliveryLocationTableViewCell
             let customValue = cell.customField!.text!
-            delegate.order.location = customValue
             
-            // Add the newly typed item to the database for later use
-            let destItem = Destination(name: customValue, id: nil)
-            for destI in (dest.history) {
-                if destI.name == destI.name {
-                    logError("Destination already exists")
-                    return
+            if customValue != "" {
+                dest.addDestinationItemToDB(customValue) { result in
+                    if result {
+                        
+                    } else {
+                        logError("Error adding destination item to DB")
+                    }
                 }
             }
-            if destItem.name != "" {
-                dest.addDestinationItemToDB(destItem, completion: { (success, id) in
-                    if success {
-                        destItem.id = id
-                        self.delegate.order.destinationID = id!
-                    } else {
-                        logError("error adding destination item to DB")
-                    }
-                })
-            }
-        } else {
-            delegate.order.location = deliveryLocation
-            delegate.order.destinationID = destinationID
+        } else if selectIndex.section == 1 {
+            // History of destinations
+            delegate.order.destination = destination
         }
+        
         delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 2)], withRowAnimation: .Automatic)
     }
 

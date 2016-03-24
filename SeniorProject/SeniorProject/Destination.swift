@@ -7,12 +7,19 @@
 //
 
 import Foundation
+import Parse
 
 class Destination {
-    var name: String?
-    var id: String?
+    var name: String
+    var loc: PFGeoPoint?
+    var id: String
     
-    init(name: String?, id: String?) {
+    init() {
+        self.name = ""
+        self.id = ""
+    }
+    
+    init(name: String, id: String) {
         self.name = name
         self.id = id
     }

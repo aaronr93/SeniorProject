@@ -33,6 +33,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     let order = Order()
     var current = NSIndexPath()
     
+    var currentLocation = CurrentLocation()
+    
     enum Section: Int {
         case Restaurant = 0
         case Food = 1
@@ -82,7 +84,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     // Delegate method for Choose Delivery Location
     func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController) {
         self.tableView.reloadData()
-        order.destinationID = deliveryLocationVC.destinationID
+        order.destination = deliveryLocationVC.destination
         deliveryLocationVC.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -96,49 +98,61 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
-        case Section.Restaurant.rawValue: // single, static "select a restaurant" cell (for now)
-            return 1
-        case Section.Food.rawValue: //based on number of food items in order
-            return order.foodItems.count
-        case Section.Settings.rawValue: // 3 -- 'delivered by', 'location', and 'expires in'
-            return deliverySectionTitles.count
-        default: //shouldn't get here
-            return 0
+            case Section.Restaurant.rawValue:
+                // single, static "select a restaurant" cell (for now)
+                return 1
+            case Section.Food.rawValue:
+                //based on number of food items in order
+                return order.foodItems.count
+            case Section.Settings.rawValue:
+                // 3 -- 'delivered by', 'location', and 'expires in'
+                return deliverySectionTitles.count
+            default:
+                //shouldn't get here
+                return 0
         }
     }
     
     //populates New Order screen headers
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
-        case Section.Restaurant.rawValue: //"Restaurant" header
-            return sectionHeaders[0]
-        case Section.Food.rawValue: //"Food items" header
-            return sectionHeaders[1]
-        case Section.Settings.rawValue: //"Delivery" header
-            return sectionHeaders[2]
-        default: //shouldn't get here
-            return ""
+        switch section {
+            case Section.Restaurant.rawValue:
+                //"Restaurant" header
+                return sectionHeaders[0]
+            case Section.Food.rawValue:
+                //"Food items" header
+                return sectionHeaders[1]
+            case Section.Settings.rawValue:
+                //"Delivery" header
+                return sectionHeaders[2]
+            default:
+                //shouldn't get here
+                return ""
         }
     }
     
     //populates different custom cell types based on the table section
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case Section.Restaurant.rawValue: //static "select a restaurant" cell (for now)
-            return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        case Section.Food.rawValue: //2nd section has the food info
-            return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        case Section.Settings.rawValue: //3rd section has delivery info
-            return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        default: //shouldn't get here!
-            let cell: UITableViewCell! = nil
-            return cell
+            case Section.Restaurant.rawValue:
+                //static "select a restaurant" cell (for now)
+                return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
+            case Section.Food.rawValue:
+                //2nd section has the food info
+                return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
+            case Section.Settings.rawValue:
+                //3rd section has delivery info
+                return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
+            default:
+                //shouldn't get here!
+                let cell: UITableViewCell! = nil
+                return cell
         }
     }
     
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
-        var restaurantName: String = order.restaurantName
+        var restaurantName: String = order.restaurant.name
 
         if restaurantName == "Select a Restaurant" {
             restaurantCell.name.textColor = UIColor.grayColor()
@@ -177,23 +191,23 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         return deliveryCell
     }
     
-    //populate row data for the Delivery section. (Value names show what each row is)
+    // Populate row data for the Delivery section. (Value names show what each row is)
     func getTextFor(row: Int) -> String {
         var value : String = ""
         switch row {
-        case 0:
-            value = order.deliveredBy
-        case 1:
-            value = order.location
-        case 2:
-            value = order.expiresIn
-        default:
-            value = ""
+            case 0:
+                value = order.deliveredBy
+            case 1:
+                value = order.destination.name
+            case 2:
+                value = order.expiresIn
+            default:
+                value = ""
         }
         return value
     }
     
-    //manual row heights based on table section
+    // Manual row heights based on table section
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         
@@ -290,15 +304,12 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
             // Pass data to tell which driver should be selected by default
             chooseDriver.delegate = self
+            // TODO: Pass the current location
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
@@ -310,6 +321,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         if segue.identifier == "chooseLocation" {
             let chooseLocation = segue.destinationViewController as! DeliveryLocationTableViewController
             chooseLocation.delegate = self
+            // TODO: Pass the current location
         }
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
@@ -330,7 +342,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     @IBAction func submit(sender: UIButton) {
-        sender.enabled = false//prevents multiple rapid submissions (accidentally?)
+        sender.enabled = false // Prevents multiple rapid submissions (accidentally?)
         order.create { (success) -> Void in
             if success{
                 self.delegate.orderSaved(self)

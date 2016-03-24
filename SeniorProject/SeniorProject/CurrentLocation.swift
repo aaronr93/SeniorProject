@@ -18,26 +18,35 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     
     override init() {
         super.init()
-        locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
+            locationManager.requestAlwaysAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
     }
     
     func getCurrentLocation() -> CLLocation {
-        print(locationManager.location)
         if let loc = locationManager.location {
+            print(locationManager.location!.coordinate.latitude, locationManager.location!.coordinate.longitude)
             return loc
         } else {
+            print("Did the default thing")
             return CLLocation()
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations.last! as CLLocation
-        currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        currentLocation = location.coordinate
         region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        logError("didFailWithError: \(error.description)")
+        let error = UIAlertController(title: "Error", message: "Failed to get your location", preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        error.addAction(action)
+        error.presentViewController(error, animated: true, completion: nil)
     }
 }

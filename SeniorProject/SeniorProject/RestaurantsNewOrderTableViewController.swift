@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import CoreLocation
-import MapKit
 
 protocol RestaurantsNewOrderDelegate {
     func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController)
@@ -17,42 +15,28 @@ protocol RestaurantsNewOrderDelegate {
 
 class RestaurantsNewOrderTableViewController: UITableViewController {
     
-    var restaurants = [PFObject]()
+    let POIs = PointsOfInterest()
     var currentCell: Int = 0
     var delegate: NewOrderViewController!
-    var selectedSomething : Bool = false
-    let myLocation = CurrentLocation().getCurrentLocation()
+    var selectedSomething: Bool = false
+    
+    var currentLocation = CurrentLocation()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getNearbyRestaurants() { result in
-            if result {
-                self.restaurants.sortInPlace({ (a: PFObject, b: PFObject) -> Bool in
-                    return (a["locationCoord"] as! PFGeoPoint).latitude < (b["locationCoord"] as! PFGeoPoint).latitude &&
-                        (a["locationCoord"] as! PFGeoPoint).longitude < (b["locationCoord"] as! PFGeoPoint).longitude
-                })
-                self.tableView.reloadData()
-            }
-        }
+        addLocalPOIs(withQueryString: "Food")
     }
     
-    func getNearbyRestaurants(completion: (success: Bool) -> Void) {
-        let getNearbyRestaurants = PFQuery(className: "Restaurant")
-        getNearbyRestaurants.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let items = objects {
-                    for item in items {
-                        self.restaurants.append(item)
-                    }
-                    completion(success: true)
-                }
+    func addLocalPOIs(withQueryString item: String) {
+        // Search for nearby locations related to the argument for `searchFor`
+        POIs.searchFor(item, aroundLocation: currentLocation) { result in
+            if result {
+                // Success
+                self.tableView.reloadData()
             } else {
-                // Log details of the failure
-                print("Error: \(error!) \(error!.userInfo)")
-                completion(success: false)
+                // Some kind of error occurred while trying to
+                // find nearby locations.
+                logError("Couldn't find searched locations")
             }
         }
     }
@@ -62,39 +46,39 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
+        return POIs.restaurants.count
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         currentCell = indexPath.row
-        selectedSomething  = true
+        selectedSomething = true
         delegate.saveRestaurant(self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath)
-        cell.textLabel!.text = restaurants[indexPath.row]["name"] as? String
+        let index = indexPath.row
         
-        var distance: Double
-        let parseLoc = restaurants[indexPath.row]["locationCoord"] as! PFGeoPoint
-        let restaurantLoc = CLLocation(latitude: parseLoc.latitude, longitude: parseLoc.longitude)
-        print(restaurantLoc)
-        distance = myLocation.distanceFromLocation(restaurantLoc) * 0.000621371192
-        let distanceStr = String(format: "%.1f", distance)
+        let name = POIs.restaurants[index].name
+        let dist = POIs.restaurants[index].dist
         
-        cell.detailTextLabel!.text = "\(distanceStr) mi"
-        
+        if name == "" {
+            cell.textLabel?.text = "Loading..."
+            cell.textLabel?.textColor = UIColor.grayColor()
+        } else {
+            cell.textLabel?.text = name
+            cell.textLabel?.textColor = UIColor.blackColor()
+            cell.detailTextLabel?.text = String(format: "%.1f", dist!) + " mi"
+        }
         return cell
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         if selectedSomething {
-            delegate.order.restaurantId = restaurants[currentCell].objectId!
-            delegate.order.restaurantName = restaurants[currentCell]["name"] as! String
+            delegate.order.restaurant = POIs.restaurants[currentCell]
+            delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
         }
-        delegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Automatic)
-        
     }
-
-
+    
 }

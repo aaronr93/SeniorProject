@@ -19,21 +19,26 @@ enum OrderState {
 }
 
 class Order {
-    var restaurantId: String = ""
-    var restaurantName: String = "Select a Restaurant"
+    var restaurant: Restaurant
     var orderID: String = ""
+    var isAnyDriver: Bool = false
+    var expiresIn: String = ""
+    
     var deliverTo: String = ""
     var deliverToID: String = ""
-    var destinationID: String = ""
+    
     var deliveredBy: String = ""
     var deliveredByID: String = ""
-    var isAnyDriver: Bool = false
-    var location: String = ""
-    var expiresIn: String = ""
+    
+    var destination: Destination! = Destination()
     var foodItems = [Food]()
     var orderState = OrderState.Available
     
-    let itemsForOrderQuery = PFQuery(className:"OrderedItems")
+    init() {
+        restaurant = Restaurant(name: "Select a Restaurant")
+    }
+    
+    let itemsForOrderQuery = PFQuery(className: "OrderedItems")
     
     func addFoodItem(toAdd: Food) {
         if !foodItems.contains( {$0.name == toAdd.name} ) {
@@ -55,20 +60,19 @@ class Order {
         foodItems.removeAtIndex(index)
     }
     
-    func foodItemsToPFObjects(foodItems: [Food]) -> [PFObject]{
-        let order = PFObject(withoutDataWithObjectId: self.orderID)
+    func foodItemsToPFObjects(foodItems: [Food]) -> [PFObject] {
+        let order = PFOrder(withoutDataWithObjectId: self.orderID)
         var parseFoodItems = [PFObject]()
-        for foodItem in foodItems{
-            let orderedItem = PFObject(className: "OrderedItems")
-            //var food = PFObject(className: "Food")
-            orderedItem["order"] = order
-            orderedItem["description"] = foodItem.description
+        for foodItem in foodItems {
+            let orderedItem = PFOrderedItems()
+            orderedItem.order = order
+            orderedItem.foodDescription = foodItem.description!
             parseFoodItems += [orderedItem]
         }
         return parseFoodItems
     }
     
-    func addFoodItemsToOrderInDB(foodItems: [Food]){
+    func addFoodItemsToOrderInDB(foodItems: [Food]) {
         let parseFoodItems = foodItemsToPFObjects(foodItems)
         PFObject.saveAllInBackground(parseFoodItems, block: {
             (succeeded: Bool, error: NSError?) -> Void in
@@ -79,27 +83,23 @@ class Order {
     }
     
     func getFoodItemsFromParse(completion: (success: Bool) -> Void) {
-        itemsForOrderQuery.whereKey("order", equalTo: PFObject(withoutDataWithClassName: "Order", objectId: orderID))
+        itemsForOrderQuery.whereKey("order", equalTo: orderID)
         itemsForOrderQuery.includeKey("food")
         itemsForOrderQuery.includeKey("order")
         itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
-            
             if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
                 if let items = objects {
                     for item in items {
+                        
                         var foodName = ""
                         var foodDescription = ""
-                        if let food = item["food"]{
-                            if let fn = food["name"] as? String{
-                                foodName = fn
-                            }
-                        }
-                        if let fd = item["description"] as? String{
-                            foodDescription = fd
-                        }
+                        
+                        let item = item as! PFOrderedItems
+                        let food = item.food as! PFFood
+                        foodName = food.name
+                        foodDescription = food.description
+                        
                         let foodItem = Food(name: foodName, description: foodDescription)
                         self.addFoodItem(foodItem)
                     }
@@ -116,70 +116,68 @@ class Order {
     func create(completion: (success: Bool) -> Void) {
         // Sent when a customer submits an order.
         
-        if foodItems.isEmpty{
+        if foodItems.isEmpty {
             completion(success: false)
             return
         }
         
-        if restaurantId != ""{
-            let newOrder = PFObject(className: "Order")
-            
-            newOrder["OrderingUser"] = PFUser.currentUser()!
-            newOrder["OrderState"] = "Available"
-            //if specific driver
-            if !deliveredByID.isEmpty{
-                let getDriverToDeliver = PFUser.query()!
-                getDriverToDeliver.whereKey("objectId", equalTo: deliveredByID)
-                
-                //get the driver
-                getDriverToDeliver.getFirstObjectInBackgroundWithBlock { (user, error) -> Void in
-                    if error == nil{
-                        newOrder["isAnyDriver"] = false
-                        newOrder["driverToDeliver"] = user
-                        //finish order
-                        self.newOrderSetup(newOrder, completion: { (success) -> Void in
-                            if success{
-                                completion(success: true)
-                                return
-                            }else{
-                                completion(success: false)
-                                return
-                            }
-                        })
-                    }else{
-                        logError("Couldn't get Driver to Deliver")
-                        completion(success: false)
-                        return
-                    }
-                }
-                //if any driver
-            }else if deliveredByID.isEmpty && deliveredBy == "Any driver"{
-                newOrder["isAnyDriver"] = true
-                self.newOrderSetup(newOrder, completion: { (success) -> Void in
-                    if success{
-                        completion(success: true)
-                    }else{
-                        completion(success: false)
-                    }
-                })
-            }
-            else{
-                logError("must select a driver")
-            }
+        if restaurant.name == "Select a Restaurant" {
+            completion(success: false)
+            return
         }
-        else{
-            logError("must select a restaurant")
+        
+        let newOrder = PFOrder()
+        
+        newOrder.OrderingUser = PFUser.currentUser()!
+        newOrder.OrderState = "Available"
+        newOrder.isAnyDriver = isAnyDriver
+        
+        if !isAnyDriver {
+            
+            let getDriverToDeliver = PFUser.query()!
+            getDriverToDeliver.whereKey("objectId", equalTo: deliveredByID)
+            
+            //get the driver
+            getDriverToDeliver.getFirstObjectInBackgroundWithBlock { (user, error) -> Void in
+                if error == nil {
+                    newOrder.driverToDeliver = user!
+                    
+                    // Finish creating order
+                    self.newOrderSetup(newOrder, completion: { (success) -> Void in
+                        if success {
+                            completion(success: true)
+                        } else {
+                            completion(success: false)
+                        }
+                    })
+                    
+                } else {
+                    logError("Couldn't get Driver to Deliver")
+                    completion(success: false)
+                }
+            }
+
+        } else if isAnyDriver {
+            
+            self.newOrderSetup(newOrder, completion: { (success) -> Void in
+                if success {
+                    completion(success: true)
+                } else {
+                    completion(success: false)
+                }
+            })
+        }
+        else {
+            logError("You must select a driver")
         }
         
     }
     
-    func newOrderSetup(newOrder: PFObject,completion: (success: Bool) -> Void){
-        let restaurant = PFObject(withoutDataWithClassName: "Restaurant", objectId: self.restaurantId)
+    func newOrderSetup(newOrder: PFOrder, completion: (success: Bool) -> Void) {
         
-        newOrder["restaurant"] = restaurant
-        
-        //need to add future date based on selection picked
-        newOrder["expirationDate"] = getActualTimeFromNow()
+        newOrder.restaurantName = restaurant.name
+        newOrder.restaurantLoc = restaurant.loc!
+        newOrder.expirationDate = getActualTimeFromNow()
         
         self.createDestination(newOrder) {
             result in
@@ -192,62 +190,67 @@ class Order {
                         return
                     } else {
                         var foodCount = 0
-                        for foodItem in self.foodItems{
-                            let newFoodItem = PFObject(className: "OrderedItems")
-                            newFoodItem["description"] = foodItem.description
-                            newFoodItem["order"] = newOrder
+                        for foodItem in self.foodItems {
+                            
+                            let newFoodItem = PFOrderedItems()
+                            newFoodItem.foodDescription = foodItem.description!
+                            newFoodItem.order = newOrder
+                            
                             let doesFoodExistQuery = PFQuery(className: "Food")
-                            doesFoodExistQuery.whereKey("restaurant", equalTo: restaurant)
+                            doesFoodExistQuery.whereKey("restaurant", equalTo: self.restaurant.name)
                             doesFoodExistQuery.whereKey("name", equalTo: foodItem.name!.lowercaseString)
+                            
                             doesFoodExistQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
-                                if error == nil{
-                                    if let matchedFoodItems = results{
-                                        if !matchedFoodItems.isEmpty{
-                                            //add to ordered items but not food
-                                            newFoodItem["food"] = matchedFoodItems.first
+                                if error == nil {
+                                    if let matchedFoodItems = results {
+                                        if !matchedFoodItems.isEmpty {
+                                            // add to ordered items but not food
+                                            newFoodItem.food = matchedFoodItems.first!
                                             logError(foodItem.name!.lowercaseString + " already added to foodclass")
+                                            
                                             newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
-                                                if success{
-                                                    if foodCount == self.foodItems.count{
-                                                        //then this is the last item in the array
+                                                if success {
+                                                    if foodCount == self.foodItems.count {
+                                                        // Then this is the last item in the array
                                                         completion(success: true)
                                                         return
                                                     }
                                                 }
                                             })
-                                        }else{
-                                            //add to ordered itsm and food
-                                            let foodItemForClass = PFObject(className: "Food")
-                                            foodItemForClass["name"] = foodItem.name!.lowercaseString
-                                            foodItemForClass["restaurant"] = restaurant
+                                        } else {
+                                            // Add to ordered item and food
+                                            let foodItemForClass = PFFood()
+                                            foodItemForClass.name = foodItem.name!.lowercaseString
+                                            foodItemForClass.restaurant = self.restaurant.name
+                                            
                                             foodItemForClass.saveInBackgroundWithBlock({ (success, error) -> Void in
-                                                if success{
-                                                    newFoodItem["food"] = foodItemForClass
+                                                if success {
+                                                    newFoodItem.food = foodItemForClass
                                                     newFoodItem.saveInBackgroundWithBlock({ (success, error) -> Void in
-                                                        if success{
-                                                            if foodCount == self.foodItems.count{
-                                                                //then this is the last item in the array
+                                                        if success {
+                                                            if foodCount == self.foodItems.count {
+                                                                // Then this is the last item in the array
                                                                 completion(success: true)
                                                                 return
                                                             }
                                                         }
                                                     })
-                                                }else{
-                                                    logError("error saving food")
+                                                } else {
+                                                    logError("Error saving food")
                                                 }
                                             })
                                         }
                                     }
-                                }else{
-                                    logError("error getting food item match")
+                                } else {
+                                    logError("Error getting food item match")
                                 }
                             })
                             foodCount += 1
-                        }
+                        } // End for-loop for foodItems
                         
-                        if(!self.deliveredByID.isEmpty){
-                            //notify the driver
-                            let name:String = (PFUser.currentUser()?.username!)!
+                        if (!self.deliveredByID.isEmpty) {
+                            // Notify the driver
+                            let name: String = (PFUser.currentUser()?.username!)!
                             let notification = Notification(content: "\(name) sent you an order!", sendToID: self.deliveredByID)
                             notification.push()
                         }
@@ -264,35 +267,50 @@ class Order {
     }
     
     func getActualTimeFromNow() -> NSDate {
+        let now = NSDate()
+        
         switch expiresIn {
         case "15 minutes":
-            return NSDate().addHours(1)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Minute, value: 15, toDate: now, options: [])
+            return date!
         case "30 minutes":
-            return NSDate().addHours(1)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Minute, value: 30, toDate: now, options: [])
+            return date!
         case "1 hour":
-            return NSDate().addHours(1)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
+            return date!
         case "2 hours":
-            return NSDate().addHours(2)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Hour, value: 2, toDate: now, options: [])
+            return date!
         case "3 hours":
-            return NSDate().addHours(3)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Hour, value: 3, toDate: now, options: [])
+            return date!
         case "4 hours":
-            return NSDate().addHours(4)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Hour, value: 4, toDate: now, options: [])
+            return date!
         default:
-            return NSDate().addHours(1)
+            let calendar = NSCalendar.currentCalendar()
+            let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
+            return date!
         }
     }
     
-    func createDestination(newOrder: PFObject, completion: (success: Bool) -> Void) {
+    func createDestination(newOrder: PFOrder, completion: (success: Bool) -> Void) {
         let destinationQuery = PFQuery(className: "CustomerDestinations")
-        if !destinationID.isEmpty{
-            destinationQuery.whereKey("objectId", equalTo: destinationID)
+        if !destination.id.isEmpty {
+            destinationQuery.whereKey("objectId", equalTo: destination.id)
             destinationQuery.getFirstObjectInBackgroundWithBlock {
                 (object: PFObject?, error: NSError?) -> Void in
                 if error == nil {
-                    // The find succeeded.
-                    // Do something with the found objects
-                    if let item = object {
-                        newOrder["destination"] = item
+                    // Set the chosen destination for the order.
+                    if let dest = object {
+                        newOrder.destination = dest
                         completion(success: true)
                     }
                 } else {
@@ -301,8 +319,8 @@ class Order {
                     completion(success: false)
                 }
             }
-        }else{
-            logError("location must be entered")
+        } else {
+            logError("Delivery location must be entered")
             completion(success: false)
         }
     }
@@ -310,18 +328,24 @@ class Order {
     func acquire(completion: (Bool) -> ()) {
         // Sent when a driver picks up an order.
         
-        let query = PFQuery(className: "Order")
+        let query = PFQuery(className: PFOrder.parseClassName())
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
-            } else if let order = order {
+            } else if let order = order as? PFOrder {
                 // Changes fields in Parse to reflect new order state.
-                order["isAnyDriver"] = false
-                order["OrderState"] = "Acquired"
-                order["driverToDeliver"] = PFUser.currentUser()!
+                order.isAnyDriver = false
+                order.OrderState = "Acquired"
+                order.driverToDeliver = PFUser.currentUser()!
                 self.orderState = OrderState.Acquired
                 order.saveInBackground()
+                
+                // Send notification
+                let name: String = (PFUser.currentUser()?.username!)!
+                let notification = Notification(content: "\(name) acquired your order!", sendToID: self.deliverToID)
+                notification.push()
+                
                 completion(true)
             }
         }
@@ -330,17 +354,18 @@ class Order {
     func payFor(completion: (Bool) -> ()) {
         // Sent when a driver pays for an order. Call Parse stuff here.
         
-        let query = PFQuery(className: "Order")
+        let query = PFQuery(className: PFOrder.parseClassName())
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
-            } else if let order = order {
-                order["OrderState"] = "PaidFor"
+            } else if let order = order as? PFOrder {
+                order.OrderState = "PaidFor"
                 self.orderState = OrderState.PaidFor
                 order.saveInBackground()
-                //send notification
-                let name:String = (PFUser.currentUser()?.username!)!
+                
+                // Send notification
+                let name: String = (PFUser.currentUser()?.username!)!
                 let notification = Notification(content: "\(name) paid for your order!", sendToID: self.deliverToID)
                 notification.push()
                 
@@ -358,14 +383,16 @@ class Order {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
-            } else if let order = order {
-                order["OrderState"] = "Delivered"
+            } else if let order = order as? PFOrder {
+                order.OrderState = "Delivered"
                 self.orderState = OrderState.Delivered
                 order.saveInBackground()
-                //send notification
-                let name:String = (PFUser.currentUser()?.username!)!
+                
+                // Send notification
+                let name: String = (PFUser.currentUser()?.username!)!
                 let notification = Notification(content: "\(name) is at the delivery location!", sendToID: self.deliverToID)
                 notification.push()
+                
                 completion(true)
             }
         }
@@ -379,10 +406,16 @@ class Order {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
-            } else if let order = order {
-                order["OrderState"] = "Completed"
+            } else if let order = order as? PFOrder {
+                order.OrderState = "Completed"
                 self.orderState = OrderState.Completed
                 order.saveInBackground()
+                
+                // Send notification
+                let name: String = (PFUser.currentUser()?.username!)!
+                let notification = Notification(content: "\(name) reimbursed you for your order!", sendToID: self.deliveredByID)
+                notification.push()
+                
                 completion(true)
             }
         }
@@ -397,10 +430,16 @@ class Order {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
-            } else if let order = order {
-                order["OrderState"] = "Deleted"
+            } else if let order = order as? PFOrder {
+                order.OrderState = "Deleted"
                 self.orderState = OrderState.Deleted
                 order.saveInBackground()
+                
+                // Send notification
+                let name: String = (PFUser.currentUser()?.objectId)!
+                let notification = Notification(content: "You deleted your order.", sendToID: name)
+                notification.push()
+                
                 completion(true)
             }
         }
