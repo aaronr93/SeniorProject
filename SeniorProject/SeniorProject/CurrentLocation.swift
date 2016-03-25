@@ -44,9 +44,5 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         logError("didFailWithError: \(error.description)")
-        let error = UIAlertController(title: "Error", message: "Failed to get your location", preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        error.addAction(action)
-        error.presentViewController(error, animated: true, completion: nil)
     }
 }

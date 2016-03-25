@@ -29,6 +29,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     
     func addLocalPOIs(withQueryString item: String) {
         // Search for nearby locations related to the argument for `searchFor`
+        POIs.clear()
         POIs.searchFor(item, aroundLocation: currentLocation) { result in
             if result {
                 // Success

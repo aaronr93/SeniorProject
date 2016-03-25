@@ -11,65 +11,62 @@ import XCTest
 
 class NewFoodItemViewControllerUITests: XCTestCase {
     
+    let app = XCUIApplication()
+    
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        XCUIApplication().launch()
+        app.launch()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
     }
     
-    func testFoodNameField(){
+    func test_foodNameField() {
         
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
         let enterFoodNameTextField = app.textFields["Enter Food Name"]
         enterFoodNameTextField.typeText("test")
         XCTAssert(enterFoodNameTextField.value as? String == "test")
         app.navigationBars["SeniorProject.NewFoodItemView"].buttons["New Order"].tap()
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
-        
     }
     
-    func testFoodDescriptionField(){
+    func test_foodDescriptionField() {
         
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
-        app.textFields["Enter Food Name"].typeText("test")
+        let titleField = app.tables.cells.textFields["Title"]
+        titleField.tap()
+        titleField.typeText("test")
         
-        let app2 = app
-        app2.buttons["Next"].tap()
+        app.buttons["Next"].tap()
         
-        let enterFoodDescriptionTextField = app.textFields["Enter Food Description"]
-        enterFoodDescriptionTextField.tap()
-        enterFoodDescriptionTextField.typeText("test")
-        app2.buttons["Done"].tap()
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
-        
+        let detailsField = app.tables.cells.textFields["Details"]
+        detailsField.tap()
+        detailsField.typeText("test")
+        app.buttons["Done"].tap()
     }
     
-    func testCellValuesSet(){
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
-        app.textFields["Enter Food Name"].typeText("test")
+    func test_cellValuesSet() {
         
-        let app2 = app
-        app2.buttons["Next"].tap()
+        let titleField = app.tables.cells.textFields["Title"]
+        titleField.tap()
+        titleField.typeText("test")
         
-        let enterFoodDescriptionTextField = app.textFields["Enter Food Description"]
-        enterFoodDescriptionTextField.tap()
-        enterFoodDescriptionTextField.typeText("test")
-        app2.buttons["Done"].tap()
+        app.buttons["Next"].tap()
+        
+        let detailsField = app.tables.cells.textFields["Details"]
+        detailsField.tap()
+        detailsField.typeText("test")
+        app.buttons["Done"].tap()
+        
         let cells = app.tables.cells
         //can't easily get vlues of cells, so just making sure that a cell was added
         XCTAssert(cells.count == 5)
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
+        
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
     }
     
 }

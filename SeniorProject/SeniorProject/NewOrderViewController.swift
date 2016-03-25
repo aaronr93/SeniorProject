@@ -344,9 +344,9 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     @IBAction func submit(sender: UIButton) {
         sender.enabled = false // Prevents multiple rapid submissions (accidentally?)
         order.create { (success) -> Void in
-            if success{
+            if success {
                 self.delegate.orderSaved(self)
-            }else{
+            } else {
                 logError("order failed")
                 sender.enabled = true
                 //self.delegate.cancelNewOrder(self)

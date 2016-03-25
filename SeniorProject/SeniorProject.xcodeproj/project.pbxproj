@@ -13,7 +13,6 @@
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
-		36AB6DF01CA4954500C64FEE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB6DEF1CA4954500C64FEE /* User.swift */; };
 		36AB6DF21CA4A5B700C64FEE /* Commit on March 24.txt in Resources */ = {isa = PBXBuildFile; fileRef = 36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */; };
 		36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */; };
 		36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */; };
@@ -114,7 +113,6 @@
 		3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCell.swift; sourceTree = "<group>"; };
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
 		3641A59B1C8E568C0046BC97 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
-		36AB6DEF1CA4954500C64FEE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Commit on March 24.txt"; sourceTree = "<group>"; };
 		36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
 		36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -239,6 +237,8 @@
 		364A6FDF1C98EDE50088116D /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
+				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
+				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
 			);
 			name = "Driver side";
 			sourceTree = "<group>";
@@ -253,6 +253,8 @@
 		364A6FE11C98EDF20088116D /* Other ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */,
+				9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -260,6 +262,7 @@
 		364A6FE21C98EDFA0088116D /* Subscreens */ = {
 			isa = PBXGroup;
 			children = (
+				9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */,
 			);
 			name = Subscreens;
 			sourceTree = "<group>";
@@ -268,6 +271,10 @@
 			isa = PBXGroup;
 			children = (
 				9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */,
+				960813361C8E2252009AE1FE /* DriversClassTests.swift */,
+				9B3202061C8CD7D800749264 /* SettingsClassTests.swift */,
+				9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */,
+				9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -394,7 +401,6 @@
 				36EF35431CA31FE400C160BE /* PFUnavailableRestaurant.swift */,
 				36EF35491CA39AE500C160BE /* PFFood.swift */,
 				36EF354B1CA44DBE00C160BE /* PFDestination.swift */,
-				36AB6DEF1CA4954500C64FEE /* User.swift */,
 			);
 			name = "PFObject Subclasses";
 			sourceTree = "<group>";
@@ -474,15 +480,6 @@
 				96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */,
 				9B32020C1C8DF58600749264 /* AppDelegate.swift */,
 				96DD81ED1C56B8AF004CE3A7 /* Info.plist */,
-				9B8E41D01C86810E00B4B77E /* MyOrdersUnitTests.swift */,
-				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
-				9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */,
-				9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */,
-				9B3202061C8CD7D800749264 /* SettingsClassTests.swift */,
-				9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */,
-				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
-				960813361C8E2252009AE1FE /* DriversClassTests.swift */,
-				9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */,
 			);
 			path = SeniorProjectTests;
 			sourceTree = "<group>";
@@ -660,7 +657,6 @@
 				36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */,
 				3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
-				36AB6DF01CA4954500C64FEE /* User.swift in Sources */,
 				96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */,
 				9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */,
 				36EF35421CA30E5300C160BE /* PFDriverAvailability.swift in Sources */,

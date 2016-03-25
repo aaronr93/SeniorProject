@@ -15,7 +15,7 @@ class AvailabilityCell: UITableViewCell {
 }
 
 class DriverRestaurantsViewController: UITableViewController {
-    
+
     let prefs = DriverRestaurantPreferences()
     let POIs = PointsOfInterest()
     let driver = PFUser.currentUser()!
@@ -129,6 +129,7 @@ class DriverRestaurantsViewController: UITableViewController {
     }
     
     func updateRestaurants() {
+        POIs.clear()
         POIs.searchFor("Food", aroundLocation: currentLocation) { result in
             if result {
                 // Success

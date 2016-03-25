@@ -42,6 +42,10 @@ class PointsOfInterest: NSObject {
         }
     }
     
+    func clear() {
+        restaurants.removeAll()
+    }
+    
 }
 
 extension PFGeoPoint {

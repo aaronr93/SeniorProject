@@ -26,18 +26,18 @@ class FinishCreateAccountViewController: UIViewController
     }
     
     func createAccount() {
-        let user = User()
+        let user = PFUser()
         addNewUser(user)
         sendToParse(user)
     }
     
-    func addNewUser(user: User) {
+    func addNewUser(user: PFUser) {
         if let newAcct = newAccount {
             if let username = newAcct.username {
                 user.username = username
             }
             if let phone = newAcct.phone {
-                user.phone = phone
+                user.setObject(phone, forKey: "phone")
             }
             if let email = newAcct.email {
                 user.email = email
@@ -45,18 +45,15 @@ class FinishCreateAccountViewController: UIViewController
             if let password = newAcct.password {
                 user.password = password
             }
-            user.deleted = false
+            user.setObject(false, forKey: "deleted")
         }
     }
     
     func sendToParse(user: PFUser) {
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
-            if let error = error {
-                error.userInfo.setObjectForKey(errorString, "error") // Try to fix the Swift 2.2 break
-                let errorString = error.userInfo["error"] as? NSString
-                // Show the errorString somewhere and let the user try again.
-                logError(errorString!)
+            if error != nil {
+                logError(error!)
             }
         }
     }
@@ -66,7 +63,6 @@ class FinishCreateAccountViewController: UIViewController
         //unhide navigation bar
         navigationController?.navigationBarHidden = false
     }
-    
     
 }
 

@@ -47,12 +47,14 @@ class DriverOrdersUnitTesting: XCTestCase {
             XCTAssertNotNil(cell.restaurant.text)
             
             //check that it is equal to what is in the driverOrders object
-            XCTAssert(cell.recipient.text == viewController.driverOrders[i]["recipient"] as? String)
-            XCTAssert(cell.restaurant.text == viewController.driverOrders[i]["restaurant"] as? String)
+            let recipient = viewController.driverOrders[i].OrderingUser as! PFUser
+            let username = recipient.username!
+            XCTAssert(cell.recipient.text == username)
             
+            XCTAssert(cell.restaurant.text == viewController.driverOrders[i].restaurantName)
         }
-        
     }
+    
     func testAnyDriverCellsPopulated(){
         //check that the orders for me section has been populated according to the anyDriverOrders object
         for i in 0..<viewController.driverOrders.count{
@@ -62,9 +64,11 @@ class DriverOrdersUnitTesting: XCTestCase {
             XCTAssertNotNil(cell.restaurant.text)
             
             //check that it is equal to what is in the anyDriverOrders object
-            XCTAssert(cell.recipient.text == viewController.anyDriverOrders[i]["recipient"] as? String)
-            XCTAssert(cell.restaurant.text == viewController.anyDriverOrders[i]["restaurant"] as? String)
+            let recipient = viewController.anyDriverOrders[i].OrderingUser as! PFUser
+            let username = recipient.username!
+            XCTAssert(cell.recipient.text == username)
             
+            XCTAssert(cell.restaurant.text == viewController.anyDriverOrders[i].restaurantName)
         }
     }
     

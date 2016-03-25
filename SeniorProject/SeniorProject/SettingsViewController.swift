@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
     var originalPhone = "phone num not loaded"
     var originalEmail = "email addr not loaded"
     
-    let currentUser = User.currentUser()!
+    let currentUser = PFUser.currentUser()!
     
     @IBOutlet weak var phoneField : UITextField!
     @IBOutlet weak var userNameField: UITextField!
@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func deleteButtonTapped(sender: UIButton) {
-        currentUser.deleted = true
+        currentUser.setObject(true, forKey: "deleted")
         currentUser.saveInBackgroundWithBlock({ (x: Bool, error: NSError?) -> Void in
             if error != nil {
                 logError("error in delete account save")
@@ -77,7 +77,7 @@ class SettingsViewController: UIViewController {
         //userImage.loadInBackground()
         
         //storing these items for the view to reuse would save several database calls
-        let phone = currentUser.phone
+        let phone = currentUser.valueForKey("phone") as! String
         phoneField.text = phone
         originalPhone = phone
         
@@ -110,7 +110,7 @@ class SettingsViewController: UIViewController {
             if (phoneField.text! != originalPhone && validatedPhoneNumber(phoneField.text!)) {
                 //different and valid
                 validatedSomething = true
-                currentUser.phone = phoneField.text!
+                currentUser.setObject(phoneField.text!, forKey: "phone")
             } else if (phoneField.text! == originalPhone) {
                 // phone number unchanged--not saved in DB
                 removeInputHighlightInField(phoneField)
