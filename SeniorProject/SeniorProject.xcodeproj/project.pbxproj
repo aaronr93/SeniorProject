@@ -431,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */,
+				9B9F2AF81CA22D050053F85F /* gcc.gpx */,
 				96B36A9C1C5AFEC700DF6038 /* Frameworks */,
 				36E204741C5A888000A9CC59 /* libstdc++.6.tbd */,
 				96DD81D51C56B8AE004CE3A7 /* SeniorProject */,
