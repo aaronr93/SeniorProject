@@ -83,6 +83,7 @@
 		9B9A0EF11C7BA18D00983BA9 /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */; };
 		9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */; };
 		9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */; };
+		9B9F2AF91CA22D060053F85F /* gcc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 9B9F2AF81CA22D050053F85F /* gcc.gpx */; };
 		9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF31C89F52A00F3D3F9 /* example.swift */; };
@@ -185,6 +186,7 @@
 		9B9A0EF01C7BA18D00983BA9 /* MyOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		9B9A0EF81C7D4D4800983BA9 /* MyOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableViewController.swift; sourceTree = "<group>"; };
 		9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseDateClassUnitTests.swift; sourceTree = "<group>"; };
+		9B9F2AF81CA22D050053F85F /* gcc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gcc.gpx; sourceTree = "<group>"; };
 		9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BF31C89F52A00F3D3F9 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96DD81E11C56B8AE004CE3A7 /* LaunchScreen.storyboard in Resources */,
+				9B9F2AF91CA22D060053F85F /* gcc.gpx in Resources */,
 				96DD81DE1C56B8AE004CE3A7 /* Assets.xcassets in Resources */,
 				96DD81DC1C56B8AE004CE3A7 /* Main.storyboard in Resources */,
 				36AB6DF21CA4A5B700C64FEE /* Commit on March 24.txt in Resources */,

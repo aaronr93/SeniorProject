@@ -164,6 +164,172 @@ class ParseDateClassUnitTests: XCTestCase {
         
     }
     
+    func testHoursFrom(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        
+        
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Hour,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let past = calendar.dateByAddingUnit(
+            NSCalendarUnit.Hour,
+            value: -1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let futureTest = future.hoursFrom(now)
+        XCTAssert(futureTest == 1)
+        
+        let pastTest = past.hoursFrom(now)
+        XCTAssert(pastTest == -1)
+        
+    }
+    
+    func testMinutesFrom(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        
+        
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let past = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: -1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let futureTest = future.minutesFrom(now)
+        XCTAssert(futureTest == 1)
+        
+        let pastTest = past.minutesFrom(now)
+        XCTAssert(pastTest == -1)
+        
+    }
+    
+    func testIsFutureDate(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        
+        
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let past = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: -1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let pastTest = past.isFutureDate(now)
+        let futureTest = future.isFutureDate(now)
+        
+        //positive test
+        XCTAssert(futureTest)
+        //negative test
+        XCTAssertFalse(pastTest)
+    }
+    
+    func testIsPastDate(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        
+        
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let past = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: -1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        let pastTest = past.isPastDate(now)
+        let futureTest = future.isPastDate(now)
+        
+        //positive test
+        XCTAssert(pastTest)
+        //negative test
+        XCTAssertFalse(futureTest)
+    }
+    
+    func testEqualToDate(){
+        let now = NSDate()
+        
+        //positive test
+        XCTAssert(now.isEqualToDate(now))
+        
+        //negative test
+        let calendar = NSCalendar.currentCalendar()
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Minute,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        XCTAssertNotNil(now.isEqualToDate(future))
+        
+        
+    }
+    
+    func testAddDays(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Day,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        //positive test
+        XCTAssert(now.addDays(1) == future)
+        //negative test
+        XCTAssertFalse(now.addDays(2) == future)
+        
+    }
+    
+    func testAddHours(){
+        let now = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let future = calendar.dateByAddingUnit(
+            NSCalendarUnit.Hour,
+            value: 1,
+            toDate: now,
+            options: NSCalendarOptions.init(rawValue: 0)
+            )! as NSDate
+        
+        //positive test
+        XCTAssert(now.addHours(1) == future)
+        //negative test
+        XCTAssertFalse(now.addHours(2) == future)
+        
+    }
+    
+    
+    
     
 
 }
