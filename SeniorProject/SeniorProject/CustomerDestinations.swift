@@ -13,6 +13,7 @@ class CustomerDestinations {
     var history = [Destination]()
     var destinationID = ""
     let destinationQuery = PFQuery(className: "CustomerDestinations")
+    let me = PFUser.currentUser()!
     
     func add(destination: Destination) {
         if !history.contains( {$0.name == destination.name} ) {
@@ -30,22 +31,19 @@ class CustomerDestinations {
         }
     }
     
-    func destinationItemToPFObject(destinationItem: Destination) -> PFObject {
-        let user = PFUser.currentUser()!
-        let item = PFObject(className: "CustomerDestinations")
-        item["customer"] = user
-        // TODO: Add GeoPoint later (Next sprint)
-        item["name"] = destinationItem.name
-        return item
-    }
-    
-    func addDestinationItemToDB(destinationItem: Destination, completion: (success: Bool, id: String?) -> Void){
-        let parseDestinationItem = destinationItemToPFObject(destinationItem)
-        parseDestinationItem.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-            if (success) {
-                completion(success: true, id: parseDestinationItem.objectId)
+    func addDestinationItemToDB(name: String, completion: (success: Bool) -> Void) {
+        let dest = PFDestination()
+        dest.name = name
+        dest.customer = me
+        
+        dest.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if success && error == nil {
+                let destination = Destination(name: dest.name, id: dest.objectId!)
+                self.add(destination)
+                completion(success: true)
             } else {
-                completion(success: false, id: nil)
+                logError("Error saving destination to database")
+                completion(success: false)
             }
         })
     }
@@ -58,21 +56,17 @@ class CustomerDestinations {
         destinationQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
                 if let items = objects {
                     for item in items {
-                        let name = item["name"] as! String
-                        let id = item.objectId!
-                        let destinationItem = Destination(name: name, id: id)
+                        let item = item as! PFDestination
+                        let destinationItem = Destination(name: item.name, id: item.objectId!)
                         self.add(destinationItem)
                         // Populate the history of destinations
                     }
                     completion(success: true)
                 }
             } else {
-                // Log details of the failure
-                logError("\(error!) \(error!.userInfo)")
+                logError("\(error!.userInfo)")
                 completion(success: false)
             }
         }

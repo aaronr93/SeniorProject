@@ -12,7 +12,7 @@ import Parse
 
 class MyOrdersUnitTests: XCTestCase {
     
-    var viewController : MyOrdersViewController!
+    var viewController: MyOrdersViewController!
     
     override func setUp() {
         super.setUp()
@@ -20,19 +20,30 @@ class MyOrdersUnitTests: XCTestCase {
         viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("myOrders") as! MyOrdersViewController
     }
     
-    func testLoggedIn(){
+    func test_Instantiation() {
+        XCTAssertNotNil(viewController)
+        
+        let currentUser = PFUser.currentUser()!
+        XCTAssertEqual(currentUser, viewController.user)
+        
+        XCTAssertNotNil(viewController.ordersISent)
+        XCTAssertNotNil(viewController.ordersIReceived)
+        XCTAssertNil(viewController.current)
+    }
+    
+    func testLoggedIn() {
         XCTAssertNotNil(PFUser.currentUser())
     }
     
-    func testOrdersISentNotNil(){
+    func testOrdersISentNotNil() {
         XCTAssertNotNil(viewController.ordersISent)
     }
     
-    func testOrdersIReceivedNotNil(){
+    func testOrdersIReceivedNotNil() {
         XCTAssertNotNil(viewController.ordersIReceived)
     }
     
-    func testOrdersISentPopulated(){
+    func testOrdersISentPopulated() {
         //check that orders i sent have been properly created in the table
         for i in 0..<viewController.ordersISent.count{
             XCTAssertNotNil(viewController.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)))
@@ -40,15 +51,15 @@ class MyOrdersUnitTests: XCTestCase {
         
     }
     
-    func testOrdersIReceivedPopulated(){
+    func testOrdersIReceivedPopulated() {
         //check that orders i received have been properly created in the table
-        for i in 0..<viewController.ordersIReceived.count{
+        for i in 0..<viewController.ordersIReceived.count {
             XCTAssertNotNil(viewController.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 1)))
         }
         
     }
     
-    func testMakeSentenceCase(){
+    func testMakeSentenceCase() {
         var test = ""
         viewController.makeSentenceCase(&test)
         XCTAssert(test == "")

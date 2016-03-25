@@ -12,12 +12,12 @@ import Parse
 
 class NewFoodItemViewControllerUnitTests: XCTestCase {
     
-    //var viewController:NewFoodItemViewController!
+    var viewController: NewFoodItemTableViewController!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        //viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("newFoodItem") as! NewFoodItemViewController
+        viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("newFoodItem") as! NewFoodItemTableViewController
     }
     
     override func tearDown() {

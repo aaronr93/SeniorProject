@@ -16,19 +16,18 @@ class CustomDeliveryLocationTableViewCell: UITableViewCell, UITextFieldDelegate 
     var delegate: DeliveryLocationTableViewController!
     
     @IBAction func add(sender: UIButton) {
-        if customField.text! != "" {
-            let newDest = Destination(name: customField.text!, id: nil)
-            delegate.dest.addDestinationItemToDB(newDest, completion: {
-                (success, id) in
-                if success {
-                    newDest.id = id
-                    self.delegate.dest.add(newDest)
+        let newDest = customField.text!
+        
+        if newDest != "" {
+            delegate.dest.addDestinationItemToDB(newDest) { result in
+                if result {
                     self.delegate.tableView.reloadData()
-                    self.delegate.deliveryLocation = newDest.name!
+                    let index = self.delegate.dest.history.count
+                    self.delegate.tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 1), animated: true, scrollPosition: .Bottom)
                 } else {
                     logError("Adding custom destination was unsuccessful")
                 }
-            })
+            }
         }
     }
     

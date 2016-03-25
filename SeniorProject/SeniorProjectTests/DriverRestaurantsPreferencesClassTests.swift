@@ -13,79 +13,111 @@ import Parse
 class DriverRestaurantsPreferencesClassTests: XCTestCase {
     
     var testObject = DriverRestaurantPreferences()
-    var testRestaurant = PFObject(className: "Restaurant")
+    var testRestaurant: String!
+    let currentUser = PFUser.currentUser()!
     
     override func setUp() {
         super.setUp()
-        Parse.setApplicationId("j28gc7OUqKZFc47nvyoRDPnZnaCRqh3mV8RiULMK", clientKey: "Il9Xid8E9BI7G6pkwUUQLKSO0kL9FKtwNtlSL1O3")
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
+        testObject.availability = PFDriverAvailability(withoutDataWithObjectId: "Q6bySGZ85x")
+        testObject.blacklist.removeAll()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testFieldsSet(){
+    func test_Instantiate() {
         //test that all the fields have been set when making a new instance
-        XCTAssertFalse(testObject.active)
-        XCTAssertNotNil(testObject.restaurants)
-        XCTAssertNotNil(testObject.expirationTime)
+        let test = DriverRestaurantPreferences()
+        XCTAssertNotNil(test.availability)
+        XCTAssertEqual(currentUser, test.driver)
+        XCTAssertTrue(test.blacklist.isEmpty)
     }
     
-    func testAddRestaurant(){
-        //test the addRestaurant function with positive and negative cases
-        testObject.addRestaurant(testRestaurant)
-        XCTAssert(testObject.restaurants.count == 1)
-        //add it again to make sure it isn't added twice
-        testObject.addRestaurant(testRestaurant)
-        XCTAssert(testObject.restaurants.count == 1)
+    func test_markUnavailable() {
+        let restaurant = Restaurant(name: "Sheetz")
+        let obj = PFUnavailableRestaurant()
+        obj.restaurant = restaurant.name
+        obj.driverAvailability = currentUser
         
+        testObject.markUnavailable(restaurant)
+
+        XCTAssert(testObject.blacklist.last!.restaurant == "Sheetz")
     }
     
-    func testRemoveRestaurant(){
-        //test the addRestaurant function with positive and negative cases
+    func test_markAvailable() {
+        let restaurant = Restaurant(name: "Sheetz")
+        let obj = PFUnavailableRestaurant()
+        obj.restaurant = restaurant.name
+        obj.driverAvailability = currentUser
+        testObject.blacklist.append(obj)
         
-        testObject.addRestaurant(testRestaurant)
-        XCTAssert(testObject.restaurants.count == 1)
+        testObject.markAvailable(restaurant)
         
-        //remove it
-        testObject.removeRestaurant(testRestaurant)
-        XCTAssert(testObject.restaurants.count == 0)
-        
-        //there shouldn't be anything to remove, nothing should change
-        testObject.removeRestaurant(testRestaurant)
-        XCTAssert(testObject.restaurants.count == 0)
-        
+        XCTAssertFalse(testObject.blacklist.contains(obj), "The restaurant marked as Available should be removed from the blacklist.")
     }
     
-    func testSetActive(){
-        //test the setActive function with positive and negative cases
+    func test_isUnavailable() {
+        let restaurant = Restaurant(name: "Sheetz")
+        let obj = PFUnavailableRestaurant()
+        obj.restaurant = restaurant.name
+        obj.driverAvailability = currentUser
+        testObject.blacklist.append(obj)
         
-        //before adding a restaurant, shouldn't set active
-        testObject.setActive()
-        XCTAssertFalse(testObject.active)
+        XCTAssertTrue(testObject.isUnavailable(restaurant))
         
-        //should work if restaurant is added
-        testObject.addRestaurant(testRestaurant)
-        testObject.setActive()
-        XCTAssertTrue(testObject.active)
+        let restaurant2 = Restaurant(name: "McDonald's")
+        let obj2 = PFUnavailableRestaurant()
+        obj2.restaurant = restaurant2.name
+        obj2.driverAvailability = currentUser
+        
+        XCTAssertFalse(testObject.isUnavailable(restaurant2))
     }
     
-    func testSetInactive(){
-        //test the setInactive function with positive and negative cases
+    func test_clearRestaurants() {
+        let restaurant = Restaurant(name: "Sheetz")
+        let obj = PFUnavailableRestaurant()
+        obj.restaurant = restaurant.name
+        obj.driverAvailability = currentUser
+        testObject.blacklist.append(obj)
         
-        //shouldn't change anything if the restaurant hasn't been set active yet
-        testObject.setInactive()
-        XCTAssertFalse(testObject.active)
+        let restaurant2 = Restaurant(name: "McDonald's")
+        let obj2 = PFUnavailableRestaurant()
+        obj2.restaurant = restaurant2.name
+        obj2.driverAvailability = currentUser
+        testObject.blacklist.append(obj2)
         
-        //should change if the restaurant is active
-        testObject.addRestaurant(testRestaurant)
-        testObject.setActive()
-        XCTAssertTrue(testObject.active)
-        testObject.setInactive()
-        XCTAssertFalse(testObject.active)
+        testObject.clearRestaurants()
+        XCTAssert(testObject.blacklist.isEmpty)
     }
+    
+    func test_saveAll() {
+        // This function only changes stuff in Parse
+    }
+    
+    func test_getBlacklistFromParse() {
+        XCTAssertTrue(testObject.blacklist.isEmpty)
+        
+        testObject.getBlacklistFromParse() { result in
+            if result {
+                XCTAssertFalse(self.testObject.blacklist.isEmpty)
+            }
+        }
+    }
+    
+    func test_getExpirationTime() {
+        let availability = PFDriverAvailability()
+        availability.expirationDate = NSDate().addDays(1)
+        testObject.availability = availability
+        let returnedString = testObject.getExpirationTime()
+        XCTAssert(returnedString == ParseDate.timeLeft(availability.expirationDate))
+    }
+    
     
 }
+
+
+
+
+
+

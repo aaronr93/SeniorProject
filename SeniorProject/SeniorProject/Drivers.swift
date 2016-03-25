@@ -10,38 +10,34 @@ import Foundation
 import Parse
 
 class Drivers {
-    var list = [PFObject]()
-    var availableDriversForRestaurant = PFQuery(className: "DriverAvailableRestaurants")
-    var restaurant : PFObject?
+    var list = [PFUser]()
+    var unavailableDriversQuery = PFQuery(className: "DriverUnavailableRestaurants")
+    var restaurant: String?
     
     func clear() {
         list.removeAll()
     }
     
-    func getDriversFromDB(completion: (success: Bool) -> Void){
+    func getNonDriversFromDB(completion: (success: Bool) -> Void) {
         
+        unavailableDriversQuery.includeKey("driverAvailability")
+        unavailableDriversQuery.limit = 10
+        unavailableDriversQuery.whereKey("restaurant", notEqualTo: restaurant!)
+        unavailableDriversQuery.whereKey("driver", notEqualTo: PFUser.currentUser()!)
+        unavailableDriversQuery.orderByDescending("createdAt")
+        unavailableDriversQuery.includeKey("driverAvailability.driver")
         
-        availableDriversForRestaurant.includeKey("driverAvailability")
-        availableDriversForRestaurant.includeKey("restaurant")
-        availableDriversForRestaurant.limit = 10
-        availableDriversForRestaurant.whereKey("restaurant", equalTo: restaurant!)
-        availableDriversForRestaurant.whereKey("driver", notEqualTo: PFUser.currentUser()!)
-        availableDriversForRestaurant.orderByDescending("createdAt")
-        availableDriversForRestaurant.includeKey("driverAvailability.driver")
-        
-        
-        availableDriversForRestaurant.findObjectsInBackgroundWithBlock {
+        unavailableDriversQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                // The find succeeded.
-                // Do something with the found objects
-                if let drivers = objects {
-                    for driver in drivers {
-                        if let driverAvailability = driver["driverAvailability"]{
-                            if let currentlyAvailable = driverAvailability["isCurrentlyAvailable"]{
-                                if (currentlyAvailable as! Bool){//if the drive is currently available then add the item
-                                    self.add(driver)
-                                }
+                if let availableDrivers = objects as? [PFUnavailableRestaurant] {
+                    for driver in availableDrivers {
+                        let driverAvailability = driver.driverAvailability as? PFDriverAvailability
+                        if let currentlyAvailable = driverAvailability?.isCurrentlyAvailable {
+                            if (currentlyAvailable) {
+                                // If the driver is currently available then add the item
+                                let driver_obj = driverAvailability?.driver as! PFUser
+                                self.add(driver_obj)
                             }
                         }
                     }
@@ -56,7 +52,7 @@ class Drivers {
 
     }
     
-    func add(driver: PFObject) {
+    func add(driver: PFUser) {
         if !list.contains(driver) {
             list.append(driver)
         } else {

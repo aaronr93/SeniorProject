@@ -34,7 +34,7 @@ class GetThatOrderTableViewController: UITableViewController {
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
     
-    let order = Order()
+    var order = Order()
     let manip = InterfaceManipulation()
     
     @IBOutlet weak var actionButton: UIButton!
@@ -110,35 +110,43 @@ class GetThatOrderTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0: //the chosen restaurant (should be a single row)
-            return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
-        case 1: //food item at row index
-            return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
-        case 2: //'deliver to', 'location', and 'expires in' row (respectively)
-            return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
-        default: //shouldn't get here!
-            let cell: UITableViewCell! = nil
-            return cell
+            case 0:
+                //the chosen restaurant (should be a single row)
+                return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
+            case 1:
+                //food item at row index
+                return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
+            case 2:
+                //'deliver to', 'location', and 'expires in' row (respectively)
+                return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
+            default:
+                //shouldn't get here!
+                let cell: UITableViewCell! = nil
+                return cell
         }
     }
     
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
-        var restaurantName: String = order.restaurantName
+        
+        var restaurantName: String = order.restaurant.name
         restaurantName.makeFirstLetterInStringUpperCase()
         restaurantCell.name.text = restaurantName
+        
         return restaurantCell
     }
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
-        if let foodName = order.foodItems[indexPath.row].name {
+        let row = indexPath.row
+        
+        if let foodName = order.foodItems[row].name {
             foodCell.foodItem.text = foodName
         } else {
             foodCell.foodItem.text = ""
         }
         
-        if let foodDescription = order.foodItems[indexPath.row].description {
+        if let foodDescription = order.foodItems[row].description {
             foodCell.foodDescription.text = foodDescription
         } else {
             foodCell.foodDescription.text = ""
@@ -149,25 +157,28 @@ class GetThatOrderTableViewController: UITableViewController {
     
     func cellForDeliverySection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let deliveryCell = tableView.dequeueReusableCellWithIdentifier("deliveryCell", forIndexPath: indexPath) as! DeliveryItemCell
-        deliveryCell.deliveryTitle.text = deliverySectionTitles[indexPath.row]
-        deliveryCell.value.text = fillValuesBasedOn(indexPath.row)
-        return deliveryCell
-    }
-    
-    //sets the values of the three rows in the 'Delivery' section of the table
-    func fillValuesBasedOn(row: Int) -> String {
-        var value : String = ""
+        let row = indexPath.row
+        
+        deliveryCell.deliveryTitle.text = deliverySectionTitles[row]
+        
+        var value = ""
         switch row {
-        case 0: //first row -- 'deliver to' data
+        case 0:
+            // Value for the driver to deliver (Any or specific)
             value = order.deliverTo
-        case 1: //second row -- 'location' data
-            value = order.location
-        case 2: //third row -- time until order expiration
+        case 1:
+            // Delivery destination
+            value = order.destination.name
+        case 2:
+            // Time until the order expires
             value = order.expiresIn
         default:
             value = ""
+            logError("Error with Delivery Settings cell")
         }
-        return value
+        
+        deliveryCell.value.text = value
+        return deliveryCell
     }
     
     //manually set row heights for different sections in the table
@@ -175,10 +186,10 @@ class GetThatOrderTableViewController: UITableViewController {
         let section = indexPath.section
         
         switch section {
-        case 0: return 44 //'Restaurant'
-        case 1: return 60 //'Food'
-        case 2: return 44 //'Delivery'
-        default: return 44 //shouldn't get here
+            case 0: return 44 //'Restaurant'
+            case 1: return 60 //'Food'
+            case 2: return 44 //'Delivery'
+            default: return 44 //shouldn't get here
         }
     }
     

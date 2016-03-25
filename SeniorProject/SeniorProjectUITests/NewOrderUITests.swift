@@ -37,7 +37,7 @@ class NewOrderUITests: SeniorProjectUITests {
         
         //selecting a restaurant
         app.tables.staticTexts["Select a Restaurant"].tap()
-       app.tables.staticTexts["sheetz"].tap()
+        app.tables.staticTexts["sheetz"].tap()
         XCTAssertNotNil(app.tables.staticTexts["Sheetz"])
         
         //not selecting a restaurant - already something selected

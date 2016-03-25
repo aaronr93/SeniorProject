@@ -1,0 +1,47 @@
+WHAT I'VE DONE
+
+1. Added subclassing for most Classes.
+    This works by changing
+    >   order["isCurrentlyAvailable"]
+    to
+    >   order.isCurrentlyAvailable
+    It's pretty awesome. I did this for two reasons:
+    a)  This might get around the break that happens when you upgrade to
+        Xcode 7.3/Swift 2.2.
+        I can't push the app to my phone without upgrading Xcode. :(
+    b)  It's loads more efficient. Just look at the files in the PFObject Subclasses folder.
+
+2. Changed Restaurants.
+    a)  Improved location services for Restaurants.
+    b)  Made it so the default Driver Side tab is Orders, not Restaurants.
+    c)  Made it so the list of Restaurants on the Driver Side is a blacklist, not a whitelist.
+    d)  Restaurants themselves are no longer saved to Parse.
+        i.  Instead, a restaurant NAME, LOCATION, and DISTANCE are passed around.
+        ii. You query based on Restaurant name, which you get from local restaurants,
+            the list of which is provided by the PointsOfInterest:searchFor method.
+
+3. Added an extension to PFGeoPoint allowing you to determine if a PFGeoPoint is near
+    one or more other PFGeoPoints. This extension can be found in PointsOfInterest.swift.
+
+4. Eliminated extra Database calls. We would have run out of DB hits in no time!
+    Along with this, I refactored a bunch of code (mostly as a result of my "projects").
+    All my projects I started coupled with the subclassing means almost every file changed, haha.
+
+5. More things that I've definitely forgotten about. Many hours, man...many hours. Many.                many.
+
+
+WHAT I'M DOING
+
+1. Fix location for restaurants to work 90% of the time. Right now it's at like, 50%.
+    It doesn't break though.
+
+2. Get our app working with Xcode 7.3/Swift 2.2. We need to be able to demo on an iPhone
+
+3. Fixing all the tests I inevitably broke
+
+4. Fixing all the bugs that will inevitably show up, regardless of what I do
+    LET ME KNOW before writing up a bug, it might be an in-progress thing.
+    I know that the query for My Orders / Orders to pick up isn't returning correct results.
+
+
+WHAT I'M GOING TO DO - what I'm assigned in the backlog

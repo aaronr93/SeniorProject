@@ -37,7 +37,7 @@ class FinishCreateAccountViewController: UIViewController
                 user.username = username
             }
             if let phone = newAcct.phone {
-                user["phone"] = phone
+                user.setObject(phone, forKey: "phone")
             }
             if let email = newAcct.email {
                 user.email = email
@@ -45,17 +45,15 @@ class FinishCreateAccountViewController: UIViewController
             if let password = newAcct.password {
                 user.password = password
             }
-            user["deleted"] = false
+            user.setObject(false, forKey: "deleted")
         }
     }
     
     func sendToParse(user: PFUser) {
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
-            if let error = error {
-                let errorString = error.userInfo["error"] as? NSString
-                // Show the errorString somewhere and let the user try again.
-                logError(errorString!)
+            if error != nil {
+                logError(error!)
             }
         }
     }
@@ -65,7 +63,6 @@ class FinishCreateAccountViewController: UIViewController
         //unhide navigation bar
         navigationController?.navigationBarHidden = false
     }
-    
     
 }
 

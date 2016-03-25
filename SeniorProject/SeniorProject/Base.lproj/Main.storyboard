@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jJQ-B6-c1d">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -964,9 +964,10 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3J-Fb-rWM">
-                                            <rect key="frame" x="16" y="11" width="37" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PFUser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3J-Fb-rWM">
+                                            <rect key="frame" x="16" y="11" width="149" height="21"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="149" id="7KG-Db-VT7"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="7RF-ml-iuv"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -976,8 +977,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Q3J-Fb-rWM" firstAttribute="leading" secondItem="mYz-ma-lKI" secondAttribute="leadingMargin" constant="8" id="DkQ-lV-MES"/>
-                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="DmU-iD-Lfa"/>
                                         <constraint firstItem="33n-46-Sjf" firstAttribute="baseline" secondItem="Q3J-Fb-rWM" secondAttribute="baseline" id="OGn-Pv-DXn"/>
+                                        <constraint firstItem="Q3J-Fb-rWM" firstAttribute="centerY" secondItem="mYz-ma-lKI" secondAttribute="centerY" id="PMl-XM-BOl"/>
                                         <constraint firstItem="33n-46-Sjf" firstAttribute="trailing" secondItem="mYz-ma-lKI" secondAttribute="trailingMargin" id="Yj1-2P-Fly"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1137,7 +1138,7 @@
         <!--Food item-->
         <scene sceneID="NIP-ps-NzL">
             <objects>
-                <tableViewController id="C1F-Kf-Sbh" customClass="NewFoodItemTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="newFoodItem" title="Food item" id="C1F-Kf-Sbh" customClass="NewFoodItemTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9IJ-v5-2bO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1152,7 +1153,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PvV-bZ-QJ7">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PvV-bZ-QJ7" userLabel="title">
                                                     <rect key="frame" x="8" y="7" width="584" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next"/>
@@ -1167,7 +1168,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XsA-KL-cT3">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Details" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XsA-KL-cT3" userLabel="details">
                                                     <rect key="frame" x="8" y="7" width="584" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done"/>
@@ -1580,8 +1581,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="vgK-R0-Jel" kind="relationship" relationship="viewControllers" id="PwP-LB-cme"/>
                         <segue destination="G9f-zb-JFa" kind="relationship" relationship="viewControllers" id="SDR-L5-64I"/>
+                        <segue destination="vgK-R0-Jel" kind="relationship" relationship="viewControllers" id="PwP-LB-cme"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJu-xe-shr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1722,7 +1723,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Omd-mY-WVB"/>
+        <segue reference="9vk-JT-Ujd"/>
         <segue reference="dG4-T9-SLc"/>
-        <segue reference="51v-Qf-B92"/>
     </inferredMetricsTieBreakers>
 </document>
