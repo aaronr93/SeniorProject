@@ -314,9 +314,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
             chooseExpiration.newOrderDelegate = self
-            if (order.expiresIn != "") {
-                chooseExpiration.selectedTime = order.expiresIn
-            }
+            chooseExpiration.selectedHours = self.order.expiresHours
+            chooseExpiration.selectedMinutes = self.order.expiresMinutes
         }
         if segue.identifier == "chooseLocation" {
             let chooseLocation = segue.destinationViewController as! DeliveryLocationTableViewController

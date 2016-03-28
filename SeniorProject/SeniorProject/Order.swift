@@ -23,6 +23,8 @@ class Order {
     var orderID: String = ""
     var isAnyDriver: Bool = false
     var expiresIn: String = ""
+    var expiresHours : Int = 0
+    var expiresMinutes : Int = 0
     
     var deliverTo: String = ""
     var deliverToID: String = ""
@@ -269,36 +271,12 @@ class Order {
     func getActualTimeFromNow() -> NSDate {
         let now = NSDate()
         
-        switch expiresIn {
-        case "15 minutes":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Minute, value: 15, toDate: now, options: [])
-            return date!
-        case "30 minutes":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Minute, value: 30, toDate: now, options: [])
-            return date!
-        case "1 hour":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
-            return date!
-        case "2 hours":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Hour, value: 2, toDate: now, options: [])
-            return date!
-        case "3 hours":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Hour, value: 3, toDate: now, options: [])
-            return date!
-        case "4 hours":
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Hour, value: 4, toDate: now, options: [])
-            return date!
-        default:
-            let calendar = NSCalendar.currentCalendar()
-            let date = calendar.dateByAddingUnit(.Hour, value: 1, toDate: now, options: [])
-            return date!
-        }
+        let totalMinutes = (expiresHours * 60) + expiresMinutes
+        
+        let calendar = NSCalendar.currentCalendar()
+        let date = calendar.dateByAddingUnit(.Minute, value: totalMinutes, toDate: now, options: [])
+        print(date)
+        return date!
     }
     
     func createDestination(newOrder: PFOrder, completion: (success: Bool) -> Void) {

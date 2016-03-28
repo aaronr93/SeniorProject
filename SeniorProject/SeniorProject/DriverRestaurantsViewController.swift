@@ -195,7 +195,7 @@ class DriverRestaurantsViewController: UITableViewController {
             dest.driverRestaurantDelegate = self
             if !currentlyAvailable(prefs.availability!.expirationDate) {
                 // If the Expires In field is NOT counting down
-                dest.selectedTime = "1 hour"
+                //dest.selectedTime = "1 hour"
             }
         }
     }

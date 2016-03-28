@@ -17,29 +17,20 @@ class MyOrdersViewController: UITableViewController {
     let user = PFUser.currentUser()!
     var current: NSIndexPath?
     
-    override func viewDidLoad() {
-        
-        clear(listOfOrders: ordersISent)
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
+        clear(listOfOrders: &ordersISent)
         getOrdersISent() { result in
             if result { self.tableView.reloadData() }
         }
         
-        clear(listOfOrders: ordersIReceived)
+        clear(listOfOrders: &ordersIReceived)
         getOrdersIReceived() { result in
             if result { self.tableView.reloadData() }
         }
-        
     }
     
-    override func viewWillAppear(animated: Bool){
-        super.viewWillAppear(animated)
-        
-        refresh(listOfOrders: ordersISent)
-        refresh(listOfOrders: ordersIReceived)
-        
-    }
-    
-    func clear(var listOfOrders list: [PFOrder]) {
+    func clear(inout listOfOrders list: [PFOrder]) {
         list.removeAll()
     }
     
@@ -233,9 +224,15 @@ class MyOrdersViewController: UITableViewController {
         dest.order.expiresIn = ParseDate.timeLeft(order.expirationDate)
         dest.index = current
         
-        let driverToDeliver = order.driverToDeliver as! PFUser
-        dest.order.deliveredBy = driverToDeliver.username!
-        dest.order.deliveredByID = driverToDeliver.objectId!
+        if let driverToDeliver = order.driverToDeliver as? PFUser{
+            dest.order.deliveredBy = driverToDeliver.username!
+            dest.order.deliveredByID = driverToDeliver.objectId!
+        }else{
+            dest.order.deliveredBy = "Any Driver"
+            dest.order.deliveredByID = ""
+
+        }
+        
         
         dest.order.isAnyDriver = order.isAnyDriver
         
