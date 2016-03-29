@@ -35,6 +35,19 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         app.navigationBars["SeniorProject.NewFoodItemView"].buttons["New Order"].tap()
     }
     
+    func testAddFoodItemEmpty(){
+        //if the food items are empty
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.keyboards.buttons["Done"].tap()
+        
+        //should take us to edit food item screen, with no changes to the food item screen
+        app.tables.element.cells.elementBoundByIndex(0).tap()
+        XCTAssertNil(app.textFields["Enter Food Name"])
+        app.navigationBars["Food item"].buttons["New Order"].tap()
+    }
+    
     func test_foodDescriptionField() {
         
         let titleField = app.tables.cells.textFields["Title"]

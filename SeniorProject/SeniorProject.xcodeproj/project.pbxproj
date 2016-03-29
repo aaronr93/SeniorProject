@@ -38,6 +38,8 @@
 		36EF354C1CA44DBE00C160BE /* PFDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF354B1CA44DBE00C160BE /* PFDestination.swift */; };
 		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
+		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
+		402FC8211CAACC6E00B774D1 /* DriversClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960813361C8E2252009AE1FE /* DriversClassTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
@@ -143,6 +145,8 @@
 		36EF354B1CA44DBE00C160BE /* PFDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFDestination.swift; sourceTree = "<group>"; };
 		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
+		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
+		402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassUnitTests.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		960813361C8E2252009AE1FE /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 		364A6FDF1C98EDE50088116D /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
+				402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */,
 				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
 				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
 			);
@@ -252,6 +257,7 @@
 		364A6FE01C98EDEB0088116D /* Customer side */ = {
 			isa = PBXGroup;
 			children = (
+				402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -704,6 +710,8 @@
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
+				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
+				402FC8211CAACC6E00B774D1 /* DriversClassUnitTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

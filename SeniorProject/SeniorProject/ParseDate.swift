@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 extension NSDate {
     func yearsFrom(date:NSDate) -> Int {
@@ -105,6 +106,9 @@ class ParseDate {
             let rv : String = "\(Int(days)) days \(Int(hours)) hours \(Int(minutes)) min"
             return rv
         }
+        let expiration:String = (PFUser.currentUser()?.username!)!
+        let notification = Notification(content: "\(expiration) has expired!", sendToID: (PFUser.currentUser()?.objectId)!)
+        notification.push()
         return "expired"
     }
 }
