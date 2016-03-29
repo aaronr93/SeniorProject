@@ -40,11 +40,56 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
         app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.buttons["Done"].tap()
+        
+        //should take us to edit food item screen, with no changes to the food item screen
+        app.tables.element.cells.elementBoundByIndex(0).tap()
+        XCTAssertNil(app.textFields["Enter Food Name"])
+        app.navigationBars["Food item"].buttons["New Order"].tap()
+    }
+    
+    func testCancelButton() {
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.buttons["Cancel"].tap()
+        
+        //should take us to edit food item screen, with no changes to the food item screen
+        app.tables.element.cells.elementBoundByIndex(0).tap()
+        XCTAssertNil(app.textFields["Enter Food Name"])
+        app.navigationBars["Food item"].buttons["New Order"].tap()
+    }
+    
+    func testDoneKeyWithEmptyFields() {
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
         app.keyboards.buttons["Done"].tap()
         
         //should take us to edit food item screen, with no changes to the food item screen
         app.tables.element.cells.elementBoundByIndex(0).tap()
         XCTAssertNil(app.textFields["Enter Food Name"])
+        app.navigationBars["Food item"].buttons["New Order"].tap()
+    }
+    
+    func testDoneOnKeyboardWithFields() {
+        let app = XCUIApplication()
+        app.buttons["I want food"].tap()
+        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        let titleField = app.tables.cells.textFields["Title"]
+        titleField.tap()
+        titleField.typeText("test")
+        
+        app.buttons["Next"].tap()
+        
+        let detailsField = app.tables.cells.textFields["Details"]
+        detailsField.tap()
+        detailsField.typeText("test")
+        app.keyboards.buttons["Done"].tap()
+        
+        //should take us to edit food item screen, with no changes to the food item screen
+        app.tables.element.cells.elementBoundByIndex(1).tap()
+        XCTAssertNotNil(app.textFields["Enter Food Name"])
         app.navigationBars["Food item"].buttons["New Order"].tap()
     }
     
