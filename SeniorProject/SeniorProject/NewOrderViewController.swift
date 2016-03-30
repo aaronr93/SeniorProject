@@ -27,12 +27,14 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     
     var delegate: NewOrderViewDelegate!
     
+    @IBOutlet weak var submitButton: UIButton!
+    
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Delivered by", "Location", "Expires in"]
     var deliverySectionPrompts = ["Select a driver...", "Select delivery location...", "Select expiration time..."]
     let order = Order()
     var current = NSIndexPath()
-    
+    let user = PFUser.currentUser()!
     var currentLocation = CurrentLocation()
     
     enum Section: Int {
@@ -41,7 +43,24 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         case Settings = 2
     }
     
-    func cancelNewItem(newFoodItemVC: NewFoodItemTableViewController){
+    override func viewDidLoad() {
+        submitButton.setTitleColor(UIColor.grayColor(), forState: .Disabled)
+        submitButton.enabled = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if order.restaurant.name.isEmpty || order.foodItems.isEmpty || order.deliveredBy.isEmpty ||
+            order.destination.name.isEmpty || order.expiresIn.isEmpty {
+            // User hasn't filled out Restaurant, Food, or Delivered By
+            submitButton.enabled = false
+        } else {
+            submitButton.enabled = true
+        }
+    }
+
+    func cancelNewItem(newFoodItemVC: NewFoodItemTableViewController) {
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -103,7 +122,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
                 return 1
             case Section.Food.rawValue:
                 //based on number of food items in order
-                return order.foodItems.count
+                return 1 + order.foodItems.count
             case Section.Settings.rawValue:
                 // 3 -- 'delivered by', 'location', and 'expires in'
                 return deliverySectionTitles.count
@@ -139,7 +158,11 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
                 return cellForRestaurantSection(tableView, cellForRowAtIndexPath: indexPath)
             case Section.Food.rawValue:
                 //2nd section has the food info
-                return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
+                if indexPath.row == order.foodItems.count {
+                    return tableView.dequeueReusableCellWithIdentifier("addNewFoodItem", forIndexPath: indexPath)
+                } else {
+                    return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
+                }
             case Section.Settings.rawValue:
                 //3rd section has delivery info
                 return cellForDeliverySection(tableView, cellForRowAtIndexPath: indexPath)
@@ -212,10 +235,15 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         let section = indexPath.section
         
         switch section {
-        case Section.Restaurant.rawValue: return 44
-        case Section.Food.rawValue: return 60
-        case Section.Settings.rawValue: return 44
-        default: return 44
+            case Section.Restaurant.rawValue: return 44
+            case Section.Food.rawValue:
+                if indexPath.row == order.foodItems.count {
+                    return 44
+                } else {
+                    return 60
+                }
+            case Section.Settings.rawValue: return 44
+            default: return 44
         }
     }
     
@@ -229,7 +257,11 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             }
         case Section.Food.rawValue:
             // Food item field
-            performSegueWithIdentifier("editFoodItem", sender: "fromCell")
+            if indexPath.row == order.foodItems.count {
+                performSegueWithIdentifier("editFoodItem", sender: "new")
+            } else {
+                performSegueWithIdentifier("editFoodItem", sender: "existing")
+            }
             break
         case Section.Settings.rawValue:
             switch indexPath.row {
@@ -250,24 +282,6 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         default:
             break
         }
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if section == Section.Food.rawValue {
-            let headBttn = UIButton(type: UIButtonType.ContactAdd) as UIButton
-            headBttn.enabled = true
-            headBttn.titleLabel?.text = "Food items"
-            headBttn.addTarget(self, action: #selector(NewOrderViewController.showAddVC(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            view.addSubview(headBttn)
-            
-            headBttn.center.x = view.bounds.width - headBttn.frame.width
-            headBttn.center.y = headBttn.center.y + 10
-        }
-    }
-    
-    func showAddVC(sender: UIButton) {
-        performSegueWithIdentifier("editFoodItem", sender: "fromPlus")
     }
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
@@ -329,7 +343,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         if segue.identifier == "editFoodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemTableViewController
             let source = sender as? String
-            if source == "fromCell" {
+            if source == "existing" {
                 //if user clicks a cell to edit
                 newFoodItemVC.foodNameText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].name!
                 newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!
@@ -341,12 +355,13 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     @IBAction func submit(sender: UIButton) {
+        
         sender.enabled = false // Prevents multiple rapid submissions (accidentally?)
+        
         order.create { (success) -> Void in
             if success {
                 self.delegate.orderSaved(self)
             } else {
-                logError("order failed")
                 sender.enabled = true
                 //self.delegate.cancelNewOrder(self)
             }

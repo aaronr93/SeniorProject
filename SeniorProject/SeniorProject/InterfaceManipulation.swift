@@ -34,7 +34,7 @@ class InterfaceManipulation {
         } else if currentStatus == OrderState.PaidFor {
             driver_setDeliveredStyleFor(button)
         } else if currentStatus == OrderState.Delivered {
-            driver_setCompletedStyleFor(button)
+            driver_setWaitStyleFor(button)
         } else if currentStatus == OrderState.Completed {
             driver_setCompletedStyleFor(button)
         }
@@ -95,6 +95,12 @@ class InterfaceManipulation {
     func driver_setDeliveredStyleFor(button: UIButton) {
         button.setTitle("I arrived at the delivery location", forState: UIControlState.Normal)
         button.enabled = true
+    }
+    
+    func driver_setWaitStyleFor(button: UIButton) {
+        button.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
+        button.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+        button.enabled = false
     }
     
     func driver_setCompletedStyleFor(button: UIButton) {

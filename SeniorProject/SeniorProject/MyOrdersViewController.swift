@@ -17,8 +17,9 @@ class MyOrdersViewController: UITableViewController {
     let user = PFUser.currentUser()!
     var current: NSIndexPath?
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         clear(listOfOrders: &ordersISent)
         getOrdersISent() { result in
             if result { self.tableView.reloadData() }
@@ -51,8 +52,7 @@ class MyOrdersViewController: UITableViewController {
         
         query.includeKey("driverToDeliver")
         query.includeKey("destination")
-        query.whereKey("OrderState", notEqualTo: "Delivered")
-        query.whereKey("OrderState", notEqualTo: "Deleted")
+        query.whereKey("OrderState", notContainedIn: ["Completed", "Deleted"])
         query.whereKey("OrderingUser", equalTo: user)
         query.whereKey("expirationDate", greaterThan: now)
         
@@ -81,9 +81,7 @@ class MyOrdersViewController: UITableViewController {
         query.includeKey("OrderingUser")
         query.includeKey("destination")
         query.whereKey("driverToDeliver", equalTo: user)
-        query.whereKey("OrderState", notEqualTo: "Delivered")
-        query.whereKey("OrderState", notEqualTo: "Available")
-        query.whereKey("OrderState", notEqualTo: "Deleted")
+        query.whereKey("OrderState", notContainedIn: ["Completed", "Available", "Deleted"])
         query.whereKey("expirationDate", greaterThan: now)
         query.whereKey("OrderingUser", notEqualTo: user)
         
