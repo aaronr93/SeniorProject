@@ -39,9 +39,7 @@
 		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
-		402FC8211CAACC6E00B774D1 /* DriversClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
-		960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960813361C8E2252009AE1FE /* DriversClassTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
@@ -64,13 +62,15 @@
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
 		9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */; };
 		9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */; };
-		9B3202071C8CD7D800749264 /* SettingsClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202061C8CD7D800749264 /* SettingsClassTests.swift */; };
-		9B3202091C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */; };
 		9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */; };
 		9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020C1C8DF58600749264 /* AppDelegate.swift */; };
-		9B32020F1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */; };
 		9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */; };
 		9B3202531C97599100749264 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202521C97599100749264 /* Notification.swift */; };
+		9B8C763E1CAB6977005E9F82 /* DriversClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C763D1CAB6977005E9F82 /* DriversClassTests.swift */; };
+		9B8C76421CAB69A1005E9F82 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */; };
+		9B8C76441CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */; };
+		9B8C76461CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C76451CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift */; };
+		9B8C76481CAB6A0A005E9F82 /* SettingsClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */; };
 		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
@@ -88,7 +88,6 @@
 		9B9F2AF91CA22D060053F85F /* gcc.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 9B9F2AF81CA22D050053F85F /* gcc.gpx */; };
 		9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */; };
 		9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */; };
-		9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF31C89F52A00F3D3F9 /* example.swift */; };
 		9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */; };
@@ -146,9 +145,7 @@
 		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
-		402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassUnitTests.swift; sourceTree = "<group>"; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
-		960813361C8E2252009AE1FE /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -177,13 +174,15 @@
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewController.swift; sourceTree = "<group>"; };
 		9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTableViewController.swift; sourceTree = "<group>"; };
-		9B3202061C8CD7D800749264 /* SettingsClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassTests.swift; sourceTree = "<group>"; };
-		9B3202081C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
 		9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B32020C1C8DF58600749264 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUITests.swift; sourceTree = "<group>"; };
 		9B3202521C97599100749264 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		9B8C763D1CAB6977005E9F82 /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
+		9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
+		9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
+		9B8C76451CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassTests.swift; sourceTree = "<group>"; };
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		9B8E40CE1C85199100B4B77E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9B8E40D21C85199B00B4B77E /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -195,7 +194,6 @@
 		9B9F2AF81CA22D050053F85F /* gcc.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gcc.gpx; sourceTree = "<group>"; };
 		9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationClassUnitTests.swift; sourceTree = "<group>"; };
 		9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewControllerUnitTests.swift; sourceTree = "<group>"; };
-		9BB399E11C8CC9E700738866 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BF31C89F52A00F3D3F9 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 		9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountClassTests.swift; sourceTree = "<group>"; };
@@ -247,7 +245,7 @@
 		364A6FDF1C98EDE50088116D /* Driver side */ = {
 			isa = PBXGroup;
 			children = (
-				402FC8201CAACC6E00B774D1 /* DriversClassUnitTests.swift */,
+				9B8C763D1CAB6977005E9F82 /* DriversClassTests.swift */,
 				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
 				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
 			);
@@ -274,6 +272,7 @@
 		364A6FE21C98EDFA0088116D /* Subscreens */ = {
 			isa = PBXGroup;
 			children = (
+				9B8C76451CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift */,
 				9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */,
 			);
 			name = Subscreens;
@@ -283,6 +282,9 @@
 			isa = PBXGroup;
 			children = (
 				9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */,
+				9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */,
+				9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */,
+				9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */,
 				9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */,
 			);
 			name = Classes;
@@ -697,22 +699,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				960813371C8E2252009AE1FE /* DriversClassTests.swift in Sources */,
 				9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */,
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
-				9B32020F1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift in Sources */,
 				9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */,
-				9BB399E21C8CC9E700738866 /* ValidationClassTests.swift in Sources */,
 				9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
-				9B3202091C8CD85400749264 /* DriverRestaurantsPreferencesClassTests.swift in Sources */,
-				9B3202071C8CD7D800749264 /* SettingsClassTests.swift in Sources */,
+				9B8C76461CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
+				9B8C763E1CAB6977005E9F82 /* DriversClassTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
+				9B8C76421CAB69A1005E9F82 /* ValidationClassTests.swift in Sources */,
 				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
-				402FC8211CAACC6E00B774D1 /* DriversClassUnitTests.swift in Sources */,
+				9B8C76481CAB6A0A005E9F82 /* SettingsClassTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
+				9B8C76441CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
