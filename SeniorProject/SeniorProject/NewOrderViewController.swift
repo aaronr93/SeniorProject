@@ -257,7 +257,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             let headBttn = UIButton(type: UIButtonType.ContactAdd) as UIButton
             headBttn.enabled = true
             headBttn.titleLabel?.text = "Food items"
-            headBttn.addTarget(self, action: Selector(showAddVC(headBttn)), forControlEvents: UIControlEvents.TouchUpInside)
+            headBttn.addTarget(self, action: #selector(NewOrderViewController.showAddVC(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             
             view.addSubview(headBttn)
             
