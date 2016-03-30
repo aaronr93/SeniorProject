@@ -13,7 +13,7 @@ class HomeUITests: SeniorProjectUITests {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        //XCUIApplication().launch()
+        XCUIApplication().launch()
     }
     
     override func tearDown() {
@@ -27,14 +27,15 @@ class HomeUITests: SeniorProjectUITests {
         
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
-        
+        app.tables.staticTexts["Select a Restaurant"].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
     }
     
     func testPickUpFood() {
         let app = XCUIApplication()
         app.buttons["I'm picking up food"].tap()
         app.navigationBars["UITabBar"].buttons["Home"].tap()
+    XCTAssertNotNil(app.navigationBars["UITabBar"].buttons["Home"])
     }
     
     func testMyOrders() {
@@ -42,6 +43,7 @@ class HomeUITests: SeniorProjectUITests {
         let homeNavigationBar = app.navigationBars["Home"]
         homeNavigationBar.buttons["My orders"].tap()
         app.navigationBars["My Orders"].buttons["Home"].tap()
+        XCTAssertNotNil(app.navigationBars["My Orders"].buttons["Home"])
     }
     
     func testSettings() {
@@ -49,6 +51,7 @@ class HomeUITests: SeniorProjectUITests {
         let homeNavigationBar = app.navigationBars["Home"]
         homeNavigationBar.buttons["Settings"].tap()
         app.navigationBars["Settings"].buttons["Home"].tap()
+    XCTAssertNotNil(app.navigationBars["Settings"].buttons["Home"])
     }
 
 }

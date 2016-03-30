@@ -23,12 +23,8 @@ class DriversOrdersUITests: XCTestCase {
     }
 
     func testrequestsForMeTap() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        
-        //XCUIApplication().navigationBars["I'm Picking Up Food"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).pressForDuration(0.05)
-        
+        let app = XCUIApplication()
+        app.navigationBars["Home"].buttons["My orders"].tap()
         
     }
     
