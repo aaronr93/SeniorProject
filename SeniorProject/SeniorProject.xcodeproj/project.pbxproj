@@ -13,6 +13,8 @@
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
+		367BA9271CAC066200379AF3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
+		367BA9281CAC067400379AF3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		36AB6DF21CA4A5B700C64FEE /* Commit on March 24.txt in Resources */ = {isa = PBXBuildFile; fileRef = 36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */; };
 		36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */; };
 		36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */; };
@@ -71,10 +73,8 @@
 		9B32020F1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020E1C8E194400749264 /* NewFoodItemViewControllerUnitTests.swift */; };
 		9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */; };
 		9B3202531C97599100749264 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202521C97599100749264 /* Notification.swift */; };
-		9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
-		9B8E40CF1C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
 		9B8E40D01C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
 		9B8E40D11C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
 		9B8E40D31C85199B00B4B77E /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40D21C85199B00B4B77E /* ParseUI.framework */; };
@@ -206,14 +206,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				367BA9281CAC067400379AF3 /* Bolts.framework in Frameworks */,
+				367BA9271CAC066200379AF3 /* Parse.framework in Frameworks */,
 				96B36AA01C5AFF3800DF6038 /* libsqlite3.tbd in Frameworks */,
 				96B36A9E1C5AFF2C00DF6038 /* libz.tbd in Frameworks */,
 				96B36A9B1C5AFE4A00DF6038 /* CoreLocation.framework in Frameworks */,
 				96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */,
 				96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */,
-				9B8E40CB1C85198200B4B77E /* Bolts.framework in Frameworks */,
 				9B8E40D31C85199B00B4B77E /* ParseUI.framework in Frameworks */,
-				9B8E40CF1C85199100B4B77E /* Parse.framework in Frameworks */,
 				96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */,
 				36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */,
 				36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */,

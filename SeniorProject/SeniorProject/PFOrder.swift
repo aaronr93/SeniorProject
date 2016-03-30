@@ -35,3 +35,9 @@ class PFOrder: PFObject, PFSubclassing {
         return "Order"
     }
 }
+
+extension PFObject {
+    convenience init(withoutDataWithObjectId objectId: String?) {
+        self.init(outDataWithObjectId: objectId)
+    }
+}
