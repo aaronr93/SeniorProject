@@ -85,9 +85,8 @@ class Order {
     }
     
     func getFoodItemsFromParse(completion: (success: Bool) -> Void) {
-        itemsForOrderQuery.whereKey("order", equalTo: orderID)
+        itemsForOrderQuery.includeKey("order").whereKey("order", equalTo: PFObject(withoutDataWithClassName: "Order", objectId: orderID))
         itemsForOrderQuery.includeKey("food")
-        itemsForOrderQuery.includeKey("order")
         itemsForOrderQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -100,7 +99,7 @@ class Order {
                         let item = item as! PFOrderedItems
                         let food = item.food as! PFFood
                         foodName = food.name
-                        foodDescription = food.description
+                        foodDescription = item.foodDescription
                         
                         let foodItem = Food(name: foodName, description: foodDescription)
                         self.addFoodItem(foodItem)
