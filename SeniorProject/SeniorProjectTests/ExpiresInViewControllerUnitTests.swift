@@ -27,9 +27,16 @@ class ExpiresInViewControllerUnitTests: XCTestCase {
     func testInstantiation(){
         XCTAssertNotNil(testObject)
         XCTAssertNotNil(testObject.timePickerData)
+        XCTAssertNotNil(testObject.selectedHours)
+        XCTAssertNotNil(testObject.selectedMinutes)
+        XCTAssert(testObject.hours == 6)
+        XCTAssert(testObject.numberOfMinuteIntervals == 4)
     }
     
-    //nothing that can be tested with viewDidLoad
+    func testSelectedTime(){
+        XCTAssert(testObject.selectedMinutes == 0)
+        XCTAssert(testObject.selectedMinutes == 0)
+    }
 
     
 
