@@ -115,8 +115,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         return true
     }
     
-    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
-    {
+    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer? {
         let borderWidthL = CGFloat(borderWidth)
         layer.borderColor = color.CGColor
         layer.borderWidth = borderWidthL
@@ -124,7 +123,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         return layer
     }
     
-    func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor){
+    func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor) {
         let bw = 1.0
         
         //create the bottom border and add to the sublayer

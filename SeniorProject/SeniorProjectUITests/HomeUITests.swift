@@ -27,8 +27,8 @@ class HomeUITests: SeniorProjectUITests {
         
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
-        app.tables.staticTexts["Select a Restaurant"].tap()
-        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
+        app.tables.staticTexts["Select restaurant..."].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Select restaurant..."])
     }
     
     func testPickUpFood() {

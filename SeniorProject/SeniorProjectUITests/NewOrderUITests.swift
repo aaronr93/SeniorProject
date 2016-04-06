@@ -29,14 +29,14 @@ class NewOrderUITests: SeniorProjectUITests {
         app.buttons["I want food"].tap()
         
         //not selecting a restaurant - none selected
-        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
-        app.tables.staticTexts["Select a Restaurant"].tap()
+        XCTAssertNotNil(app.tables.staticTexts["Select restaurant..."])
+        app.tables.staticTexts["Select restaurant..."].tap()
         XCTAssertNotNil(app.navigationBars["Select Restaurant"].buttons["New Order"])
         app.navigationBars["Select Restaurant"].buttons["New Order"].tap()
-        XCTAssertNotNil(app.tables.staticTexts["Select a Restaurant"])
+        XCTAssertNotNil(app.tables.staticTexts["Select restaurant..."])
         
         //selecting a restaurant
-        app.tables.staticTexts["Select a Restaurant"].tap()
+        app.tables.staticTexts["Select restaurant..."].tap()
         app.tables.staticTexts["sheetz"].tap()
         XCTAssertNotNil(app.tables.staticTexts["Sheetz"])
         
@@ -89,7 +89,7 @@ class NewOrderUITests: SeniorProjectUITests {
         
         //need to select a restaurant first
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Select a Restaurant"].tap()
+        tablesQuery.staticTexts["Select restaurant..."].tap()
         tablesQuery.staticTexts["sheetz"].tap()
         
         //can't test the values in cells, so basically just making sure it doesn't crash and goes to correct view
