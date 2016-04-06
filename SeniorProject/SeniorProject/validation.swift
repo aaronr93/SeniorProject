@@ -177,7 +177,13 @@ func logError(error: AnyObject) {
     NSLog("ERROR:\n\(error)")
     
     // Send notification
-    let notification = Notification(content: "ERROR:\n\(error)", sendToID: (PFUser.currentUser()?.objectId)!)
-    notification.push()
+    if let tempUser:PFUser = PFUser.currentUser() {
+        let notification = Notification(content: "ERROR:\n\(error)", sendToID: (PFUser.currentUser()?.objectId)!)
+        notification.push()
+    }
+    else{
+        print("Not working")
+    }
+    
 }
 

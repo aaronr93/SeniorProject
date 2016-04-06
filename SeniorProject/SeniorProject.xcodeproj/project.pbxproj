@@ -68,6 +68,8 @@
 		9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020C1C8DF58600749264 /* AppDelegate.swift */; };
 		9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */; };
 		9B3202531C97599100749264 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3202521C97599100749264 /* Notification.swift */; };
+		9B7AD0E21CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD0E11CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift */; };
+		9B7AD0E41CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7AD0E31CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift */; };
 		9B8E40CC1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40CD1C85198200B4B77E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		9B8E40D01C85199100B4B77E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
@@ -173,6 +175,8 @@
 		9B32020C1C8DF58600749264 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUITests.swift; sourceTree = "<group>"; };
 		9B3202521C97599100749264 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		9B7AD0E11CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCellUnitTests.swift; sourceTree = "<group>"; };
+		9B7AD0E31CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryLocationTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B8C763D1CAB6977005E9F82 /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
 		9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
@@ -269,6 +273,8 @@
 			children = (
 				9B8C76451CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift */,
 				9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */,
+				9B7AD0E11CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift */,
+				9B7AD0E31CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift */,
 			);
 			name = Subscreens;
 			sourceTree = "<group>";
@@ -697,18 +703,15 @@
 				9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */,
 				9B8E41D11C86810E00B4B77E /* MyOrdersUnitTests.swift in Sources */,
 				9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */,
+				9B7AD0E21CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift in Sources */,
 				9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
-				9B8C76461CAB69FB005E9F82 /* NewFoodItemViewControllerUnitTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
-				9B8C763E1CAB6977005E9F82 /* DriversClassTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
+				9B7AD0E41CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
-				9B8C76421CAB69A1005E9F82 /* ValidationClassTests.swift in Sources */,
 				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
-				9B8C76481CAB6A0A005E9F82 /* SettingsClassTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
-				9B8C76441CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
