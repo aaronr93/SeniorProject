@@ -23,6 +23,7 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
             locationManager.requestAlwaysAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            locationManager.requestLocation()
         }
     }
     

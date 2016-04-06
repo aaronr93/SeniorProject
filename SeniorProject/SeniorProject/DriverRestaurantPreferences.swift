@@ -14,14 +14,22 @@ class DriverRestaurantPreferences {
     var availability: PFDriverAvailability?
     let driver = PFUser.currentUser()!
     var blacklist = [PFUnavailableRestaurant]()
+    var whitelist = [PFUnavailableRestaurant]()
     
     init() {
         let query = PFQuery(className: PFDriverAvailability.parseClassName())
         query.whereKey("driver", equalTo: driver)
-        do {
-            try availability = query.getFirstObject() as? PFDriverAvailability
-        } catch {
-            logError("Couldn't get the user's availability")
+        query.getFirstObjectInBackgroundWithBlock { (obj: PFObject?, error: NSError?) in
+            if error == nil {
+                self.availability = obj as? PFDriverAvailability
+            } else {
+                // Availability doesn't exist; create it.
+                self.availability = PFDriverAvailability(className: PFDriverAvailability.parseClassName())
+                self.availability!.driver = self.driver
+                self.availability!.expirationDate = NSDate().addHours(4)
+                self.availability!.isCurrentlyAvailable = true
+                self.availability!.saveInBackground()
+            }
         }
     }
     
@@ -34,17 +42,20 @@ class DriverRestaurantPreferences {
     
     func markAvailable(rest: Restaurant) {
         var removeIndex = 0
+        var toAdd: PFUnavailableRestaurant!
         for item in blacklist {
             if item.restaurant == rest.name {
                 removeIndex = blacklist.indexOf(item)!
+                toAdd = item
             }
         }
+        whitelist.append(toAdd)
         blacklist.removeAtIndex(removeIndex)
     }
     
-    func isUnavailable(rest: Restaurant) -> Bool {
+    func isUnavailable(name: String) -> Bool {
         for item in blacklist {
-            if item.restaurant == rest.name {
+            if item.restaurant == name {
                 return true
             }
         }
@@ -60,7 +71,10 @@ class DriverRestaurantPreferences {
     
     func saveAll() {
         for item in blacklist {
-            item.saveEventually()
+            item.saveInBackground()
+        }
+        for item in whitelist {
+            item.deleteInBackground()
         }
     }
     
@@ -69,33 +83,28 @@ class DriverRestaurantPreferences {
         driverAvailablityQuery.whereKey("driver", equalTo: driver)
         
         driverAvailablityQuery.findObjectsInBackgroundWithBlock { (driverAvailabilityObjects, error) -> Void in
-            if error == nil
-            {
-            if let driverAvailablities = driverAvailabilityObjects {
-                if !driverAvailablities.isEmpty {
-                    let unavailQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
-                    unavailQuery.whereKey("driverAvailability", equalTo: driverAvailablities.first!)
-                    unavailQuery.findObjectsInBackgroundWithBlock({ (unavailObjects: [PFObject]?, errorUnavail) -> Void in
-                        if errorUnavail == nil
-                        {
-                        if let unavailables = unavailObjects {
-                            if !unavailables.isEmpty {
-                                self.blacklist = unavailables as! [PFUnavailableRestaurant]
-                                completion(success: true)
-                            } else {
-                                logError("Error: Query yielded no results")
-                                completion(success: false)
+            if error == nil {
+                if let driverAvailablities = driverAvailabilityObjects {
+                    if !driverAvailablities.isEmpty {
+                        let unavailQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
+                        unavailQuery.whereKey("driverAvailability", equalTo: driverAvailablities.first!)
+                        unavailQuery.findObjectsInBackgroundWithBlock({ (unavailObjects: [PFObject]?, errorUnavail) -> Void in
+                            if errorUnavail == nil {
+                                if let unavailables = unavailObjects {
+                                    if !unavailables.isEmpty {
+                                        self.blacklist = unavailables as! [PFUnavailableRestaurant]
+                                    }
+                                }
                             }
-                        }
-                        }
-                    })
-                } else {
-                    logError("Error: No driver availabilities!")
-                    completion(success: false)
+                            completion(success: true)
+                        })
+                    } else {
+                        logError("No driver availabilities!")
+                        completion(success: false)
+                    }
                 }
-            }
             } else {
-                logError("Error: Error querying driver availibility")
+                logError("Error querying driver availibility")
                 completion(success: false)
             }
         }
