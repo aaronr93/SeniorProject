@@ -18,7 +18,7 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         continueAfterFailure = false
         app.launch()
         app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.tables.staticTexts["Add new food item..."].tap()
     }
     
     override func tearDown() {
@@ -28,63 +28,41 @@ class NewFoodItemViewControllerUITests: XCTestCase {
     }
     
     func test_foodNameField() {
-        
-        let enterFoodNameTextField = app.textFields["Enter Food Name"]
-        enterFoodNameTextField.typeText("test")
-        XCTAssert(enterFoodNameTextField.value as? String == "test")
-        app.navigationBars["SeniorProject.NewFoodItemView"].buttons["New Order"].tap()
+        let title = app.tables.textFields["Title"]
+        title.typeText("test")
+        XCTAssert(title.value as? String == "test")
     }
     
     func testAddFoodItemEmpty(){
         //if the food items are empty
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
         app.buttons["Done"].tap()
         
         //should take us to edit food item screen, with no changes to the food item screen
-        app.tables.element.cells.elementBoundByIndex(0).tap()
-        XCTAssertNil(app.textFields["Enter Food Name"])
-        app.navigationBars["Food item"].buttons["New Order"].tap()
+        let firstFoodCell = app.tables.element.cells.elementBoundByIndex(0)
+        XCTAssert(firstFoodCell.label == "Add new food item...")
+        
+        app.tables.staticTexts["Add new food item..."].tap()
     }
     
     func testCancelButton() {
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
         app.buttons["Cancel"].tap()
         
         //should take us to edit food item screen, with no changes to the food item screen
-        app.tables.element.cells.elementBoundByIndex(0).tap()
-        XCTAssertNil(app.textFields["Enter Food Name"])
-        app.navigationBars["Food item"].buttons["New Order"].tap()
-    }
-    
-    func testDoneKeyWithEmptyFields() {
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
-        app.keyboards.buttons["Done"].tap()
+        let firstFoodCell = app.tables.element.cells.elementBoundByIndex(0)
+        XCTAssert(firstFoodCell.label == "Add new food item...")
         
-        //should take us to edit food item screen, with no changes to the food item screen
-        app.tables.element.cells.elementBoundByIndex(0).tap()
-        XCTAssertNil(app.textFields["Enter Food Name"])
-        app.navigationBars["Food item"].buttons["New Order"].tap()
+        app.tables.staticTexts["Add new food item..."].tap()
     }
     
     func testDoneOnKeyboardWithFields() {
-        let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
-        let titleField = app.tables.cells.textFields["Title"]
-        titleField.tap()
-        titleField.typeText("test")
+        let title = app.tables.textFields["Title"]
+        title.typeText("test")
         
         app.buttons["Next"].tap()
         
-        let detailsField = app.tables.cells.textFields["Details"]
-        detailsField.tap()
-        detailsField.typeText("test")
+        let details = app.tables.textFields["Details"]
+        details.tap()
+        details.typeText("test")
         app.keyboards.buttons["Done"].tap()
         
         //should take us to edit food item screen, with no changes to the food item screen
@@ -94,17 +72,10 @@ class NewFoodItemViewControllerUITests: XCTestCase {
     }
     
     func test_foodDescriptionField() {
-        
-        let titleField = app.tables.cells.textFields["Title"]
-        titleField.tap()
-        titleField.typeText("test")
-        
-        app.buttons["Next"].tap()
-        
         let detailsField = app.tables.cells.textFields["Details"]
         detailsField.tap()
         detailsField.typeText("test")
-        app.buttons["Done"].tap()
+        app.navigationBars.buttons["Done"].tap()
     }
     
     func test_cellValuesSet() {
@@ -122,9 +93,10 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         
         let cells = app.tables.cells
         //can't easily get vlues of cells, so just making sure that a cell was added
-        XCTAssert(cells.count == 5)
+        XCTAssert(cells.count == 6)
         
-        app.tables.otherElements.containingType(.StaticText, identifier:"Food items").childrenMatchingType(.Button).element.tap()
+        app.tables.staticTexts["Add new food item..."].tap()
+        
     }
     
 }

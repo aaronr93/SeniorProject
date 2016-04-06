@@ -37,7 +37,7 @@ class Order {
     var orderState = OrderState.Available
     
     init() {
-        restaurant = Restaurant(name: "Select a Restaurant")
+        restaurant = Restaurant(name: "Select restaurant...")
     }
     
     let itemsForOrderQuery = PFQuery(className: "OrderedItems")
@@ -123,7 +123,7 @@ class Order {
             return
         }
         
-        if restaurant.name == "Select a Restaurant" {
+        if restaurant.name == "Select restaurant..." {
             logError("You haven't selected a restaurant!")
             completion(success: false)
             return

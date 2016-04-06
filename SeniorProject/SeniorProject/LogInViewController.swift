@@ -29,8 +29,7 @@ func removeInputHighlightInField(field: UITextField) {
 
 class LogInViewController: UIViewController,UITextFieldDelegate {
     
-    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer?
-    {
+    func createBorder(layer: CALayer,borderWidth: Double,color: UIColor) -> CALayer? {
         let borderWidthL = CGFloat(borderWidth)
         layer.borderColor = color.CGColor
         layer.borderWidth = borderWidthL
@@ -89,7 +88,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                                 logError("Invalid loging credentials")
                             }
                         }
-                    
+
                 }
             }
         }

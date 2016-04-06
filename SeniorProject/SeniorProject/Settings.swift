@@ -8,8 +8,7 @@
 
 import Foundation
 
-class Settings
-{
+class Settings {
     var active: Bool
     
     init(active: Bool) {

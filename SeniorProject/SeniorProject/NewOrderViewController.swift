@@ -159,7 +159,9 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             case Section.Food.rawValue:
                 //2nd section has the food info
                 if indexPath.row == order.foodItems.count {
-                    return tableView.dequeueReusableCellWithIdentifier("addNewFoodItem", forIndexPath: indexPath)
+                    let cell = tableView.dequeueReusableCellWithIdentifier("addNewFoodItem", forIndexPath: indexPath)
+                    cell.textLabel?.textColor = UIColor.grayColor()
+                    return cell
                 } else {
                     return cellForFoodSection(tableView, cellForRowAtIndexPath: indexPath)
                 }
@@ -177,7 +179,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("chooseRestaurantCell", forIndexPath: indexPath) as! ChooseRestaurantCell
         var restaurantName: String = order.restaurant.name
 
-        if restaurantName == "Select a Restaurant" {
+        if restaurantName == "Select restaurant..." {
             restaurantCell.name.textColor = UIColor.grayColor()
         } else {
             restaurantCell.name.textColor = UIColor.blackColor()
