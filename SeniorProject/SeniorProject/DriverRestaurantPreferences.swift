@@ -13,17 +13,18 @@ class DriverRestaurantPreferences {
     
     var availability: PFDriverAvailability?
     let driver = PFUser.currentUser()!
-    var blacklist = [PFUnavailableRestaurant]()
-    var whitelist = [PFUnavailableRestaurant]()
+    var blacklist = [PFUnavailableRestaurant]()     // Unavailable restaurants; add to Parse
+    var whitelist = [PFUnavailableRestaurant]()     // Available restaurants; remove from Parse
     
     init() {
+        // Retrieve the availability of the current user.
         let query = PFQuery(className: PFDriverAvailability.parseClassName())
         query.whereKey("driver", equalTo: driver)
         query.getFirstObjectInBackgroundWithBlock { (obj: PFObject?, error: NSError?) in
             if error == nil {
                 self.availability = obj as? PFDriverAvailability
             } else {
-                // Availability doesn't exist; create it.
+                // User's Availability doesn't exist; create it.
                 self.availability = PFDriverAvailability(className: PFDriverAvailability.parseClassName())
                 self.availability!.driver = self.driver
                 self.availability!.expirationDate = NSDate().addHours(4)
@@ -33,6 +34,7 @@ class DriverRestaurantPreferences {
         }
     }
     
+    // Adds the given restaurant to the list of Unavailable restaurants.
     func markUnavailable(rest: Restaurant) {
         let add = PFUnavailableRestaurant()
         add.restaurant = rest.name
@@ -40,6 +42,7 @@ class DriverRestaurantPreferences {
         blacklist.append(add)
     }
     
+    // Removes the given restaurant from the list of Unavailable restaurants.
     func markAvailable(rest: Restaurant) {
         var removeIndex = 0
         var toAdd: PFUnavailableRestaurant!
@@ -53,6 +56,7 @@ class DriverRestaurantPreferences {
         blacklist.removeAtIndex(removeIndex)
     }
     
+    // Returns whether or not the driver is listed as Unavailable for the given Restaurant.
     func isUnavailable(name: String) -> Bool {
         for item in blacklist {
             if item.restaurant == name {
@@ -69,12 +73,29 @@ class DriverRestaurantPreferences {
         blacklist.removeAll()
     }
     
+    // Adds unavailable restaurants and removes available restaurants from Parse
     func saveAll() {
         for item in blacklist {
             item.saveInBackground()
         }
         for item in whitelist {
             item.deleteInBackground()
+        }
+    }
+    
+    // Returns the general availability of the driver (isCurrentlyAvailable)
+    func driverAvailability() -> Bool {
+        if let pref = availability {
+            return pref.isCurrentlyAvailable
+        }
+        return false
+    }
+    
+    // Sets the general availability of the driver (isCurrentlyAvailable)
+    func setDriverAvailability(to switchState: Bool) {
+        if let pref = availability {
+            pref.isCurrentlyAvailable = switchState
+            pref.saveInBackground()
         }
     }
     
