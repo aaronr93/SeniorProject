@@ -20,15 +20,15 @@ class MyOrdersUnitTests: XCTestCase {
         viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("myOrders") as! MyOrdersViewController
     }
     
-    func test_Instantiation() {
+    func testInstantiation() {
         XCTAssertNotNil(viewController)
         
         let currentUser = PFUser.currentUser()!
         XCTAssertEqual(currentUser, viewController.user)
-        
         XCTAssertNotNil(viewController.ordersISent)
         XCTAssertNotNil(viewController.ordersIReceived)
         XCTAssertNil(viewController.current)
+        XCTAssert(viewController.sectionHeaders == ["Requests I've Sent", "Requests I'm Picking Up"])
     }
     
     func testLoggedIn() {
