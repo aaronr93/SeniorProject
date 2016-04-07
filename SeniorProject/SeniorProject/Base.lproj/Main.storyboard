@@ -1505,8 +1505,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-uq-7C3" userLabel="available">
+                                            <rect key="frame" x="533" y="6" width="51" height="31"/>
+                                        </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available to pick up food" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PlN-sI-q8H" userLabel="label">
-                                            <rect key="frame" x="16" y="11" width="187" height="21"/>
+                                            <rect key="frame" x="18" y="11" width="187" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="187" id="hno-1X-dxn"/>
                                             </constraints>
@@ -1514,15 +1517,12 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-uq-7C3" userLabel="available">
-                                            <rect key="frame" x="533" y="6" width="51" height="31"/>
-                                        </switch>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="PlN-sI-q8H" firstAttribute="top" secondItem="8dj-mz-Njo" secondAttribute="topMargin" constant="3" id="AvC-bz-62m"/>
                                         <constraint firstItem="PlN-sI-q8H" firstAttribute="centerY" secondItem="5aD-uq-7C3" secondAttribute="centerY" id="HAT-Ct-vDF"/>
                                         <constraint firstItem="5aD-uq-7C3" firstAttribute="centerY" secondItem="8dj-mz-Njo" secondAttribute="centerY" id="TDm-ol-skB"/>
-                                        <constraint firstItem="PlN-sI-q8H" firstAttribute="leading" secondItem="8dj-mz-Njo" secondAttribute="leadingMargin" constant="8" id="U64-QX-3RW"/>
+                                        <constraint firstItem="PlN-sI-q8H" firstAttribute="leading" secondItem="8dj-mz-Njo" secondAttribute="leadingMargin" constant="10" id="U64-QX-3RW"/>
                                         <constraint firstItem="5aD-uq-7C3" firstAttribute="trailing" secondItem="8dj-mz-Njo" secondAttribute="trailingMargin" constant="-10" id="nQg-z7-GkU"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1741,7 +1741,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Omd-mY-WVB"/>
+        <segue reference="dG4-T9-SLc"/>
         <segue reference="9vk-JT-Ujd"/>
-        <segue reference="uMw-V3-isa"/>
     </inferredMetricsTieBreakers>
 </document>

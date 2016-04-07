@@ -22,7 +22,7 @@ class DriverRestaurantsViewController: UITableViewController {
     
     var currentLocation = CurrentLocation()
     
-    let sectionHeaders = ["Restaurants I won't go to", "When I'm available"]
+    let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class DriverRestaurantsViewController: UITableViewController {
         let row = indexPath.row
         
         if row > POIs.restaurants.count {
-            logError("Somehow, there are more rows than there are restaurants.")
+            logError("Impossibly, there are more rows than there are restaurants.")
         } else {
             let name = POIs.restaurants[row].name
             if name == "" {
@@ -96,8 +96,8 @@ class DriverRestaurantsViewController: UITableViewController {
             } else {
                 restaurantCell.textLabel?.text = name
                 restaurantCell.textLabel?.textColor = UIColor.blackColor()
-                markExistingPreference(indexPath)
             }
+            markExistingPreference(restaurantCell)
         }
         
         return restaurantCell
@@ -142,7 +142,13 @@ class DriverRestaurantsViewController: UITableViewController {
         POIs.searchFor("Food", aroundLocation: currentLocation) { result in
             if result {
                 // Success
-                self.tableView.reloadData()
+                self.prefs.getBlacklistFromParse() { result in
+                    if result {
+                        self.tableView.reloadData()
+                    } else {
+                        print("No restaurants marked unavailable! Yay!")
+                    }
+                }
             } else {
                 // Some kind of error occurred while trying to
                 // find nearby locations.
@@ -151,14 +157,14 @@ class DriverRestaurantsViewController: UITableViewController {
         }
     }
     
-    func markExistingPreference(indexPath: NSIndexPath) {
+    func markExistingPreference(cell: UITableViewCell) {
         // Checks the row at the given indexPath for an existing driver preference.
         // If it's previously been marked as unavailable, CHECK it. Otherwise, ignore.
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if let name = cell?.textLabel?.text {
-            let restaurant = Restaurant(name: name)
-            if prefs.isUnavailable(restaurant) {
-                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if let name = cell.textLabel?.text {
+            if prefs.isUnavailable(name) {
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
             }
         }
     }
@@ -182,13 +188,13 @@ class DriverRestaurantsViewController: UITableViewController {
                     
                     // If the cell is checked, uncheck it and mark as Available
                     cell.accessoryType = UITableViewCellAccessoryType.None
-                    prefs.markAvailable(POIs.restaurants[row])
+                    prefs.markUnavailable(POIs.restaurants[row])
                     
                 } else if cell.accessoryType == UITableViewCellAccessoryType.None {
                     
                     // If the cell is unchecked, check it and mark as Unavailable
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                    prefs.markUnavailable(POIs.restaurants[row])
+                    prefs.markAvailable(POIs.restaurants[row])
                     
                 }
                 
