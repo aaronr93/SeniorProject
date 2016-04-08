@@ -126,6 +126,7 @@ class GetThatOrderTableViewController: UITableViewController {
         }
     }
     
+    
     func cellForRestaurantSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let restaurantCell = tableView.dequeueReusableCellWithIdentifier("restaurantCell", forIndexPath: indexPath) as! RestaurantCell
         
@@ -135,6 +136,7 @@ class GetThatOrderTableViewController: UITableViewController {
         
         return restaurantCell
     }
+    
     
     func cellForFoodSection(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let foodCell = tableView.dequeueReusableCellWithIdentifier("foodCell", forIndexPath: indexPath) as! FoodItemCell
@@ -200,11 +202,12 @@ class GetThatOrderTableViewController: UITableViewController {
             (success: Bool) in
             if success == true {
                 self.tableView.reloadData()
+                self.manip.setDriverStyleFor(self.actionButton, toReflect: self.order.orderState)
             } else {
                 logError("Food items could not be retrieved")
             }
         })
-        manip.setDriverStyleFor(actionButton, toReflect: order.orderState)
+        self.manip.setDriverStyleFor(self.actionButton, toReflect: self.order.orderState)
     }
 
 }

@@ -121,30 +121,34 @@ class NewOrderUITests: SeniorProjectUITests {
         app.tables.element.cells.elementBoundByIndex(1).tap()
         app.navigationBars["New Order"].buttons["Cancel"].tap()
         
-        
-        
-    
-        
     }
     
     func testSelectExpiration(){
-        
+        let hours = [0,1,2,3,4,5,6]
+        let minutes = [0,15,30,45]
         let app = XCUIApplication()
-        app.buttons["I want food"].tap()
-        
-        let tablesQuery = app.tables
-        tablesQuery.otherElements["FOOD"].tap()
-        
-        let app2 = app
-        app2.tables.staticTexts["Select expiration time..."].tap()
-        app2.pickerWheels.elementBoundByIndex(0).adjustToPickerWheelValue("2 hours")
-        app2.pickerWheels.elementBoundByIndex(1).adjustToPickerWheelValue("15 minutes")
         let newOrderButton = app.navigationBars["Expires In"].buttons["New Order"]
-        XCTAssertNotNil(newOrderButton)
+        let tablesQuery = app.tables
+        let app2 = app
+        app.buttons["I want food"].tap()
+        tablesQuery.otherElements["FOOD"].tap()
+        app2.tables.staticTexts["Select expiration time..."].tap()
         newOrderButton.tap()
-        XCTAssertNotNil(tablesQuery.cells.containingType(.StaticText, identifier:"Expires in").childrenMatchingType(.StaticText).matchingIdentifier("Expires in").elementBoundByIndex(0))
-        tablesQuery.cells.containingType(.StaticText, identifier:"Expires in").childrenMatchingType(.StaticText).matchingIdentifier("Expires in").elementBoundByIndex(0).tap()
-        newOrderButton.tap()
+        for hour in hours{
+            for minute in minutes{
+                tablesQuery.cells.containingType(.StaticText, identifier:"Expires in").childrenMatchingType(.StaticText).matchingIdentifier("Expires in").elementBoundByIndex(0).tap()
+                XCTAssertNotNil(newOrderButton)
+                var hourText = "hours"
+                if(hour == 1){
+                    hourText = "hour"
+                }
+                app2.pickerWheels.elementBoundByIndex(0).adjustToPickerWheelValue("\(hour) \(hourText)")
+                app2.pickerWheels.elementBoundByIndex(1).adjustToPickerWheelValue("\(minute) minutes")
+                newOrderButton.tap()
+                XCTAssertNotNil(tablesQuery.cells.containingType(.StaticText, identifier:"Expires in").childrenMatchingType(.StaticText).matchingIdentifier("Expires in").elementBoundByIndex(0))
+            }
+        }
+        
         app.navigationBars["New Order"].buttons["Cancel"].tap()
         
     }
