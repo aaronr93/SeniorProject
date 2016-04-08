@@ -16,8 +16,7 @@ extension String {
     }
 }
 
-class Validation
-{
+class Validation {
     var errors = [String]()
     var passed : Bool = false
     
