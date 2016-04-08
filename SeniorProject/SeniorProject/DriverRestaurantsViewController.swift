@@ -9,12 +9,22 @@
 import UIKit
 import Parse
 
+protocol AvailabilityCellDelegate : class {
+    func didChangeSwitchState(sender: AvailabilityCell, isOn: Bool)
+}
+
 class AvailabilityCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var available: UISwitch!
+    
+    weak var cellDelegate: AvailabilityCellDelegate?
+    
+    @IBAction func handledSwitchChange(sender: UISwitch) {
+        self.cellDelegate?.didChangeSwitchState(self, isOn: available.on)
+    }
 }
 
-class DriverRestaurantsViewController: UITableViewController {
+class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDelegate {
 
     let prefs = DriverRestaurantPreferences()
     let POIs = PointsOfInterest()
@@ -109,7 +119,11 @@ class DriverRestaurantsViewController: UITableViewController {
         if row == 0 {     // "Availability" cell
             
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
-            availabilityCell.available.selected = currentlyAvailable(prefs.availability!.expirationDate)
+            availabilityCell.cellDelegate = self
+            if !currentlyAvailable(prefs.availability!.expirationDate) {
+                prefs.setDriverAvailability(to: false)
+            }
+            availabilityCell.available.selected = prefs.driverAvailability()
             return availabilityCell
             
         } else if row == 1 {  // "Expiration time" cell
@@ -126,6 +140,10 @@ class DriverRestaurantsViewController: UITableViewController {
             return cell
             
         }
+    }
+    
+    func didChangeSwitchState(sender: AvailabilityCell, isOn: Bool) {
+        prefs.setDriverAvailability(to: isOn)
     }
     
     func currentlyAvailable(expirationDate: NSDate) -> Bool {
