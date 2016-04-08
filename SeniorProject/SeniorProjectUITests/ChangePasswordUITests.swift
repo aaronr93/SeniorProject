@@ -127,6 +127,8 @@ class ChangePasswordUITests: XCTestCase {
                         passwordSecureTextField.typeText(newPassword)
                         goButton.tap()
                         XCTAssertNotNil(settingsButton)
+                        app.navigationBars["Home"].buttons["Settings"].tap()
+                        app.navigationBars["Settings"].buttons["Home"].tap()
                     }
                     else {
                         //go to the login screen
@@ -140,6 +142,8 @@ class ChangePasswordUITests: XCTestCase {
                         passwordSecureTextField.typeText(password)
                         goButton.tap()
                         XCTAssertNotNil(settingsButton)
+                        app.navigationBars["Home"].buttons["Settings"].tap()
+                        app.navigationBars["Settings"].buttons["Home"].tap()
                     }
                     
                     
