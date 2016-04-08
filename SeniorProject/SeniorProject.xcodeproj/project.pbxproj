@@ -13,6 +13,7 @@
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
+		3661ED471CB723F40061BF1C /* InterfaceManipulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */; };
 		367BA9271CAC066200379AF3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
 		367BA9281CAC067400379AF3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		36AB6DF21CA4A5B700C64FEE /* Commit on March 24.txt in Resources */ = {isa = PBXBuildFile; fileRef = 36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */; };
@@ -118,6 +119,7 @@
 		3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCell.swift; sourceTree = "<group>"; };
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
 		3641A59B1C8E568C0046BC97 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceManipulationTests.swift; sourceTree = "<group>"; };
 		36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Commit on March 24.txt"; sourceTree = "<group>"; };
 		36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
 		36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */,
 				9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */,
 				9B7AD15A1CB156A300BF036F /* CustomerDestinationsUnitTests.swift */,
+				3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -333,13 +336,6 @@
 				9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */,
 			);
 			name = Subscreens;
-			sourceTree = "<group>";
-		};
-		364A6FE81C98EE240088116D /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		36B92B711C9BA48700E29A3B /* Models */ = {
@@ -512,7 +508,6 @@
 		96DD81F51C56B8AF004CE3A7 /* SeniorProjectUITests */ = {
 			isa = PBXGroup;
 			children = (
-				364A6FE81C98EE240088116D /* Classes */,
 				364A6FE71C98EE1F0088116D /* Subscreens */,
 				364A6FE61C98EE180088116D /* Other ViewControllers */,
 				364A6FE51C98EE120088116D /* Customer side */,
@@ -718,6 +713,7 @@
 				9BA4C1E51CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift in Sources */,
 				9B7AD0E21CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift in Sources */,
 				9BA4C1E31CB17B250018F1D0 /* HomeViewControllerUnitTests.swift in Sources */,
+				3661ED471CB723F40061BF1C /* InterfaceManipulationTests.swift in Sources */,
 				9B32020D1C8DF58600749264 /* AppDelegate.swift in Sources */,
 				96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
