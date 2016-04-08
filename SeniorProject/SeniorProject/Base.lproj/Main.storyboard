@@ -500,9 +500,11 @@
                         <outlet property="confirmPassword" destination="CPz-iK-BK6" id="lUb-lz-sDf"/>
                         <outlet property="currentPasswordField" destination="Bj7-nF-wFG" id="j2y-Pr-6Lj"/>
                         <outlet property="newPasswordField" destination="ioy-O2-uYF" id="Kfr-AN-x3I"/>
+                        <segue destination="PLv-nI-xNV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueLogoutFromChangePasswordController:" id="oqI-fQ-nhz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1l-yM-8vW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="PLv-nI-xNV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3511" y="378"/>
         </scene>

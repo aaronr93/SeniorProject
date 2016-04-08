@@ -113,7 +113,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.sharedApplication().applicationIconBadgeNumber = 0
             }
             else {
-                logError("Failed to clear badges")
+                print("Failed to clear badges")
+                PFUser.logOut()
             }
         }
     }

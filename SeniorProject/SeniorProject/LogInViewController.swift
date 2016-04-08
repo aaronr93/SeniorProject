@@ -85,7 +85,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
                                     }
                                 }
                             } else {
-                                logError("Invalid loging credentials")
+                                print("Invalid loging credentials")
                             }
                         }
 
@@ -158,6 +158,7 @@ class LogInViewController: UIViewController,UITextFieldDelegate {
     
     // MARK: - Navigation
     @IBAction func unwindSegueLogoutFromSettingsController(segue: UIStoryboardSegue) {}
+     @IBAction func unwindSegueLogoutFromChangePasswordController(segue: UIStoryboardSegue) {}
 
 }
 

@@ -90,6 +90,7 @@
 		9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */; };
 		9BA4C1E31CB17B250018F1D0 /* HomeViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4C1E21CB17B250018F1D0 /* HomeViewControllerUnitTests.swift */; };
 		9BA4C1E51CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4C1E41CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift */; };
+		9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF31C89F52A00F3D3F9 /* example.swift */; };
 		9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */; };
@@ -203,6 +204,7 @@
 		9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4C1E21CB17B250018F1D0 /* HomeViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4C1E41CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordUITests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BF31C89F52A00F3D3F9 /* example.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 		9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountClassTests.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				9B3202101C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift */,
+				9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */,
 			);
 			name = Subscreens;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BF07BF41C89F52A00F3D3F9 /* example.swift in Sources */,
+				9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */,
 				96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */,
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */,
@@ -912,6 +916,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeniorProject.app/SeniorProject";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
 			name = Debug;
 		};
@@ -928,6 +933,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeniorProject.app/SeniorProject";
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
 			name = Release;
 		};
