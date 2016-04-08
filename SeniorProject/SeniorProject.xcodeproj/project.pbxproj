@@ -14,6 +14,7 @@
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
 		3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A59B1C8E568C0046BC97 /* Destination.swift */; };
 		3661ED471CB723F40061BF1C /* InterfaceManipulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */; };
+		3661ED491CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED481CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift */; };
 		367BA9271CAC066200379AF3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
 		367BA9281CAC067400379AF3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CA1C85198200B4B77E /* Bolts.framework */; };
 		36AB6DF21CA4A5B700C64FEE /* Commit on March 24.txt in Resources */ = {isa = PBXBuildFile; fileRef = 36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */; };
@@ -120,6 +121,7 @@
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
 		3641A59B1C8E568C0046BC97 /* Destination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceManipulationTests.swift; sourceTree = "<group>"; };
+		3661ED481CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderVCUnitTests.swift; sourceTree = "<group>"; };
 		36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Commit on March 24.txt"; sourceTree = "<group>"; };
 		36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsOfInterest.swift; sourceTree = "<group>"; };
 		36B92B6F1C9BA43A00E29A3B /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */,
+				3661ED481CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -723,6 +726,7 @@
 				9B7AD15B1CB156A300BF036F /* CustomerDestinationsUnitTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
 				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
+				3661ED491CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift in Sources */,
 				9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

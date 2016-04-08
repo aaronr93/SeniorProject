@@ -116,7 +116,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
+        switch section {
             case Section.Restaurant.rawValue:
                 // single, static "select a restaurant" cell (for now)
                 return 1
