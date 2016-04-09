@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import SeniorProject
+import MapKit
 
 class RestaurantsNewOrderTVCUnitTests: XCTestCase {
     
@@ -16,6 +17,7 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
     override func setUp() {
         super.setUp()
         test = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("chooseRestaurant") as! RestaurantsNewOrderTableViewController
+        test.currentLocation = CurrentLocation()
     }
     
     func test_instantiate() {
@@ -32,22 +34,21 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
         
         //initially the order should be available
         XCTAssert(test.POIs.restaurants.count == 0)
-        test.POIs.searchFor(query, aroundLocation: test.currentLocation) {
+        let loc = CLLocation(latitude: 41, longitude: 80)
+        let coord = loc.coordinate
+        let span = MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20)
+        let region = MKCoordinateRegion(center: coord, span: span)
+        test.POIs.searchFor(query, inRegion: region, withLocation: loc) {
             success in
             XCTAssertTrue(success)
             readyExpectation.fulfill()
         }
         
-        waitForExpectationsWithTimeout(5, handler: { error in
+        waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
         
         XCTAssertTrue(test.POIs.restaurants.count > 0)
-    }
-    
-    func test_numberOfRowsInSection() {
-        let rows = test.tableView(test.tableView, numberOfRowsInSection: 0)
-        XCTAssert(rows == 0)
     }
     
     func test_didSelectRowAtIndexPath() {
@@ -56,7 +57,11 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
         
         //initially the order should be available
         XCTAssert(test.POIs.restaurants.count == 0)
-        test.POIs.searchFor(query, aroundLocation: test.currentLocation) {
+        let loc = CLLocation(latitude: 41, longitude: 80)
+        let coord = loc.coordinate
+        let span = MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20)
+        let region = MKCoordinateRegion(center: coord, span: span)
+        test.POIs.searchFor(query, inRegion: region, withLocation: loc) {
             success in
             XCTAssertTrue(success)
             readyExpectation.fulfill()

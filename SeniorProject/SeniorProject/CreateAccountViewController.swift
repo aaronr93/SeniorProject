@@ -9,8 +9,7 @@
 import UIKit
 //import Parse
 
-class CreateAccountViewController: UIViewController, UITextFieldDelegate
-{
+class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -27,21 +26,33 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         newAccount.username = sender.text
     }
     @IBAction func usernameEditComplete(sender: UITextField) {
-        validatedUsername(usernameField.text!)
+        if validatedUsername(usernameField.text!) {
+            showGoodInputInField(usernameField)
+        } else {
+            showBadInputWarningInField(usernameField)
+        }
     }
     
     @IBAction func phoneNumberChanged(sender: UITextField) {
         newAccount.phone = sender.text
     }
     @IBAction func phoneNumberEditComplete(sender: UITextField) {
-        validatedPhoneNumber(phoneNumberField.text!)
+        if validatedPhoneNumber(phoneNumberField.text!) {
+            showGoodInputInField(phoneNumberField)
+        } else {
+            showBadInputWarningInField(phoneNumberField)
+        }
     }
     
     @IBAction func emailChanged(sender: UITextField) {
         newAccount.email = sender.text
     }
     @IBAction func emailEditComplete(sender: UITextField) {
-        validatedEmail(emailField.text!)
+        if validatedEmail(emailField.text!) {
+            showGoodInputInField(emailField)
+        } else {
+            showBadInputWarningInField(emailField)
+        }
     }
     
     @IBAction func passwordChanged(sender: UITextField) {
@@ -51,15 +62,18 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         removeInputHighlightInField(confirmPasswordField)
     }
     @IBAction func passwordEditComplete(sender: UITextField) {
-        validatedPassword(sender.text!)
+        if validatedPassword(sender.text!) {
+            showGoodInputInField(sender)
+        } else {
+            showBadInputWarningInField(sender)
+        }
     }
     
     @IBAction func confirmPasswordChanged(sender: UITextField) {
         newAccount.passwordConfirm = sender.text
     }
     @IBAction func confirmPasswordEditComplete(sender: UITextField) {
-        if(validatedPassword(sender.text!) &&
-        newAccount.confirmPasswordEqualsPassword()) {
+        if validatedPassword(sender.text!) && newAccount.confirmPasswordEqualsPassword() {
             showGoodInputInField(confirmPasswordField)
         } else {
             showBadInputWarningInField(confirmPasswordField)
@@ -71,7 +85,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         if newAccount.isValidated == true {
             self.performSegueWithIdentifier("validateSegue", sender: self)
         } else {
-            logError("Not validated.")
+            logError("Account not validated. Please fix the appropriate fields.")
         }
     }
     
@@ -89,11 +103,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
                 removeInputHighlightInField(emailField)
                 removeInputHighlightInField(passwordField)
                 removeInputHighlightInField(confirmPasswordField)
-                
-                //*****************************************
-                // TODO: Make the validation better!
-                //*****************************************
-                
         }
     }
     
@@ -125,12 +134,9 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
     
     func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor) {
         let bw = 1.0
-        
         //create the bottom border and add to the sublayer
         field.layer.addSublayer(createBorder(layer,borderWidth: bw,color: color)!)
         field.layer.masksToBounds = true
-
-        
         layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
     }
     
@@ -176,13 +182,10 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate
         super.touchesBegan(touches, withEvent: event)
     }
     
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "validateSegue" {
-            let svc = segue.destinationViewController as! FinishCreateAccountViewController
-            svc.newAccount = newAccount
+            let dest = segue.destinationViewController as! FinishCreateAccountViewController
+            dest.newAccount = newAccount
         }
     }
 

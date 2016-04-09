@@ -32,14 +32,13 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     let POIs = PointsOfInterest()
     let driver = PFUser.currentUser()!
     
-    var currentLocation = CurrentLocation()
+    var currentLocation: CurrentLocation!
     
     let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         activity.hidesWhenStopped = true
-        updateRestaurants()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -161,7 +160,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     func updateRestaurants() {
         POIs.clear()
         activity.startAnimating()
-        POIs.searchFor("Food", aroundLocation: currentLocation) { result in
+        POIs.searchFor("Food", inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
             if result {
                 // Success
                 self.prefs.getBlacklistFromParse() { result in
@@ -169,7 +168,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
                         self.activity.stopAnimating()
                         self.tableView.reloadData()
                     } else {
-                        print("No restaurants marked unavailable! Yay!")
+                        // No restaurants marked unavailable
                     }
                 }
             } else {

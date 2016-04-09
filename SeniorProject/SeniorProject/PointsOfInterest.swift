@@ -15,15 +15,15 @@ class PointsOfInterest: NSObject {
     
     var restaurants = [Restaurant]()
     
-    func searchFor(query: String, aroundLocation loc: CurrentLocation, completion: (success: Bool) -> Void) {
+    func searchFor(query: String, inRegion region: MKCoordinateRegion, withLocation loc: CLLocation, completion: (success: Bool) -> Void) {
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = query
-        request.region = loc.region
+        request.region = region
         let search = MKLocalSearch(request: request)
         search.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
             if error == nil {
                 let mapItems = (response?.mapItems)! as [MKMapItem]
-                let current = PFGeoPoint(location: loc.location)
+                let current = PFGeoPoint(location: loc)
                 for item in mapItems {
                     let name = item.name
                     let placemark = item.placemark

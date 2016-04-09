@@ -19,6 +19,7 @@ class DriverOrdersViewController: UITableViewController {
     var sectionHeaders = ["Requests For Me", "Requests For Anyone"]
     var driverOrders = [PFOrder]()
     var anyDriverOrders = [PFOrder]()
+    var currentLocation: CurrentLocation!
     
     @IBOutlet weak var activity: UIActivityIndicatorView!
     

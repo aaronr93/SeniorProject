@@ -11,6 +11,8 @@ import Parse
 
 class HomeViewController: UIViewController, NewOrderViewDelegate {
     
+    let currentLocation = CurrentLocation()
+    
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
         newOrderVC.navigationController?.popViewControllerAnimated(true)
     }
@@ -33,16 +35,19 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
         if segue.identifier == "newOrder" {
             let newOrder = segue.destinationViewController as! NewOrderViewController
             newOrder.delegate = self
+            newOrder.currentLocation = currentLocation
         } else if segue.identifier == "driverSegue" {
             let tabs = segue.destinationViewController as! UITabBarController
-            let orders = tabs.viewControllers![0]
-            let restaurants = tabs.viewControllers![1]
+            let orders = tabs.viewControllers![0] as! DriverOrdersViewController
+            let restaurants = tabs.viewControllers![1] as! DriverRestaurantsViewController
             
             orders.tabBarItem.selectedImage = UIImage(named: "orders_selected")
             orders.tabBarItem.image = UIImage(named: "orders")
+            orders.currentLocation = currentLocation
             
             restaurants.tabBarItem.selectedImage = UIImage(named: "restaurants_selected")
             restaurants.tabBarItem.image = UIImage(named: "restaurants")
+            restaurants.currentLocation = currentLocation
 
         }
     }

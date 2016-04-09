@@ -35,7 +35,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     let order = Order()
     var current = NSIndexPath()
     let user = PFUser.currentUser()!
-    var currentLocation = CurrentLocation()
+    
+    var currentLocation: CurrentLocation!
     
     enum Section: Int {
         case Restaurant = 0
@@ -341,6 +342,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.delegate = self
+            chooseRestaurant.currentLocation = currentLocation
         }
         if segue.identifier == "editFoodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemTableViewController

@@ -20,7 +20,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     var delegate: NewOrderViewController!
     var selectedSomething: Bool = false
     
-    var currentLocation = CurrentLocation()
+    var currentLocation: CurrentLocation!
 
     @IBOutlet weak var activity: UIActivityIndicatorView!
     
@@ -31,11 +31,11 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
         addLocalPOIs(withQueryString: "Food")
     }
     
-    func addLocalPOIs(withQueryString item: String) {
+    func addLocalPOIs(withQueryString query: String) {
         // Search for nearby locations related to the argument for `searchFor`
         activity.startAnimating()
         POIs.clear()
-        POIs.searchFor(item, aroundLocation: currentLocation) { result in
+        POIs.searchFor(query, inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
             if result {
                 // Success
                 self.activity.stopAnimating()

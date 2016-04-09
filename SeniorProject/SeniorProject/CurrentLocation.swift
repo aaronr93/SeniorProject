@@ -9,11 +9,12 @@
 import Foundation
 import CoreLocation
 import MapKit
+import Parse
 
 class CurrentLocation: NSObject, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
-    var currentLocation = CLLocationCoordinate2D()
-    var location = CLLocation()
+    var coordinate = CLLocationCoordinate2D()
+    var loc: CLLocation!
     var region = MKCoordinateRegion()
     
     override init() {
@@ -21,26 +22,42 @@ class CurrentLocation: NSObject, CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.requestAlwaysAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
-            locationManager.requestLocation()
         }
     }
     
-    func getCurrentLocation() -> CLLocation {
-        if let loc = locationManager.location {
-            print(locationManager.location!.coordinate.latitude, locationManager.location!.coordinate.longitude)
-            return loc
-        } else {
-            print("Did the default thing")
-            return CLLocation()
+    func locationFromParse() -> CLLocation {
+        let user = PFUser.currentUser()!
+        let geoData = user.valueForKey("locationCoord") as! PFGeoPoint
+        let geoDataCL = CLLocation(latitude: geoData.latitude, longitude: geoData.longitude)
+        return geoDataCL
+    }
+    
+    func updateParseLocation() {
+        if loc.horizontalAccuracy <= 100 {
+            let geoData = PFGeoPoint(location: loc)
+            let user = PFUser.currentUser()!
+            user.setValue(geoData, forKey: "locationCoord")
+            user.saveInBackground()
         }
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.last! as CLLocation
-        currentLocation = location.coordinate
-        region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+        let temp = locations.last! as CLLocation
+        
+        let locAge: NSTimeInterval = -temp.timestamp.timeIntervalSinceNow
+        if locAge > 5.0 { return }
+        if temp.horizontalAccuracy < 0 { return }
+        
+        if loc == nil || loc.horizontalAccuracy > temp.horizontalAccuracy {
+            loc = temp
+            coordinate = loc.coordinate
+            region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+            if temp.horizontalAccuracy <= locationManager.desiredAccuracy {
+                locationManager.stopUpdatingLocation()
+            }
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
