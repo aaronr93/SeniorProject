@@ -17,7 +17,7 @@ protocol NewFoodItemViewDelegate {
 
 class NewFoodItemTableViewController: UITableViewController, UITextFieldDelegate {
     
-    var delegate: NewOrderViewController!
+    var delegate: NewFoodItemViewDelegate!
     
     var foodNameText = ""
     var foodDescriptionText = ""
