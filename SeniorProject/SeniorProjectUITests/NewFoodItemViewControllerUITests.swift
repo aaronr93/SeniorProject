@@ -24,23 +24,19 @@ class NewFoodItemViewControllerUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
     }
     
     func test_foodNameField() {
-        let title = app.tables.textFields["Title"]
+        let title = app.tables.textFields.elementBoundByIndex(0)
         title.typeText("test")
-        XCTAssert(title.value as? String == "test")
+        XCTAssert(title.value as! String == "test", "\(title.value!)")
     }
     
     func testAddFoodItemEmpty(){
         //if the food items are empty
         app.buttons["Done"].tap()
-        
         //should take us to edit food item screen, with no changes to the food item screen
-        let firstFoodCell = app.tables.element.cells.elementBoundByIndex(0)
-        XCTAssert(firstFoodCell.label == "Add new food item...")
-        
+        XCTAssertNotNil(app.tables.staticTexts["Add new food item..."])
         app.tables.staticTexts["Add new food item..."].tap()
     }
     
@@ -48,9 +44,7 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         app.buttons["Cancel"].tap()
         
         //should take us to edit food item screen, with no changes to the food item screen
-        let firstFoodCell = app.tables.element.cells.elementBoundByIndex(0)
-        XCTAssert(firstFoodCell.label == "Add new food item...")
-        
+        XCTAssertNotNil(app.tables.staticTexts["Add new food item..."])
         app.tables.staticTexts["Add new food item..."].tap()
     }
     
@@ -68,17 +62,16 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         //should take us to edit food item screen, with no changes to the food item screen
         app.tables.element.cells.elementBoundByIndex(1).tap()
         XCTAssertNotNil(app.textFields["Enter Food Name"])
-        app.navigationBars["Food item"].buttons["New Order"].tap()
     }
     
-    func test_foodDescriptionField() {
+    func testFoodDescriptionField() {
         let detailsField = app.tables.cells.textFields["Details"]
         detailsField.tap()
         detailsField.typeText("test")
         app.navigationBars.buttons["Done"].tap()
     }
     
-    func test_cellValuesSet() {
+    func testCellValuesSet() {
         
         let titleField = app.tables.cells.textFields["Title"]
         titleField.tap()
@@ -89,7 +82,7 @@ class NewFoodItemViewControllerUITests: XCTestCase {
         let detailsField = app.tables.cells.textFields["Details"]
         detailsField.tap()
         detailsField.typeText("test")
-        app.buttons["Done"].tap()
+        app.navigationBars.buttons["Done"].tap()
         
         let cells = app.tables.cells
         //can't easily get vlues of cells, so just making sure that a cell was added

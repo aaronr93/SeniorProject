@@ -173,7 +173,12 @@ class NewOrderUITests: SeniorProjectUITests {
                             
                             if restaurant{
                                 selectRestaurantStaticText.tap()
-                                tablesQuery.staticTexts.elementBoundByIndex(0).tap()
+                                let restaurantToSelect = tablesQuery.staticTexts.elementBoundByIndex(0)
+                                let exists = NSPredicate(format: "exists == 1")
+                                
+                                expectationForPredicate(exists, evaluatedWithObject: restaurantToSelect, handler: nil)
+                                waitForExpectationsWithTimeout(5, handler: nil)
+                                restaurantToSelect.tap()
                             }
                             
                             if food{
@@ -195,10 +200,12 @@ class NewOrderUITests: SeniorProjectUITests {
                             
                             if location{
                                 tablesQuery.staticTexts["Select delivery location..."].tap()
-                                tablesQuery.textFields["Custom delivery location..."].tap()
-                                tablesQuery.cells.containingType(.Button, identifier:"Add").childrenMatchingType(.TextField).element.typeText("test")
-                                tablesQuery.buttons["Add"].tap()
-                                XCTAssertNotNil(app.tables.element.cells.elementBoundByIndex(1))
+                                if(!app.tables.element.cells.elementBoundByIndex(1).exists){
+                                    tablesQuery.textFields["Custom delivery location..."].tap()
+                                    tablesQuery.cells.containingType(.Button, identifier:"Add").childrenMatchingType(.TextField).element.typeText("testLocation")
+                                    tablesQuery.buttons["Add"].tap()
+                                    XCTAssertNotNil(app.tables.element.cells.elementBoundByIndex(1))
+                                }
                                 app.tables.element.cells.elementBoundByIndex(1).tap()
                             }
                             
