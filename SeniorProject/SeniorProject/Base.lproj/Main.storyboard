@@ -1112,7 +1112,7 @@
         <!--Select Restaurant-->
         <scene sceneID="WhK-8U-rF1">
             <objects>
-                <tableViewController title="Select Restaurant" id="uPO-o4-vEz" customClass="RestaurantsNewOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="chooseRestaurant" title="Select Restaurant" id="uPO-o4-vEz" customClass="RestaurantsNewOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WWL-iy-jtE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1744,7 +1744,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Omd-mY-WVB"/>
-        <segue reference="dG4-T9-SLc"/>
         <segue reference="9vk-JT-Ujd"/>
+        <segue reference="dG4-T9-SLc"/>
     </inferredMetricsTieBreakers>
 </document>
