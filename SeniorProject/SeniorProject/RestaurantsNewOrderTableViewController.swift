@@ -22,17 +22,23 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     
     var currentLocation = CurrentLocation()
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        activity.hidesWhenStopped = true
+        activity.center = tableView.center
         addLocalPOIs(withQueryString: "Food")
     }
     
     func addLocalPOIs(withQueryString item: String) {
         // Search for nearby locations related to the argument for `searchFor`
+        activity.startAnimating()
         POIs.clear()
         POIs.searchFor(item, aroundLocation: currentLocation) { result in
             if result {
                 // Success
+                self.activity.stopAnimating()
                 self.tableView.reloadData()
             } else {
                 // Some kind of error occurred while trying to

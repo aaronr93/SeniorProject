@@ -17,6 +17,13 @@ class MyOrdersViewController: UITableViewController {
     let user = PFUser.currentUser()!
     var current: NSIndexPath?
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        activity.hidesWhenStopped = true
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -56,6 +63,8 @@ class MyOrdersViewController: UITableViewController {
         query.whereKey("OrderingUser", equalTo: user)
         query.whereKey("expirationDate", greaterThan: now)
         
+        activity.startAnimating()
+        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -64,6 +73,7 @@ class MyOrdersViewController: UITableViewController {
                         let order = order as! PFOrder
                         self.ordersISent.append(order)
                     }
+                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {
@@ -85,6 +95,8 @@ class MyOrdersViewController: UITableViewController {
         query.whereKey("expirationDate", greaterThan: now)
         query.whereKey("OrderingUser", notEqualTo: user)
         
+        activity.startAnimating()
+        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -95,6 +107,7 @@ class MyOrdersViewController: UITableViewController {
                             self.ordersIReceived.append(order)
                         }
                     }
+                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {
@@ -169,6 +182,8 @@ class MyOrdersViewController: UITableViewController {
     }
     
     func passOrdersIReceivedInfo(index: Int, dest: GetThatOrderTableViewController) {
+        activity.startAnimating()
+        
         let order = ordersIReceived[index]
         
         let restaurant = Restaurant(name: order.restaurantName)
@@ -209,9 +224,13 @@ class MyOrdersViewController: UITableViewController {
             default:
                 logError("Order Status N/A")
         }
+        
+        activity.stopAnimating()
     }
     
     func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
+        activity.startAnimating()
+        
         let order = ordersISent[index]
         
         let restaurant = Restaurant(name: order.restaurantName)
@@ -259,6 +278,8 @@ class MyOrdersViewController: UITableViewController {
             default:
                 logError("Order Status N/A")
         }
+        
+        activity.stopAnimating()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

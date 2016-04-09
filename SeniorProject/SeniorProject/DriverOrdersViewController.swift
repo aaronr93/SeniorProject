@@ -20,6 +20,8 @@ class DriverOrdersViewController: UITableViewController {
     var driverOrders = [PFOrder]()
     var anyDriverOrders = [PFOrder]()
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     enum sectionTypes: Int {
         case driverOrders = 0
         case anyDriverOrders = 1
@@ -38,7 +40,6 @@ class DriverOrdersViewController: UITableViewController {
         default: //shouldn't get here
             return 0
         }
-        
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -184,6 +185,8 @@ class DriverOrdersViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        activity.hidesWhenStopped = true
+        
         getOrdersForMe() { result in
             if result { self.tableView.reloadData() }
         }
@@ -236,6 +239,8 @@ class DriverOrdersViewController: UITableViewController {
         query.whereKey("OrderState", equalTo: "Available")
         query.whereKey("expirationDate", greaterThan: now)
         
+        activity.startAnimating()
+        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -247,6 +252,7 @@ class DriverOrdersViewController: UITableViewController {
                         let order = order as! PFOrder
                         self.driverOrders.append(order)
                     }
+                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {

@@ -21,13 +21,17 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
     let dest = CustomerDestinations()
     let user = PFUser.currentUser()!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        activity.hidesWhenStopped = true
+        activity.startAnimating()
         destination = delegate.order.destination
         dest.getDestinationItemsFromParse() { result in
             if result {
                 // Order successfully delivered
+                self.activity.stopAnimating()
                 self.tableView.reloadData()
             } else {
                 logError("Error fetching destination items from parse")
