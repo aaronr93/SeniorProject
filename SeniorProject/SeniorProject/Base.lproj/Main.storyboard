@@ -169,12 +169,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-S1-pH1">
-                                <rect key="frame" x="139" y="140" width="322" height="72"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
+                                <rect key="frame" x="139" y="450" width="322" height="72"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="322" id="4RS-LA-icH"/>
-                                    <constraint firstAttribute="height" constant="72" id="Dab-ul-IP2"/>
+                                    <constraint firstAttribute="height" constant="72" id="mwm-de-trm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="I'm picking up food"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0TG-Be-dbS"/>
+                                    <segue destination="f8C-9t-3cn" kind="show" identifier="driverSegue" id="X91-gP-jr4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-S1-pH1">
+                                <rect key="frame" x="139" y="131" width="322" height="72"/>
+                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="322" id="C84-5m-eh9"/>
+                                    <constraint firstAttribute="height" constant="72" id="WGY-AY-Ufu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="I want food"/>
@@ -183,29 +196,24 @@
                                     <segue destination="Bxg-Sp-IY2" kind="show" identifier="newOrder" id="JkO-sc-g0L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqk-4p-81w">
-                                <rect key="frame" x="139" y="264" width="322" height="72"/>
-                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="q2N-e0-JLP">
+                                <rect key="frame" x="175" y="202" width="250" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="322" id="3jz-uI-Xx6"/>
-                                    <constraint firstAttribute="height" constant="72" id="QEp-Ug-4mD"/>
+                                    <constraint firstAttribute="width" constant="250" id="Gyo-jM-hjS"/>
+                                    <constraint firstAttribute="height" constant="250" id="kfg-XU-hQK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <state key="normal" title="I'm picking up food"/>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0TG-Be-dbS"/>
-                                    <segue destination="f8C-9t-3cn" kind="show" identifier="imPickingUpFoodSegue" id="X91-gP-jr4"/>
-                                </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="top" secondItem="lEy-S1-pH1" secondAttribute="bottom" constant="52" id="9Gh-R1-0Xx"/>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="trailing" secondItem="lEy-S1-pH1" secondAttribute="trailing" id="IaG-Ac-2lS"/>
+                            <constraint firstItem="q2N-e0-JLP" firstAttribute="centerY" secondItem="Gr3-AK-L41" secondAttribute="centerY" constant="27" id="7xd-iO-emb"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="trailing" secondItem="Qqk-4p-81w" secondAttribute="trailing" id="HnJ-VX-lKv"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="centerX" secondItem="Gr3-AK-L41" secondAttribute="centerX" id="SNk-EH-Gbv"/>
+                            <constraint firstItem="Xtd-Ya-hm9" firstAttribute="top" secondItem="Qqk-4p-81w" secondAttribute="bottom" constant="78" id="WUb-3i-s5g"/>
                             <constraint firstItem="Qqk-4p-81w" firstAttribute="centerY" secondItem="Gr3-AK-L41" secondAttribute="centerY" id="fB8-Qg-Vg4"/>
-                            <constraint firstItem="lEy-S1-pH1" firstAttribute="top" secondItem="iXm-vd-WFw" secondAttribute="bottom" constant="76" id="pAC-iA-2bs"/>
-                            <constraint firstItem="Qqk-4p-81w" firstAttribute="leading" secondItem="lEy-S1-pH1" secondAttribute="leading" id="qhF-a9-pLJ"/>
-                            <constraint firstItem="lEy-S1-pH1" firstAttribute="centerX" secondItem="Gr3-AK-L41" secondAttribute="centerX" id="xg2-pt-3Gq"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="leading" secondItem="Qqk-4p-81w" secondAttribute="leading" id="fa2-qc-83W"/>
+                            <constraint firstItem="q2N-e0-JLP" firstAttribute="centerX" secondItem="Qqk-4p-81w" secondAttribute="centerX" id="waW-AA-4Ch"/>
+                            <constraint firstItem="lEy-S1-pH1" firstAttribute="top" secondItem="iXm-vd-WFw" secondAttribute="bottom" constant="67" id="zxM-rz-tlJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -745,7 +753,9 @@
                                     <constraint firstAttribute="height" constant="46" id="mQK-3o-oSD"/>
                                     <constraint firstAttribute="width" constant="322" id="qO8-zD-iyB"/>
                                 </constraints>
-                                <state key="normal" title="Finish"/>
+                                <state key="normal" title="Finish">
+                                    <color key="titleColor" red="0.16078431372549021" green="0.47843137254901963" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="qO8-zD-iyB"/>
@@ -1781,10 +1791,11 @@
     </scenes>
     <resources>
         <image name="default person" width="180" height="220"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Omd-mY-WVB"/>
+        <segue reference="CEV-uE-pkl"/>
         <segue reference="dG4-T9-SLc"/>
         <segue reference="51v-Qf-B92"/>
     </inferredMetricsTieBreakers>

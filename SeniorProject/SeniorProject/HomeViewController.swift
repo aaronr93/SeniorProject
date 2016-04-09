@@ -33,6 +33,17 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
         if segue.identifier == "newOrder" {
             let newOrder = segue.destinationViewController as! NewOrderViewController
             newOrder.delegate = self
+        } else if segue.identifier == "driverSegue" {
+            let tabs = segue.destinationViewController as! UITabBarController
+            let orders = tabs.viewControllers![0]
+            let restaurants = tabs.viewControllers![1]
+            
+            orders.tabBarItem.selectedImage = UIImage(named: "orders_selected")
+            orders.tabBarItem.image = UIImage(named: "orders")
+            
+            restaurants.tabBarItem.selectedImage = UIImage(named: "restaurants_selected")
+            restaurants.tabBarItem.image = UIImage(named: "restaurants")
+
         }
     }
 
