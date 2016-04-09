@@ -28,6 +28,8 @@ class ChooseDriverTableViewController: UITableViewController {
     let sectionHeaders = ["", "Choose a driver"]
     var delegate: NewOrderViewController!
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     enum Section: Int {
         case AnyDriver = 0
         case ChooseDriver = 1
@@ -39,8 +41,12 @@ class ChooseDriverTableViewController: UITableViewController {
         drivers.clear()
         drivers.restaurant = delegate.order.restaurant.name
         
+        activity.hidesWhenStopped = true
+        activity.startAnimating()
+        
         drivers.getNonDriversFromDB { (success) -> Void in
             if success {
+                self.activity.stopAnimating()
                 self.tableView.reloadData()
             } else {
                 logError("Couldn't get drivers from database")
