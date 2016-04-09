@@ -9,13 +9,15 @@
 import XCTest
 
 class LoginViewControllerUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         continueAfterFailure = false
-        XCUIApplication().launch()
-
+        app = XCUIApplication()
+        app.launch()
     }
     
     override func tearDown() {
@@ -24,46 +26,43 @@ class LoginViewControllerUITests: XCTestCase {
     }
 
     func testCorrectLogIn() {
+        app.textFields["Username..."].tap()
+        app.textFields["Username..."].typeText("thisisaaron")
+        app.secureTextFields["Password..."].tap()
+        app.secureTextFields["Password..."].typeText("pass1234")
         
-        let app = XCUIApplication()
-        app.textFields["Username"].tap()
-        app.textFields["Username"]
-        app.secureTextFields["Password"].tap()
-        app.secureTextFields["Password"]
-        app.buttons["Login"].tap()
+        let login = app.buttons["Login"]
+        let existsPredicate = NSPredicate(format: "exists == 1")
+        expectationForPredicate(existsPredicate, evaluatedWithObject: login, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        login.tap()
+        
+        app.buttons.allElementsBoundByIndex[1].tap()
         XCTAssertNotNil(app.buttons["I want food"])
     }
     
     func testIncorrectLogIn(){
-        
-        let app = XCUIApplication()
-        app.textFields["Username"].tap()
-        app.textFields["Username"]
-        app.secureTextFields["Password"].tap()
-        app.secureTextFields["Password"]
+        app.textFields["Username..."].tap()
+        app.textFields["Username..."].typeText("thisisaaron")
+        app.secureTextFields["Password..."].tap()
+        app.secureTextFields["Password..."].typeText("thisisnotmypassword")
         app.buttons["Login"].tap()
         XCTAssertNotNil(app.buttons["Login"])
     }
     
     func testCorrectPasswordButNoLogin() {
-        
-        let app = XCUIApplication()
-        app.secureTextFields["Password"].tap()
-        app.secureTextFields["Password"]
+        app.secureTextFields["Password..."].tap()
+        app.secureTextFields["Password..."].typeText("pass1234")
         app.buttons["Login"].tap()
         XCTAssertNotNil(app.buttons["Login"])
     }
     
     func testForZombieAccounts() {
-        
-        let app = XCUIApplication()
         app.buttons["Login"].tap()
         XCTAssertNotNil(app.buttons["Login"])
     }
     
     func testCreateAccountTap() {
-        
-        let app = XCUIApplication()
         app.buttons["Create Account"].tap()
         XCTAssertNotNil(app.textFields["Phone number"])
     }

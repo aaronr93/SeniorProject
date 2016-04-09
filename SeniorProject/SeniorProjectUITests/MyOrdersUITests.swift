@@ -9,7 +9,7 @@
 import XCTest
 import Parse
 
-class MyOrdersUITests: SeniorProjectUITests {
+class MyOrdersUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()

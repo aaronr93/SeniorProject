@@ -74,8 +74,8 @@ class OrderUnitTests: XCTestCase {
     }
     
     func testAddFoodItemsToOrderInDB(){
-        let item1 = Food(name: "test", description: "test")
-        let item2 = Food(name: "test2", description: "test2")
+        _ = Food(name: "test", description: "test")
+        _ = Food(name: "test2", description: "test2")
         
     }
 }

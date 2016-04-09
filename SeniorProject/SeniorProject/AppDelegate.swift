@@ -28,10 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("j28gc7OUqKZFc47nvyoRDPnZnaCRqh3mV8RiULMK", clientKey: "Il9Xid8E9BI7G6pkwUUQLKSO0kL9FKtwNtlSL1O3")
         // Override point for customization after application launch.
         self.storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle());
-        /*let currentUser = PFUser.currentUser()
-        if currentUser.objectId != nil {
-            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController");
-        }*/
+        if let currentUser = PFUser.currentUser() {
+            let deleted = currentUser.valueForKey("deleted") as! Bool
+            if currentUser.objectId != nil && !deleted {
+                self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController");
+            } else {
+                self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController");
+            }
+        } else {
+            self.window?.rootViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController");
+        }
         
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background {
