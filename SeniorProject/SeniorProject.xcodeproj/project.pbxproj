@@ -66,6 +66,9 @@
 		96DD81EC1C56B8AF004CE3A7 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81EB1C56B8AF004CE3A7 /* SeniorProjectTests.swift */; };
 		96DD81F71C56B8AF004CE3A7 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */; };
 		96DD82051C56CEBE004CE3A7 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */; };
+		9B0161F51CB941AF00D19263 /* CreateAccountUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0161F41CB941AF00D19263 /* CreateAccountUnitTests.swift */; };
+		9B0161F71CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0161F61CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift */; };
+		9B0161F91CB9544600D19263 /* OrderUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0161F81CB9544600D19263 /* OrderUnitTests.swift */; };
 		9B049BD01C87C0C8002655D0 /* ExpiresInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */; };
 		9B049C521C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */; };
 		9B32020B1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */; };
@@ -182,6 +185,9 @@
 		96DD81F21C56B8AF004CE3A7 /* SeniorProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81F61C56B8AF004CE3A7 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		9B0161F41CB941AF00D19263 /* CreateAccountUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountUnitTests.swift; sourceTree = "<group>"; };
+		9B0161F61CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		9B0161F81CB9544600D19263 /* OrderUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderUnitTests.swift; sourceTree = "<group>"; };
 		9B049BCF1C87C0C8002655D0 /* ExpiresInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewController.swift; sourceTree = "<group>"; };
 		9B049C511C8925D2002655D0 /* RestaurantsNewOrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTableViewController.swift; sourceTree = "<group>"; };
 		9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 				9B7AD0E31CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift */,
 				3661ED4A1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift */,
 				3661ED4C1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift */,
+				9B0161F61CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift */,
 			);
 			name = Subscreens;
 			sourceTree = "<group>";
@@ -313,6 +320,8 @@
 				9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */,
 				9B7AD15A1CB156A300BF036F /* CustomerDestinationsUnitTests.swift */,
 				3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */,
+				9B0161F41CB941AF00D19263 /* CreateAccountUnitTests.swift */,
+				9B0161F81CB9544600D19263 /* OrderUnitTests.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -724,6 +733,7 @@
 				3661ED4B1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift in Sources */,
 				9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */,
 				9BA4C1E51CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift in Sources */,
+				9B0161F91CB9544600D19263 /* OrderUnitTests.swift in Sources */,
 				9B7AD0E21CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift in Sources */,
 				9BA4C1E31CB17B250018F1D0 /* HomeViewControllerUnitTests.swift in Sources */,
 				3661ED471CB723F40061BF1C /* InterfaceManipulationTests.swift in Sources */,
@@ -732,7 +742,9 @@
 				3661ED4D1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
 				9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */,
+				9B0161F71CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
+				9B0161F51CB941AF00D19263 /* CreateAccountUnitTests.swift in Sources */,
 				9B7AD0E41CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift in Sources */,
 				9B7AD15B1CB156A300BF036F /* CustomerDestinationsUnitTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,

@@ -26,12 +26,13 @@ class CreateAccount {
                 // The user tried to set the password as "password"
                 return false
             }
+            return true
         }
-        return true
+        return false
     }
     
     func confirmPasswordEqualsPassword() -> Bool {
-        if (passwordConfirm == password) {
+        if (passwordConfirm == password && password != nil) {
             return true
         } else {
             return false
