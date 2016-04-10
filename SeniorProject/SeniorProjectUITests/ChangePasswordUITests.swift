@@ -134,7 +134,12 @@ class ChangePasswordUITests: XCTestCase {
                     }
                     else {
                         //go to the login screen
-                        app.alerts["Whoops!"].collectionViews.buttons["Ok"].tap()
+                        
+                        addUIInterruptionMonitorWithDescription("Location Dialog") { (alert) -> Bool in
+                            app.alerts["Whoops!"].collectionViews.buttons["Ok"].tap()
+                            return true
+                        }
+                        sleep(2)
                         app.navigationBars["SeniorProject.ChangePasswordView"].buttons["Settings"].tap()
                         signOutButton.tap()
                         usernameTextField.tap()
