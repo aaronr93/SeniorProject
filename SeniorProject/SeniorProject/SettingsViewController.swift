@@ -21,7 +21,6 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var phoneField : UITextField!
     @IBOutlet weak var userNameField: UITextField!
-    @IBOutlet weak var userImage: PFImageView!
     @IBOutlet weak var emailField: UITextField!
     
     @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
@@ -51,31 +50,36 @@ class SettingsViewController: UIViewController {
     
     @IBAction func doneChangingUsername(sender: UITextField) {
         if (sender.text! != originalUserName) { //if same as before, don't highlight
-            validatedUsername(sender.text!) //only run the DB call incurred here if it's a different username than before
+            if validatedUsername(sender.text!) {
+                removeInputHighlightInField(sender)
+            } else {
+                showBadInputWarningInField(sender)
+            }
         }
     }
     
     @IBAction func doneChangingPhoneNumber(sender: UITextField) {
         if (sender.text! != originalPhone) { //if same as before, don't highlight
-            validatedPhoneNumber(sender.text!)
+            if validatedPhoneNumber(sender.text!) {
+                removeInputHighlightInField(sender)
+            } else {
+                showBadInputWarningInField(sender)
+            }
         }
     }
     
     @IBAction func doneChangingEmailAddress(sender: UITextField) {
         if (sender.text! != originalEmail) { //if same as before, don't highlight
-            validatedEmail(sender.text!)
+            if validatedEmail(sender.text!) {
+                removeInputHighlightInField(sender)
+            } else {
+                showBadInputWarningInField(sender)
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        //userImage.image = UIImage(named: "...") // placeholder image
-        //userImage.file = someObject.picture // remote image
-        
-        //userImage.loadInBackground()
-        
         //storing these items for the view to reuse would save several database calls
         let phone = currentUser.valueForKey("phone") as! String
         phoneField.text = phone
@@ -88,6 +92,17 @@ class SettingsViewController: UIViewController {
         let username = currentUser.username
         userNameField.text = username
         originalUserName = username!
+        
+        // Create CA Layer for each field
+        let borderBottomUser = CALayer()
+        let borderButtomPhone = CALayer()
+        let borderBottomEmail = CALayer()
+        let color = UIColor.lightGrayColor()
+        
+        // Create the bottom border and add to the sublayer
+        addBorderToTextField(borderBottomUser, field: userNameField, color: color)
+        addBorderToTextField(borderButtomPhone, field: phoneField, color: color)
+        addBorderToTextField(borderBottomEmail, field: emailField, color: color)
     }
 
     //need to use this instead of prepareForSegue with back buttons

@@ -10,6 +10,7 @@ import UIKit
 //import Parse
 
 class CreateAccountViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var emailField: UITextField!
@@ -144,15 +145,14 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         //unhide navigation bar
         navigationController?.navigationBarHidden = false
-        passwordField.secureTextEntry = true
-        confirmPasswordField.secureTextEntry = true
+
         //add bottom borders
-        let borderBottomUser = CALayer()
-        let borderBottomPass = CALayer()
-        let borderBottomConfirmPass = CALayer()
-        let borderBottomPhone = CALayer()
-        let borderBottomEmail = CALayer()
-        let color = UIColor.grayColor()
+        let borderBottom1 = CALayer()
+        let borderBottom2 = CALayer()
+        let borderBottom3 = CALayer()
+        let borderBottom4 = CALayer()
+        let borderBottom5 = CALayer()
+        let color = UIColor.lightGrayColor()
         
         usernameField.delegate = self
         phoneNumberField.delegate = self
@@ -160,17 +160,13 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         passwordField.delegate = self
         confirmPasswordField.delegate = self
         
-        usernameField.returnKeyType = UIReturnKeyType.Next
-        phoneNumberField.returnKeyType = UIReturnKeyType.Next
-        emailField.returnKeyType = UIReturnKeyType.Next
-        passwordField.returnKeyType = UIReturnKeyType.Next
-        confirmPasswordField.returnKeyType = UIReturnKeyType.Done
+        usernameField.becomeFirstResponder()
         
-        addBorderToTextField(borderBottomUser, field: usernameField, color: color)
-        addBorderToTextField(borderBottomPass, field: passwordField, color: color)
-        addBorderToTextField(borderBottomConfirmPass, field: confirmPasswordField, color: color)
-        addBorderToTextField(borderBottomPhone, field: phoneNumberField, color: color)
-        addBorderToTextField(borderBottomEmail, field: emailField, color: color)
+        addBorderToTextField(borderBottom1, field: usernameField, color: color)
+        addBorderToTextField(borderBottom2, field: passwordField, color: color)
+        addBorderToTextField(borderBottom3, field: confirmPasswordField, color: color)
+        addBorderToTextField(borderBottom4, field: phoneNumberField, color: color)
+        addBorderToTextField(borderBottom5, field: emailField, color: color)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){

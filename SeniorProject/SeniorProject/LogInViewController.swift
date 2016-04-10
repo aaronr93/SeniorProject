@@ -54,21 +54,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func createBorder(layer: CALayer, borderWidth: Double, color: UIColor) -> CALayer? {
-        let borderWidthL = CGFloat(borderWidth)
-        layer.borderColor = color.CGColor
-        layer.borderWidth = borderWidthL
-        return layer
-    }
-    
-    func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor) {
-        let bw = 0.5
-        //create the bottom border and add to the sublayer
-        field.layer.addSublayer(createBorder(layer, borderWidth: bw, color: color)!)
-        field.layer.masksToBounds = true
-        layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
-    }
-    
     func performLoginTasks() {
         toggleEnabled(login)
         login() { success in

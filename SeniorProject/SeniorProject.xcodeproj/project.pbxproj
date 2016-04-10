@@ -39,7 +39,6 @@
 		36E204731C5A886200A9CC59 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204721C5A886200A9CC59 /* SystemConfiguration.framework */; };
 		36E204771C5A889100A9CC59 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E204761C5A889100A9CC59 /* AudioToolbox.framework */; };
 		36E2047F1C5A897500A9CC59 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2047E1C5A897500A9CC59 /* MapKit.framework */; };
-		36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E204801C5BD03D00A9CC59 /* Settings.swift */; };
 		36EF35401CA3002800C160BE /* PFOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF353F1CA3002800C160BE /* PFOrder.swift */; };
 		36EF35421CA30E5300C160BE /* PFDriverAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF35411CA30E5300C160BE /* PFDriverAvailability.swift */; };
 		36EF35441CA31FE400C160BE /* PFUnavailableRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF35431CA31FE400C160BE /* PFUnavailableRestaurant.swift */; };
@@ -97,7 +96,6 @@
 		9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */; };
 		9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */; };
 		9BA410951CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410941CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift */; };
-		9BA410971CB9886500A8CB35 /* LoginViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410961CB9886500A8CB35 /* LoginViewControllerUITests.swift */; };
 		9BA410991CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410981CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift */; };
 		9BA4109B1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4109A1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift */; };
 		9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */; };
@@ -158,7 +156,6 @@
 		36E204741C5A888000A9CC59 /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		36E204761C5A889100A9CC59 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		36E2047E1C5A897500A9CC59 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		36E204801C5BD03D00A9CC59 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		36EF353F1CA3002800C160BE /* PFOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFOrder.swift; sourceTree = "<group>"; };
 		36EF35411CA30E5300C160BE /* PFDriverAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFDriverAvailability.swift; sourceTree = "<group>"; };
 		36EF35431CA31FE400C160BE /* PFUnavailableRestaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFUnavailableRestaurant.swift; sourceTree = "<group>"; };
@@ -222,7 +219,6 @@
 		9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationClassUnitTests.swift; sourceTree = "<group>"; };
 		9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA410941CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUnitTests.swift; sourceTree = "<group>"; };
-		9BA410961CB9886500A8CB35 /* LoginViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITests.swift; sourceTree = "<group>"; };
 		9BA410981CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4109A1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -424,7 +420,6 @@
 			children = (
 				36F5067F1C64E9500014D506 /* CreateAccount.swift */,
 				964B36351C5FF1E100B305CA /* Validation.swift */,
-				36E204801C5BD03D00A9CC59 /* Settings.swift */,
 				36D08F6F1C776AEA005B1E90 /* DriverRestaurantPreferences.swift */,
 				96DBF85C1C796FA70090F7F6 /* ParseDate.swift */,
 				36B92B741C9DEC4400E29A3B /* Order.swift */,
@@ -697,7 +692,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				36D08F6E1C775B59005B1E90 /* DriverRestaurantsViewController.swift in Sources */,
-				36E204811C5BD03D00A9CC59 /* Settings.swift in Sources */,
 				3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */,
 				36EF35441CA31FE400C160BE /* PFUnavailableRestaurant.swift in Sources */,
 				36EF354A1CA39AE500C160BE /* PFFood.swift in Sources */,

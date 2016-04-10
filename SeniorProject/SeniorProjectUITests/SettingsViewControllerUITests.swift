@@ -14,7 +14,6 @@ class SettingsViewControllerUITests: XCTestCase {
         super.setUp()
         continueAfterFailure = false
         XCUIApplication().launch()
-
     }
     
     override func tearDown() {
@@ -39,8 +38,8 @@ class SettingsViewControllerUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
-        app.textFields["add name here"].tap()
-        XCTAssertNotNil(app.textFields["add name here."])
+        app.textFields["add username here"].tap()
+        XCTAssertNotNil(app.textFields["add username here."])
     }
     
     func testPhoneNumberField() {
