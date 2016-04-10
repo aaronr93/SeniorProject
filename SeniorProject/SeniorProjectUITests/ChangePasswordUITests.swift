@@ -38,9 +38,8 @@ class ChangePasswordUITests: XCTestCase {
         let newPassword = "newpass"
         let settingsButton = app.navigationBars["Home"].buttons["Settings"]
         let signOutButton = app.buttons["Sign out"]
-        let usernameTextField = app.textFields["Username"]
-        let passwordSecureTextField = app.secureTextFields["Password"]
-        let goButton = app.buttons["Go"]
+        let usernameTextField = app.textFields["Username..."]
+        let passwordSecureTextField = app.secureTextFields["Password..."]
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
         
         
@@ -54,7 +53,8 @@ class ChangePasswordUITests: XCTestCase {
         
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText(password)
-        goButton.tap()
+        passwordSecureTextField.typeText("\r")
+       
         
         XCTAssertNotNil(settingsButton, "Couldn't perform initial login, please confirm password for \(username) is \(password)")
         
@@ -93,13 +93,14 @@ class ChangePasswordUITests: XCTestCase {
                             app.alerts["Password Changed"].collectionViews.buttons["Ok"].tap()
                             return true
                         }
+                        sleep(4)
                         usernameTextField.tap()
                         usernameTextField.typeText(username)
                         passwordSecureTextField.tap()
                         
                         // assert that the password has been changed
                         passwordSecureTextField.typeText(newPassword)
-                        goButton.tap()
+                        passwordSecureTextField.typeText("\r")
                         XCTAssertNotNil(settingsButton)
                         
                         //change back to the old password
@@ -121,11 +122,12 @@ class ChangePasswordUITests: XCTestCase {
                             app.alerts["Password Changed"].collectionViews.buttons["Ok"].tap()
                             return true
                         }
+                        sleep(4)
                         usernameTextField.tap()
                         usernameTextField.typeText(username)
                         passwordSecureTextField.tap()
                         passwordSecureTextField.typeText(password)
-                        goButton.tap()
+                        passwordSecureTextField.typeText("\r")
                         XCTAssertNotNil(settingsButton)
                         app.navigationBars["Home"].buttons["Settings"].tap()
                         app.navigationBars["Settings"].buttons["Home"].tap()
@@ -140,7 +142,7 @@ class ChangePasswordUITests: XCTestCase {
                         passwordSecureTextField.tap()
                         //assert that the password hasn't been changed
                         passwordSecureTextField.typeText(password)
-                        goButton.tap()
+                        passwordSecureTextField.typeText("\r")
                         XCTAssertNotNil(settingsButton)
                         app.navigationBars["Home"].buttons["Settings"].tap()
                         app.navigationBars["Settings"].buttons["Home"].tap()

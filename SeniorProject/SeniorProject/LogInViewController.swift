@@ -102,9 +102,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
     }
     
+    
     override func viewWillAppear(animated: Bool) {
+        
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
@@ -118,7 +121,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         
         self.usernameField.delegate = self;
         self.passwordField.delegate = self;
@@ -143,9 +148,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, withEvent: event)
     }
     
-    // MARK: - Navigation
-    @IBAction func unwindSegueLogoutFromSettingsController(segue: UIStoryboardSegue) {}
-    @IBAction func unwindSegueLogoutFromChangePasswordController(segue: UIStoryboardSegue) {}
+    
 
 }
 

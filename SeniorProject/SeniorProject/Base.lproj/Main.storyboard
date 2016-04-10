@@ -400,7 +400,7 @@
                         <outlet property="emailField" destination="9ww-lO-Kty" id="UhC-fj-jDI"/>
                         <outlet property="phoneField" destination="jHh-ma-bKN" id="NsW-Ez-zrK"/>
                         <outlet property="userNameField" destination="Y1n-gb-NcW" id="aRT-9K-ast"/>
-                        <segue destination="aHs-Pg-pgR" kind="unwind" identifier="unwindSegueLogoutFromSettingsController" unwindAction="unwindSegueLogoutFromSettingsController:" id="d5C-jB-Uxx"/>
+                        <segue destination="aHs-Pg-pgR" kind="unwind" identifier="unwindSegueLogoutFromSettingsController" unwindAction="unwindSegueLogoutFromSettingsController:" id="mho-kg-R4u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olJ-eb-4AU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,7 +509,7 @@
                         <outlet property="confirmPassword" destination="CPz-iK-BK6" id="lUb-lz-sDf"/>
                         <outlet property="currentPasswordField" destination="Bj7-nF-wFG" id="j2y-Pr-6Lj"/>
                         <outlet property="newPasswordField" destination="ioy-O2-uYF" id="Kfr-AN-x3I"/>
-                        <segue destination="PLv-nI-xNV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueLogoutFromChangePasswordController:" id="oqI-fQ-nhz"/>
+                        <segue destination="PLv-nI-xNV" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueLogoutFromChangePasswordController:" id="tWA-jp-3km"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1l-yM-8vW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -830,12 +830,44 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HeC-P3-3AL"/>
+                        <segue destination="XhG-6H-hFa" kind="relationship" relationship="rootViewController" id="iES-EO-zES"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jdc-fz-1yI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="417" y="378"/>
+            <point key="canvasLocation" x="-295" y="378"/>
+        </scene>
+        <!--Init View Controller-->
+        <scene sceneID="eUf-A8-QLn">
+            <objects>
+                <viewController id="XhG-6H-hFa" customClass="InitViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SAY-VY-hSN"/>
+                        <viewControllerLayoutGuide type="bottom" id="8yc-Wr-5uB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dta-H1-g9o">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Uwv-mY-fkZ">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uwv-mY-fkZ" firstAttribute="centerY" secondItem="dta-H1-g9o" secondAttribute="centerY" id="7LY-Ya-c4L"/>
+                            <constraint firstItem="Uwv-mY-fkZ" firstAttribute="centerX" secondItem="dta-H1-g9o" secondAttribute="centerX" id="UMG-GJ-Vns"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pOJ-cD-qT0"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="loginSegue" id="hoC-W0-9cf"/>
+                        <segue destination="5Ri-t9-43E" kind="show" identifier="homeSegue" id="c5J-In-94E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PwX-69-539" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="522" y="378"/>
         </scene>
         <!--New Order-->
         <scene sceneID="D7a-lw-xZy">
@@ -1796,8 +1828,8 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Omd-mY-WVB"/>
-        <segue reference="dG4-T9-SLc"/>
+        <segue reference="c5J-In-94E"/>
         <segue reference="51v-Qf-B92"/>
+        <segue reference="dG4-T9-SLc"/>
     </inferredMetricsTieBreakers>
 </document>

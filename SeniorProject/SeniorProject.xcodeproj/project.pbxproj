@@ -97,7 +97,6 @@
 		9B9F2AFB1CA4CB370053F85F /* DestinationClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */; };
 		9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */; };
 		9BA410951CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410941CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift */; };
-		9BA410971CB9886500A8CB35 /* LoginViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410961CB9886500A8CB35 /* LoginViewControllerUITests.swift */; };
 		9BA410991CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA410981CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift */; };
 		9BA4109B1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4109A1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift */; };
 		9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */; };
@@ -106,6 +105,7 @@
 		9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */; };
+		9BFD1AC11CBAD74000F2545E /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD1AC01CBAD74000F2545E /* InitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,7 +222,6 @@
 		9B9F2AFA1CA4CB370053F85F /* DestinationClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationClassUnitTests.swift; sourceTree = "<group>"; };
 		9B9F2AFC1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpiresInViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA410941CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUnitTests.swift; sourceTree = "<group>"; };
-		9BA410961CB9886500A8CB35 /* LoginViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITests.swift; sourceTree = "<group>"; };
 		9BA410981CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4109A1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFoodItemViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9BA4C1E01CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -231,6 +230,7 @@
 		9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordUITests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountClassTests.swift; sourceTree = "<group>"; };
+		9BFD1AC01CBAD74000F2545E /* InitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +409,7 @@
 		36D08F231C7222CB005B1E90 /* Other ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BFD1AC01CBAD74000F2545E /* InitViewController.swift */,
 				96DD81D81C56B8AE004CE3A7 /* LogInViewController.swift */,
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
 				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
@@ -712,6 +713,7 @@
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */,
+				9BFD1AC11CBAD74000F2545E /* InitViewController.swift in Sources */,
 				3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */,
