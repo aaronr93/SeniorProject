@@ -53,5 +53,7 @@ class FinishCreateAccountViewControllerUnitTests: XCTestCase {
         XCTAssert(testUser["phone"] as! String == "1231234123")
     }
     
+    //send to parse should be tested manually
+    
     
 }

@@ -63,6 +63,7 @@ class FinishCreateAccountViewController: UIViewController {
             if error != nil {
                 logError(error!)
             }
+            
         }
     }
     
