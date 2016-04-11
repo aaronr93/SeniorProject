@@ -52,6 +52,7 @@
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
+		96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C721CBC359900863914 /* ValidationClassTests.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
 		96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */; };
@@ -171,6 +172,7 @@
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		96632C721CBC359900863914 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -207,7 +209,6 @@
 		9B7AD0E31CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryLocationTableViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		9B7AD15A1CB156A300BF036F /* CustomerDestinationsUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinationsUnitTests.swift; sourceTree = "<group>"; };
 		9B8C763D1CAB6977005E9F82 /* DriversClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriversClassTests.swift; sourceTree = "<group>"; };
-		9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
 		9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverRestaurantsPreferencesClassTests.swift; sourceTree = "<group>"; };
 		9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClassTests.swift; sourceTree = "<group>"; };
 		9B8E40CA1C85198200B4B77E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -328,7 +329,6 @@
 				9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */,
 				9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */,
 				9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */,
-				9B8C76411CAB69A1005E9F82 /* ValidationClassTests.swift */,
 				9B7AD15A1CB156A300BF036F /* CustomerDestinationsUnitTests.swift */,
 				3661ED461CB723F30061BF1C /* InterfaceManipulationTests.swift */,
 				9B0161F41CB941AF00D19263 /* CreateAccountUnitTests.swift */,
@@ -488,6 +488,7 @@
 		96DD81CA1C56B8AE004CE3A7 = {
 			isa = PBXGroup;
 			children = (
+				96632C721CBC359900863914 /* ValidationClassTests.swift */,
 				36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */,
 				9B9F2AF81CA22D050053F85F /* gcc.gpx */,
 				96B36A9C1C5AFEC700DF6038 /* Frameworks */,
@@ -757,6 +758,7 @@
 				3661ED4D1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
 				9BFD1AC31CBBFC1300F2545E /* ValidationUnitTests.swift in Sources */,
+				96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */,
 				9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */,
 				9B0161F71CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,

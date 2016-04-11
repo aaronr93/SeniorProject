@@ -38,6 +38,6 @@ class PFOrder: PFObject, PFSubclassing {
 
 extension PFObject {
     convenience init(withoutDataWithObjectId objectId: String?) {
-        self.init(outDataWithObjectId: objectId)
+        self.init(withoutDataWithObjectId: objectId)
     }
 }
