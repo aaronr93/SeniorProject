@@ -17,39 +17,38 @@ class MyOrdersViewController: UITableViewController {
     let user = PFUser.currentUser()!
     var current: NSIndexPath?
     
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        activity.hidesWhenStopped = true
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(MyOrdersViewController.update), forControlEvents: .ValueChanged)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        refreshControl?.beginRefreshing()
+        update()
+    }
+    
+    func update() {
         clear(listOfOrders: &ordersISent)
         getOrdersISent() { result in
-            if result { self.tableView.reloadData() }
-        }
-        
-        clear(listOfOrders: &ordersIReceived)
-        getOrdersIReceived() { result in
-            if result { self.tableView.reloadData() }
+            if result {
+                self.clear(listOfOrders: &self.ordersIReceived)
+                self.getOrdersIReceived() { result in
+                    if result {
+                        self.tableView.reloadData()
+                        if let refresh = self.refreshControl {
+                            refresh.endRefreshing()
+                        }
+                    }
+                }
+            }
         }
     }
     
     func clear(inout listOfOrders list: [PFOrder]) {
         list.removeAll()
-    }
-    
-    func refresh(listOfOrders list: [PFOrder]) {
-        PFOrder.fetchAllIfNeededInBackground(list) { (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                self.tableView.reloadData()
-            } else {
-                logError("Couldn't refresh orders.")
-            }
-        }
     }
     
     func getOrdersISent(completion: (success: Bool) -> Void) {
@@ -63,8 +62,6 @@ class MyOrdersViewController: UITableViewController {
         query.whereKey("OrderingUser", equalTo: user)
         query.whereKey("expirationDate", greaterThan: now)
         
-        activity.startAnimating()
-        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -73,7 +70,6 @@ class MyOrdersViewController: UITableViewController {
                         let order = order as! PFOrder
                         self.ordersISent.append(order)
                     }
-                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {
@@ -95,8 +91,6 @@ class MyOrdersViewController: UITableViewController {
         query.whereKey("expirationDate", greaterThan: now)
         query.whereKey("OrderingUser", notEqualTo: user)
         
-        activity.startAnimating()
-        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
@@ -107,7 +101,6 @@ class MyOrdersViewController: UITableViewController {
                             self.ordersIReceived.append(order)
                         }
                     }
-                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {
@@ -182,8 +175,6 @@ class MyOrdersViewController: UITableViewController {
     }
     
     func passOrdersIReceivedInfo(index: Int, dest: GetThatOrderTableViewController) {
-        activity.startAnimating()
-        
         let order = ordersIReceived[index]
         
         let restaurant = Restaurant(name: order.restaurantName)
@@ -224,13 +215,9 @@ class MyOrdersViewController: UITableViewController {
             default:
                 logError("Order Status N/A")
         }
-        
-        activity.stopAnimating()
     }
     
     func passOrdersISentInfo(index: Int, dest: MyOrderTableViewController) {
-        activity.startAnimating()
-        
         let order = ordersISent[index]
         
         let restaurant = Restaurant(name: order.restaurantName)
@@ -241,15 +228,14 @@ class MyOrdersViewController: UITableViewController {
         dest.order.expiresIn = ParseDate.timeLeft(order.expirationDate)
         dest.index = current
         
-        if let driverToDeliver = order.driverToDeliver as? PFUser{
+        if let driverToDeliver = order.driverToDeliver as? PFUser {
             dest.order.deliveredBy = driverToDeliver.username!
             dest.order.deliveredByID = driverToDeliver.objectId!
-        }else{
+        } else {
             dest.order.deliveredBy = "Any Driver"
             dest.order.deliveredByID = ""
 
         }
-        
         
         dest.order.isAnyDriver = order.isAnyDriver
         
@@ -278,14 +264,13 @@ class MyOrdersViewController: UITableViewController {
             default:
                 logError("Order Status N/A")
         }
-        
-        activity.stopAnimating()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         navigationItem.backBarButtonItem?.title = ""
         if segue.identifier == "getThatOrderSegue" {
             if let destination = segue.destinationViewController as? GetThatOrderTableViewController {
+                destination.myOrdersDelegate = self
                 if tableView.indexPathForSelectedRow?.section == 1{
                     if let ordersIReceivedIndex = tableView.indexPathForSelectedRow?.row {
                         passOrdersIReceivedInfo(ordersIReceivedIndex, dest: destination)
@@ -315,11 +300,9 @@ class MyOrdersViewController: UITableViewController {
             NSLog("BAD SHIT: Performing unidentified segue")
         }
     }
-
     
     func makeSentenceCase(inout str: String) {
         if(str != ""){str.replaceRange(str.startIndex...str.startIndex, with: String(str[str.startIndex]).capitalizedString)}
     }
-
    
 }

@@ -27,10 +27,10 @@ extension String {
 
 class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    @IBOutlet weak var timePicker : UIPickerView!
+    @IBOutlet weak var timePicker: UIPickerView!
     var timePickerData = [[String](), [String]()];
-    var selectedHours : Int = 0
-    var selectedMinutes : Int = 0
+    var selectedHours = 0
+    var selectedMinutes = 0
     
     var hours = 6
     var numberOfMinuteIntervals = 4
@@ -103,8 +103,14 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
             newOrderDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
         }
         if driverRestaurantDelegate != nil {
-           driverRestaurantDelegate.prefs.availability!.expirationDate = getActualTimeFromNow()
-            driverRestaurantDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 1)], withRowAnimation: .Automatic)
+            driverRestaurantDelegate.prefs.availability!.expirationDate = getActualTimeFromNow()
+            
+            let selectedHoursString = timePickerData[0][timePicker.selectedRowInComponent(0)]
+            let selectedMinutesString = timePickerData[1][timePicker.selectedRowInComponent(1)]
+            let time = selectedHoursString + " " + selectedMinutesString
+            driverRestaurantDelegate.prefs.selectedExpirationTime = time
+                
+            driverRestaurantDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
         }
     }
     
@@ -115,7 +121,6 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
         
         let calendar = NSCalendar.currentCalendar()
         let date = calendar.dateByAddingUnit(.Minute, value: totalMinutes, toDate: now, options: [])
-        print(date)
         return date!
     }
 

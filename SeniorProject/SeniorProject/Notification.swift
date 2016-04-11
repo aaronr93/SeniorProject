@@ -25,7 +25,7 @@ class Notification {
             push.setData(pushData)
             push.sendPushInBackground()
         } catch {
-            print("could not find user with id " + sendToID!)
+            logError("could not find user with id " + sendToID!)
             
         }
         

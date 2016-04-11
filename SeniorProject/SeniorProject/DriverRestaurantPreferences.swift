@@ -15,6 +15,7 @@ class DriverRestaurantPreferences {
     let driver = PFUser.currentUser()!
     var blacklist = [PFUnavailableRestaurant]()     // Unavailable restaurants; add to Parse
     var whitelist = [PFUnavailableRestaurant]()     // Available restaurants; remove from Parse
+    var selectedExpirationTime: String?
     
     init() {
         // Retrieve the availability of the current user.

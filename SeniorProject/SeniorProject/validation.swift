@@ -106,7 +106,7 @@ func validatedPhoneNumber(phoneNumber: String) -> Bool {
     //if it's the right length, check for numeric chars only
     for c in phoneNumber.characters {
         if(c < "0" || c > "9") {
-            print("invalid digit in phone number string")
+            logError("Invalid digit in phone number string.")
             validation.passed = false;
             break;
         }
@@ -125,7 +125,7 @@ func validatedEmail(email: String) -> Bool {
         return true
     } else {
         //validation failed
-        print("invalid email in verification step.")
+        logError("Invalid email in verification step.")
         return false
     }
 }
@@ -145,7 +145,7 @@ func validatedUsername(username: String) -> Bool {
         ])
     if (!validation.passed || usernameExistsInParse(username)) {
         //validation failed
-        print(validation.errors)
+        logError(validation.errors)
         return false
     } else {
         return true
@@ -159,15 +159,14 @@ func usernameExistsInParse(username: String) -> Bool {
     query.whereKey("username", equalTo: username)
     do {
         let results: [PFObject] = try query.findObjects()
-        print(results.count)
         if results.count > 0 {
-            print("Username already exists.")
+            logError("Username already exists.")
             usernameExists = true
         } else {
             usernameExists = false
         }
     } catch {
-        print(error)
+        logError("\(error)")
     }
     return usernameExists
 }
@@ -177,11 +176,10 @@ func logError(error: AnyObject) {
     
     // Send notification
     if let tempUser = PFUser.currentUser() {
-        let notification = Notification(content: "ERROR:\n\(error)", sendToID: (tempUser.objectId)!)
+        let notification = Notification(content: "\nERROR:\n\(error)", sendToID: (tempUser.objectId)!)
         notification.push()
-    }
-    else {
-        print("\n********** NOT WORKING **********\n")
+    } else {
+        print("\n********** LOGGING WITH PUSH NOTIFICATIONS IS NOT WORKING **********\n")
     }
     
 }

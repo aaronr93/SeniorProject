@@ -83,8 +83,8 @@ class InterfaceManipulation {
     }
     
     func driver_setAcquiredStyleFor(button: UIButton) {
-        button.setTitle("Acquired ✓", forState: UIControlState.Normal)
-        button.enabled = true
+        button.setTitle("Acquired ✓", forState: UIControlState.Disabled)
+        button.enabled = false
     }
     
     func driver_setPayForStyleFor(button: UIButton) {

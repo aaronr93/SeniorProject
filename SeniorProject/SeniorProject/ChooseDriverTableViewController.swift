@@ -28,8 +28,6 @@ class ChooseDriverTableViewController: UITableViewController {
     let sectionHeaders = ["", "Choose a driver"]
     var delegate: NewOrderViewController!
     
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     enum Section: Int {
         case AnyDriver = 0
         case ChooseDriver = 1
@@ -38,25 +36,30 @@ class ChooseDriverTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drivers.clear()
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(ChooseDriverTableViewController.getDrivers), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
+        
         drivers.restaurant = delegate.order.restaurant.name
-        
-        activity.hidesWhenStopped = true
-        activity.startAnimating()
-        
-        drivers.getNonDriversFromDB { (success) -> Void in
+        getDrivers()
+    }
+    
+    func getDrivers() {
+        drivers.getDrivers { success in
             if success {
-                self.activity.stopAnimating()
                 self.tableView.reloadData()
+                if let refresh = self.refreshControl {
+                    refresh.endRefreshing()
+                }
             } else {
                 logError("Couldn't get drivers from database")
             }
         }
-        
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if drivers.list.count < 1 { //if there are no drivers, don't display the 'choose a driver' section
+        if drivers.drivers.count < 1 { //if there are no drivers, don't display the 'choose a driver' section
             return 1
         } else {
             return 2
@@ -68,7 +71,7 @@ class ChooseDriverTableViewController: UITableViewController {
         case Section.AnyDriver.rawValue: //single static 'Any driver' row
             return 1
         case Section.ChooseDriver.rawValue: //number of drivers available will populate in this 2nd row
-            return drivers.list.count
+            return drivers.drivers.count
         default: //shouldn't get here
             return 0
         }
@@ -89,19 +92,16 @@ class ChooseDriverTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         switch indexPath.section {
-        case Section.AnyDriver.rawValue: //static 'any driver' row
-            
+        case Section.AnyDriver.rawValue:
+            //static 'any driver' row
             let anyDriverCell = tableView.dequeueReusableCellWithIdentifier("anyDriver", forIndexPath: indexPath)
             return anyDriverCell
-            
-        case Section.ChooseDriver.rawValue: //populate available driver for that row of the section
-            
+        case Section.ChooseDriver.rawValue:
+            //populate available driver for that row of the section
             return cellForDriversList(tableView, indexPath: indexPath)
-            
-        default: //shouldn't get here!
-            
-            let cell: UITableViewCell! = nil
-            return cell
+        default:
+            //shouldn't get here!
+            return UITableViewCell()
             
         }
         
@@ -120,7 +120,7 @@ class ChooseDriverTableViewController: UITableViewController {
                 chosenDriver = driverName
                 let index = indexPath.row
 
-                let availableDriver = drivers.list[index]
+                let availableDriver = drivers.drivers[index]
                 chosenDriverID = availableDriver.objectId!
                 delegate.saveDriverToDeliver(self)
             }
@@ -130,7 +130,7 @@ class ChooseDriverTableViewController: UITableViewController {
     func cellForDriversList(tableView: UITableView, indexPath: NSIndexPath) -> UITableViewCell {
         let driverCell = tableView.dequeueReusableCellWithIdentifier("driver", forIndexPath: indexPath) as! DriverCell
         
-        let availableDriver = drivers.list[indexPath.row]
+        let availableDriver = drivers.drivers[indexPath.row]
         driverCell.driverName.text = availableDriver.username!
         
         return driverCell

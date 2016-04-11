@@ -30,26 +30,43 @@ class MyOrderTableViewController: UITableViewController {
     @IBAction func buttonPress(sender: UIButton) {
         if order.orderState == OrderState.Available {
             // The order will be cancelled.
-            order.delete() {
-                result in
-                if result {
-                    // Order successfully deleted
-                    self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Deleted)
-                } else {
-                    logError("Order not deleted")
+            
+            let refreshAlert = UIAlertController(title: "Cancel", message: "Are you sure you want to cancel this order?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
+                sender.enabled = false
+                self.order.delete() { result in
+                    if result {
+                        // Order successfully deleted
+                        self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Deleted)
+                    } else {
+                        logError("Order not deleted")
+                    }
                 }
-            }
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+            presentViewController(refreshAlert, animated: true, completion: nil)
+            
         } else if order.orderState == OrderState.Delivered {
             // The driver will be reimbursed.
-            order.reimburse() {
-                result in
-                if result {
-                    // Driver successfully reimbursed
-                    self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Completed)
-                } else {
-                    logError("Order not reimbursed")
+            
+            let refreshAlert = UIAlertController(title: "Reimburse", message: "Enter the dollar amount to reimburse.", preferredStyle: UIAlertControllerStyle.Alert)
+            refreshAlert.addTextFieldWithConfigurationHandler({ (field: UITextField) in
+                field.placeholder = "$##.##"
+                field.keyboardType = .DecimalPad
+            })
+            refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                sender.enabled = false
+                self.order.reimburse() { result in
+                    if result {
+                        // Driver successfully reimbursed
+                        self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Completed)
+                    } else {
+                        logError("Order not reimbursed")
+                    }
                 }
-            }
+            }))
+            refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            presentViewController(refreshAlert, animated: true, completion: nil)
         }
     }
     

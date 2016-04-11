@@ -34,6 +34,9 @@ class GetThatOrderTableViewController: UITableViewController {
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Deliver To", "Location", "Expires In"]
     
+    var driverDelegate: DriverOrdersViewController?
+    var myOrdersDelegate: MyOrdersViewController?
+    
     var order = Order()
     let manip = InterfaceManipulation()
     
@@ -41,37 +44,66 @@ class GetThatOrderTableViewController: UITableViewController {
     
     @IBAction func driverAction(sender: UIButton) {
         if order.orderState == OrderState.Available {
-            order.acquire() {
-                result in
-                if result {
-                    // Order successfully acquired
-                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
-                } else {
-                    logError("Order not acquired")
+            
+            let alert = UIAlertController(title: "Pick up order", message: "Are you sure you want to pick up this order?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+                sender.enabled = false
+                self.order.acquire() { result in
+                    if result {
+                        // Order successfully acquired
+                        if self.driverDelegate != nil {
+                            self.manip.driver_setAcquiredStyleFor(sender)
+                        } else if self.myOrdersDelegate != nil {
+                            self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
+                        }
+                    } else {
+                        logError("Order not acquired")
+                    }
                 }
-            }
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
         } else if order.orderState == OrderState.Acquired {
-            order.payFor() {
-                result in
-                if result {
-                    // Order successfully paid for
-                    self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
-                } else {
-                    logError("Order not paid for")
+            
+            let alert = UIAlertController(title: "Pay", message: "Enter the order's dollar amount from the receipt.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addTextFieldWithConfigurationHandler({ (field: UITextField) in
+                field.placeholder = "$##.##"
+                field.keyboardType = .DecimalPad
+            })
+            alert.addAction(UIAlertAction(title: "Done", style: .Default, handler: { (action: UIAlertAction!) in
+                sender.enabled = false
+                self.order.payFor() { result in
+                    if result {
+                        // Order successfully paid for
+                        self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
+                    } else {
+                        logError("Order not paid for")
+                    }
                 }
-            }
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+
         } else if order.orderState == OrderState.PaidFor {
-            order.deliver() {
-                result in
-                if result {
-                    // Order successfully delivered
-                    sender.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
-                    sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
-                    sender.enabled = false
-                } else {
-                    logError("Order not delivered")
+            
+            let alert = UIAlertController(title: "Delivery location", message: "Are you sure you have arrived at the delivery location?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            alert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+                sender.enabled = false
+                self.order.deliver() { result in
+                    if result {
+                        // Order successfully delivered
+                        sender.setTitle("Waiting for customer to reimburse", forState: UIControlState.Disabled)
+                        sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+                        sender.enabled = false
+                    } else {
+                        logError("Order not delivered")
+                    }
                 }
-            }
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+            
         } else if order.orderState == OrderState.Completed {
             manip.setDriverStyleFor(sender, toReflect: OrderState.Completed)
         }

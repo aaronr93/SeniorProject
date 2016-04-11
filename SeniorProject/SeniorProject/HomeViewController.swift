@@ -14,7 +14,12 @@ class HomeViewController: UIViewController, NewOrderViewDelegate {
     let currentLocation = CurrentLocation()
     
     func cancelNewOrder(newOrderVC: NewOrderViewController) {
-        newOrderVC.navigationController?.popViewControllerAnimated(true)
+        let refreshAlert = UIAlertController(title: "Cancel", message: "Are you sure you want to cancel this order?", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
+            newOrderVC.navigationController?.popViewControllerAnimated(true)
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        presentViewController(refreshAlert, animated: true, completion: nil)
     }
     
     func orderSaved(newOrderVC: NewOrderViewController){

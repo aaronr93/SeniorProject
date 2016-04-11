@@ -47,6 +47,7 @@
 		36EF354C1CA44DBE00C160BE /* PFDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF354B1CA44DBE00C160BE /* PFDestination.swift */; };
 		36F506801C64E9500014D506 /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F5067F1C64E9500014D506 /* CreateAccount.swift */; };
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
+		36F699BF1CBABD8400E985AB /* CreateAccountUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F699BE1CBABD8400E985AB /* CreateAccountUITests.swift */; };
 		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
@@ -164,6 +165,7 @@
 		36EF354B1CA44DBE00C160BE /* PFDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFDestination.swift; sourceTree = "<group>"; };
 		36F5067F1C64E9500014D506 /* CreateAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
+		36F699BE1CBABD8400E985AB /* CreateAccountUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountUITests.swift; sourceTree = "<group>"; };
 		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				3661ED541CB9802C0061BF1C /* SettingsViewControllerUITests.swift */,
 				3661ED521CB980120061BF1C /* MyOrdersUITests.swift */,
+				36F699BE1CBABD8400E985AB /* CreateAccountUITests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				3661ED511CB97FE60061BF1C /* LoginViewControllerUITests.swift in Sources */,
 				3661ED531CB980120061BF1C /* MyOrdersUITests.swift in Sources */,
 				9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */,
+				36F699BF1CBABD8400E985AB /* CreateAccountUITests.swift in Sources */,
 				96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */,
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				3661ED571CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift in Sources */,

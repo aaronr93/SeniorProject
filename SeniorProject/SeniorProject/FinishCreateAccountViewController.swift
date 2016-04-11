@@ -9,12 +9,20 @@
 import UIKit
 import Parse
 
-class FinishCreateAccountViewController: UIViewController
-{
+class FinishCreateAccountViewController: UIViewController {
     @IBOutlet weak var terms: UISwitch!
     @IBOutlet weak var data: UISwitch!
+    @IBOutlet weak var finish: UIButton!
     
     var newAccount: CreateAccount!
+    
+    @IBAction func accept(sender: UISwitch) {
+        if sender.on {
+            finish.enabled = true
+        } else {
+            finish.enabled = false
+        }
+    }
     
     @IBAction func finishButtonPressed(sender: UIButton) {
         if terms.on == true {
@@ -62,6 +70,7 @@ class FinishCreateAccountViewController: UIViewController
         super.viewDidLoad()
         //unhide navigation bar
         navigationController?.navigationBarHidden = false
+        finish.enabled = false
     }
     
 }

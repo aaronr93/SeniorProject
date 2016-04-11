@@ -33,7 +33,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                             completion(success: false)
                         }
                     } else {
-                        print("Invalid loging credentials")
+                        logError("Invalid loging credentials")
                     }
                 }
             }

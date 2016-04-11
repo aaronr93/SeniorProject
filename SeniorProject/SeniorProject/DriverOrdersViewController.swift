@@ -21,8 +21,6 @@ class DriverOrdersViewController: UITableViewController {
     var anyDriverOrders = [PFOrder]()
     var currentLocation: CurrentLocation!
     
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     enum sectionTypes: Int {
         case driverOrders = 0
         case anyDriverOrders = 1
@@ -94,6 +92,7 @@ class DriverOrdersViewController: UITableViewController {
                         passAnyOrdersInfo(anyDriverOrdersIndex, dest: destination)
                     }
                 }
+                destination.driverDelegate = self
             }
         }
     }
@@ -185,47 +184,37 @@ class DriverOrdersViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        
-        activity.hidesWhenStopped = true
-        
-        getOrdersForMe() { result in
-            if result { self.tableView.reloadData() }
-        }
-        
-        getOrdersForAnyone() { result in
-            if result { self.tableView.reloadData() }
-        }
-        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(DriverOrdersViewController.update), forControlEvents: .ValueChanged)
     }
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
-        
-        refresh(listOfOrders: driverOrders)
-        refresh(listOfOrders: anyDriverOrders)
+        refreshControl?.beginRefreshing()
+        update()
+    }
+    
+    func update() {
+        clear(listOfOrders: &driverOrders)
+        getOrdersForMe() { result in
+            if result {
+                self.clear(listOfOrders: &self.anyDriverOrders)
+                self.getOrdersForAnyone() { result in
+                    if result {
+                        self.tableView.reloadData()
+                        if let refresh = self.refreshControl {
+                            refresh.endRefreshing()
+                        }
+                    }
+                }
+            }
+        }
         
     }
     
-    func refresh(listOfOrders list: [PFOrder]) {
-        PFOrder.fetchAllIfNeededInBackground(list) { (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil {
-                self.tableView.reloadData()
-            } else {
-                logError("Couldn't fetch driver orders.")
-            }
-        }
-        for order in list {
-            order.fetchIfNeededInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
-                if error == nil {
-                    self.tableView.reloadData()
-                    // TODO: Find a more efficient way to update. For example,
-                    //   perhaps find a way to keep track of which Order goes
-                    //   with which indexPath, maybe using a Dictionary.
-                } else {
-                    logError("Couldn't fetch a driverOrder. Specific order:\n\(order)")
-                }
-            })
-        }
+    func clear(inout listOfOrders list: [PFOrder]) {
+        list.removeAll()
     }
     
     func getOrdersForMe(completion: (success: Bool) -> Void) {
@@ -240,8 +229,6 @@ class DriverOrdersViewController: UITableViewController {
         query.whereKey("OrderState", equalTo: "Available")
         query.whereKey("expirationDate", greaterThan: now)
         
-        activity.startAnimating()
-        
         query.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             
@@ -253,7 +240,6 @@ class DriverOrdersViewController: UITableViewController {
                         let order = order as! PFOrder
                         self.driverOrders.append(order)
                     }
-                    self.activity.stopAnimating()
                     completion(success: true)
                 }
             } else {

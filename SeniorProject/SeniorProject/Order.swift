@@ -280,7 +280,6 @@ class Order {
         
         let calendar = NSCalendar.currentCalendar()
         let date = calendar.dateByAddingUnit(.Minute, value: totalMinutes, toDate: now, options: [])
-        print(date)
         return date!
     }
     

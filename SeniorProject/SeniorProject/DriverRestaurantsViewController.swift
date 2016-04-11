@@ -9,41 +9,36 @@
 import UIKit
 import Parse
 
-protocol AvailabilityCellDelegate : class {
-    func didChangeSwitchState(sender: AvailabilityCell, isOn: Bool)
-}
-
-class AvailabilityCell: UITableViewCell {
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var available: UISwitch!
-    
-    weak var cellDelegate: AvailabilityCellDelegate?
-    
-    @IBAction func handledSwitchChange(sender: UISwitch) {
-        self.cellDelegate?.didChangeSwitchState(self, isOn: available.on)
-    }
-}
-
 class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDelegate {
-
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     let prefs = DriverRestaurantPreferences()
     let POIs = PointsOfInterest()
     let driver = PFUser.currentUser()!
-    
+    var timer: NSTimer?
     var currentLocation: CurrentLocation!
-    
     let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
+    
+    var isAvailable = false
+    var isCurrentlyRefreshing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activity.hidesWhenStopped = true
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(DriverRestaurantsViewController.updateRestaurants), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
+        updateRestaurants()
+        timer = NSTimer.scheduledTimerWithTimeInterval(60.0,
+                                                       target: self,
+                                                       selector: #selector(DriverRestaurantsViewController.updateTimer(_:)),
+                                                       userInfo: nil,
+                                                       repeats: true)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        updateRestaurants()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+        expirationCell.selected = false
+        refreshControl?.endRefreshing()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -118,34 +113,79 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     func cellsForSettings(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let row = indexPath.row
         
-        if row == 0 {     // "Availability" cell
-            
+        if row == 0 {
+            // "Availability" cell
             let availabilityCell = tableView.dequeueReusableCellWithIdentifier("availability", forIndexPath: indexPath) as! AvailabilityCell
             availabilityCell.cellDelegate = self
+            if let selectedExpiration = prefs.selectedExpirationTime {
+                if selectedExpiration.isEmpty {
+                    availabilityCell.available.enabled = false
+                } else {
+                    availabilityCell.available.enabled = true
+                }
+            }
             if !currentlyAvailable(prefs.availability!.expirationDate) {
                 prefs.setDriverAvailability(to: false)
             }
-            availabilityCell.available.selected = prefs.driverAvailability()
+            availabilityCell.available.on = prefs.driverAvailability()
+            isAvailable = availabilityCell.available.on
             return availabilityCell
-            
-        } else if row == 1 {  // "Expiration time" cell
-            
+        } else if row == 1 {
+            // "Expiration time" cell
             let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: indexPath)
-            expirationCell.textLabel!.text! = "Expires In"
-            let time = prefs.getExpirationTime()
-            expirationCell.detailTextLabel!.text! = time
+            expirationCell.textLabel!.text! = "Expires in"
+            
+            if !currentlyAvailable(prefs.availability!.expirationDate) {
+                // If the timer has ended
+                prefs.setDriverAvailability(to: false)
+                if let timer = timer {
+                    timer.invalidate()
+                }
+                if let expirationText = expirationCell.detailTextLabel {
+                    expirationText.text = prefs.selectedExpirationTime
+                }
+                // Update the switch
+                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
+            }
+            
+            if prefs.driverAvailability() == true {
+                // Driver is available, so the timer should be counting down
+                if let expirationText = expirationCell.detailTextLabel {
+                    expirationText.text = prefs.getExpirationTime()
+                }
+            } else {
+                // Driver isn't available, so the timer should be reset
+                if let expirationText = expirationCell.detailTextLabel {
+                    expirationText.text = prefs.selectedExpirationTime
+                }
+                if let timer = timer {
+                    timer.invalidate()
+                }
+            }
             return expirationCell
-            
         } else {
-            
             let cell: UITableViewCell! = nil
             return cell
-            
+        }
+    }
+    
+    func updateTimer(sender: NSTimer) {
+        if !isCurrentlyRefreshing {
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
         }
     }
     
     func didChangeSwitchState(sender: AvailabilityCell, isOn: Bool) {
         prefs.setDriverAvailability(to: isOn)
+        isAvailable = isOn
+        timer = NSTimer.scheduledTimerWithTimeInterval(60.0,
+                                                       target: self,
+                                                       selector: #selector(DriverRestaurantsViewController.updateTimer(_:)),
+                                                       userInfo: nil,
+                                                       repeats: true)
+        if !isCurrentlyRefreshing {
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
+        }
     }
     
     func currentlyAvailable(expirationDate: NSDate) -> Bool {
@@ -158,15 +198,18 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     }
     
     func updateRestaurants() {
+        isCurrentlyRefreshing = true
         POIs.clear()
-        activity.startAnimating()
         POIs.searchFor("Food", inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
             if result {
                 // Success
                 self.prefs.getBlacklistFromParse() { result in
                     if result {
-                        self.activity.stopAnimating()
+                        self.isCurrentlyRefreshing = false
                         self.tableView.reloadData()
+                        if let refresh = self.refreshControl {
+                            refresh.endRefreshing()
+                        }
                     } else {
                         // No restaurants marked unavailable
                     }
@@ -199,7 +242,12 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
             // Settings
             if row == 1 {
                 // Expiration time
-                performSegueWithIdentifier("expiresInSegue", sender: self)
+                if !isAvailable {
+                    performSegueWithIdentifier("expiresInSegue", sender: self)
+                }
+                if let expiration = tableView.cellForRowAtIndexPath(indexPath) {
+                    expiration.selected = false
+                }
             }
             
         } else if section == 1 {
@@ -230,10 +278,6 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
         if segue.identifier == "expiresInSegue" {
             let dest = segue.destinationViewController as! ExpiresInViewController
             dest.driverRestaurantDelegate = self
-            if !currentlyAvailable(prefs.availability!.expirationDate) {
-                // If the Expires In field is NOT counting down
-                //dest.selectedTime = "1 hour"
-            }
         }
     }
     
@@ -242,4 +286,17 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
         prefs.saveAll()
     }
     
+}
+
+protocol AvailabilityCellDelegate: class {
+    func didChangeSwitchState(sender: AvailabilityCell, isOn: Bool)
+}
+
+class AvailabilityCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var available: UISwitch!
+    weak var cellDelegate: AvailabilityCellDelegate?
+    @IBAction func handledSwitchChange(sender: UISwitch) {
+        self.cellDelegate?.didChangeSwitchState(self, isOn: sender.on)
+    }
 }

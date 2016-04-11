@@ -18,8 +18,6 @@ class CustomerDestinations {
     func add(destination: Destination) {
         if !history.contains( {$0.name == destination.name} ) {
             history.append(destination)
-        } else {
-            logError("Destination already exists.")
         }
     }
     
@@ -52,7 +50,6 @@ class CustomerDestinations {
         let user = PFUser.currentUser()!
         // Only find destinations for the current user
         destinationQuery.whereKey("customer", equalTo: user)
-        
         destinationQuery.findObjectsInBackgroundWithBlock {
             (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {

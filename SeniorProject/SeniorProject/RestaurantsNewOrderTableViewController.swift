@@ -21,25 +21,26 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     var selectedSomething: Bool = false
     
     var currentLocation: CurrentLocation!
-
-    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activity.hidesWhenStopped = true
-        activity.center = tableView.center
-        addLocalPOIs(withQueryString: "Food")
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(RestaurantsNewOrderTableViewController.addLocalPOIs), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
+        addLocalPOIs()
     }
     
-    func addLocalPOIs(withQueryString query: String) {
+    func addLocalPOIs() {
         // Search for nearby locations related to the argument for `searchFor`
-        activity.startAnimating()
         POIs.clear()
-        POIs.searchFor(query, inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
+        POIs.searchFor("Food", inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
             if result {
                 // Success
-                self.activity.stopAnimating()
                 self.tableView.reloadData()
+                if let refresh = self.refreshControl {
+                    refresh.endRefreshing()
+                }
             } else {
                 // Some kind of error occurred while trying to
                 // find nearby locations.

@@ -21,18 +21,24 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
     let dest = CustomerDestinations()
     let user = PFUser.currentUser()!
     
-    @IBOutlet weak var activity: UIActivityIndicatorView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        activity.hidesWhenStopped = true
-        activity.startAnimating()
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(DeliveryLocationTableViewController.getDestinations), forControlEvents: .ValueChanged)
+        refreshControl?.beginRefreshing()
         destination = delegate.order.destination
+        getDestinations()
+    }
+    
+    func getDestinations() {
         dest.getDestinationItemsFromParse() { result in
             if result {
                 // Order successfully delivered
-                self.activity.stopAnimating()
                 self.tableView.reloadData()
+                if let refresh = self.refreshControl {
+                    refresh.endRefreshing()
+                }
             } else {
                 logError("Error fetching destination items from parse")
             }
@@ -77,9 +83,18 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                 historyCell.detailTextLabel!.text! = ""
             } else if dest.history.count > 0 {
                 let index = indexPath.row
-                historyCell.textLabel!.text! = dest.history[index].name
-                // TODO: REMOVE for presentation
-                historyCell.detailTextLabel!.text! = "6.9 mi"
+                let item = dest.history[index].name
+                
+                if let textLabel = historyCell.textLabel {
+                    textLabel.text = item
+                }
+                
+                if let dest = destination {
+                    if dest.name == item {
+                        // This is the one we previously selected. Check it.
+                        historyCell.accessoryType = .Checkmark
+                    }
+                }
             }
             
             return historyCell

@@ -10,53 +10,108 @@ import Foundation
 import Parse
 
 class Drivers {
-    var list = [PFUser]()
-    var unavailableDriversQuery = PFQuery(className: "DriverUnavailableRestaurants")
+    var availabilities = [PFDriverAvailability]()
+    var drivers = [PFUser]()
+    var unavailableDriversQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
     var restaurant: String?
     
-    func clear() {
-        list.removeAll()
+    let user = PFUser.currentUser()!
+    
+    func clearAvailabilities() {
+        availabilities.removeAll()
     }
     
-    func getNonDriversFromDB(completion: (success: Bool) -> Void) {
+    func clear() {
+        drivers.removeAll()
+    }
+    
+    func getDrivers(completion: (success: Bool) -> Void) {
+        clear()
+        clearAvailabilities()
         
-        unavailableDriversQuery.includeKey("driverAvailability")
-        unavailableDriversQuery.limit = 10
-        unavailableDriversQuery.whereKey("restaurant", notEqualTo: restaurant!)
-        unavailableDriversQuery.whereKey("driver", notEqualTo: PFUser.currentUser()!)
-        unavailableDriversQuery.orderByDescending("createdAt")
-        unavailableDriversQuery.includeKey("driverAvailability.driver")
-        
-        unavailableDriversQuery.findObjectsInBackgroundWithBlock {
-            (objects: [PFObject]?, error: NSError?) -> Void in
+        getListOfAvailableDrivers() { success in
+            if success {
+                self.getListOfApplicableDrivers() { complete in
+                    if complete {
+                        completion(success: true)
+                    } else {
+                        logError("Failed to find drivers available for your restaurant")
+                    }
+                }
+            } else {
+                logError("Failed to retrieve list of available drivers")
+            }
+        }
+    }
+    
+    func getListOfAvailableDrivers(completion: (success: Bool) -> Void) {
+        let driversQuery = PFQuery(className: PFDriverAvailability.parseClassName())
+        driversQuery.includeKey("driver")
+        driversQuery.whereKey("isCurrentlyAvailable", equalTo: true)
+        driversQuery.whereKey("driver", notEqualTo: user)
+        driversQuery.orderByAscending("expirationDate")
+        driversQuery.limit = 10
+        driversQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
-                if let availableDrivers = objects as? [PFUnavailableRestaurant] {
-                    for driver in availableDrivers {
-                        let driverAvailability = driver.driverAvailability as? PFDriverAvailability
-                        if let currentlyAvailable = driverAvailability?.isCurrentlyAvailable {
-                            if (currentlyAvailable) {
-                                // If the driver is currently available then add the item
-                                let driver_obj = driverAvailability?.driver as! PFUser
-                                self.add(driver_obj)
+                if let driversList = objects as? [PFDriverAvailability] {
+                    for driverAvailability in driversList {
+                        if let driver = driverAvailability.driver as? PFUser {
+                            self.addDriver(driver)
+                        }
+                        self.addAvailability(driverAvailability)
+                    }
+                    completion(success: true)
+                }
+            } else {
+                completion(success: false)
+            }
+        }
+    }
+    
+    func getListOfApplicableDrivers(completion: (success: Bool) -> Void) {
+        let unavailableQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
+        unavailableQuery.includeKey("driverAvailability.driver")
+        unavailableQuery.whereKey("driverAvailability", containedIn: availabilities)
+        unavailableQuery.whereKey("restaurant", notEqualTo: restaurant!)
+        unavailableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
+            if error == nil {
+                if let driversList = objects as? [PFUnavailableRestaurant] {
+                    for item in driversList {
+                        if let driverAvailability = item.driverAvailability as? PFDriverAvailability {
+                            if let driver = driverAvailability.driver as? PFUser {
+                                self.findAndRemoveUnavailable(driver)
                             }
                         }
                     }
                     completion(success: true)
                 }
             } else {
-                // Log details of the failure
-                logError("Error: \(error!) \(error!.userInfo)")
                 completion(success: false)
             }
         }
-
     }
     
-    func add(driver: PFUser) {
-        if !list.contains(driver) {
-            list.append(driver)
+    func addAvailability(driver: PFDriverAvailability) {
+        if !availabilities.contains(driver) {
+            availabilities.append(driver)
         } else {
             logError("Duplicate driver")
+        }
+    }
+    
+    func addDriver(driver: PFUser) {
+        if !drivers.contains(driver) {
+            drivers.append(driver)
+        } else {
+            logError("Duplicate driver")
+        }
+    }
+    
+    func findAndRemoveUnavailable(driver: PFUser) {
+        if drivers.contains(driver) {
+            if let index = drivers.indexOf(driver) {
+                drivers.removeAtIndex(index)
+            }
         }
     }
     
