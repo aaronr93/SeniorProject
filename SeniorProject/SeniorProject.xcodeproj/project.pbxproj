@@ -105,6 +105,7 @@
 		9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */; };
 		9BF07BF21C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */; };
 		9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */; };
+		9BFD1AC11CBAD74000F2545E /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD1AC01CBAD74000F2545E /* InitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,7 @@
 		9BBB3C121CB7EAF000443BE5 /* ChangePasswordUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordUITests.swift; sourceTree = "<group>"; };
 		9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersUnitTesting.swift; sourceTree = "<group>"; };
 		9BF07BFB1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountClassTests.swift; sourceTree = "<group>"; };
+		9BFD1AC01CBAD74000F2545E /* InitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 		36D08F231C7222CB005B1E90 /* Other ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9BFD1AC01CBAD74000F2545E /* InitViewController.swift */,
 				96DD81D81C56B8AE004CE3A7 /* LogInViewController.swift */,
 				96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */,
 				36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */,
@@ -709,6 +712,7 @@
 				36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */,
 				96DD81D91C56B8AE004CE3A7 /* LogInViewController.swift in Sources */,
 				36B92B701C9BA43A00E29A3B /* Restaurant.swift in Sources */,
+				9BFD1AC11CBAD74000F2545E /* InitViewController.swift in Sources */,
 				3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */,
 				36D08F261C72232C005B1E90 /* DriverOrdersViewController.swift in Sources */,
 				96C886DA1C891BCE008E668B /* ChangePasswordViewController.swift in Sources */,
