@@ -18,7 +18,6 @@
 		3661ED4B1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED4A1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift */; };
 		3661ED4D1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED4C1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift */; };
 		3661ED511CB97FE60061BF1C /* LoginViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED501CB97FE60061BF1C /* LoginViewControllerUITests.swift */; };
-		3661ED531CB980120061BF1C /* MyOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED521CB980120061BF1C /* MyOrdersUITests.swift */; };
 		3661ED551CB9802C0061BF1C /* SettingsViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED541CB9802C0061BF1C /* SettingsViewControllerUITests.swift */; };
 		3661ED571CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661ED561CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift */; };
 		367BA9271CAC066200379AF3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8E40CE1C85199100B4B77E /* Parse.framework */; };
@@ -53,6 +52,7 @@
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C721CBC359900863914 /* ValidationClassTests.swift */; };
+		96632C751CBC4A2E00863914 /* MyOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
 		96B36A991C5AFE3D00DF6038 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */; };
@@ -138,7 +138,6 @@
 		3661ED4A1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsNewOrderTVCUnitTests.swift; sourceTree = "<group>"; };
 		3661ED4C1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDriverTVCUnitTests.swift; sourceTree = "<group>"; };
 		3661ED501CB97FE60061BF1C /* LoginViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewControllerUITests.swift; sourceTree = "<group>"; };
-		3661ED521CB980120061BF1C /* MyOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersUITests.swift; sourceTree = "<group>"; };
 		3661ED541CB9802C0061BF1C /* SettingsViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerUITests.swift; sourceTree = "<group>"; };
 		3661ED561CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDriverTableViewControllerUITests.swift; sourceTree = "<group>"; };
 		36AB6DF11CA4A5B700C64FEE /* Commit on March 24.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Commit on March 24.txt"; sourceTree = "<group>"; };
@@ -173,6 +172,7 @@
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96632C721CBC359900863914 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
+		96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersUITests.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		96B36A981C5AFE3D00DF6038 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -362,8 +362,8 @@
 				3661ED501CB97FE60061BF1C /* LoginViewControllerUITests.swift */,
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				3661ED541CB9802C0061BF1C /* SettingsViewControllerUITests.swift */,
-				3661ED521CB980120061BF1C /* MyOrdersUITests.swift */,
 				36F699BE1CBABD8400E985AB /* CreateAccountUITests.swift */,
+				96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -780,12 +780,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3661ED511CB97FE60061BF1C /* LoginViewControllerUITests.swift in Sources */,
-				3661ED531CB980120061BF1C /* MyOrdersUITests.swift in Sources */,
 				9BBB3C131CB7EAF000443BE5 /* ChangePasswordUITests.swift in Sources */,
 				36F699BF1CBABD8400E985AB /* CreateAccountUITests.swift in Sources */,
 				96C886D81C84F5AC008E668B /* DriversOrdersUITests.swift in Sources */,
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				3661ED571CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift in Sources */,
+				96632C751CBC4A2E00863914 /* MyOrdersUITests.swift in Sources */,
 				3661ED551CB9802C0061BF1C /* SettingsViewControllerUITests.swift in Sources */,
 				9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */,
 				36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */,

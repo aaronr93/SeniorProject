@@ -15,16 +15,28 @@ class PointsOfInterest: NSObject {
     
     var restaurants = [Restaurant]()
     
+    func distancetoUserSortFunc(location1: MKMapItem, location2: MKMapItem, usersLocation: CLLocation) -> Bool {
+        let firstDistance = usersLocation.distanceFromLocation(CLLocation(latitude: location1.placemark.coordinate.latitude, longitude: location1.placemark.coordinate.longitude))
+        let secondDistance = usersLocation.distanceFromLocation(CLLocation(latitude: location2.placemark.coordinate.latitude, longitude: location2.placemark.coordinate.longitude))
+        return firstDistance < secondDistance
+    }
+    
     func searchFor(query: String, inRegion region: MKCoordinateRegion, withLocation loc: CLLocation, completion: (success: Bool) -> Void) {
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = query
         request.region = region
         let search = MKLocalSearch(request: request)
+        
+        
+        
         search.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
             if error == nil {
                 let mapItems = (response?.mapItems)! as [MKMapItem]
+                let sortedMapItems = mapItems.sort { (loc1, loc2) -> Bool in
+                    self.distancetoUserSortFunc(loc1, location2: loc1, usersLocation: loc)
+                }
                 let current = PFGeoPoint(location: loc)
-                for item in mapItems {
+                for item in sortedMapItems {
                     let name = item.name
                     let placemark = item.placemark
                     let loc = placemark.location

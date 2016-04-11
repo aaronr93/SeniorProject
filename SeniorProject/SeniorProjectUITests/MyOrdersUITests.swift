@@ -20,14 +20,14 @@ class MyOrdersUITests: XCTestCase {
         super.tearDown()
     }
     
-    func goToMyOrders(){
+    func testGoToMyOrders(){
         //go to the my orders screen and back
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["My orders"].tap()
         app.navigationBars["My Orders"].buttons["Home"].tap()
     }
     
-    func goToRequests(){
+    func testGoToRequests(){
         //go to every order and back
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["My orders"].tap()
@@ -37,6 +37,10 @@ class MyOrdersUITests: XCTestCase {
             myOrdersButton.tap()
         }
         app.navigationBars["My Orders"].buttons["Home"].tap()
+        
+    }
+    
+    func testSelectSentRequest(){
         
     }
     
