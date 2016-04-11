@@ -539,13 +539,13 @@
                                     <action selector="nextButtonPressed:" destination="bsD-ip-mg7" eventType="touchUpInside" id="KhD-bZ-MfS"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-wd-3Fy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-wd-3Fy">
                                 <rect key="frame" x="20" y="92" width="560" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="t0Z-nK-EQ8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="touchedInFieldResetHighlight:" destination="bsD-ip-mg7" eventType="editingDidBegin" id="DXz-bF-iv8"/>
                                     <action selector="usernameChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="cZ1-QK-hRv"/>
@@ -558,7 +558,7 @@
                                     <constraint firstAttribute="height" constant="43" id="jtd-Ti-WRp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                                 <connections>
                                     <action selector="phoneNumberChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="bhg-n7-Xke"/>
                                     <action selector="phoneNumberEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="j91-ot-zVf"/>
@@ -571,7 +571,7 @@
                                     <constraint firstAttribute="height" constant="43" id="hrx-qQ-3xP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                 <connections>
                                     <action selector="emailChanged:" destination="bsD-ip-mg7" eventType="editingChanged" id="LDk-wO-pof"/>
                                     <action selector="emailEditComplete:" destination="bsD-ip-mg7" eventType="editingDidEnd" id="OEy-e8-JbC"/>
