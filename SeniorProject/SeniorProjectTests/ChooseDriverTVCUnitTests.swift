@@ -31,12 +31,12 @@ class ChooseDriverTVCUnitTests: XCTestCase {
     func test_numberOfSections() {
         var sections: Int!
         
-        XCTAssert(test.drivers.list.count == 0)
+        XCTAssert(test.drivers.availabilities.count == 0)
         sections = test.numberOfSectionsInTableView(test.tableView)
         XCTAssert(sections == 1)
         
-        test.drivers.add(PFUser())
-        XCTAssert(test.drivers.list.count == 1)
+        test.drivers.addDriver(PFUser())
+        XCTAssert(test.drivers.availabilities.count == 1)
         sections = test.numberOfSectionsInTableView(test.tableView)
         XCTAssert(sections == 2)
     }
@@ -45,8 +45,8 @@ class ChooseDriverTVCUnitTests: XCTestCase {
         test.drivers.clear()
         XCTAssert(test.tableView(test.tableView, numberOfRowsInSection: 0) == 1)
         
-        test.drivers.add(PFUser())
-        XCTAssert(test.drivers.list.count == 1)
+        test.drivers.addDriver(PFUser())
+        XCTAssert(test.drivers.availabilities.count == 1)
         XCTAssert(test.tableView(test.tableView, numberOfRowsInSection: 1) == 1)
     }
     
