@@ -37,15 +37,21 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func deleteButtonTapped(sender: UIButton) {
-        currentUser.setObject(true, forKey: "deleted")
-        currentUser.saveInBackgroundWithBlock({ (x: Bool, error: NSError?) -> Void in
-            if error != nil {
-                logError("error in delete account save")
-            } else {
-                PFUser.logOut()
-                self.performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
-            }
-        })
+        let refreshAlert = UIAlertController(title: "Confirm Account Removal", message: "Are you sure you want to delete your Foodini account? (This action cannot be undone.)", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
+            self.currentUser.setObject(true, forKey: "deleted")
+            self.currentUser.saveInBackgroundWithBlock({ (x: Bool, error: NSError?) -> Void in
+                if error != nil {
+                    logError("error in delete account save")
+                } else {
+                    PFUser.logOut()
+                    self.performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
+                }
+            })
+        }))
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
     }
     
     @IBAction func doneChangingUsername(sender: UITextField) {
