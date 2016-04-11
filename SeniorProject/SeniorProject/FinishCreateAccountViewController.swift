@@ -62,6 +62,7 @@ class FinishCreateAccountViewController: UIViewController {
             (succeeded: Bool, error: NSError?) -> Void in
             if error != nil {
                 logError(error!)
+                PFUser.logOut()
             }
             
         }
