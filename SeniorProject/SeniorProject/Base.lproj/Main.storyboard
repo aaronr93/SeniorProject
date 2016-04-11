@@ -19,21 +19,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cX0-lK-ee6">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cX0-lK-ee6">
                                 <rect key="frame" x="20" y="260" width="560" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="RfR-Sp-ZiO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRc-oN-Kad">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zRc-oN-Kad">
                                 <rect key="frame" x="20" y="311" width="560" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="vcm-DV-Tx0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3G-mD-t69">
                                 <rect key="frame" x="139" y="413" width="322" height="46"/>
@@ -83,10 +83,18 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login failed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLI-qI-tmt">
+                                <rect key="frame" x="139" y="384" width="322" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" red="0.85272090519999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WLI-qI-tmt" firstAttribute="top" secondItem="zRc-oN-Kad" secondAttribute="bottom" constant="30" id="156-h5-rWm"/>
                             <constraint firstItem="zRc-oN-Kad" firstAttribute="top" secondItem="cX0-lK-ee6" secondAttribute="bottom" constant="8" symbolic="YES" id="2Kt-fJ-q56"/>
+                            <constraint firstItem="WLI-qI-tmt" firstAttribute="leading" secondItem="o3G-mD-t69" secondAttribute="leading" id="4me-Ue-KU2"/>
                             <constraint firstItem="cX0-lK-ee6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4zU-Ag-LuP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cX0-lK-ee6" secondAttribute="bottom" constant="183" id="5jB-yJ-dJ3"/>
                             <constraint firstItem="zRc-oN-Kad" firstAttribute="trailing" secondItem="cX0-lK-ee6" secondAttribute="trailing" id="6q5-iV-Ihb"/>
@@ -99,11 +107,13 @@
                             <constraint firstItem="6IZ-7W-iGb" firstAttribute="top" secondItem="o3G-mD-t69" secondAttribute="bottom" constant="16" id="SDd-RB-uCS"/>
                             <constraint firstItem="cX0-lK-ee6" firstAttribute="top" secondItem="Yd5-dq-teF" secondAttribute="bottom" constant="3" id="ZmG-tV-taJ"/>
                             <constraint firstItem="Yd5-dq-teF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="blq-Nk-XPt"/>
+                            <constraint firstItem="o3G-mD-t69" firstAttribute="top" secondItem="WLI-qI-tmt" secondAttribute="bottom" constant="8" symbolic="YES" id="cKC-RH-aLC"/>
                             <constraint firstItem="zRc-oN-Kad" firstAttribute="top" secondItem="cX0-lK-ee6" secondAttribute="bottom" constant="15" id="dCt-XO-6MW"/>
                             <constraint firstItem="zRc-oN-Kad" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dxD-s0-tme"/>
                             <constraint firstItem="cX0-lK-ee6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yd5-dq-teF" secondAttribute="bottom" constant="106" id="eNm-n8-qBC"/>
                             <constraint firstItem="o3G-mD-t69" firstAttribute="leading" secondItem="74u-TW-Jv2" secondAttribute="leading" id="fdt-OE-Dkr"/>
                             <constraint firstItem="o3G-mD-t69" firstAttribute="top" secondItem="zRc-oN-Kad" secondAttribute="bottom" constant="59" id="g7Z-Bh-fNh"/>
+                            <constraint firstItem="WLI-qI-tmt" firstAttribute="trailing" secondItem="o3G-mD-t69" secondAttribute="trailing" id="hO1-ju-vX9"/>
                             <constraint firstItem="74u-TW-Jv2" firstAttribute="top" secondItem="6IZ-7W-iGb" secondAttribute="bottom" constant="8" id="iJF-A3-gXd"/>
                             <constraint firstItem="74u-TW-Jv2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iwu-4s-nQx"/>
                             <constraint firstAttribute="trailing" secondItem="zRc-oN-Kad" secondAttribute="trailing" constant="20" id="jSR-XZ-oVC"/>
@@ -132,6 +142,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="yDo-b6-VwM"/>
                     <connections>
+                        <outlet property="error" destination="WLI-qI-tmt" id="hlR-AY-wHb"/>
                         <outlet property="login" destination="o3G-mD-t69" id="uqy-Gj-kRC"/>
                         <outlet property="passwordField" destination="zRc-oN-Kad" id="tfw-dv-nnk"/>
                         <outlet property="usernameField" destination="cX0-lK-ee6" id="yze-VB-LeP"/>
@@ -1758,8 +1769,8 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CEV-uE-pkl"/>
-        <segue reference="9vk-JT-Ujd"/>
+        <segue reference="Omd-mY-WVB"/>
         <segue reference="dG4-T9-SLc"/>
+        <segue reference="9vk-JT-Ujd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -178,8 +178,6 @@ func logError(error: AnyObject) {
     if let tempUser = PFUser.currentUser() {
         let notification = Notification(content: "\nERROR:\n\(error)", sendToID: (tempUser.objectId)!)
         notification.push()
-    } else {
-        print("\n********** LOGGING WITH PUSH NOTIFICATIONS IS NOT WORKING **********\n")
     }
     
 }

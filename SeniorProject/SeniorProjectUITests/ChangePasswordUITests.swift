@@ -38,8 +38,8 @@ class ChangePasswordUITests: XCTestCase {
         let newPassword = "newpass"
         let settingsButton = app.navigationBars["Home"].buttons["Settings"]
         let signOutButton = app.buttons["Sign out"]
-        let usernameTextField = app.textFields["Username..."]
-        let passwordSecureTextField = app.secureTextFields["Password..."]
+        let usernameTextField = app.textFields["Name"]
+        let passwordSecureTextField = app.secureTextFields["Password"]
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
         
         

@@ -26,10 +26,10 @@ class LoginViewControllerUITests: XCTestCase {
     }
 
     func testCorrectLogIn() {
-        app.textFields["Username..."].tap()
-        app.textFields["Username..."].typeText("thisisaaron")
-        app.secureTextFields["Password..."].tap()
-        app.secureTextFields["Password..."].typeText("pass1234")
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("thisisaaron")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("pass1234")
         
         let login = app.buttons["Login"]
         let existsPredicate = NSPredicate(format: "exists == 1")
@@ -42,17 +42,17 @@ class LoginViewControllerUITests: XCTestCase {
     }
     
     func testIncorrectLogIn(){
-        app.textFields["Username..."].tap()
-        app.textFields["Username..."].typeText("thisisaaron")
-        app.secureTextFields["Password..."].tap()
-        app.secureTextFields["Password..."].typeText("thisisnotmypassword")
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("thisisaaron")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("thisisnotmypassword")
         app.buttons["Login"].tap()
         XCTAssertNotNil(app.buttons["Login"])
     }
     
     func testCorrectPasswordButNoLogin() {
-        app.secureTextFields["Password..."].tap()
-        app.secureTextFields["Password..."].typeText("pass1234")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("pass1234")
         app.buttons["Login"].tap()
         XCTAssertNotNil(app.buttons["Login"])
     }

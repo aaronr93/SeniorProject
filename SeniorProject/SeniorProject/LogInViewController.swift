@@ -15,6 +15,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var error: UILabel!
     
     func login(completion: (success: Bool) -> Void) {
         //checks to see if the user's account has been deleted or not
@@ -29,11 +30,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         let deleted = currentUser.valueForKey("deleted") as! Bool
                         if !deleted {
                             completion(success: true)
-                        } else if deleted {
+                        } else {
+                            let currentUser = PFUser.currentUser()!
+                            let notification = Notification(content: "Your account is deleted.", sendToID: currentUser.objectId!)
+                            notification.push()
+                            PFUser.logOut()
                             completion(success: false)
                         }
                     } else {
                         logError("Invalid loging credentials")
+                        completion(success: false)
                     }
                 }
             }
@@ -66,14 +72,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 //so it's a lot easier to instead just not display any username
                 self.clearFields()
             } else {
-                // Account is deleted
+                self.error.hidden = false
                 self.clearFields()
                 self.toggleEnabled(self.login)
-                let currentUser = PFUser.currentUser()!
-                let notification = Notification(content: "Your account is deleted.", sendToID: currentUser.objectId!)
-                notification.push()
-                PFUser.logOut()
-                self.usernameField.becomeFirstResponder()
             }
         }
     }
@@ -87,12 +88,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(false, animated: animated);
     }
     
-    
     override func viewWillAppear(animated: Bool) {
-        
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
@@ -105,10 +103,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        error.hidden = true
+    }
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         
         self.usernameField.delegate = self;
         self.passwordField.delegate = self;
