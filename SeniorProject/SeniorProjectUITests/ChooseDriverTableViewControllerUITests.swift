@@ -15,32 +15,32 @@ class ChooseDriverTableViewControllerUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        app.launch()
-        app.buttons["I want food"].tap()
-        XCUIApplication().tables.staticTexts["Select restaurant..."].tap()
+        XCUIApplication().launch()
+        
 
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        app.navigationBars["New Order"].buttons["Cancel"].tap()
-    }
-
-    func testSelectAnyDriverWithNoDriverPreselected() {
-        let app = XCUIApplication()
-        app.launch()
-        app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Restaurant Name").childrenMatchingType(.Button).element.tap()
-        XCTAssertNil(app.textFields["Restaurant Name"])
-    }
-
-    func testSelectAnyDriverWithDriverPreselected() {
-        let app = XCUIApplication()
         
-        app.launch()
+    }
+
+
+    func testSelectDriver() {
         app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Restaurant Name").childrenMatchingType(.Button).element.tap()
-        XCTAssertNil(app.textFields["Restaurant Name"])
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Select restaurant..."].tap()
+        tablesQuery.staticTexts.elementBoundByIndex(0).tap()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
+        app.sheets["Cancel"].buttons["No"].tap()
+        tablesQuery.staticTexts["Select a driver..."].tap()
+        tablesQuery.staticTexts["Any driver"].tap()
+        tablesQuery.cells.elementBoundByIndex(2).tap()
+        XCUIApplication().tables.cells.elementBoundByIndex(1).tap()
+        app.navigationBars["New Order"].buttons["Cancel"].tap()
+        app.sheets["Cancel"].buttons["Yes"].tap()
+        
     }
 }

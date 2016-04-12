@@ -32,14 +32,21 @@ class SettingsViewControllerUITests: XCTestCase {
         app.navigationBars["Home"].buttons["Settings"].tap()
         app.buttons["Sign out"].tap()
         XCTAssertNotNil(app.buttons["Login"])
+        
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("Testman")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("testpass")
+        app.buttons["Go"].tap()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.navigationBars["Settings"].buttons["Home"].tap()
     }
-
+    
     func testUserNameField() {
         
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
-        app.textFields["add username here"].tap()
-        XCTAssertNotNil(app.textFields["add username here."])
+        app.textFields.elementBoundByIndex(0).tap()
     }
     
     func testPhoneNumberField() {

@@ -10,9 +10,12 @@ import XCTest
 import Parse
 
 class MyOrdersUITests: XCTestCase {
-    
+    var app: XCUIApplication!
     override func setUp() {
         super.setUp()
+        continueAfterFailure = false
+        app = XCUIApplication()
+        app.launch()
     }
     
     override func tearDown() {

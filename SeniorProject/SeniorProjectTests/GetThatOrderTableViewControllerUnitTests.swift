@@ -19,12 +19,12 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("getThatOrder") as! GetThatOrderTableViewController
         
-        viewController.order.orderID = "6cnOqhQqBC"
-        viewController.order.deliverToID = "KjAy8efYXY"
-        viewController.order.deliverTo = "znafz"
+        viewController.order.orderID = "uUfEtg5Bcy"
+        viewController.order.deliverToID = "oIVGu99DIm"
+        viewController.order.deliverTo = "Zach Nafziger"
         viewController.order.isAnyDriver = false
         viewController.order.orderState = OrderState.Available
-        viewController.order.destination = Destination(name: "My house", id: "D8D2A3H9fo")
+        viewController.order.destination = Destination(name: "42 Wallaby Way, Sydney", id: "Oc5wTWzAXA")
         viewController.order.restaurant = Restaurant(name: "Sheetz")
         viewController.order.restaurant.loc = PFGeoPoint(latitude: 37.388702, longitude: -79.90052)
         
@@ -128,7 +128,7 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
         }
         
         waitForExpectationsWithTimeout(10, handler: { error in
-            XCTAssertNil(error, "Error")
+            XCTAssertNil(error, "Error \(error)")
         })
         
         XCTAssertTrue(viewController.order.orderState == OrderState.Acquired)
@@ -153,7 +153,7 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
         }
        
         waitForExpectationsWithTimeout(10, handler: { error in
-            XCTAssertNil(error, "Error")
+            XCTAssertNil(error, "Error \(error)")
         })
         
         XCTAssert(self.viewController.order.orderState == OrderState.PaidFor)

@@ -24,47 +24,72 @@ class LoginViewControllerUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func signOut(){
+        let app = XCUIApplication()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.buttons["Sign out"].tap()
+    }
+    
+    func signIn(){
+        let app = XCUIApplication()
+        app.textFields["Name"].tap()
+        app.textFields["Name"].typeText("Testman")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("testpass")
+        app.buttons["Go"].tap()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.navigationBars["Settings"].buttons["Home"].tap()
+        
+    }
 
     func testCorrectLogIn() {
+        signOut()
         app.textFields["Name"].tap()
-        app.textFields["Name"].typeText("thisisaaron")
+        app.textFields["Name"].typeText("Testman")
         app.secureTextFields["Password"].tap()
-        app.secureTextFields["Password"].typeText("pass1234")
-        
-        let login = app.buttons["Login"]
-        let existsPredicate = NSPredicate(format: "exists == 1")
-        expectationForPredicate(existsPredicate, evaluatedWithObject: login, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
-        login.tap()
-        
-        app.buttons.allElementsBoundByIndex[1].tap()
-        XCTAssertNotNil(app.buttons["I want food"])
+        app.secureTextFields["Password"].typeText("testpass")
+        app.buttons["Go"].tap()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.navigationBars["Settings"].buttons["Home"].tap()
     }
     
     func testIncorrectLogIn(){
+        signOut()
         app.textFields["Name"].tap()
-        app.textFields["Name"].typeText("thisisaaron")
+        app.textFields["Name"].typeText("Testman")
         app.secureTextFields["Password"].tap()
         app.secureTextFields["Password"].typeText("thisisnotmypassword")
-        app.buttons["Login"].tap()
-        XCTAssertNotNil(app.buttons["Login"])
+        app.buttons["Go"].tap()
+        app.buttons["Create Account"].tap()
+        app.navigationBars["Create Account"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        signIn()
     }
     
     func testCorrectPasswordButNoLogin() {
+        signOut()
         app.secureTextFields["Password"].tap()
         app.secureTextFields["Password"].typeText("pass1234")
-        app.buttons["Login"].tap()
-        XCTAssertNotNil(app.buttons["Login"])
+        app.buttons["Go"].tap()
+        signIn()
     }
     
     func testForZombieAccounts() {
-        app.buttons["Login"].tap()
-        XCTAssertNotNil(app.buttons["Login"])
+        signOut()
+        XCUIApplication().buttons["Login"].tap()        
+        app.buttons["Create Account"].tap()
+        app.navigationBars["Create Account"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+
+        signIn()
     }
     
     func testCreateAccountTap() {
+        signOut()
         app.buttons["Create Account"].tap()
         XCTAssertNotNil(app.textFields["Phone number"])
+        app.navigationBars["Create Account"].childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        
+        signIn()
     }
 
 }

@@ -33,7 +33,7 @@ class ChangePasswordUITests: XCTestCase {
         //in order for this to work, the password must be testpass
         let onOff = [false, true]
         let app = XCUIApplication()
-        let username = "testman"
+        let username = "Testman"
         let password = "testpass"
         let newPassword = "newpass"
         let settingsButton = app.navigationBars["Home"].buttons["Settings"]
