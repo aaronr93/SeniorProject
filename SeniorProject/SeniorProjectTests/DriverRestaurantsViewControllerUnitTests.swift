@@ -28,9 +28,7 @@ class DriverRestaurantsViewControllerUnitTests: XCTestCase {
         XCTAssertNotNil(testVC.prefs)
         XCTAssertNotNil(testVC.POIs)
         XCTAssertNotNil(testVC.driver)
-        XCTAssertNotNil(testVC.currentLocation)
         XCTAssertEqual(testVC.sectionHeaders, ["Restaurants I'll go to", "When I'm available"])
-        
     }
     
     //nothing to test in viewDidLoad
@@ -47,8 +45,6 @@ class DriverRestaurantsViewControllerUnitTests: XCTestCase {
         let testCell = AvailabilityCell()
         testVC.didChangeSwitchState(testCell, isOn: false)
         XCTAssertEqual(testVC.prefs.driverAvailability(),false)
-
-        
     }
     
     func testCurrentlyAvailable(){
@@ -65,7 +61,6 @@ class DriverRestaurantsViewControllerUnitTests: XCTestCase {
         XCTAssertEqual(testVC.currentlyAvailable(future), true)
 
     }
-    
     
     //unable to unit test cellforrow, cellforrestaurants, cell for settings, prepareForSegue, didSelectRowAtIndexPath, markExistingPreference
     

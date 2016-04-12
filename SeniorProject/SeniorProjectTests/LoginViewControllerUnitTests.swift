@@ -55,13 +55,8 @@ class LoginViewControllerUnitTests: XCTestCase {
     
     func testViewDidLoad(){
         testVC.viewDidLoad()
-        XCTAssertEqual(testVC.usernameField.returnKeyType, UIReturnKeyType.Next)
-        XCTAssertEqual(testVC.passwordField.returnKeyType, UIReturnKeyType.Go)
         XCTAssertEqual(testVC.usernameField.borderStyle, UITextBorderStyle.None)
-        
         XCTAssertEqual(testVC.passwordField.borderStyle, UITextBorderStyle.None)
-        
-        XCTAssertEqual(testVC.passwordField.secureTextEntry, true)
     }
     
     //login can't easily be unit tested since it calls asynchronous functions and doesn't return anything, but the functions it calls are tested and it is tested through UI testing

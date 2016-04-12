@@ -22,7 +22,6 @@ class NewOrderVCUnitTests: XCTestCase {
         XCTAssertNotNil(test.order)
         XCTAssertNotNil(test.current)
         XCTAssertNotNil(test.user)
-        XCTAssertNotNil(test.currentLocation)
         XCTAssertNil(test.delegate)
     }
     

@@ -121,19 +121,6 @@ class CreateAccountViewControllerUnitTests: XCTestCase {
         }
     }
     
-    // no easy way to unit test addBorderToTextField
-    
-    func testViewDidLoad(){
-        testVC.viewDidLoad()
-        XCTAssertTrue(testVC.passwordField.secureTextEntry )
-        XCTAssertTrue(testVC.confirmPasswordField.secureTextEntry)
-        XCTAssertEqual(testVC.usernameField.returnKeyType, UIReturnKeyType.Next)
-        XCTAssertEqual(testVC.phoneNumberField.returnKeyType, UIReturnKeyType.Next)
-        XCTAssertEqual(testVC.emailField.returnKeyType, UIReturnKeyType.Next)
-        XCTAssertEqual(testVC.passwordField.returnKeyType, UIReturnKeyType.Next)
-        XCTAssertEqual(testVC.confirmPasswordField.returnKeyType, UIReturnKeyType.Done)
-    }
-    
     //touchesBegan can't be Unit Tested
     
     //prepareForSegue can't be unit tested
