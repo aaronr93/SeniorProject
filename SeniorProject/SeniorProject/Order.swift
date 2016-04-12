@@ -320,6 +320,7 @@ class Order {
                 order.isAnyDriver = false
                 order.OrderState = "Acquired"
                 order.driverToDeliver = PFUser.currentUser()!
+                order.expirationDate = NSDate(timeIntervalSinceNow: 10000000000)
                 self.orderState = OrderState.Acquired
                 order.saveInBackground()
                 
