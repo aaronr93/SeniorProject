@@ -25,7 +25,7 @@ class ChooseDriverTVCUnitTests: XCTestCase {
         XCTAssertTrue(test.chosenDriver.isEmpty)
         XCTAssertTrue(test.chosenDriverID.isEmpty)
         XCTAssertFalse(test.isAnyDriver)
-        XCTAssertNil(test.delegate)
+        XCTAssertNotNil(test.delegate)
     }
     
     func test_numberOfSections() {
@@ -36,7 +36,7 @@ class ChooseDriverTVCUnitTests: XCTestCase {
         XCTAssert(sections == 1)
         
         test.drivers.addDriver(PFUser())
-        XCTAssert(test.drivers.availabilities.count == 1)
+        XCTAssert(test.drivers.drivers.count == 1)
         sections = test.numberOfSectionsInTableView(test.tableView)
         XCTAssert(sections == 2)
     }
@@ -46,7 +46,7 @@ class ChooseDriverTVCUnitTests: XCTestCase {
         XCTAssert(test.tableView(test.tableView, numberOfRowsInSection: 0) == 1)
         
         test.drivers.addDriver(PFUser())
-        XCTAssert(test.drivers.availabilities.count == 1)
+        XCTAssert(test.drivers.drivers.count == 1)
         XCTAssert(test.tableView(test.tableView, numberOfRowsInSection: 1) == 1)
     }
     

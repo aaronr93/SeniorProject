@@ -63,6 +63,7 @@ class OrderUnitTests: XCTestCase {
     }
     
     func testFoodItemsToPFObjects(){
+        test.orderID = "uUfEtg5Bcy"
         let item1 = Food(name: "test", description: "test")
         let item2 = Food(name: "test2", description: "test2")
         let results:[PFObject] = test.foodItemsToPFObjects([item1, item2])

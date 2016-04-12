@@ -127,7 +127,7 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
             readyExpectation.fulfill()
         }
         
-        waitForExpectationsWithTimeout(5, handler: { error in
+        waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
         
@@ -152,7 +152,7 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
             readyExpectation.fulfill()
         }
        
-        waitForExpectationsWithTimeout(5, handler: { error in
+        waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
         

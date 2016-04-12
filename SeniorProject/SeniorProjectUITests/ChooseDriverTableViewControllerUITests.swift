@@ -17,7 +17,8 @@ class ChooseDriverTableViewControllerUITests: XCTestCase {
         continueAfterFailure = false
         app.launch()
         app.buttons["I want food"].tap()
-        app.tables.otherElements.containingType(.StaticText, identifier:"Restaurant Name").childrenMatchingType(.Button).element.tap()
+        XCUIApplication().tables.staticTexts["Select restaurant..."].tap()
+
     }
     
     override func tearDown() {

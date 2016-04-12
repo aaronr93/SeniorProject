@@ -63,7 +63,7 @@ class Order {
     }
     
     func foodItemsToPFObjects(foodItems: [Food]) -> [PFObject] {
-        let order = PFOrder(withoutDataWithObjectId: self.orderID)
+        let order = PFOrder(withoutDataWithClassName: "Order", objectId: self.orderID)
         var parseFoodItems = [PFObject]()
         for foodItem in foodItems {
             let orderedItem = PFOrderedItems()

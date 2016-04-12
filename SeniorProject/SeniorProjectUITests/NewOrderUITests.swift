@@ -32,19 +32,24 @@ class NewOrderUITests: XCTestCase {
         let selectRestaurantStaticText = tablesQuery.staticTexts["Select restaurant..."]
         //not selecting a restaurant - none selected
         selectRestaurantStaticText.tap()
-        let newOrderButton = app.navigationBars["Select Restaurant"].buttons["New Order"]
-        newOrderButton.tap()
+        XCUIApplication().navigationBars["Choose a restaurant"].buttons["New Order"].tap()
+        
         XCTAssertNotNil(selectRestaurantStaticText) //if text still exists, a restaurant hasn't been selected
         //selecting a restaurant
         selectRestaurantStaticText.tap()
-        let northCountryBrewingCompanyStaticText = tablesQuery.staticTexts["North Country Brewing Company"]
-        northCountryBrewingCompanyStaticText.tap()
-        XCTAssertNotNil(northCountryBrewingCompanyStaticText)
-        northCountryBrewingCompanyStaticText.tap()
-        XCTAssertNotNil(northCountryBrewingCompanyStaticText)
-        newOrderButton.tap()
+        let restaurantToSelect = tablesQuery.staticTexts.elementBoundByIndex(0)
+        let exists = NSPredicate(format: "exists == 1")
+        
+        expectationForPredicate(exists, evaluatedWithObject: restaurantToSelect, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        XCTAssertNotNil(restaurantToSelect)
+        restaurantToSelect.tap()
         //not selecting a restaurant - already something selected
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
     }
     
     func testAddFoodItem(){
@@ -63,6 +68,7 @@ class NewOrderUITests: XCTestCase {
         tablesQuery.textFields.containingType(.Button, identifier:"Clear text").element
         app.navigationBars["Food item"].buttons["Done"].tap()
         XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
+        
                         
     }
     
@@ -81,6 +87,11 @@ class NewOrderUITests: XCTestCase {
         app.navigationBars["Food item"].buttons["Done"].tap()
         XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
     }
     
     
@@ -98,6 +109,11 @@ class NewOrderUITests: XCTestCase {
         tablesQuery.staticTexts["Any driver"].tap()
         XCTAssertNotNil(tablesQuery.staticTexts["Select a driver..."]) //should automatically be taken back
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
         
         
         
@@ -114,12 +130,17 @@ class NewOrderUITests: XCTestCase {
         tablesQuery.textFields["Custom delivery location..."].tap()
         tablesQuery2.cells.containingType(.Button, identifier:"Add").childrenMatchingType(.TextField).element.typeText("test")
         tablesQuery.buttons["Add"].tap()
-        app.navigationBars["Select Delivery Location"].buttons["New Order"].tap()
+        app.navigationBars["Choose delivery location"].buttons["New Order"].tap()
         app.tables.staticTexts["Select delivery location..."].tap()
         //new table item should exist, tapping it should not break
         XCTAssertNotNil(app.tables.element.cells.elementBoundByIndex(1))
         app.tables.element.cells.elementBoundByIndex(1).tap()
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
         
     }
     
@@ -150,6 +171,11 @@ class NewOrderUITests: XCTestCase {
         }
         
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
         
     }
     
@@ -229,6 +255,11 @@ class NewOrderUITests: XCTestCase {
                                 // if not, check we're still on the new order page
                                 XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
                                 app.navigationBars["New Order"].buttons["Cancel"].tap()
+                                let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+                                let exists = NSPredicate(format: "exists == 1")
+                                expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+                                waitForExpectationsWithTimeout(5, handler: nil)
+                                yesButton.tap()
                             }
                             
                         }
@@ -243,6 +274,13 @@ class NewOrderUITests: XCTestCase {
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
         app.navigationBars["New Order"].buttons["Cancel"].tap()
+        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+        waitForExpectationsWithTimeout(5, handler: nil)
+        yesButton.tap()
+        
+        
     }
 
 }
