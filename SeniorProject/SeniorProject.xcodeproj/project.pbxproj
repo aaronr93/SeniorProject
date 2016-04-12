@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3611FFB71C6AAA7E00971C2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */; };
-		363103971CA05BE500536DE4 /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363103961CA05BE500536DE4 /* CurrentLocation.swift */; };
 		3641A5961C8E28020046BC97 /* DeliveryLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5951C8E28020046BC97 /* DeliveryLocationTableViewController.swift */; };
 		3641A5981C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */; };
 		3641A59A1C8E55E60046BC97 /* CustomerDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */; };
@@ -127,7 +126,6 @@
 
 /* Begin PBXFileReference section */
 		3611FFB61C6AAA7E00971C2A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		363103961CA05BE500536DE4 /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 		3641A5951C8E28020046BC97 /* DeliveryLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryLocationTableViewController.swift; sourceTree = "<group>"; };
 		3641A5971C8E41220046BC97 /* CustomDeliveryLocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDeliveryLocationTableViewCell.swift; sourceTree = "<group>"; };
 		3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerDestinations.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 				3641A5991C8E55E60046BC97 /* CustomerDestinations.swift */,
 				9B3202521C97599100749264 /* Notification.swift */,
 				36B92B6D1C9B960F00E29A3B /* PointsOfInterest.swift */,
-				363103961CA05BE500536DE4 /* CurrentLocation.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -699,7 +696,6 @@
 				3641A59C1C8E568C0046BC97 /* Destination.swift in Sources */,
 				36EF35441CA31FE400C160BE /* PFUnavailableRestaurant.swift in Sources */,
 				36EF354A1CA39AE500C160BE /* PFFood.swift in Sources */,
-				363103971CA05BE500536DE4 /* CurrentLocation.swift in Sources */,
 				36D08F781C7A73B2005B1E90 /* Drivers.swift in Sources */,
 				9B9A0EF91C7D4D4800983BA9 /* MyOrderTableViewController.swift in Sources */,
 				36B92B6E1C9B960F00E29A3B /* PointsOfInterest.swift in Sources */,

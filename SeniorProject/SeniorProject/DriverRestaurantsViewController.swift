@@ -8,17 +8,19 @@
 
 import UIKit
 import Parse
+import MapKit
+import CoreLocation
 
 class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDelegate {
+    let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
     let prefs = DriverRestaurantPreferences()
     let POIs = PointsOfInterest()
     let driver = PFUser.currentUser()!
     var timer: NSTimer?
-    var currentLocation: CurrentLocation!
-    let sectionHeaders = ["Restaurants I'll go to", "When I'm available"]
-    
     var isAvailable = false
     var isCurrentlyRefreshing = false
+    
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,9 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
         refreshControl?.addTarget(self, action: #selector(DriverRestaurantsViewController.updateRestaurants), forControlEvents: .ValueChanged)
         refreshControl?.beginRefreshing()
         updateRestaurants()
-        timer = NSTimer.scheduledTimerWithTimeInterval(60.0,
-                                                       target: self,
+        timer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self,
                                                        selector: #selector(DriverRestaurantsViewController.updateTimer(_:)),
-                                                       userInfo: nil,
-                                                       repeats: true)
+                                                       userInfo: nil, repeats: true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,8 +42,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 2    // Settings and Restaurants sections
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,7 +132,12 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
         } else if row == 1 {
             // "Expiration time" cell
             let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: indexPath)
-            expirationCell.textLabel!.text! = "Expires in"
+            if let titleText = expirationCell.textLabel {
+                titleText.text = "Expires in"
+            }
+            if let expirationText = expirationCell.detailTextLabel {
+                expirationText.text = prefs.selectedExpirationTime
+            }
             
             if !currentlyAvailable(prefs.availability!.expirationDate) {
                 // If the timer has ended
@@ -199,25 +203,33 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     
     func updateRestaurants() {
         isCurrentlyRefreshing = true
-        POIs.clear()
-        POIs.searchFor("Food", inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
-            if result {
-                // Success
-                self.prefs.getBlacklistFromParse() { result in
-                    if result {
-                        self.isCurrentlyRefreshing = false
-                        self.tableView.reloadData()
-                        if let refresh = self.refreshControl {
-                            refresh.endRefreshing()
+        activity.startAnimating()
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (loc: PFGeoPoint?, error: NSError?) in
+            if error == nil {
+                // Found current location
+                if let loc = loc {
+                    let location = CLLocation(latitude: loc.latitude, longitude: loc.longitude)
+                    let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+                    let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                    self.POIs.clear()
+                    self.POIs.searchFor("Food", inRegion: region, withLocation: location) { result in
+                        if result {
+                            // Success
+                            self.isCurrentlyRefreshing = false
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.activity.stopAnimating()
+                                self.tableView.reloadData()
+                                if let refresh = self.refreshControl {
+                                    refresh.endRefreshing()
+                                }
+                            }
+                        } else {
+                            // Some kind of error occurred while trying to
+                            // find nearby locations.
+                            logError("Couldn't find searched locations")
                         }
-                    } else {
-                        // No restaurants marked unavailable
                     }
                 }
-            } else {
-                // Some kind of error occurred while trying to
-                // find nearby locations.
-                logError("Couldn't find searched locations")
             }
         }
     }

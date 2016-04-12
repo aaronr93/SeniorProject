@@ -130,8 +130,15 @@ class MyOrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: //"Requests I've Sent"
-            return sectionHeaders[0]
+            if ordersISent.count == 0 {
+                return "No Sent Requests"
+            } else {
+                return sectionHeaders[0]
+            }
         case 1: //"Requests I'm Picking Up"
+            if ordersIReceived.count == 0 {
+                return "No Picked Up Requests"
+            }
             return sectionHeaders[1]
         default: //shouldn't get here
             return ""
@@ -152,7 +159,7 @@ class MyOrdersViewController: UITableViewController {
         
         let restaurantName = order.restaurantName
         
-        var username = "Not Available"
+        var username = "Any driver"
         if section == 0 {
             if let user = order.driverToDeliver as? PFUser {
                 if let usernameText = user.username {

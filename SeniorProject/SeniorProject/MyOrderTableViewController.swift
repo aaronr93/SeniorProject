@@ -83,8 +83,13 @@ class MyOrderTableViewController: UITableViewController {
                 //2nd section lists food items
                 return order.foodItems.count
             case Section.Settings.rawValue:
-                //3 rows in 3rd section -- 'delivered by', 'location', and 'expires in'
-                return deliverySectionTitles.count
+                // If the order hasn't been acquired, show expiration date.
+                // otherwise, the order doesn't expire.
+                if order.orderState != OrderState.Available {
+                    return 2
+                } else {
+                    return 3
+                }
             default:
                 return 0
         }

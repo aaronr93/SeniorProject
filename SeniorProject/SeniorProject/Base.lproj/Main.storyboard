@@ -853,7 +853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PwX-69-539" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522" y="378"/>
+            <point key="canvasLocation" x="485" y="378"/>
         </scene>
         <!--New Order-->
         <scene sceneID="D7a-lw-xZy">
@@ -1523,6 +1523,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="BgC-CG-Bre">
+                            <rect key="frame" x="0.0" y="200" width="600" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="availability" focusStyle="custom" id="Y4W-SJ-orO" customClass="AvailabilityCell" customModule="SeniorProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="600" height="44"/>
@@ -1611,6 +1615,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="Restaurants" id="EyP-5S-v1s"/>
                     <connections>
+                        <outlet property="activity" destination="BgC-CG-Bre" id="frK-1Q-JTB"/>
                         <segue destination="pyO-EU-ybm" kind="show" identifier="expiresInSegue" id="dG4-T9-SLc"/>
                     </connections>
                 </tableViewController>

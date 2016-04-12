@@ -20,12 +20,12 @@ class GetThatOrderTableViewControllerUnitTests: XCTestCase {
         viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("getThatOrder") as! GetThatOrderTableViewController
         
         viewController.order.orderID = "6cnOqhQqBC"
-        viewController.order.deliverToID = "dhCgFcy0zd"
-        viewController.order.deliverTo = "aaronr"
+        viewController.order.deliverToID = "KjAy8efYXY"
+        viewController.order.deliverTo = "znafz"
         viewController.order.isAnyDriver = false
         viewController.order.orderState = OrderState.Available
-        viewController.order.destination = Destination(name: "My house", id: "jzLz3rLq0A")
-        viewController.order.restaurant = Restaurant(name: "Pilot Travel Center")
+        viewController.order.destination = Destination(name: "My house", id: "D8D2A3H9fo")
+        viewController.order.restaurant = Restaurant(name: "Sheetz")
         viewController.order.restaurant.loc = PFGeoPoint(latitude: 37.388702, longitude: -79.90052)
         
     }

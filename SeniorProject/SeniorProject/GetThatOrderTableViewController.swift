@@ -119,8 +119,14 @@ class GetThatOrderTableViewController: UITableViewController {
             return 1
         case 1: //number of food items in order
             return order.foodItems.count
-        case 2: //3 -- 'deliver to', 'location', and 'expires in'
-            return deliverySectionTitles.count
+        case 2:
+            // If the order hasn't been acquired, show expiration date.
+            // otherwise, the order doesn't expire.
+            if order.orderState != OrderState.Available {
+                return 2
+            } else {
+                return 3
+            }
         default:
             return 0
         }

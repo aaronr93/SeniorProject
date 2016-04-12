@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import MapKit
+import CoreLocation
 
 protocol RestaurantsNewOrderDelegate {
     func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController)
@@ -20,31 +22,39 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
     var delegate: NewOrderViewController!
     var selectedSomething: Bool = false
     
-    var currentLocation: CurrentLocation!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(RestaurantsNewOrderTableViewController.addLocalPOIs), forControlEvents: .ValueChanged)
-        refreshControl?.beginRefreshing()
         addLocalPOIs()
     }
     
     func addLocalPOIs() {
         // Search for nearby locations related to the argument for `searchFor`
-        POIs.clear()
-        POIs.searchFor("Food", inRegion: currentLocation.region, withLocation: currentLocation.loc) { result in
-            if result {
-                // Success
-                self.tableView.reloadData()
-                if let refresh = self.refreshControl {
-                    refresh.endRefreshing()
+        refreshControl?.beginRefreshing()
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (loc: PFGeoPoint?, error: NSError?) in
+            if error == nil {
+                // Found current location
+                if let loc = loc {
+                    let location = CLLocation(latitude: loc.latitude, longitude: loc.longitude)
+                    let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
+                    let region = MKCoordinateRegion(center: location.coordinate, span: span)
+                    self.POIs.clear()
+                    self.POIs.searchFor("Food", inRegion: region, withLocation: location) { result in
+                        if result {
+                            // Success
+                            self.tableView.reloadData()
+                            if let refresh = self.refreshControl {
+                                refresh.endRefreshing()
+                            }
+                        } else {
+                            // Some kind of error occurred while trying to
+                            // find nearby locations.
+                            logError("Couldn't find searched locations")
+                        }
+                    }
                 }
-            } else {
-                // Some kind of error occurred while trying to
-                // find nearby locations.
-                logError("Couldn't find searched locations")
             }
         }
     }

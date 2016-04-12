@@ -130,7 +130,7 @@ class ValidationUnitTests: XCTestCase {
         XCTAssertFalse(usernameExistsInParse((testUsername)))
         
         //existing username
-        XCTAssertTrue(usernameExistsInParse("kamkamkam"))
+        XCTAssertTrue(usernameExistsInParse("kamsibler"))
         
         
     }
