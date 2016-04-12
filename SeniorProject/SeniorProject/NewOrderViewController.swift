@@ -24,25 +24,21 @@ class NewFoodItemCell: UITableViewCell {
 }
 
 class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, ChooseDriverDelegate, RestaurantsNewOrderDelegate, DeliveryLocationDelegate {
-    
-    var delegate: NewOrderViewDelegate!
-    
-    @IBOutlet weak var submitButton: UIButton!
-    
     var sectionHeaders = ["Restaurant", "Food", "Delivery"]
     var deliverySectionTitles = ["Delivered by", "Location", "Expires in"]
     var deliverySectionPrompts = ["Select a driver...", "Select delivery location...", "Select expiration time..."]
+    var delegate: NewOrderViewDelegate!
     let order = Order()
     var current = NSIndexPath()
     let user = PFUser.currentUser()!
-    
-    var currentLocation: CurrentLocation!
     
     enum Section: Int {
         case Restaurant = 0
         case Food = 1
         case Settings = 2
     }
+    
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         submitButton.setTitleColor(UIColor.grayColor(), forState: .Disabled)
@@ -324,9 +320,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
-            // Pass data to tell which driver should be selected by default
             chooseDriver.delegate = self
-            // TODO: Pass the current location
         }
         if segue.identifier == "chooseExpiration" {
             let chooseExpiration = segue.destinationViewController as! ExpiresInViewController
@@ -337,12 +331,10 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
         if segue.identifier == "chooseLocation" {
             let chooseLocation = segue.destinationViewController as! DeliveryLocationTableViewController
             chooseLocation.delegate = self
-            // TODO: Pass the current location
         }
         if segue.identifier == "chooseRestaurant" {
             let chooseRestaurant = segue.destinationViewController as! RestaurantsNewOrderTableViewController
             chooseRestaurant.delegate = self
-            chooseRestaurant.currentLocation = currentLocation
         }
         if segue.identifier == "editFoodItem" {
             let newFoodItemVC = segue.destinationViewController as! NewFoodItemTableViewController
@@ -353,21 +345,17 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
                 newFoodItemVC.foodDescriptionText = self.order.foodItems[(self.tableView.indexPathForSelectedRow?.row)!].description!
                 newFoodItemVC.index = self.tableView.indexPathForSelectedRow?.row
             }
-            
             newFoodItemVC.delegate = self
         }
     }
     
     @IBAction func submit(sender: UIButton) {
-        
-        sender.enabled = false // Prevents multiple rapid submissions (accidentally?)
-        
-        order.create { (success) -> Void in
+        sender.enabled = false // Prevents multiple rapid submissions
+        order.create { success in
             if success {
                 self.delegate.orderSaved(self)
             } else {
                 sender.enabled = true
-                //self.delegate.cancelNewOrder(self)
             }
         }
     }

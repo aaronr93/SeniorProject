@@ -19,7 +19,6 @@ class DriverOrdersViewController: UITableViewController {
     var sectionHeaders = ["Requests For Me", "Requests For Anyone"]
     var driverOrders = [PFOrder]()
     var anyDriverOrders = [PFOrder]()
-    var currentLocation: CurrentLocation!
     
     enum sectionTypes: Int {
         case driverOrders = 0
@@ -44,9 +43,17 @@ class DriverOrdersViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case sectionTypes.driverOrders.rawValue:
-            return sectionHeaders[0] //'requests for me'
+            if driverOrders.count == 0 {
+                return "No requests for me"
+            } else {
+                return sectionHeaders[0] //'requests for me'
+            }
         case sectionTypes.anyDriverOrders.rawValue:
-            return sectionHeaders[1] //'requests for anyone'
+            if anyDriverOrders.count == 0 {
+                return "No requests for anyone"
+            } else {
+                return sectionHeaders[1] //'requests for anyone'
+            }
         default: //shouldn't get here
             return ""
         }
@@ -65,7 +72,7 @@ class DriverOrdersViewController: UITableViewController {
         
         let restaurantName = order.restaurantName
         
-        var userName: String = "Not Available"
+        var userName: String = "Any driver"
         if let user = order.OrderingUser as? PFUser {
             if let userNameText = user.username {
                 userName = userNameText

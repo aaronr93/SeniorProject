@@ -202,7 +202,7 @@ class Order {
                             
                             let doesFoodExistQuery = PFQuery(className: "Food")
                             doesFoodExistQuery.whereKey("restaurant", equalTo: self.restaurant.name)
-                            doesFoodExistQuery.whereKey("name", equalTo: foodItem.name!.lowercaseString)
+                            doesFoodExistQuery.whereKey("name", equalTo: foodItem.name!)
                             
                             doesFoodExistQuery.findObjectsInBackgroundWithBlock({ (results, error) -> Void in
                                 if error == nil {
@@ -225,7 +225,7 @@ class Order {
                                         } else {
                                             // Add to ordered item and food
                                             let foodItemForClass = PFFood()
-                                            foodItemForClass.name = foodItem.name!.lowercaseString
+                                            foodItemForClass.name = foodItem.name!
                                             foodItemForClass.restaurant = self.restaurant.name
                                             
                                             foodItemForClass.saveInBackgroundWithBlock({ (success, error) -> Void in
@@ -424,6 +424,19 @@ class Order {
                 
                 completion(true)
             }
+        }
+    }
+    
+    func isEmpty() -> Bool {
+        if restaurant.name == "Select restaurant..." &&
+            orderID == "" &&
+            expiresIn == "" &&
+            deliverTo == "" && deliverToID == "" &&
+            deliveredBy == "" && deliveredByID == "" &&
+            destination.name == "" && destination.id == "" {
+            return true
+        } else {
+            return false
         }
     }
 }
