@@ -27,10 +27,4 @@ class DriversOrdersUITests: XCTestCase {
         app.navigationBars["Home"].buttons["My orders"].tap()
         
     }
-    
-    
-    
-    
-    
-
 }
