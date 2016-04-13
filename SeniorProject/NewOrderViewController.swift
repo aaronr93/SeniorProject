@@ -266,7 +266,10 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
             switch indexPath.row {
             case 0:
                 // Driver field
-                performSegueWithIdentifier("chooseDriver", sender: self)
+                if(order.restaurant.name != "Select restaurant...") {//have to choose a restaurant before a driver
+                //since driver display logic is dependent upon restaurant chosen (due to blacklists)
+                    performSegueWithIdentifier("chooseDriver", sender: self)
+                }
             case 1:
                 // Location field
                 performSegueWithIdentifier("chooseLocation", sender: self)
@@ -321,6 +324,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "chooseDriver" {
             let chooseDriver = segue.destinationViewController as! ChooseDriverTableViewController
+            chooseDriver.drivers.restaurant = self.order.restaurant.name
             chooseDriver.delegate = self
         }
         if segue.identifier == "chooseExpiration" {

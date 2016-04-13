@@ -72,14 +72,16 @@ class Drivers {
         let unavailableQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
         unavailableQuery.includeKey("driverAvailability.driver")
         unavailableQuery.whereKey("driverAvailability", containedIn: availabilities)
-        unavailableQuery.whereKey("restaurant", notEqualTo: restaurant!)
+        unavailableQuery.whereKey("restaurant", equalTo: restaurant!)
         unavailableQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 if let driversList = objects as? [PFUnavailableRestaurant] {
                     for item in driversList {
                         if let driverAvailability = item.driverAvailability as? PFDriverAvailability {
-                            if let driver = driverAvailability.driver as? PFUser {
-                                self.findAndRemoveUnavailable(driver)
+                            if self.restaurant == item.restaurant {
+                                if let driver = driverAvailability.driver as? PFUser {
+                                    self.findAndRemoveUnavailable(driver)
+                                }
                             }
                         }
                     }
