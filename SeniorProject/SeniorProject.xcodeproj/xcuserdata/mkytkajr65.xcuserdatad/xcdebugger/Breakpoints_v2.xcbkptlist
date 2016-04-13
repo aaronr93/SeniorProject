@@ -495,7 +495,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "278"
             endingLineNumber = "278"
-            landmarkName = "prepareForSegue(_:sender:)"
+            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -511,7 +511,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
             endingLineNumber = "284"
-            landmarkName = "viewWillDisappear(_:)"
+            landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -673,38 +673,6 @@
             endingLineNumber = "37"
             landmarkName = "addLocalPOIs()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SeniorProject.RestaurantsNewOrderTableViewController.addLocalPOIs () -&gt; ()"
-                  moduleName = "SeniorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkytkajr65/Desktop/SeniorProject/SeniorProject/SeniorProject/RestaurantsNewOrderTableViewController.swift"
-                  timestampString = "482102174.550998"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "73">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SeniorProject.RestaurantsNewOrderTableViewController.(addLocalPOIs () -&gt; ()).(closure #1)"
-                  moduleName = "SeniorProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mkytkajr65/Desktop/SeniorProject/SeniorProject/SeniorProject/RestaurantsNewOrderTableViewController.swift"
-                  timestampString = "482102174.5512"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "38"
-                  endingLineNumber = "38"
-                  offsetFromSymbolStart = "26">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -800,6 +768,22 @@
             startingLineNumber = "15"
             endingLineNumber = "15"
             landmarkName = "setUp()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeniorProject/DriverRestaurantsViewController.swift"
+            timestampString = "482205639.282018"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "cellsForSettings(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
