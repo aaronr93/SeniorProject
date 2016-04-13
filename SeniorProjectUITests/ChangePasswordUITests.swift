@@ -140,7 +140,7 @@ class ChangePasswordUITests: XCTestCase {
                             return true
                         }
                         sleep(2)
-                        app.navigationBars["Foodini.ChangePasswordView"].buttons["Settings"].tap()
+                        XCUIApplication().navigationBars["Foodini.ChangePasswordView"].buttons["Settings"].tap()
                         signOutButton.tap()
                         usernameTextField.tap()
                         usernameTextField.typeText(username)
