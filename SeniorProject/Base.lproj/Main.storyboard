@@ -10,7 +10,7 @@
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -172,7 +172,7 @@
         <!--Home-->
         <scene sceneID="ewL-Ya-qpK">
             <objects>
-                <viewController id="k5h-Rh-sQm" customClass="HomeViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="k5h-Rh-sQm" customClass="HomeViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iXm-vd-WFw"/>
                         <viewControllerLayoutGuide type="bottom" id="Xtd-Ya-hm9"/>
@@ -253,7 +253,7 @@
         <!--Settings-->
         <scene sceneID="4CV-U9-Zw4">
             <objects>
-                <viewController id="o8a-E2-DZA" customClass="SettingsViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="o8a-E2-DZA" customClass="SettingsViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KvJ-zb-5sU"/>
                         <viewControllerLayoutGuide type="bottom" id="kbj-vj-TRP"/>
@@ -412,7 +412,7 @@
         <!--Change Password View Controller-->
         <scene sceneID="2pe-EE-vTM">
             <objects>
-                <viewController id="0mU-V7-X91" customClass="ChangePasswordViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0mU-V7-X91" customClass="ChangePasswordViewController" customModule="Foodini" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jwq-KA-wmg"/>
                         <viewControllerLayoutGuide type="bottom" id="oit-Fo-5fR"/>
@@ -521,7 +521,7 @@
         <!--Create Account 1-->
         <scene sceneID="xiX-rP-QNB">
             <objects>
-                <viewController title="Create Account 1" id="bsD-ip-mg7" customClass="CreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
+                <viewController title="Create Account 1" id="bsD-ip-mg7" customClass="CreateAccountViewController" customModule="Foodini" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u7h-q5-dZP"/>
                         <viewControllerLayoutGuide type="bottom" id="XKW-YR-rZH"/>
@@ -668,7 +668,7 @@
         <!--Create Account 2-->
         <scene sceneID="p6D-Vn-eww">
             <objects>
-                <viewController title="Create Account 2" id="LZA-1I-Abq" customClass="FinishCreateAccountViewController" customModule="SeniorProject" sceneMemberID="viewController">
+                <viewController title="Create Account 2" id="LZA-1I-Abq" customClass="FinishCreateAccountViewController" customModule="Foodini" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nCE-fn-8CR"/>
                         <viewControllerLayoutGuide type="bottom" id="6Gp-ok-1lL"/>
@@ -826,7 +826,7 @@
         <!--Init View Controller-->
         <scene sceneID="eUf-A8-QLn">
             <objects>
-                <viewController id="XhG-6H-hFa" customClass="InitViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XhG-6H-hFa" customClass="InitViewController" customModule="Foodini" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SAY-VY-hSN"/>
                         <viewControllerLayoutGuide type="bottom" id="8yc-Wr-5uB"/>
@@ -858,13 +858,13 @@
         <!--New Order-->
         <scene sceneID="D7a-lw-xZy">
             <objects>
-                <tableViewController storyboardIdentifier="newOrder" id="Bxg-Sp-IY2" customClass="NewOrderViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="newOrder" id="Bxg-Sp-IY2" customClass="NewOrderViewController" customModule="Foodini" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="E3D-Wq-0oB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sg8-4a-EXM">
-                            <rect key="frame" x="0.0" y="256" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="320" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Submit"/>
@@ -873,8 +873,8 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="chooseRestaurantCell" id="WdE-IY-aDx" customClass="ChooseRestaurantCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="chooseRestaurantCell" id="WdE-IY-aDx" customClass="ChooseRestaurantCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WdE-IY-aDx" id="WJ1-Hp-iYA">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -892,8 +892,8 @@
                                     <outlet property="name" destination="qMr-DZ-DgX" id="J67-Oa-cbe"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newFoodCell" textLabel="gKJ-P8-IRU" detailTextLabel="142-Wc-gJV" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="Pja-UL-4DF" customClass="NewFoodItemCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="600" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newFoodCell" textLabel="gKJ-P8-IRU" detailTextLabel="142-Wc-gJV" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="Pja-UL-4DF" customClass="NewFoodItemCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pja-UL-4DF" id="HjM-dk-Rri">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="55"/>
@@ -921,7 +921,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="newDeliveryCell" textLabel="8pD-dF-v9Z" detailTextLabel="OHU-Q0-GkW" style="IBUITableViewCellStyleValue1" id="C6T-4k-s0c">
-                                <rect key="frame" x="0.0" y="150" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="214" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C6T-4k-s0c" id="Mip-Pk-XC9">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -944,7 +944,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="addNewFoodItem" textLabel="UdD-aZ-siZ" style="IBUITableViewCellStyleDefault" id="9ur-xx-xqS">
-                                <rect key="frame" x="0.0" y="194" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="258" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ur-xx-xqS" id="Pei-KF-WZS">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -991,14 +991,14 @@
         <!--My Orders-->
         <scene sceneID="KfZ-1I-Q8F">
             <objects>
-                <tableViewController storyboardIdentifier="myOrders" id="8Eh-wK-row" customClass="MyOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myOrders" id="8Eh-wK-row" customClass="MyOrdersViewController" customModule="Foodini" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KI5-cq-vSN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="order" id="vnM-0A-vEe" customClass="OrderCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="order" id="vnM-0A-vEe" customClass="OrderCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vnM-0A-vEe" id="mYz-ma-lKI">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -1055,14 +1055,14 @@
         <!--Choose Driver-->
         <scene sceneID="7Cb-2B-tEC">
             <objects>
-                <tableViewController storyboardIdentifier="chooseDrivers" id="J97-a9-9gJ" userLabel="Choose Driver" customClass="ChooseDriverTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="chooseDrivers" id="J97-a9-9gJ" userLabel="Choose Driver" customClass="ChooseDriverTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Yis-C2-4HB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="anyDriver" textLabel="xup-r5-gMh" style="IBUITableViewCellStyleDefault" id="zY4-uj-QhY">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zY4-uj-QhY" id="1Kj-hi-nOG">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1078,8 +1078,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="driver" textLabel="Im0-qI-Lz8" style="IBUITableViewCellStyleDefault" id="Zr4-TH-M85" customClass="DriverCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="driver" textLabel="Im0-qI-Lz8" style="IBUITableViewCellStyleDefault" id="Zr4-TH-M85" customClass="DriverCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zr4-TH-M85" id="dsT-Ot-11H">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1112,7 +1112,7 @@
         <!--Expires In-->
         <scene sceneID="o7t-BG-Coc">
             <objects>
-                <viewController title="Expires In" id="pyO-EU-ybm" customClass="ExpiresInViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Expires In" id="pyO-EU-ybm" customClass="ExpiresInViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mLr-ym-mhX"/>
                         <viewControllerLayoutGuide type="bottom" id="y3a-p3-9Ow"/>
@@ -1143,14 +1143,14 @@
         <!--Select Restaurant-->
         <scene sceneID="WhK-8U-rF1">
             <objects>
-                <tableViewController storyboardIdentifier="chooseRestaurant" title="Select Restaurant" id="uPO-o4-vEz" customClass="RestaurantsNewOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="chooseRestaurant" title="Select Restaurant" id="uPO-o4-vEz" customClass="RestaurantsNewOrderTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WWL-iy-jtE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" textLabel="QDl-W9-d5b" detailTextLabel="SC0-z7-IFm" style="IBUITableViewCellStyleValue1" id="LRX-1j-iDb">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LRX-1j-iDb" id="I3t-gw-nrV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1188,7 +1188,7 @@
         <!--Food item-->
         <scene sceneID="NIP-ps-NzL">
             <objects>
-                <tableViewController storyboardIdentifier="newFoodItem" title="Food item" id="C1F-Kf-Sbh" customClass="NewFoodItemTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="newFoodItem" title="Food item" id="C1F-Kf-Sbh" customClass="NewFoodItemTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9IJ-v5-2bO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1197,7 +1197,7 @@
                             <tableViewSection id="c7M-Gi-8E1">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="title" id="bha-bG-UjP">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bha-bG-UjP" id="l7R-FK-NqX">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1212,7 +1212,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="description" id="o0f-l6-TYy">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o0f-l6-TYy" id="PSD-c7-Wnd">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1258,14 +1258,14 @@
         <!--Select Delivery Location-->
         <scene sceneID="tsn-xK-z4q">
             <objects>
-                <tableViewController title="Select Delivery Location" id="3YW-ch-DyB" customClass="DeliveryLocationTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Select Delivery Location" id="3YW-ch-DyB" customClass="DeliveryLocationTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oVk-0e-wl7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="custom" id="DZs-7z-rtz" customClass="CustomDeliveryLocationTableViewCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="custom" id="DZs-7z-rtz" customClass="CustomDeliveryLocationTableViewCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DZs-7z-rtz" id="U0n-AB-Jj4">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1301,7 +1301,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="history" textLabel="68w-b9-v9Z" style="IBUITableViewCellStyleDefault" id="8PT-pk-BKs">
-                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8PT-pk-BKs" id="ziu-s0-foO">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1332,14 +1332,14 @@
         <!--Orders-->
         <scene sceneID="Of5-YR-dYo">
             <objects>
-                <tableViewController storyboardIdentifier="driverOrders" title="I'm picking up food" id="G9f-zb-JFa" userLabel="Orders" customClass="DriverOrdersViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="driverOrders" title="I'm picking up food" id="G9f-zb-JFa" userLabel="Orders" customClass="DriverOrdersViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="tY0-fd-dPI" userLabel="Orders">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="order" id="Ase-mo-7I1" customClass="OrderCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="order" id="Ase-mo-7I1" customClass="OrderCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ase-mo-7I1" id="HfA-3i-AkT">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -1393,13 +1393,13 @@
         <!--Order Information-->
         <scene sceneID="olp-Z5-rsN">
             <objects>
-                <tableViewController storyboardIdentifier="getThatOrder" title="Order Information" id="9ih-Hs-QGC" customClass="GetThatOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="getThatOrder" title="Order Information" id="9ih-Hs-QGC" customClass="GetThatOrderTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="nNe-Ii-I3a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="haz-Bz-wme">
-                            <rect key="frame" x="0.0" y="224" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="288" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -1414,8 +1414,8 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="eNJ-Sw-zON" customClass="RestaurantCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="eNJ-Sw-zON" customClass="RestaurantCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eNJ-Sw-zON" id="VGx-c4-PG6">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1433,8 +1433,8 @@
                                     <outlet property="name" destination="lFe-oc-0S4" id="TTw-Il-xAA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="foodCell" textLabel="Haj-aU-IBY" detailTextLabel="XpV-qs-fdR" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="uid-M1-PDx" customClass="FoodItemCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="600" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="foodCell" textLabel="Haj-aU-IBY" detailTextLabel="XpV-qs-fdR" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="uid-M1-PDx" customClass="FoodItemCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uid-M1-PDx" id="7zD-1v-AXE">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
@@ -1461,8 +1461,8 @@
                                     <outlet property="foodItem" destination="Haj-aU-IBY" id="ugi-kq-pMn"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="deliveryCell" rowHeight="56" id="hOI-xG-SpZ" customClass="DeliveryItemCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="150" width="600" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="deliveryCell" rowHeight="56" id="hOI-xG-SpZ" customClass="DeliveryItemCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="214" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hOI-xG-SpZ" id="b7w-2J-9YK">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
@@ -1518,18 +1518,18 @@
         <!--Restaurants-->
         <scene sceneID="qKS-jg-Wcs">
             <objects>
-                <tableViewController storyboardIdentifier="driverRestaurants" title="I'm picking up food" id="vgK-R0-Jel" userLabel="Restaurants" customClass="DriverRestaurantsViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="driverRestaurants" title="I'm picking up food" id="vgK-R0-Jel" userLabel="Restaurants" customClass="DriverRestaurantsViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ikF-1c-VeL" userLabel="Restaurants">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="BgC-CG-Bre">
-                            <rect key="frame" x="0.0" y="200" width="600" height="20"/>
+                            <rect key="frame" x="0.0" y="264" width="600" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </activityIndicatorView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="availability" focusStyle="custom" id="Y4W-SJ-orO" customClass="AvailabilityCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="availability" focusStyle="custom" id="Y4W-SJ-orO" customClass="AvailabilityCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y4W-SJ-orO" id="8dj-mz-Njo">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1565,7 +1565,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="expirationTime" textLabel="0HX-7R-fda" detailTextLabel="zMM-sq-ouw" style="IBUITableViewCellStyleValue1" id="MAB-h2-fw9">
-                                <rect key="frame" x="0.0" y="94" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="158" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MAB-h2-fw9" id="iG4-KI-P2Z">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
@@ -1589,7 +1589,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurant" textLabel="wOU-VF-UCY" style="IBUITableViewCellStyleDefault" id="LxF-fi-uJG">
-                                <rect key="frame" x="0.0" y="138" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="202" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LxF-fi-uJG" id="wU2-Sy-Lp2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1644,13 +1644,13 @@
         <!--Order Information-->
         <scene sceneID="lYW-mr-UAg">
             <objects>
-                <tableViewController title="Order Information" id="3Yk-Wb-DTS" customClass="MyOrderTableViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Order Information" id="3Yk-Wb-DTS" customClass="MyOrderTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oL1-36-T6C">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o8v-ue-W8L">
-                            <rect key="frame" x="0.0" y="224" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="288" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="Cancel">
@@ -1661,8 +1661,8 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="nzG-wS-vzz" customClass="RestaurantCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="restaurantCell" id="nzG-wS-vzz" customClass="RestaurantCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nzG-wS-vzz" id="L9U-cZ-cIj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -1686,8 +1686,8 @@
                                     <outlet property="name" destination="ax3-SP-NYA" id="wKq-oI-XsP"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="foodCell" textLabel="h8h-QK-APQ" detailTextLabel="lqC-gX-eMb" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="W7K-7h-dhT" customClass="FoodItemCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="600" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="foodCell" textLabel="h8h-QK-APQ" detailTextLabel="lqC-gX-eMb" rowHeight="56" style="IBUITableViewCellStyleSubtitle" id="W7K-7h-dhT" customClass="FoodItemCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="158" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W7K-7h-dhT" id="qlH-dw-HFH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
@@ -1714,8 +1714,8 @@
                                     <outlet property="foodItem" destination="h8h-QK-APQ" id="we3-Y7-K4x"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="deliveryCell" rowHeight="56" id="NNs-VV-Y9Y" customClass="DeliveryItemCell" customModule="SeniorProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="150" width="600" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="deliveryCell" rowHeight="56" id="NNs-VV-Y9Y" customClass="DeliveryItemCell" customModule="Foodini" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="214" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNs-VV-Y9Y" id="wFU-hg-ZXH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
@@ -1774,9 +1774,9 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kNe-uZ-TQG"/>
         <segue reference="Omd-mY-WVB"/>
-        <segue reference="kNe-uZ-TQG"/>
+        <segue reference="iES-EO-zES"/>
         <segue reference="dG4-T9-SLc"/>
+        <segue reference="51v-Qf-B92"/>
     </inferredMetricsTieBreakers>
 </document>
