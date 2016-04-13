@@ -76,4 +76,6 @@ class OrderUnitTests: XCTestCase {
         _ = Food(name: "test2", description: "test2")
         
     }
+    
+    //other functions should be tested manually or through ui tests
 }

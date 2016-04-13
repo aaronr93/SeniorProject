@@ -87,11 +87,6 @@ class NewOrderUITests: XCTestCase {
         app.navigationBars["Food item"].buttons["Done"].tap()
         XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
         app.navigationBars["New Order"].buttons["Cancel"].tap()
-        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
-        let exists = NSPredicate(format: "exists == 1")
-        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
-        yesButton.tap()
     }
     
     
@@ -185,7 +180,7 @@ class NewOrderUITests: XCTestCase {
     
     func testRequestCombinatoric(){
         //this tests every possible combination
-        let onOff = [true, false]
+        let onOff = [false, true]
         let app = XCUIApplication()
         let tablesQuery = app.tables
         let selectRestaurantStaticText = tablesQuery.staticTexts["Select restaurant..."]
@@ -256,10 +251,12 @@ class NewOrderUITests: XCTestCase {
                                 XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
                                 app.navigationBars["New Order"].buttons["Cancel"].tap()
                                 let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
-                                let exists = NSPredicate(format: "exists == 1")
-                                expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
-                                waitForExpectationsWithTimeout(5, handler: nil)
-                                yesButton.tap()
+                                if(restaurant || driver || location || expiration){
+                                    let exists = NSPredicate(format: "exists == 1")
+                                    expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
+                                    waitForExpectationsWithTimeout(10, handler: nil)
+                                    yesButton.tap()
+                                }
                             }
                             
                         }
@@ -274,11 +271,6 @@ class NewOrderUITests: XCTestCase {
         let app = XCUIApplication()
         app.buttons["I want food"].tap()
         app.navigationBars["New Order"].buttons["Cancel"].tap()
-        let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
-        let exists = NSPredicate(format: "exists == 1")
-        expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
-        yesButton.tap()
         
         
     }

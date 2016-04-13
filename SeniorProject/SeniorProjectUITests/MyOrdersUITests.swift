@@ -34,7 +34,7 @@ class MyOrdersUITests: XCTestCase {
         //go to every order and back
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["My orders"].tap()
-        let myOrdersButton = app.navigationBars["Order Info"].buttons["My Orders"]
+        let myOrdersButton = app.navigationBars["Order Information"].buttons["My Orders"]
         for i in 0..<app.tables.cells.count{
             app.tables.cells.elementBoundByIndex(i).tap()
             myOrdersButton.tap()
