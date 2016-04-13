@@ -293,7 +293,8 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     }
     
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.section == Section.Food.rawValue {
+        if indexPath.section == Section.Food.rawValue && //don't enable the 'delete' button for 'add new food item'
+            (indexPath.row != tableView.numberOfRowsInSection(indexPath.section)-1) {
             return UITableViewCellEditingStyle.Delete
         } else {
             return UITableViewCellEditingStyle.None
