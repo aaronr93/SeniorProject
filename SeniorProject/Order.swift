@@ -434,7 +434,8 @@ class Order {
             expiresIn == "" &&
             deliverTo == "" && deliverToID == "" &&
             deliveredBy == "" && deliveredByID == "" &&
-            destination.name == "" && destination.id == "" {
+            destination.name == "" && destination.id == "" &&
+            foodItems.count == 0 {
             return true
         } else {
             return false
