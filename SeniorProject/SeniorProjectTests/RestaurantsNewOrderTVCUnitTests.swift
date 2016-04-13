@@ -29,7 +29,6 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
     }
     
     func test_addLocalPOIs() {
-        let readyExpectation = expectationWithDescription("ready")
         
         //initially the order should be available
         XCTAssert(test.POIs.restaurants.count == 0)
@@ -45,7 +44,6 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
                         if result {
                             // Success
                             XCTAssertTrue(result)
-                            readyExpectation.fulfill()
                         } else {
                             XCTAssertFalse(result)
                         }
@@ -54,11 +52,6 @@ class RestaurantsNewOrderTVCUnitTests: XCTestCase {
             }
         }
         
-        waitForExpectationsWithTimeout(10, handler: { error in
-            XCTAssertNil(error, "Error")
-        })
-        
-        XCTAssertTrue(test.POIs.restaurants.count > 0)
     }
     
     func test_didSelectRowAtIndexPath() {
