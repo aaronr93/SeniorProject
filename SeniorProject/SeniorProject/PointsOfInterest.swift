@@ -27,14 +27,14 @@ class PointsOfInterest: NSObject {
         request.region = region
         let search = MKLocalSearch(request: request)
         
-        
-        
         search.startWithCompletionHandler { (response: MKLocalSearchResponse?, error: NSError?) -> Void in
             if error == nil {
                 let mapItems = (response?.mapItems)! as [MKMapItem]
+                
                 let sortedMapItems = mapItems.sort { (loc1, loc2) -> Bool in
-                    self.distancetoUserSortFunc(loc1, location2: loc1, usersLocation: loc)
+                    self.distancetoUserSortFunc(loc1, location2: loc2, usersLocation: loc)
                 }
+                
                 let current = PFGeoPoint(location: loc)
                 for item in sortedMapItems {
                     let name = item.name
