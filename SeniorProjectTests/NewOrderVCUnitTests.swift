@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 
 class NewOrderVCUnitTests: XCTestCase {
     
@@ -105,11 +105,9 @@ class NewOrderVCUnitTests: XCTestCase {
         
         for i in 0..<20 {
             style = test.tableView(test.tableView, editingStyleForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: i))
-            if i == 1 {
-                XCTAssert(style == UITableViewCellEditingStyle.Delete)
-            } else {
-                XCTAssert(style == UITableViewCellEditingStyle.None)
-            }
+            
+            XCTAssert(style == UITableViewCellEditingStyle.None)
+            
         }
     }
     

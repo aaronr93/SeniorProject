@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import MapKit
 import CoreLocation
 import Parse
