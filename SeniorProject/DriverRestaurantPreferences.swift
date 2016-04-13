@@ -24,6 +24,24 @@ class DriverRestaurantPreferences {
         query.getFirstObjectInBackgroundWithBlock { (obj: PFObject?, error: NSError?) in
             if error == nil {
                 self.availability = obj as? PFDriverAvailability
+                
+                //also, retrieve blacklist of restaurants
+                let blacklistQuery = PFQuery(className: PFUnavailableRestaurant.parseClassName())
+                blacklistQuery.includeKey("driverAvailability").whereKey("driverAvailability", equalTo: PFObject(withoutDataWithClassName: "DriverAvailability", objectId: self.availability!.objectId))
+                blacklistQuery.findObjectsInBackgroundWithBlock {
+                    (objects: [PFObject]?, error: NSError?) -> Void in
+                    if error == nil {
+                        if let items = objects {
+                            for item in items {
+                                let item = item as! PFUnavailableRestaurant
+                                self.blacklist.append(item)
+                            }
+                        }
+                    } else {
+                        // Log details of the failure
+                        logError("Error: \(error!) \(error!.userInfo)")
+                    }
+                }
             } else {
                 // User's Availability doesn't exist; create it.
                 self.availability = PFDriverAvailability(className: PFDriverAvailability.parseClassName())
