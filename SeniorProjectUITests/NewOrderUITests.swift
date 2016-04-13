@@ -1,6 +1,6 @@
 //
 //  NewOrderUITests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 2/22/16.
 //  Copyright © 2016 Gooey. All rights reserved.
@@ -97,7 +97,7 @@ class NewOrderUITests: XCTestCase {
         //selecting nothing
         let tablesQuery = app.tables
         app.tables.staticTexts["Select a driver..."].tap()
-        app.navigationBars["SeniorProject.ChooseDriverTableView"].buttons["New Order"].tap()
+        app.navigationBars["Foodini.ChooseDriverTableView"].buttons["New Order"].tap()
         XCTAssertNotNil(tablesQuery.staticTexts["Select a driver..."])
         //selecting any driver - the only consistent value on the menu
         tablesQuery.staticTexts["Select a driver..."].tap()

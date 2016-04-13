@@ -1,6 +1,6 @@
 //
 //  RestaurantsNewOrderTVCUnitTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 4/8/16.
 //  Copyright © 2016 Gooey. All rights reserved.

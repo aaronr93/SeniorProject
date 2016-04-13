@@ -1,6 +1,6 @@
 //
 //  ValidationUnitTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 4/11/16.
 //  Copyright © 2016 Gooey. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  GetThatOrderTableViewController.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Michael Kytka on 2/20/16.
 //  Copyright © 2016 Gooey. All rights reserved.

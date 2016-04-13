@@ -606,7 +606,7 @@
 		96DD81CB1C56B8AE004CE3A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Gooey;
 				TargetAttributes = {
@@ -980,7 +980,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;
 				PRODUCT_NAME = FoodiniUITests;
-				TEST_TARGET_NAME = SeniorProject;
+				TEST_TARGET_NAME = Foodini;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -996,7 +996,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;
 				PRODUCT_NAME = FoodiniUITests;
-				TEST_TARGET_NAME = SeniorProject;
+				TEST_TARGET_NAME = Foodini;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;
