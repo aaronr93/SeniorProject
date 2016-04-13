@@ -251,7 +251,7 @@ class NewOrderUITests: XCTestCase {
                                 XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
                                 app.navigationBars["New Order"].buttons["Cancel"].tap()
                                 let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
-                                if(restaurant || driver || location || expiration){
+                                if(restaurant || driver || location || expiration || food){
                                     let exists = NSPredicate(format: "exists == 1")
                                     expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
                                     waitForExpectationsWithTimeout(10, handler: nil)
