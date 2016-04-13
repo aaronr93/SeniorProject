@@ -20,14 +20,14 @@ class SettingsViewControllerUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testChangePasswordTap() {
+    func testAChangePasswordTap() {
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
         app.buttons["Change password"].tap()
         XCTAssertNotNil(app.buttons.elementBoundByIndex(0))
     }
     
-    func testTapSignOut() {
+    func testBTapSignOut() {
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
         app.buttons["Sign out"].tap()
@@ -42,14 +42,14 @@ class SettingsViewControllerUITests: XCTestCase {
         app.navigationBars["Settings"].buttons["Home"].tap()
     }
     
-    func testUserNameField() {
+    func testCUserNameField() {
         
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
         app.textFields.elementBoundByIndex(0).tap()
     }
     
-    func testPhoneNumberField() {
+    func testDPhoneNumberField() {
         
         let app = XCUIApplication()
         app.navigationBars["Home"].buttons["Settings"].tap()
@@ -64,4 +64,32 @@ class SettingsViewControllerUITests: XCTestCase {
         app.textFields["add email address here"].tap()
         XCTAssertNotNil(app.textFields["add email address here"])
     }
+    
+    func testFCancelConfirmDeleteAccount() {
+        
+        let app = XCUIApplication()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.buttons["Delete account"].tap()
+        app.sheets["Confirm Account Removal"].buttons["No"].tap()
+        XCTAssertNotNil(app.buttons["Delete account"])
+    }
+    
+    func testGDeleteAccount() {
+        let app = XCUIApplication()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.buttons["Delete account"].tap()
+        XCTAssertNotNil(app.sheets["Confirm Account Removal"].buttons["No"])
+    }
+    
+    func testHConfirmDeleteAccount() {
+        
+        
+        let app = XCUIApplication()
+        app.navigationBars["Home"].buttons["Settings"].tap()
+        app.buttons["Delete account"].tap()
+        app.sheets["Confirm Account Removal"].buttons["Yes"].tap()
+        XCTAssertNotNil(app.buttons["Log In"])
+
+    }
+    
 }
