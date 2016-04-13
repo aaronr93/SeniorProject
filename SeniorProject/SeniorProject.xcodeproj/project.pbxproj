@@ -47,6 +47,7 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
+		79A38EA71CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
 		96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C721CBC359900863914 /* ValidationClassTests.swift */; };
@@ -165,6 +166,7 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
+		79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		96632C721CBC359900863914 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationClassTests.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				9BF07BF11C89EA4C00F3D3F9 /* DriverOrdersUnitTesting.swift */,
 				9B32020A1C8D33E800749264 /* GetThatOrderTableViewControllerUnitTests.swift */,
 				9B0161FC1CB967F500D19263 /* DriverRestaurantsViewControllerUnitTests.swift */,
+				79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */,
 			);
 			name = "Driver side";
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				3661ED4B1CB807F10061BF1C /* RestaurantsNewOrderTVCUnitTests.swift in Sources */,
 				9B0161FD1CB967F500D19263 /* DriverRestaurantsViewControllerUnitTests.swift in Sources */,
 				9BA4C1E51CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift in Sources */,
+				79A38EA71CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift in Sources */,
 				9B0161F91CB9544600D19263 /* OrderUnitTests.swift in Sources */,
 				9B7AD0E21CAD6E4C00BF036F /* CustomDeliveryLocationTableViewCellUnitTests.swift in Sources */,
 				9BA4C1E31CB17B250018F1D0 /* HomeViewControllerUnitTests.swift in Sources */,
