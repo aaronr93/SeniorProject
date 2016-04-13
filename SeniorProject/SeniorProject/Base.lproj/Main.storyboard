@@ -1774,9 +1774,9 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kNe-uZ-TQG"/>
         <segue reference="Omd-mY-WVB"/>
         <segue reference="kNe-uZ-TQG"/>
         <segue reference="dG4-T9-SLc"/>
-        <segue reference="9vk-JT-Ujd"/>
     </inferredMetricsTieBreakers>
 </document>
