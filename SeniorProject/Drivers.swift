@@ -92,7 +92,8 @@ class Drivers {
     }
     
     func addAvailability(driver: PFDriverAvailability) {
-        if !availabilities.contains(driver) {
+        //assuming there is only one availability per driver...IF NOT, THIS WILL CAUSE BUGS!
+        if !availabilities.map({$0.driver.objectId!}).contains({driver.driver.objectId!}()) {
             availabilities.append(driver)
         } else {
             logError("Duplicate driver")
@@ -100,7 +101,7 @@ class Drivers {
     }
     
     func addDriver(driver: PFUser) {
-        if !drivers.contains(driver) {
+        if !drivers.map({$0.objectId!}).contains({driver.objectId!}()) {
             drivers.append(driver)
         } else {
             logError("Duplicate driver")
@@ -108,8 +109,9 @@ class Drivers {
     }
     
     func findAndRemoveUnavailable(driver: PFUser) {
-        if drivers.contains(driver) {
-            if let index = drivers.indexOf(driver) {
+        //because why not. Thanks, Scala, you actually helped me do something useful.
+        if drivers.map({$0.objectId!}).contains({driver.objectId!}()) {
+            if let index = drivers.map({$0.objectId!}).indexOf({driver.objectId!}()) {
                 drivers.removeAtIndex(index)
             }
         }
