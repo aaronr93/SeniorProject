@@ -109,6 +109,9 @@ class GetThatOrderUITests: XCTestCase {
         
         let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
         yesButton.tap()
+        
+        sleep(1)//give the new button a bit of time to load
+        
         app.navigationBars["Order Information"].buttons["My Orders"].tap()
         XCTAssert((tablesQuery.staticTexts["Any driver"].exists) == false)
     }

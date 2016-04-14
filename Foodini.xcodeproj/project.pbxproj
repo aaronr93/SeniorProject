@@ -47,7 +47,7 @@
 		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
 		790FDB101CBF1FE900D82944 /* GetThatOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D3ABF61CBF15AC007C1DE2 /* GetThatOrderUITests.swift */; };
-		791F04541CBF38C00018C650 /* MyOrderUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791F04531CBF38C00018C650 /* MyOrderUnitTests.swift */; };
+		791F04581CBF40C10018C650 /* MyOrderTableVCUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */; };
 		79A38EA71CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
@@ -164,7 +164,7 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
-		791F04531CBF38C00018C650 /* MyOrderUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderUnitTests.swift; sourceTree = "<group>"; };
+		791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableVCUnitTests.swift; sourceTree = "<group>"; };
 		79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewControllerUnitTests.swift; sourceTree = "<group>"; };
 		79D3ABF61CBF15AC007C1DE2 /* GetThatOrderUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderUITests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				3661ED481CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift */,
+				791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -302,7 +303,6 @@
 				9BA4C1E41CB498B50018F1D0 /* SettingsViewControllerUnitTests.swift */,
 				9BA410941CB986CB00A8CB35 /* LoginViewControllerUnitTests.swift */,
 				9BA410981CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift */,
-				791F04531CBF38C00018C650 /* MyOrderUnitTests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -754,11 +754,11 @@
 				9B0161F71CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
 				9BA4109B1CB99C2800A8CB35 /* NewFoodItemViewControllerUnitTests.swift in Sources */,
-				791F04541CBF38C00018C650 /* MyOrderUnitTests.swift in Sources */,
 				9B0161F51CB941AF00D19263 /* CreateAccountUnitTests.swift in Sources */,
 				9B7AD0E41CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift in Sources */,
 				9B7AD15B1CB156A300BF036F /* CustomerDestinationsUnitTests.swift in Sources */,
 				9BA410991CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift in Sources */,
+				791F04581CBF40C10018C650 /* MyOrderTableVCUnitTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
 				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
 				3661ED491CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift in Sources */,
