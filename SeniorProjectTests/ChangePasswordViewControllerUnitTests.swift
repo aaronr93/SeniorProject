@@ -33,9 +33,9 @@ class ChangePasswordViewControllerUnitTests: XCTestCase {
     
     func testViewDidLoad(){
         testVC.viewDidLoad()
-        XCTAssertTrue(testVC.currentPasswordField.secureTextEntry)
-        XCTAssertTrue(testVC.newPasswordField.secureTextEntry)
-        XCTAssertTrue(testVC.confirmPassword.secureTextEntry)
+        XCTAssertTrue(testVC.currentPasswordField.borderStyle == .None)
+        XCTAssertTrue(testVC.newPasswordField.borderStyle == .None)
+        XCTAssertTrue(testVC.confirmPassword.borderStyle == .None)
     }
     
     //from the research I've done, it looks like testing first responder may not be possible, thus the currentPasswordEdit, etc. functions can't be tested through unit testing

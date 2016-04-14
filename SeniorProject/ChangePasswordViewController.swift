@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class ChangePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var currentPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
@@ -28,25 +28,56 @@ class ChangePasswordViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        currentPasswordField.secureTextEntry = true
-        newPasswordField.secureTextEntry = true
-        confirmPassword.secureTextEntry = true
+        // Remove borders from text fields
+        currentPasswordField.borderStyle = .None
+        newPasswordField.borderStyle = .None
+        confirmPassword.borderStyle = .None
+        
+        // Create CA Layer for each field
+        let borderCurrent = CALayer()
+        let borderNew = CALayer()
+        let borderConfirm = CALayer()
+        let color = UIColor.lightGrayColor()
+        
+        // Create the bottom border and add to the sublayer
+        addBorderToTextField(borderCurrent, field: currentPasswordField, color: color)
+        addBorderToTextField(borderNew, field: newPasswordField, color: color)
+        addBorderToTextField(borderConfirm, field: confirmPassword, color: color)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == currentPasswordField {
+            newPasswordField.becomeFirstResponder()
+            return true
+        } else if textField == newPasswordField {
+            confirmPassword.becomeFirstResponder()
+            return true
+        } else if textField == confirmPassword {
+            changePassword()
+            return true
+        } else {
+            return true
+        }
     }
     
     @IBAction func submitButtonTapped(sender: UIButton) {
-        func badInfo(){
-            let refreshAlert = UIAlertController(title: "Whoops!", message: "You typed something wrong... try again.", preferredStyle: UIAlertControllerStyle.Alert)
+        changePassword()
+    }
+    
+    func changePassword() {
+        func alert(title: String, message: String) {
+            let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
             
-            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+            refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
                 ()//don't need to do anything
             }))
             
             self.presentViewController(refreshAlert, animated: true, completion: nil)
         }
         var currentUser = PFUser.currentUser()
-       
-        if let password = currentPasswordField.text{
-            if validatedPassword(self.newPasswordField.text!){
+        
+        if let password = currentPasswordField.text {
+            if validatedPassword(self.newPasswordField.text!) {
                 PFUser.logInWithUsernameInBackground((currentUser?.username)!, password:password) {
                     (user: PFUser?, error: NSError?) -> Void in
                     if user != nil {
@@ -56,43 +87,27 @@ class ChangePasswordViewController: UIViewController {
                             currentUser?.password = self.newPasswordField.text
                             currentUser?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                                 if error != nil{
-                                    logError("password not changed")
-                                    let refreshAlert = UIAlertController(title: "Whoops!", message: "Something went wrong... try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                                        ()//don't need to do anything
-                                    }))
-                                    
-                                    self.presentViewController(refreshAlert, animated: true, completion: nil)
-                                
+                                    alert("Error", message: "New password not changed.")
                                 } else{
-                                    let refreshAlert = UIAlertController(title: "Password Changed", message: "Your password was successfully changed!", preferredStyle: UIAlertControllerStyle.Alert)
-                                    
-                                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-                                        //need to log out or session becomes invalid
-                                        PFUser.logOut()
-                                        self.performSegueWithIdentifier("unwindToLogin", sender: self)
-                                    }))
-                                    
-                                    self.presentViewController(refreshAlert, animated: true, completion: nil)
+                                    alert("Success", message: "You have successfully changed your password.\nPlease log in again.")
                                 }
                             })
                             
-                        }else{
+                        } else {
                             //user needs to re-enter password
-                            logError("passwords dont match...try again")
-                            badInfo()
-
+                            alert("Error", message: "Passwords do not match")
+                            
                         }
                     } else {
-                        logError("Invalid login credentials")
-                        badInfo()
+                        alert("Error", message: "Current password is incorrect")
                     }
                 }
             } else{
-                badInfo()
+                alert("Error", message: "Please enter a valid current password")
             }
         } else{
-            badInfo()
+            alert("Error", message: "Please enter your current password")
         }
+
     }
 }
