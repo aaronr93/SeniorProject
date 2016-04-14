@@ -1,6 +1,6 @@
 //
 //  NewOrderUITests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 2/22/16.
 //  Copyright © 2016 Gooey. All rights reserved.
@@ -96,8 +96,13 @@ class NewOrderUITests: XCTestCase {
         app.buttons["I want food"].tap()
         //selecting nothing
         let tablesQuery = app.tables
+        let selectRestaurantStaticText = tablesQuery.staticTexts["Select restaurant..."]
+        selectRestaurantStaticText.tap()
+        let restaurantToSelect = tablesQuery.staticTexts.elementBoundByIndex(0)
+        restaurantToSelect.tap()
+        
         app.tables.staticTexts["Select a driver..."].tap()
-        app.navigationBars["SeniorProject.ChooseDriverTableView"].buttons["New Order"].tap()
+        app.navigationBars["Foodini.ChooseDriverTableView"].buttons["New Order"].tap()
         XCTAssertNotNil(tablesQuery.staticTexts["Select a driver..."])
         //selecting any driver - the only consistent value on the menu
         tablesQuery.staticTexts["Select a driver..."].tap()
@@ -200,6 +205,10 @@ class NewOrderUITests: XCTestCase {
                                 expectationForPredicate(exists, evaluatedWithObject: restaurantToSelect, handler: nil)
                                 waitForExpectationsWithTimeout(5, handler: nil)
                                 restaurantToSelect.tap()
+                                if driver{
+                                    tablesQuery.staticTexts["Select a driver..."].tap()
+                                    tablesQuery.staticTexts["Any driver"].tap()
+                                }
                             }
                             
                             if food{
@@ -212,11 +221,6 @@ class NewOrderUITests: XCTestCase {
                                 tablesQuery.textFields["Details"].typeText("test")
                                 tablesQuery.textFields.containingType(.Button, identifier:"Clear text").element
                                 app.navigationBars["Food item"].buttons["Done"].tap()
-                            }
-                            
-                            if driver{
-                                tablesQuery.staticTexts["Select a driver..."].tap()
-                                tablesQuery.staticTexts["Any driver"].tap()
                             }
                             
                             if location{
@@ -251,10 +255,7 @@ class NewOrderUITests: XCTestCase {
                                 XCTAssertNotNil(app.navigationBars["New Order"].buttons["Cancel"])
                                 app.navigationBars["New Order"].buttons["Cancel"].tap()
                                 let yesButton = app.sheets["Cancel"].collectionViews.buttons["Yes"]
-                                if(restaurant || driver || location || expiration || food){
-                                    let exists = NSPredicate(format: "exists == 1")
-                                    expectationForPredicate(exists, evaluatedWithObject: yesButton, handler: nil)
-                                    waitForExpectationsWithTimeout(10, handler: nil)
+                                if(restaurant || location || expiration || food){
                                     yesButton.tap()
                                 }
                             }

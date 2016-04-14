@@ -1,13 +1,13 @@
 //
 //  InterfaceManipulationTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 4/7/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import Parse
 
 class InterfaceManipulationTests: XCTestCase {

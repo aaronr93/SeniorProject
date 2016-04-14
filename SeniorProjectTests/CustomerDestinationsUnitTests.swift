@@ -1,13 +1,13 @@
 //
 //  CustomerDestinationsUnitTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 4/3/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import Parse
 
 class CustomerDestinationsUnitTests: XCTestCase {

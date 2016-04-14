@@ -1,6 +1,6 @@
 //
 //  Drivers.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 2/21/16.
 //  Copyright © 2016 Gooey. All rights reserved.
@@ -103,10 +103,14 @@ class Drivers {
     }
     
     func addDriver(driver: PFUser) {
-        if !drivers.map({$0.objectId!}).contains({driver.objectId!}()) {
-            drivers.append(driver)
+        if( drivers.count > 0){
+            if !drivers.map({$0.objectId!}).contains({driver.objectId!}()) {
+                drivers.append(driver)
+            } else {
+                logError("Duplicate driver")
+            }
         } else {
-            logError("Duplicate driver")
+            drivers.append(driver)
         }
     }
     

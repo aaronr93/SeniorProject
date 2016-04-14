@@ -1,13 +1,13 @@
 //
 //  DriversClassTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Michael Kytka on 3/7/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import Parse
 import Bolts
 

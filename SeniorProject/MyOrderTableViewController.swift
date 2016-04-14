@@ -1,6 +1,6 @@
 //
 //  MyOrderTableViewController.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 2/23/16.
 //  Copyright © 2016 Gooey. All rights reserved.

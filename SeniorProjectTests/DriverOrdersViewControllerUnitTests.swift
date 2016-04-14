@@ -1,13 +1,13 @@
 //
 //  DriverOrdersViewControllerUnitTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by NOT_COMP401 on 4/12/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import Parse
 
 class DriverOrdersViewControllerUnitTests: XCTestCase {

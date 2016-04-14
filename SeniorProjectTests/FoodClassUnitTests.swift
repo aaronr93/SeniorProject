@@ -1,13 +1,13 @@
 //
 //  FoodClassTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Seth Loew on 3/15/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 
 class FoodClassUnitTests: XCTestCase {
     

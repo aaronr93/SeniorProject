@@ -1,6 +1,6 @@
 //
 //  MyOrdersUITests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 2/26/16.
 //  Copyright © 2016 Gooey. All rights reserved.

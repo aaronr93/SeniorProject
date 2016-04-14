@@ -1,13 +1,13 @@
 //
 //  RestaurantsNewOrderTVCUnitTests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 4/8/16.
 //  Copyright © 2016 Gooey. All rights reserved.
 //
 
 import XCTest
-@testable import SeniorProject
+@testable import Foodini
 import MapKit
 import CoreLocation
 import Parse

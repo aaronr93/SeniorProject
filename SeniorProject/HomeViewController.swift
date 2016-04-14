@@ -1,6 +1,6 @@
 //
 //  HomeViewController.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 2/9/16.
 //  Copyright © 2016 Gooey. All rights reserved.

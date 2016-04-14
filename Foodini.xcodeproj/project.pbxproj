@@ -46,10 +46,11 @@
 		36F506821C68F0C70014D506 /* FinishCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */; };
 		402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */; };
 		4053ACB61C5AF31300B21B29 /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */; };
+		790FDB101CBF1FE900D82944 /* GetThatOrderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D3ABF61CBF15AC007C1DE2 /* GetThatOrderUITests.swift */; };
+		791F04581CBF40C10018C650 /* MyOrderTableVCUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */; };
 		79A38EA71CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */; };
 		963A324D1C8CDFD40090CB2C /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963A324C1C8CDFD40090CB2C /* Food.swift */; };
 		964B36361C5FF1E100B305CA /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B36351C5FF1E100B305CA /* Validation.swift */; };
-		96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C721CBC359900863914 /* ValidationClassTests.swift */; };
 		96632C751CBC4A2E00863914 /* MyOrdersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */; };
 		96B36A951C5AFE1600DF6038 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A941C5AFE1600DF6038 /* Security.framework */; };
 		96B36A971C5AFE2900DF6038 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B36A961C5AFE2900DF6038 /* CFNetwork.framework */; };
@@ -163,10 +164,11 @@
 		36F506811C68F0C70014D506 /* FinishCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishCreateAccountViewController.swift; sourceTree = "<group>"; };
 		402FC81E1CAACBF200B774D1 /* FoodClassUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodClassUnitTests.swift; path = SeniorProjectTests/FoodClassUnitTests.swift; sourceTree = SOURCE_ROOT; };
 		4053ACB51C5AF31300B21B29 /* NewOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
+		791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderTableVCUnitTests.swift; sourceTree = "<group>"; };
 		79A38EA61CBD3E170025DDD4 /* DriverOrdersViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverOrdersViewControllerUnitTests.swift; sourceTree = "<group>"; };
+		79D3ABF61CBF15AC007C1DE2 /* GetThatOrderUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetThatOrderUITests.swift; sourceTree = "<group>"; };
 		963A324C1C8CDFD40090CB2C /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		964B36351C5FF1E100B305CA /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
-		96632C721CBC359900863914 /* ValidationClassTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationClassTests.swift; path = ../ValidationClassTests.swift; sourceTree = "<group>"; };
 		96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrdersUITests.swift; sourceTree = "<group>"; };
 		96B36A941C5AFE1600DF6038 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		96B36A961C5AFE2900DF6038 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -186,9 +188,9 @@
 		96DD81DD1C56B8AE004CE3A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96DD81E01C56B8AE004CE3A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96DD81E21C56B8AE004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96DD81E71C56B8AF004CE3A7 /* Foodini.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foodini.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96DD81E71C56B8AF004CE3A7 /* FoodiniTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodiniTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD81ED1C56B8AF004CE3A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96DD81F21C56B8AF004CE3A7 /* Foodini.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Foodini.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96DD81F21C56B8AF004CE3A7 /* FoodiniUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodiniUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96DD82041C56CEBE004CE3A7 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		9B0161F41CB941AF00D19263 /* CreateAccountUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountUnitTests.swift; sourceTree = "<group>"; };
 		9B0161F61CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewControllerUnitTests.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				3661ED481CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift */,
+				791F04571CBF40C10018C650 /* MyOrderTableVCUnitTests.swift */,
 			);
 			name = "Customer side";
 			sourceTree = "<group>";
@@ -321,7 +324,6 @@
 		364A6FE31C98EE010088116D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				96632C721CBC359900863914 /* ValidationClassTests.swift */,
 				9B9F2AF41C9C54FD0053F85F /* ParseDateClassUnitTests.swift */,
 				9B8C76431CAB69DD005E9F82 /* DriverRestaurantsPreferencesClassTests.swift */,
 				9B8C76471CAB6A0A005E9F82 /* SettingsClassTests.swift */,
@@ -359,6 +361,7 @@
 				36D08F7A1C7BAF1E005B1E90 /* HomeUITests.swift */,
 				3661ED541CB9802C0061BF1C /* SettingsViewControllerUITests.swift */,
 				96632C741CBC4A2E00863914 /* MyOrdersUITests.swift */,
+				79D3ABF61CBF15AC007C1DE2 /* GetThatOrderUITests.swift */,
 			);
 			name = "Other ViewControllers";
 			sourceTree = "<group>";
@@ -495,8 +498,8 @@
 			isa = PBXGroup;
 			children = (
 				96DD81D31C56B8AE004CE3A7 /* Foodini.app */,
-				96DD81E71C56B8AF004CE3A7 /* Foodini.xctest */,
-				96DD81F21C56B8AF004CE3A7 /* Foodini.xctest */,
+				96DD81E71C56B8AF004CE3A7 /* FoodiniTests.xctest */,
+				96DD81F21C56B8AF004CE3A7 /* FoodiniUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -582,7 +585,7 @@
 			);
 			name = FoodiniTests;
 			productName = SeniorProjectTests;
-			productReference = 96DD81E71C56B8AF004CE3A7 /* Foodini.xctest */;
+			productReference = 96DD81E71C56B8AF004CE3A7 /* FoodiniTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		96DD81F11C56B8AF004CE3A7 /* FoodiniUITests */ = {
@@ -600,7 +603,7 @@
 			);
 			name = FoodiniUITests;
 			productName = SeniorProjectUITests;
-			productReference = 96DD81F21C56B8AF004CE3A7 /* Foodini.xctest */;
+			productReference = 96DD81F21C56B8AF004CE3A7 /* FoodiniUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -609,7 +612,7 @@
 		96DD81CB1C56B8AE004CE3A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Gooey;
 				TargetAttributes = {
@@ -747,7 +750,6 @@
 				3661ED4D1CB873430061BF1C /* ChooseDriverTVCUnitTests.swift in Sources */,
 				9B9F2AFD1CA4CC8B0053F85F /* ExpiresInViewControllerUnitTests.swift in Sources */,
 				9BFD1AC31CBBFC1300F2545E /* ValidationUnitTests.swift in Sources */,
-				96632C731CBC359900863914 /* ValidationClassTests.swift in Sources */,
 				9BA4C1E11CB172CF0018F1D0 /* FinishCreateAccountViewControllerUnitTests.swift in Sources */,
 				9B0161F71CB9494300D19263 /* ChangePasswordViewControllerUnitTests.swift in Sources */,
 				9BF07BFC1C8CC5DB00F3D3F9 /* CreateAccountClassTests.swift in Sources */,
@@ -756,6 +758,7 @@
 				9B7AD0E41CAD704000BF036F /* DeliveryLocationTableViewControllerUnitTests.swift in Sources */,
 				9B7AD15B1CB156A300BF036F /* CustomerDestinationsUnitTests.swift in Sources */,
 				9BA410991CB98DD600A8CB35 /* CreateAccountViewControllerUnitTests.swift in Sources */,
+				791F04581CBF40C10018C650 /* MyOrderTableVCUnitTests.swift in Sources */,
 				9B9F2AF51C9C54FD0053F85F /* ParseDateClassUnitTests.swift in Sources */,
 				402FC81F1CAACBF300B774D1 /* FoodClassUnitTests.swift in Sources */,
 				3661ED491CB7ED1A0061BF1C /* NewOrderVCUnitTests.swift in Sources */,
@@ -774,6 +777,7 @@
 				36D08F7B1C7BAF1E005B1E90 /* HomeUITests.swift in Sources */,
 				3661ED571CB982330061BF1C /* ChooseDriverTableViewControllerUITests.swift in Sources */,
 				96632C751CBC4A2E00863914 /* MyOrdersUITests.swift in Sources */,
+				790FDB101CBF1FE900D82944 /* GetThatOrderUITests.swift in Sources */,
 				3661ED551CB9802C0061BF1C /* SettingsViewControllerUITests.swift in Sources */,
 				9B3202111C8E1D0F00749264 /* NewFoodItemViewControllerUITests.swift in Sources */,
 				36D08F7D1C7BB29C005B1E90 /* NewOrderUITests.swift in Sources */,
@@ -950,7 +954,7 @@
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
-				PRODUCT_NAME = Foodini;
+				PRODUCT_NAME = FoodiniTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodini.app/Foodini";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
@@ -967,7 +971,7 @@
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectTests;
-				PRODUCT_NAME = Foodini;
+				PRODUCT_NAME = FoodiniTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodini.app/Foodini";
 				VALID_ARCHS = "arm64 armv7 armv7s x86_64";
 			};
@@ -983,8 +987,8 @@
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;
-				PRODUCT_NAME = Foodini;
-				TEST_TARGET_NAME = SeniorProject;
+				PRODUCT_NAME = FoodiniUITests;
+				TEST_TARGET_NAME = Foodini;
 				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
@@ -999,8 +1003,8 @@
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Gooey.SeniorProjectUITests;
-				PRODUCT_NAME = Foodini;
-				TEST_TARGET_NAME = SeniorProject;
+				PRODUCT_NAME = FoodiniUITests;
+				TEST_TARGET_NAME = Foodini;
 				USES_XCTRUNNER = YES;
 			};
 			name = Release;

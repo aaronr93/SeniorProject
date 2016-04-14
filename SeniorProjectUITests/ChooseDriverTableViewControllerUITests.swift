@@ -1,6 +1,6 @@
 //
 //  ChooseDriverTableViewControllerUITests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Seth Loew on 3/29/16.
 //  Copyright © 2016 Gooey. All rights reserved.

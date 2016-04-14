@@ -1,6 +1,6 @@
 //
 //  ChangePasswordUITests.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 4/8/16.
 //  Copyright © 2016 Gooey. All rights reserved.
@@ -140,7 +140,7 @@ class ChangePasswordUITests: XCTestCase {
                             return true
                         }
                         sleep(2)
-                        app.navigationBars["SeniorProject.ChangePasswordView"].buttons["Settings"].tap()
+                        XCUIApplication().navigationBars["Foodini.ChangePasswordView"].buttons["Settings"].tap()
                         signOutButton.tap()
                         usernameTextField.tap()
                         usernameTextField.typeText(username)

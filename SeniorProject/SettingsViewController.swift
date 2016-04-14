@@ -1,6 +1,6 @@
 //
 //  SettingsViewController.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Zach Nafziger on 2/16/16.
 //  Created by Aaron Rosenberger on 2/15/16.

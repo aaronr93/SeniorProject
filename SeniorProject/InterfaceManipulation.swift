@@ -1,6 +1,6 @@
 //
 //  InterfaceManipulations.swift
-//  SeniorProject
+//  Foodini
 //
 //  Created by Aaron Rosenberger on 3/5/16.
 //  Copyright © 2016 Gooey. All rights reserved.
