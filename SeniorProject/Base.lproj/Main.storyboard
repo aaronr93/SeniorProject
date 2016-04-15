@@ -442,17 +442,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="newPasswordEdit:" destination="0mU-V7-X91" eventType="editingDidEnd" id="lMz-ja-E6a"/>
+                                    <action selector="newPasswordEdit:" destination="0mU-V7-X91" eventType="editingDidBegin" id="lMz-ja-E6a"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcQ-pn-IRJ">
                                 <rect key="frame" x="139" y="277" width="322" height="46"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="bKl-BA-6ld"/>
+                                    <constraint firstAttribute="height" constant="46" id="U2e-gy-eGx"/>
+                                    <constraint firstAttribute="width" constant="322" id="VED-SZ-PUo"/>
                                     <constraint firstAttribute="width" constant="322" id="bsv-oy-RmL"/>
                                     <constraint firstAttribute="width" constant="322" id="p0Q-9p-Q6l"/>
-                                    <constraint firstAttribute="width" constant="322" id="tFX-xt-DBO"/>
                                 </constraints>
                                 <state key="normal" title="Submit"/>
                                 <variation key="default">
@@ -481,7 +481,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Bj7-nF-wFG" firstAttribute="top" secondItem="Jwq-KA-wmg" secondAttribute="bottom" constant="29" id="LVB-Bc-yJX"/>
-                            <constraint firstItem="VjZ-Pd-3V1" firstAttribute="centerX" secondItem="jcQ-pn-IRJ" secondAttribute="centerX" id="Q4n-wm-Xbe"/>
+                            <constraint firstItem="jcQ-pn-IRJ" firstAttribute="centerX" secondItem="VjZ-Pd-3V1" secondAttribute="centerX" id="Smz-Vd-gnk"/>
                             <constraint firstItem="vft-uS-ehK" firstAttribute="top" secondItem="Bj7-nF-wFG" secondAttribute="bottom" constant="8" symbolic="YES" id="SxG-E3-V25"/>
                             <constraint firstItem="VjZ-Pd-3V1" firstAttribute="trailing" secondItem="vft-uS-ehK" secondAttribute="trailing" id="dlO-5A-udT"/>
                             <constraint firstItem="VjZ-Pd-3V1" firstAttribute="leading" secondItem="vft-uS-ehK" secondAttribute="leading" id="iU8-ws-fDG"/>
@@ -489,9 +489,8 @@
                             <constraint firstItem="Bj7-nF-wFG" firstAttribute="leading" secondItem="dnV-6y-EQk" secondAttribute="leadingMargin" constant="22" id="leo-yl-9f9"/>
                             <constraint firstItem="Bj7-nF-wFG" firstAttribute="leading" secondItem="vft-uS-ehK" secondAttribute="leading" id="pcz-Xe-QGq"/>
                             <constraint firstItem="Bj7-nF-wFG" firstAttribute="trailing" secondItem="vft-uS-ehK" secondAttribute="trailing" id="sGx-HA-FGc"/>
-                            <constraint firstItem="jcQ-pn-IRJ" firstAttribute="top" secondItem="VjZ-Pd-3V1" secondAttribute="bottom" constant="39" id="svX-u4-o8u"/>
+                            <constraint firstItem="jcQ-pn-IRJ" firstAttribute="top" secondItem="VjZ-Pd-3V1" secondAttribute="bottom" constant="39" id="uwx-K0-hhg"/>
                             <constraint firstItem="Bj7-nF-wFG" firstAttribute="centerX" secondItem="dnV-6y-EQk" secondAttribute="centerX" id="xfp-cg-CfU"/>
-                            <constraint firstItem="jcQ-pn-IRJ" firstAttribute="centerY" secondItem="dnV-6y-EQk" secondAttribute="centerY" id="zYk-fa-zXB"/>
                         </constraints>
                     </view>
                     <connections>

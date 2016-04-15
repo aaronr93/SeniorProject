@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "96DD81E61C56B8AF004CE3A7"
-               BuildableName = "Foodini.xctest"
+               BuildableName = "FoodiniTests.xctest"
                BlueprintName = "FoodiniTests"
                ReferencedContainer = "container:Foodini.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "96DD81F11C56B8AF004CE3A7"
-               BuildableName = "Foodini.xctest"
+               BuildableName = "FoodiniUITests.xctest"
                BlueprintName = "FoodiniUITests"
                ReferencedContainer = "container:Foodini.xcodeproj">
             </BuildableReference>

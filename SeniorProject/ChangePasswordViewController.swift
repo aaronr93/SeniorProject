@@ -43,16 +43,21 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         addBorderToTextField(borderCurrent, field: currentPasswordField, color: color)
         addBorderToTextField(borderNew, field: newPasswordField, color: color)
         addBorderToTextField(borderConfirm, field: confirmPassword, color: color)
+        
+        currentPasswordField.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == currentPasswordField {
+            currentPasswordField.resignFirstResponder()
             newPasswordField.becomeFirstResponder()
             return true
         } else if textField == newPasswordField {
+            newPasswordField.resignFirstResponder()
             confirmPassword.becomeFirstResponder()
             return true
         } else if textField == confirmPassword {
+            confirmPassword.resignFirstResponder()
             changePassword()
             return true
         } else {
@@ -67,11 +72,12 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     func changePassword() {
         func alert(title: String, message: String) {
             let refreshAlert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-            
             refreshAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-                ()//don't need to do anything
+                if title == "Success" {
+                    PFUser.logOut()
+                    self.performSegueWithIdentifier("unwindToLogin", sender: self)
+                }
             }))
-            
             self.presentViewController(refreshAlert, animated: true, completion: nil)
         }
         var currentUser = PFUser.currentUser()

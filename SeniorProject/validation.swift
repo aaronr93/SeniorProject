@@ -184,18 +184,16 @@ func logError(error: AnyObject) {
 
 func showBadInputWarningInField(field: UITextField) {
     // Called when the text in the param of type UITextField is invalid.
-    let myColor: UIColor = UIColor(red: 0.9, green: 0, blue: 0, alpha: 0.3 )
-    field.layer.backgroundColor = myColor.CGColor
+    let border = CALayer()
+    let redColor = UIColor.redColor()
+    addThickBorderToTextField(border, field: field, color: redColor)
 }
 
 func showGoodInputInField(field: UITextField) {
     // Called when the text in the param of type UITextField is valid.
-    let myColor: UIColor = UIColor(red: 0, green: 0.9, blue: 0, alpha: 0.3 )
-    field.layer.backgroundColor = myColor.CGColor
-}
-
-func removeInputHighlightInField(field: UITextField) {
-    field.layer.backgroundColor = UIColor.whiteColor().CGColor
+    let border = CALayer()
+    let normalColor = UIColor.lightGrayColor()
+    addBorderToTextField(border, field: field, color: normalColor)
 }
 
 func createBorder(layer: CALayer, borderWidth: Double, color: UIColor) -> CALayer? {
@@ -207,6 +205,14 @@ func createBorder(layer: CALayer, borderWidth: Double, color: UIColor) -> CALaye
 
 func addBorderToTextField(layer: CALayer,field: UITextField, color: UIColor) {
     let bw = 0.5
+    //create the bottom border and add to the sublayer
+    field.layer.addSublayer(createBorder(layer, borderWidth: bw, color: color)!)
+    field.layer.masksToBounds = true
+    layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
+}
+
+func addThickBorderToTextField(layer: CALayer,field: UITextField, color: UIColor) {
+    let bw = 2.0
     //create the bottom border and add to the sublayer
     field.layer.addSublayer(createBorder(layer, borderWidth: bw, color: color)!)
     field.layer.masksToBounds = true

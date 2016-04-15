@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     
     @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
-        removeInputHighlightInField(sender)
+        showGoodInputInField(sender)
     }
     
     @IBAction func logoutButtonTapped(sender: UIButton) {
@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
     @IBAction func doneChangingUsername(sender: UITextField) {
         if (sender.text! != originalUserName) { //if same as before, don't highlight
             if validatedUsername(sender.text!) {
-                removeInputHighlightInField(sender)
+                showGoodInputInField(sender)
             } else {
                 showBadInputWarningInField(sender)
             }
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
     @IBAction func doneChangingPhoneNumber(sender: UITextField) {
         if (sender.text! != originalPhone) { //if same as before, don't highlight
             if validatedPhoneNumber(sender.text!) {
-                removeInputHighlightInField(sender)
+                showGoodInputInField(sender)
             } else {
                 showBadInputWarningInField(sender)
             }
@@ -77,7 +77,7 @@ class SettingsViewController: UIViewController {
     @IBAction func doneChangingEmailAddress(sender: UITextField) {
         if (sender.text! != originalEmail) { //if same as before, don't highlight
             if validatedEmail(sender.text!) {
-                removeInputHighlightInField(sender)
+                showGoodInputInField(sender)
             } else {
                 showBadInputWarningInField(sender)
             }
@@ -134,7 +134,7 @@ class SettingsViewController: UIViewController {
                 currentUser.setObject(phoneField.text!, forKey: "phone")
             } else if (phoneField.text! == originalPhone) {
                 // phone number unchanged--not saved in DB
-                removeInputHighlightInField(phoneField)
+                showGoodInputInField(phoneField)
             } else {
                 // invalid phone number--not saved in DB
             }
@@ -146,7 +146,7 @@ class SettingsViewController: UIViewController {
                 currentUser.email = emailField.text!
             } else if (emailField.text! == originalEmail) {
                 // email address unchanged--not saved in DB
-                removeInputHighlightInField(emailField)
+                showGoodInputInField(emailField)
             } else {
                 // invalid email address--not saved in DB
             }

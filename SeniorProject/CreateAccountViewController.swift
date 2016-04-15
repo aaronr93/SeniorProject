@@ -18,7 +18,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var confirmPasswordField: UITextField!
     
     @IBAction func touchedInFieldResetHighlight(sender: UITextField) {
-        removeInputHighlightInField(sender)
+        showGoodInputInField(sender)
     }
     
     let newAccount = CreateAccount()
@@ -60,7 +60,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         newAccount.password = sender.text
         newAccount.passwordConfirm = ""
         confirmPasswordField.text = ""
-        removeInputHighlightInField(confirmPasswordField)
+        showGoodInputInField(confirmPasswordField)
     }
     @IBAction func passwordEditComplete(sender: UITextField) {
         if validatedPassword(sender.text!) {
@@ -99,11 +99,11 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
             newAccount.checkPasswordIsNotHorrible() &&
             newAccount.confirmPasswordEqualsPassword() {
                 newAccount.isValidated = true
-                removeInputHighlightInField(usernameField)
-                removeInputHighlightInField(phoneNumberField)
-                removeInputHighlightInField(emailField)
-                removeInputHighlightInField(passwordField)
-                removeInputHighlightInField(confirmPasswordField)
+                showGoodInputInField(usernameField)
+                showGoodInputInField(phoneNumberField)
+                showGoodInputInField(emailField)
+                showGoodInputInField(passwordField)
+                showGoodInputInField(confirmPasswordField)
         }
     }
     
@@ -129,7 +129,6 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         let borderWidthL = CGFloat(borderWidth)
         layer.borderColor = color.CGColor
         layer.borderWidth = borderWidthL
-        
         return layer
     }
     
@@ -138,7 +137,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         //create the bottom border and add to the sublayer
         field.layer.addSublayer(createBorder(layer,borderWidth: bw,color: color)!)
         field.layer.masksToBounds = true
-        layer.frame = CGRect(x: 0, y: field.frame.height - 1.0, width: field.frame.width , height: field.frame.height - 1.0)
+        layer.frame = CGRect(x: 0, y: field.frame.height - 0.5, width: field.frame.width , height: field.frame.height - 0.5)
     }
     
     override func viewDidLoad() {

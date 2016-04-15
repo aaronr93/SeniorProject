@@ -42,15 +42,13 @@ class ChangePasswordUITests: XCTestCase {
         let passwordSecureTextField = app.secureTextFields["Password"]
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
         
-        
         settingsButton.tap()
         signOutButton.tap()
-        
         
         usernameTextField.tap()
         usernameTextField.typeText(username)
         
-        
+        passwordSecureTextField.tap()
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText(password)
         passwordSecureTextField.typeText("\r")
@@ -90,7 +88,7 @@ class ChangePasswordUITests: XCTestCase {
                     if(oldPass && newPass && confirmPass){
                         //go to the login screen
                         addUIInterruptionMonitorWithDescription("Location Dialog") { (alert) -> Bool in
-                            app.alerts["Password Changed"].collectionViews.buttons["Ok"].tap()
+                            app.alerts["Success"].collectionViews.buttons["OK"].tap()
                             return true
                         }
                         sleep(4)
@@ -119,7 +117,7 @@ class ChangePasswordUITests: XCTestCase {
                         element.childrenMatchingType(.SecureTextField).elementBoundByIndex(2).typeText(password)
                         app.buttons["Submit"].tap()
                         addUIInterruptionMonitorWithDescription("Location Dialog") { (alert) -> Bool in
-                            app.alerts["Password Changed"].collectionViews.buttons["Ok"].tap()
+                            app.alerts["Success"].collectionViews.buttons["OK"].tap()
                             return true
                         }
                         sleep(4)
@@ -136,7 +134,7 @@ class ChangePasswordUITests: XCTestCase {
                         //go to the login screen
                         
                         addUIInterruptionMonitorWithDescription("Location Dialog") { (alert) -> Bool in
-                            app.alerts["Whoops!"].collectionViews.buttons["Ok"].tap()
+                            app.alerts["Error"].collectionViews.buttons["OK"].tap()
                             return true
                         }
                         sleep(2)
