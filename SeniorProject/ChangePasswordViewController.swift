@@ -10,10 +10,10 @@ import UIKit
 import Parse
 
 class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
+    
     @IBOutlet weak var currentPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
-    
     
     @IBAction func currentPasswordEdit(sender: UITextField) {
         currentPasswordField.becomeFirstResponder()

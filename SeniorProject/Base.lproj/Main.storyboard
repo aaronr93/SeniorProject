@@ -268,8 +268,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="322" id="2gb-Rn-Ldg"/>
                                     <constraint firstAttribute="width" constant="322" id="4ni-M1-gBe"/>
-                                    <constraint firstAttribute="height" constant="46" id="NiW-dY-FVT"/>
-                                    <constraint firstAttribute="width" constant="322" id="fgX-qu-A4s"/>
+                                    <constraint firstAttribute="height" constant="46" id="kan-h5-UgS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Delete account">
@@ -283,25 +282,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="deleteButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="zcB-nr-imD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-VC-4HL">
-                                <rect key="frame" x="139" y="277" width="322" height="46"/>
-                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="322" id="RUK-Qf-tZO"/>
-                                    <constraint firstAttribute="width" constant="322" id="cpF-Hh-VyL"/>
-                                    <constraint firstAttribute="height" constant="46" id="l5r-u4-mjR"/>
-                                </constraints>
-                                <state key="normal" title="Change password"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="RUK-Qf-tZO"/>
-                                        <exclude reference="cpF-Hh-VyL"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="0mU-V7-X91" kind="show" id="Krp-6w-iV1"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="add name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y1n-gb-NcW">
@@ -356,11 +336,11 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOi-OM-xGT">
-                                <rect key="frame" x="139" y="343" width="322" height="46"/>
+                                <rect key="frame" x="139" y="480" width="322" height="46"/>
                                 <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="322" id="5q5-yN-af1"/>
-                                    <constraint firstAttribute="height" constant="46" id="LYo-ed-mvV"/>
+                                    <constraint firstAttribute="height" constant="46" id="WNE-dn-zXH"/>
                                     <constraint firstAttribute="width" constant="322" id="oZV-zs-T6c"/>
                                 </constraints>
                                 <state key="normal" title="Sign out"/>
@@ -374,24 +354,44 @@
                                     <action selector="logoutButtonTapped:" destination="o8a-E2-DZA" eventType="touchUpInside" id="3MB-nc-TUN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E8c-VC-4HL">
+                                <rect key="frame" x="139" y="426" width="322" height="46"/>
+                                <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="322" id="6Gs-2a-Wju"/>
+                                    <constraint firstAttribute="width" constant="322" id="RUK-Qf-tZO"/>
+                                    <constraint firstAttribute="width" constant="322" id="cpF-Hh-VyL"/>
+                                    <constraint firstAttribute="height" constant="46" id="iA4-C6-3Wt"/>
+                                </constraints>
+                                <state key="normal" title="Change password"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RUK-Qf-tZO"/>
+                                        <exclude reference="cpF-Hh-VyL"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="0mU-V7-X91" kind="show" id="Krp-6w-iV1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="E8c-VC-4HL" firstAttribute="leading" secondItem="dOi-OM-xGT" secondAttribute="leading" id="5Ue-bj-yie"/>
-                            <constraint firstItem="E8c-VC-4HL" firstAttribute="centerX" secondItem="09b-eH-cve" secondAttribute="centerX" id="Bli-bg-lMT"/>
                             <constraint firstItem="jHh-ma-bKN" firstAttribute="top" secondItem="Y1n-gb-NcW" secondAttribute="bottom" constant="8" symbolic="YES" id="Edl-UR-KN5"/>
+                            <constraint firstItem="LN3-EC-cZr" firstAttribute="top" secondItem="dOi-OM-xGT" secondAttribute="bottom" constant="8" symbolic="YES" id="FS3-Mu-1gT"/>
+                            <constraint firstItem="E8c-VC-4HL" firstAttribute="trailing" secondItem="dOi-OM-xGT" secondAttribute="trailing" id="GGE-wr-DJa"/>
+                            <constraint firstItem="dOi-OM-xGT" firstAttribute="leading" secondItem="LN3-EC-cZr" secondAttribute="leading" id="GYi-xL-izY"/>
                             <constraint firstItem="Y1n-gb-NcW" firstAttribute="leading" secondItem="jHh-ma-bKN" secondAttribute="leading" id="HOJ-Ra-bQm"/>
-                            <constraint firstItem="E8c-VC-4HL" firstAttribute="trailing" secondItem="dOi-OM-xGT" secondAttribute="trailing" id="HyG-nb-8Vs"/>
-                            <constraint firstAttribute="bottom" secondItem="LN3-EC-cZr" secondAttribute="bottom" constant="20" symbolic="YES" id="MtO-6g-uQd"/>
-                            <constraint firstItem="dOi-OM-xGT" firstAttribute="leading" secondItem="LN3-EC-cZr" secondAttribute="leading" id="Odo-jZ-POL"/>
-                            <constraint firstItem="E8c-VC-4HL" firstAttribute="centerX" secondItem="9ww-lO-Kty" secondAttribute="centerX" id="RXM-Qj-dq6"/>
+                            <constraint firstItem="dOi-OM-xGT" firstAttribute="trailing" secondItem="LN3-EC-cZr" secondAttribute="trailing" id="JHU-pt-mf8"/>
+                            <constraint firstItem="E8c-VC-4HL" firstAttribute="centerX" secondItem="9ww-lO-Kty" secondAttribute="centerX" id="KJI-85-9Q6"/>
+                            <constraint firstItem="dOi-OM-xGT" firstAttribute="top" secondItem="E8c-VC-4HL" secondAttribute="bottom" constant="8" symbolic="YES" id="Oi3-XF-o9i"/>
+                            <constraint firstItem="E8c-VC-4HL" firstAttribute="leading" secondItem="dOi-OM-xGT" secondAttribute="leading" id="VWO-Qv-ius"/>
                             <constraint firstItem="jHh-ma-bKN" firstAttribute="trailing" secondItem="9ww-lO-Kty" secondAttribute="trailing" id="bB3-SD-QsY"/>
-                            <constraint firstItem="dOi-OM-xGT" firstAttribute="trailing" secondItem="LN3-EC-cZr" secondAttribute="trailing" id="bIe-im-xil"/>
-                            <constraint firstItem="dOi-OM-xGT" firstAttribute="top" secondItem="E8c-VC-4HL" secondAttribute="bottom" constant="20" id="cbx-64-R7t"/>
                             <constraint firstItem="9ww-lO-Kty" firstAttribute="top" secondItem="jHh-ma-bKN" secondAttribute="bottom" constant="8" symbolic="YES" id="hpm-CE-U2I"/>
                             <constraint firstItem="Y1n-gb-NcW" firstAttribute="leading" secondItem="09b-eH-cve" secondAttribute="leadingMargin" constant="22" id="oUH-TH-mbi"/>
+                            <constraint firstItem="E8c-VC-4HL" firstAttribute="centerX" secondItem="09b-eH-cve" secondAttribute="centerX" id="tnk-1a-ELh"/>
+                            <constraint firstAttribute="bottom" secondItem="LN3-EC-cZr" secondAttribute="bottom" constant="20" symbolic="YES" id="vBU-MO-UTk"/>
                             <constraint firstItem="jHh-ma-bKN" firstAttribute="leading" secondItem="9ww-lO-Kty" secondAttribute="leading" id="vEe-h1-FMd"/>
-                            <constraint firstItem="LN3-EC-cZr" firstAttribute="top" secondItem="dOi-OM-xGT" secondAttribute="bottom" constant="145" id="ybH-qa-Xyo"/>
                             <constraint firstItem="Y1n-gb-NcW" firstAttribute="trailing" secondItem="jHh-ma-bKN" secondAttribute="trailing" id="yqu-lJ-qBb"/>
                             <constraint firstItem="Y1n-gb-NcW" firstAttribute="top" secondItem="KvJ-zb-5sU" secondAttribute="bottom" constant="29" id="yvN-8Y-taC"/>
                         </constraints>
