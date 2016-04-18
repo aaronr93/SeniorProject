@@ -1516,7 +1516,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moK-Ch-ilo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2775" y="2675"/>
+            <point key="canvasLocation" x="3116" y="2786"/>
         </scene>
         <!--Restaurants-->
         <scene sceneID="qKS-jg-Wcs">
@@ -1647,7 +1647,7 @@
         <!--Order Information-->
         <scene sceneID="lYW-mr-UAg">
             <objects>
-                <tableViewController title="Order Information" id="3Yk-Wb-DTS" customClass="MyOrderTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MySingleOrderSent" title="Order Information" id="3Yk-Wb-DTS" customClass="MyOrderTableViewController" customModule="Foodini" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="oL1-36-T6C">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1777,9 +1777,9 @@
         <image name="vector gooey" width="1452" height="1897"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Omd-mY-WVB"/>
         <segue reference="iES-EO-zES"/>
-        <segue reference="dG4-T9-SLc"/>
-        <segue reference="51v-Qf-B92"/>
+        <segue reference="Omd-mY-WVB"/>
+        <segue reference="uMw-V3-isa"/>
+        <segue reference="9vk-JT-Ujd"/>
     </inferredMetricsTieBreakers>
 </document>
