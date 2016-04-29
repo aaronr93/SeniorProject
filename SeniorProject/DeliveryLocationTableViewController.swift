@@ -43,7 +43,7 @@ class DeliveryLocationTableViewController: UITableViewController, CustomDelivery
                 }
                 self.tableView.reloadData()
             } else {
-                logError("Error fetching destination items from parse")
+                NSLog("Error fetching destination items from parse")
             }
         }
     }

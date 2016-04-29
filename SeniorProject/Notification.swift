@@ -25,7 +25,7 @@ class Notification {
             push.setData(pushData)
             push.sendPushInBackground()
         } catch {
-            logError("could not find user with id " + sendToID!)
+            NSLog("could not find user with id " + sendToID!)
             
         }
         

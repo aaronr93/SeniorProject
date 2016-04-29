@@ -57,7 +57,7 @@ class GetThatOrderTableViewController: UITableViewController {
                             self.manip.setDriverStyleFor(sender, toReflect: OrderState.Acquired)
                         }
                     } else {
-                        logError("Order not acquired")
+                        NSLog("Order not acquired")
                     }
                 }
             }))
@@ -78,7 +78,7 @@ class GetThatOrderTableViewController: UITableViewController {
                         // Order successfully paid for
                         self.manip.setDriverStyleFor(sender, toReflect: OrderState.PaidFor)
                     } else {
-                        logError("Order not paid for")
+                        NSLog("Order not paid for")
                     }
                 }
             }))
@@ -97,7 +97,7 @@ class GetThatOrderTableViewController: UITableViewController {
                         sender.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
                         sender.enabled = false
                     } else {
-                        logError("Order not delivered")
+                        NSLog("Order not delivered")
                     }
                 }
             }))
@@ -214,7 +214,7 @@ class GetThatOrderTableViewController: UITableViewController {
             value = order.expiresIn
         default:
             value = ""
-            logError("Error with Delivery Settings cell")
+            NSLog("Error with Delivery Settings cell")
         }
         
         deliveryCell.value.text = value
@@ -242,7 +242,7 @@ class GetThatOrderTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 self.manip.setDriverStyleFor(self.actionButton, toReflect: self.order.orderState)
             } else {
-                logError("Food items could not be retrieved")
+                NSLog("Food items could not be retrieved")
             }
         })
         self.manip.setDriverStyleFor(self.actionButton, toReflect: self.order.orderState)

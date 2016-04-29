@@ -53,7 +53,7 @@ class ChooseDriverTableViewController: UITableViewController {
                 }
                 self.tableView.reloadData()
             } else {
-                logError("Couldn't get drivers from database")
+                NSLog("Couldn't get drivers from database")
             }
         }
     }

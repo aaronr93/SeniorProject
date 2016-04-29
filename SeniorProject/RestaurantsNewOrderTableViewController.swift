@@ -51,7 +51,7 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
                         } else {
                             // Some kind of error occurred while trying to
                             // find nearby locations.
-                            logError("Couldn't find searched locations")
+                            NSLog("Couldn't find searched locations")
                         }
                     }
                 }

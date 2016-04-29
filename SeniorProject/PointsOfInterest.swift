@@ -48,7 +48,7 @@ class PointsOfInterest: NSObject {
                 }
                 completion(success: true)
             } else {
-                logError("Error searching for nearby Restaurants: \(error)")
+                NSLog("Error searching for nearby Restaurants: \(error)")
                 completion(success: false)
             }
         }

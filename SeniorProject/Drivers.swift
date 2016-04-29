@@ -35,11 +35,11 @@ class Drivers {
                     if complete {
                         completion(success: true)
                     } else {
-                        logError("Failed to find drivers available for your restaurant")
+                        NSLog("Failed to find drivers available for your restaurant")
                     }
                 }
             } else {
-                logError("Failed to retrieve list of available drivers")
+                NSLog("Failed to retrieve list of available drivers")
             }
         }
     }
@@ -98,7 +98,7 @@ class Drivers {
         if !availabilities.map({$0.driver.objectId!}).contains({driver.driver.objectId!}()) {
             availabilities.append(driver)
         } else {
-            logError("Duplicate driver")
+            NSLog("Duplicate driver")
         }
     }
     
@@ -107,7 +107,7 @@ class Drivers {
             if !drivers.map({$0.objectId!}).contains({driver.objectId!}()) {
                 drivers.append(driver)
             } else {
-                logError("Duplicate driver")
+                NSLog("Duplicate driver")
             }
         } else {
             drivers.append(driver)

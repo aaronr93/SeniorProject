@@ -39,7 +39,7 @@ class MyOrderTableViewController: UITableViewController {
                         // Order successfully deleted
                         self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Deleted)
                     } else {
-                        logError("Order not deleted")
+                        NSLog("Order not deleted")
                     }
                 }
             }))
@@ -61,7 +61,7 @@ class MyOrderTableViewController: UITableViewController {
                         // Driver successfully reimbursed
                         self.manip.setCustomerStyleFor(sender, toReflect: OrderState.Completed)
                     } else {
-                        logError("Order not reimbursed")
+                        NSLog("Order not reimbursed")
                     }
                 }
             }))
@@ -171,7 +171,7 @@ class MyOrderTableViewController: UITableViewController {
                 value = order.expiresIn
             default:
                 value = ""
-                logError("Error with Delivery Settings cell")
+                NSLog("Error with Delivery Settings cell")
         }
         
         deliveryCell.value.text = value
@@ -200,7 +200,7 @@ class MyOrderTableViewController: UITableViewController {
             if success == true {
                 self.tableView.reloadData()
             } else {
-                logError("items could not be retrieved")
+                NSLog("items could not be retrieved")
             }
         })
     }

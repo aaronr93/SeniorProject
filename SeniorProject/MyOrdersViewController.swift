@@ -73,7 +73,7 @@ class MyOrdersViewController: UITableViewController {
                     completion(success: true)
                 }
             } else {
-                logError("\(error!.userInfo)")
+                NSLog("\(error!.userInfo)")
                 completion(success: false)
             }
         }
@@ -104,7 +104,7 @@ class MyOrdersViewController: UITableViewController {
                     completion(success: true)
                 }
             } else {
-                logError("\(error!.userInfo)")
+                NSLog("\(error!.userInfo)")
                 completion(success: false)
             }
         }
@@ -221,7 +221,7 @@ class MyOrdersViewController: UITableViewController {
             case "Completed":
                 dest.order.orderState = OrderState.Completed
             default:
-                logError("Order Status N/A")
+                NSLog("Order Status N/A")
         }
     }
     
@@ -271,7 +271,7 @@ class MyOrdersViewController: UITableViewController {
             case "Deleted":
                 dest.order.orderState = OrderState.Deleted
             default:
-                logError("Order Status N/A")
+                NSLog("Order Status N/A")
         }
     }
     

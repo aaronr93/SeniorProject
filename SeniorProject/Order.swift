@@ -46,7 +46,7 @@ class Order {
         if !foodItems.contains( {$0.name == toAdd.name} ) {
             foodItems.append(toAdd)
         } else {
-            logError("Food item already exists.")
+            NSLog("Food item already exists.")
         }
     }
     
@@ -54,7 +54,7 @@ class Order {
         if let removeIndex = foodItems.indexOf( {$0.name == toRemove.name} ) {
             foodItems.removeAtIndex(removeIndex)
         } else {
-            logError("Food item to remove does not exist.")
+            NSLog("Food item to remove does not exist.")
         }
     }
     
@@ -79,7 +79,7 @@ class Order {
         PFObject.saveAllInBackground(parseFoodItems, block: {
             (succeeded: Bool, error: NSError?) -> Void in
             if !succeeded{
-                logError("parse items save failed :(")
+                NSLog("parse items save failed :(")
             }
         })
     }
@@ -108,7 +108,7 @@ class Order {
                 }
             } else {
                 // Log details of the failure
-                logError("Error: \(error!) \(error!.userInfo)")
+                NSLog("Error: \(error!) \(error!.userInfo)")
                 completion(success: false)
             }
         }
@@ -118,13 +118,13 @@ class Order {
         // Sent when a customer submits an order.
         
         if foodItems.isEmpty {
-            logError("You haven't added any food items!")
+            NSLog("You haven't added any food items!")
             completion(success: false)
             return
         }
         
         if restaurant.name == "Select restaurant..." {
-            logError("You haven't selected a restaurant!")
+            NSLog("You haven't selected a restaurant!")
             completion(success: false)
             return
         }
@@ -150,13 +150,13 @@ class Order {
                         if success {
                             completion(success: true)
                         } else {
-                            logError("Failed to create the order.")
+                            NSLog("Failed to create the order.")
                             completion(success: false)
                         }
                     })
                     
                 } else {
-                    logError("Couldn't find your driver to deliver.")
+                    NSLog("Couldn't find your driver to deliver.")
                     completion(success: false)
                 }
             }
@@ -172,7 +172,7 @@ class Order {
             })
         }
         else {
-            logError("You haven't selected a driver to deliver!")
+            NSLog("You haven't selected a driver to deliver!")
         }
         
     }
@@ -219,7 +219,7 @@ class Order {
                                                         return
                                                     }
                                                 } else {
-                                                    logError("Couldn't save new food items to database.\n\(error)")
+                                                    NSLog("Couldn't save new food items to database.\n\(error)")
                                                 }
                                             })
                                         } else {
@@ -239,17 +239,17 @@ class Order {
                                                                 return
                                                             }
                                                         } else {
-                                                            logError("Couldn't save new food items to database.\n\(error)")
+                                                            NSLog("Couldn't save new food items to database.\n\(error)")
                                                         }
                                                     })
                                                 } else {
-                                                    logError("Error saving food: \(error)")
+                                                    NSLog("Error saving food: \(error)")
                                                 }
                                             })
                                         }
                                     }
                                 } else {
-                                    logError("Error getting food item match")
+                                    NSLog("Error getting food item match")
                                 }
                             })
                             foodCount += 1
@@ -265,7 +265,7 @@ class Order {
                     }
                 })
             } else {
-                logError("Failed to create a new destination.")
+                NSLog("Failed to create a new destination.")
                 completion(success: false)
                 return
             }
@@ -297,12 +297,12 @@ class Order {
                     }
                 } else {
                     // Log details of the failure
-                    logError("Couldn't set the destination for the order. Error:\n\(error!)")
+                    NSLog("Couldn't set the destination for the order. Error:\n\(error!)")
                     completion(success: false)
                 }
             }
         } else {
-            logError("A destination must be entered")
+            NSLog("A destination must be entered")
             completion(success: false)
         }
     }
@@ -314,7 +314,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                logError("Failed to retrieve order from Parse. Error:\n\(error!)")
+                NSLog("Failed to retrieve order from Parse. Error:\n\(error!)")
             } else if let order = order as? PFOrder {
                 // Changes fields in Parse to reflect new order state.
                 order.isAnyDriver = false
@@ -341,7 +341,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                logError("Failed to retrieve order from Parse. Error:\n\(error!)")
+                NSLog("Failed to retrieve order from Parse. Error:\n\(error!)")
             } else if let order = order as? PFOrder {
                 order.OrderState = "PaidFor"
                 self.orderState = OrderState.PaidFor
@@ -365,7 +365,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                logError("Failed to retrieve order from Parse. Error:\n\(error!)")
+                NSLog("Failed to retrieve order from Parse. Error:\n\(error!)")
             } else if let order = order as? PFOrder {
                 order.OrderState = "Delivered"
                 self.orderState = OrderState.Delivered
@@ -388,7 +388,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                logError("Failed to retrieve order from Parse. Error:\n\(error!)")
+                NSLog("Failed to retrieve order from Parse. Error:\n\(error!)")
             } else if let order = order as? PFOrder {
                 order.OrderState = "Completed"
                 self.orderState = OrderState.Completed
@@ -412,7 +412,7 @@ class Order {
         query.getObjectInBackgroundWithId(orderID) {
             (order: PFObject?, error: NSError?) -> Void in
             if error != nil {
-                logError("Failed to retrieve order from Parse. Error:\n\(error!)")
+                NSLog("Failed to retrieve order from Parse. Error:\n\(error!)")
             } else if let order = order as? PFOrder {
                 order.OrderState = "Deleted"
                 self.orderState = OrderState.Deleted

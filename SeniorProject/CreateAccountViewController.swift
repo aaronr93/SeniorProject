@@ -86,7 +86,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         if newAccount.isValidated == true {
             self.performSegueWithIdentifier("validateSegue", sender: self)
         } else {
-            logError("Account not validated. Please fix the appropriate fields.")
+            NSLog("Account not validated. Please fix the appropriate fields.")
         }
     }
     
@@ -120,7 +120,7 @@ class CreateAccountViewController: UIViewController, UITextFieldDelegate {
         case confirmPasswordField:
             confirmPasswordField.resignFirstResponder()
         default:
-            logError("bad case in textFieldShouldReturn")
+            NSLog("bad case in textFieldShouldReturn")
         }
         return true
     }

@@ -42,7 +42,7 @@ class CustomerDestinations {
             }
         } else {
             completion(success: false)
-            logError("Destination item to remove does not exist.")
+            NSLog("Destination item to remove does not exist.")
         }
     }
     
@@ -62,11 +62,11 @@ class CustomerDestinations {
                     completion(success: true)
                 } else {
                     completion(success: false)
-                    logError("Failed to unwrap retrieved objects; there may be no Destinations in the database.")
+                    NSLog("Failed to unwrap retrieved objects; there may be no Destinations in the database.")
                 }
             } else {
                 completion(success: false)
-                logError("Destination to remove does not exist in Parse.\n\(error)")
+                NSLog("Destination to remove does not exist in Parse.\n\(error)")
             }
         }
     }
@@ -85,11 +85,11 @@ class CustomerDestinations {
                     }
                     completion(success: true)
                 } else {
-                    logError("Failed to unwrap retrieved objects; there may be no Destinations in the database.")
+                    NSLog("Failed to unwrap retrieved objects; there may be no Destinations in the database.")
                     completion(success: false)
                 }
             } else {
-                logError("Could not get Destinations from Parse.\n\(error)")
+                NSLog("Could not get Destinations from Parse.\n\(error)")
                 completion(success: false)
             }
         }

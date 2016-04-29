@@ -29,7 +29,7 @@ class FinishCreateAccountViewController: UIViewController {
             createAccount()
             self.performSegueWithIdentifier("createAccountSegue", sender: self)
         } else {
-            logError("Failure")
+            NSLog("Failure")
         }
     }
     

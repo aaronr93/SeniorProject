@@ -36,8 +36,9 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let expirationCell = tableView.dequeueReusableCellWithIdentifier("expirationTime", forIndexPath: NSIndexPath(forRow: 1, inSection: 0))
-        expirationCell.selected = false
+        if let expirationCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) {
+            expirationCell.selected = false
+        }
         refreshControl?.endRefreshing()
     }
     
@@ -93,7 +94,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
         let row = indexPath.row
         
         if row > POIs.restaurants.count {
-            logError("Impossibly, there are more rows than there are restaurants.")
+            NSLog("Impossibly, there are more rows than there are restaurants.")
         } else {
             let name = POIs.restaurants[row].name
             if name == "" {
@@ -148,8 +149,6 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
                 if let expirationText = expirationCell.detailTextLabel {
                     expirationText.text = prefs.selectedExpirationTime
                 }
-                // Update the switch
-                tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .None)
             }
             
             if prefs.driverAvailability() == true {
@@ -226,7 +225,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
                         } else {
                             // Some kind of error occurred while trying to
                             // find nearby locations.
-                            logError("Couldn't find searched locations")
+                            NSLog("Couldn't find searched locations")
                         }
                     }
                 }

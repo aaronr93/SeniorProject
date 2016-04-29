@@ -32,7 +32,7 @@ class SettingsViewController: UIViewController {
             PFUser.logOut()
             performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)
         } else {
-            logError("PFUser logout error")
+            NSLog("PFUser logout error")
         }
     }
     
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
             self.currentUser.setObject(true, forKey: "deleted")
             self.currentUser.saveInBackgroundWithBlock({ (x: Bool, error: NSError?) -> Void in
                 if error != nil {
-                    logError("error in delete account save")
+                    NSLog("error in delete account save")
                 } else {
                     PFUser.logOut()
                     self.performSegueWithIdentifier("unwindSegueLogoutFromSettingsController", sender: self)

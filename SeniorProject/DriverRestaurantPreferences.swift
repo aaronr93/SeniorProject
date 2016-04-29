@@ -39,7 +39,7 @@ class DriverRestaurantPreferences {
                         }
                     } else {
                         // Log details of the failure
-                        logError("Error: \(error!) \(error!.userInfo)")
+                        NSLog("Error: \(error!) \(error!.userInfo)")
                     }
                 }
             } else {
@@ -139,12 +139,12 @@ class DriverRestaurantPreferences {
                             completion(success: true)
                         })
                     } else {
-                        logError("No driver availabilities!")
+                        NSLog("No driver availabilities!")
                         completion(success: false)
                     }
                 }
             } else {
-                logError("Error querying driver availibility")
+                NSLog("Error querying driver availibility")
                 completion(success: false)
             }
         }

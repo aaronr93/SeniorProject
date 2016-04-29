@@ -27,6 +27,13 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
         confirmPassword.becomeFirstResponder()
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        super.touchesBegan(touches, withEvent: event)
+        currentPasswordField.resignFirstResponder()
+        newPasswordField.resignFirstResponder()
+        confirmPassword.resignFirstResponder()
+    }
+    
     override func viewDidLoad() {
         // Remove borders from text fields
         currentPasswordField.borderStyle = .None
@@ -48,21 +55,17 @@ class ChangePasswordViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == currentPasswordField {
-            currentPasswordField.resignFirstResponder()
+        switch textField {
+        case currentPasswordField:
             newPasswordField.becomeFirstResponder()
-            return true
-        } else if textField == newPasswordField {
-            newPasswordField.resignFirstResponder()
+        case newPasswordField:
             confirmPassword.becomeFirstResponder()
-            return true
-        } else if textField == confirmPassword {
-            confirmPassword.resignFirstResponder()
+        case confirmPassword:
             changePassword()
-            return true
-        } else {
-            return true
+        default:
+            NSLog("Error")
         }
+        return true
     }
     
     @IBAction func submitButtonTapped(sender: UIButton) {
