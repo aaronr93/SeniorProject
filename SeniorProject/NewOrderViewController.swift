@@ -70,7 +70,7 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
                 order.foodItems[index].description = newFoodItemVC.foodDescriptionText
             }
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
@@ -78,28 +78,28 @@ class NewOrderViewController: UITableViewController, NewFoodItemViewDelegate, Ch
     func saveNewItem(newFoodItemVC: NewFoodItemTableViewController){
         let foodItem = Food(name: newFoodItemVC.foodNameText, description: newFoodItemVC.foodDescriptionText)
         order.addFoodItem(foodItem)
-        self.tableView.reloadData()
+        tableView.reloadData()
         newFoodItemVC.navigationController?.popViewControllerAnimated(true)
     }
     
     // Delegate method for Choose Driver
     func saveDriverToDeliver(chooseDriverVC: ChooseDriverTableViewController) {
-        self.order.deliveredByID = chooseDriverVC.chosenDriverID
-        self.order.deliveredBy = chooseDriverVC.chosenDriver
-        self.order.isAnyDriver = chooseDriverVC.isAnyDriver
-        self.tableView.reloadData()
+        order.deliveredByID = chooseDriverVC.chosenDriverID
+        order.deliveredBy = chooseDriverVC.chosenDriver
+        order.isAnyDriver = chooseDriverVC.isAnyDriver
+        tableView.reloadData()
         chooseDriverVC.navigationController?.popViewControllerAnimated(true)
     }
     
     // Delegate method for Choose Restaurant
     func saveRestaurant(restaurantsNewOrderVC: RestaurantsNewOrderTableViewController) {
-        self.tableView.reloadData()
+        tableView.reloadData()
         restaurantsNewOrderVC.navigationController?.popViewControllerAnimated(true)
     }
     
     // Delegate method for Choose Delivery Location
     func saveDeliveryLocation(deliveryLocationVC: DeliveryLocationTableViewController) {
-        self.tableView.reloadData()
+        tableView.reloadData()
         order.destination = deliveryLocationVC.destination
         deliveryLocationVC.navigationController?.popViewControllerAnimated(true)
     }

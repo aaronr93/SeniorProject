@@ -13,22 +13,36 @@ protocol CustomDeliveryLocationDelegate {}
 class CustomDeliveryLocationTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var customField: UITextField!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    
     var delegate: DeliveryLocationTableViewController!
     
     @IBAction func add(sender: UIButton) {
+        started()
         let newDest = customField.text!
-        
         if newDest != "" {
-            delegate.dest.addDestinationItemToDB(newDest) { result in
-                if result {
-                    self.delegate.tableView.reloadData()
-                    let index = self.delegate.dest.history.count
-                    self.delegate.tableView.selectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 1), animated: true, scrollPosition: .Bottom)
-                } else {
-                    logError("Adding custom destination was unsuccessful")
-                }
+            delegate.dest.add(newDest) { success in
+                self.finished()
+                self.delegate.tableView.performSelectorOnMainThread(#selector(UITableView.reloadData), withObject: nil, waitUntilDone: true)
             }
         }
+    }
+    
+    func started() {
+        activity.startAnimating()
+        addButton.hidden = true
+        customField.enabled = false
+    }
+    
+    func finished() {
+        activity.stopAnimating()
+        customField.enabled = true
+        customField.text = ""
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        addButton.hidden = false
     }
     
     override func awakeFromNib() {

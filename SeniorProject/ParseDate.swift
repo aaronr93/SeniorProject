@@ -91,9 +91,9 @@ class ParseDate {
     static func timeLeft(date: NSDate) -> String {
         let dateObj = NSDate()
         var seconds = Double(date.secondsFrom(dateObj))
-        var minutes : Double = 0
-        var hours : Double = 0
-        var days : Double = 0
+        var minutes: Double = 0
+        var hours: Double = 0
+        var days: Double = 0
         
         if date.isFutureDate(NSDate()) == true{
             days = floor(seconds/(60 * 60 * 24))
@@ -103,12 +103,12 @@ class ParseDate {
             minutes = floor(hoursLeft * 60)
             let minutesLeft = (hoursLeft * 60) - minutes
             seconds = floor(minutesLeft*60)
-            let rv : String = "\(Int(days)) days \(Int(hours)) hours \(Int(minutes)) min"
+            let rv: String = "\(Int(hours)) hours \(Int(minutes)) minutes"
             return rv
         }
         let expiration:String = (PFUser.currentUser()?.username!)!
         let notification = Notification(content: "\(expiration) has expired!", sendToID: (PFUser.currentUser()?.objectId)!)
         notification.push()
-        return "expired"
+        return "Expired"
     }
 }

@@ -209,10 +209,10 @@ class DriverOrdersViewController: UITableViewController {
                 self.clear(listOfOrders: &self.anyDriverOrders)
                 self.getOrdersForAnyone() { result in
                     if result {
-                        self.tableView.reloadData()
                         if let refresh = self.refreshControl {
                             refresh.endRefreshing()
                         }
+                        self.tableView.reloadData()
                     }
                 }
             }

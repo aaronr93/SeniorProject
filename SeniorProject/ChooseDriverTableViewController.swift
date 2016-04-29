@@ -48,10 +48,10 @@ class ChooseDriverTableViewController: UITableViewController {
     func getDrivers() {
         drivers.getDrivers { success in
             if success {
-                self.tableView.reloadData()
                 if let refresh = self.refreshControl {
                     refresh.endRefreshing()
                 }
+                self.tableView.reloadData()
             } else {
                 logError("Couldn't get drivers from database")
             }

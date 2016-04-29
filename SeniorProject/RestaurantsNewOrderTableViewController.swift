@@ -44,10 +44,10 @@ class RestaurantsNewOrderTableViewController: UITableViewController {
                     self.POIs.searchFor("Food", inRegion: region, withLocation: location) { result in
                         if result {
                             // Success
-                            self.tableView.reloadData()
                             if let refresh = self.refreshControl {
                                 refresh.endRefreshing()
                             }
+                            self.tableView.reloadData()
                         } else {
                             // Some kind of error occurred while trying to
                             // find nearby locations.

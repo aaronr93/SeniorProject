@@ -37,10 +37,10 @@ class MyOrdersViewController: UITableViewController {
                 self.clear(listOfOrders: &self.ordersIReceived)
                 self.getOrdersIReceived() { result in
                     if result {
-                        self.tableView.reloadData()
                         if let refresh = self.refreshControl {
                             refresh.endRefreshing()
                         }
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -197,13 +197,14 @@ class MyOrdersViewController: UITableViewController {
 
         dest.order.isAnyDriver = order.isAnyDriver
         
-        let destination = order.destination as! PFDestination
-        let name = destination.name
-        let id = destination.objectId!
-        let loc = destination.destination
-        let toPass = Destination(name: name, id: id)
-        toPass.loc = loc
-        dest.order.destination = toPass
+        if let destination = order.destination as? PFDestination {
+            let name = destination.name
+            let id = destination.objectId!
+            let loc = destination.destination
+            let toPass = Destination(name: name, id: id)
+            toPass.loc = loc
+            dest.order.destination = toPass
+        }
         
         let orderStatus = order.OrderState
         switch orderStatus {
@@ -246,13 +247,14 @@ class MyOrdersViewController: UITableViewController {
         
         dest.order.isAnyDriver = order.isAnyDriver
         
-        let destination = order.destination as! PFDestination
-        let name = destination.name
-        let id = destination.objectId!
-        let loc = destination.destination
-        let toPass = Destination(name: name, id: id)
-        toPass.loc = loc
-        dest.order.destination = toPass
+        if let destination = order.destination as? PFDestination {
+            let name = destination.name
+            let id = destination.objectId!
+            let loc = destination.destination
+            let toPass = Destination(name: name, id: id)
+            toPass.loc = loc
+            dest.order.destination = toPass
+        }
         
         let orderStatus = order.OrderState
         switch orderStatus {

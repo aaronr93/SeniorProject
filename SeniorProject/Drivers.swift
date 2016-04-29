@@ -46,11 +46,11 @@ class Drivers {
     
     func getListOfAvailableDrivers(completion: (success: Bool) -> Void) {
         let driversQuery = PFQuery(className: PFDriverAvailability.parseClassName())
-        driversQuery.includeKey("driver")
+        driversQuery.includeKey("driver").whereKey("deleted", notEqualTo: true)
         driversQuery.whereKey("isCurrentlyAvailable", equalTo: true)
         driversQuery.whereKey("driver", notEqualTo: user)
+        driversQuery.whereKey("expirationDate", greaterThan: NSDate())
         driversQuery.orderByAscending("expirationDate")
-        driversQuery.limit = 10
         driversQuery.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) in
             if error == nil {
                 if let driversList = objects as? [PFDriverAvailability] {

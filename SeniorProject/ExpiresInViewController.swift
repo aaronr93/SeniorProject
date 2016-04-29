@@ -97,10 +97,12 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     override func viewWillDisappear(animated: Bool) {
         if newOrderDelegate != nil {
-            newOrderDelegate.order.expiresMinutes = selectedMinutes
-            newOrderDelegate.order.expiresHours = selectedHours
-            newOrderDelegate.order.expiresIn = "\(selectedHours) hours \(selectedMinutes) minutes"
-            newOrderDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
+            if selectedHours != 0 || selectedMinutes != 0 {
+                newOrderDelegate.order.expiresMinutes = selectedMinutes
+                newOrderDelegate.order.expiresHours = selectedHours
+                newOrderDelegate.order.expiresIn = "\(selectedHours) hours \(selectedMinutes) minutes"
+                newOrderDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 2)], withRowAnimation: .Automatic)
+            }
         }
         if driverRestaurantDelegate != nil {
             driverRestaurantDelegate.prefs.availability!.expirationDate = getActualTimeFromNow()
@@ -108,9 +110,13 @@ class ExpiresInViewController: UIViewController, UIPickerViewDataSource, UIPicke
             let selectedHoursString = timePickerData[0][timePicker.selectedRowInComponent(0)]
             let selectedMinutesString = timePickerData[1][timePicker.selectedRowInComponent(1)]
             let time = selectedHoursString + " " + selectedMinutesString
-            driverRestaurantDelegate.prefs.selectedExpirationTime = time
-                
-            driverRestaurantDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .None)
+            
+            if selectedHoursString != "0 hours" || selectedMinutesString != "0 minutes" {
+                driverRestaurantDelegate.prefs.selectedExpirationTime = time
+                driverRestaurantDelegate.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0),
+                    NSIndexPath(forRow: 0, inSection: 0)],
+                    withRowAnimation: .None)
+            }
         }
     }
     
