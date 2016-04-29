@@ -248,7 +248,7 @@ class DriverRestaurantsViewController: UITableViewController, AvailabilityCellDe
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         if section == 0 {
             // Settings
             if row == 1 {
